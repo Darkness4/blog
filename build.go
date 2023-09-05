@@ -10,6 +10,7 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/Darkness4/blog/build/index"
 	chromahtml "github.com/alecthomas/chroma/v2/formatters/html"
 	"github.com/rs/zerolog/log"
 	"github.com/yuin/goldmark"
@@ -58,7 +59,7 @@ func files() <-chan string {
 	return f
 }
 
-func main() {
+func processPages() {
 	_ = os.RemoveAll("gen")
 
 	// Markdown engine
@@ -88,7 +89,7 @@ func main() {
 		ext := filepath.Ext(file)
 		file = filepath.Join("gen", strings.TrimSuffix(file, ext))
 
-		if err := os.MkdirAll(filepath.Dir(file), 0o777); err != nil {
+		if err := os.MkdirAll(filepath.Dir(file), 0o755); err != nil {
 			log.Fatal().Err(err).Msg("mkdir failure")
 		}
 
@@ -109,7 +110,7 @@ func main() {
 				metaData := meta.Get(ctx)
 
 				t := template.Must(template.ParseFS(mdTmpl, "templates/markdown.tmpl"))
-				t.Execute(w, struct {
+				if err := t.Execute(w, struct {
 					Title string
 					Style string
 					Body  string
@@ -117,7 +118,9 @@ func main() {
 					Title: fmt.Sprintf("%v", metaData["title"]),
 					Style: cssBuffer.String(),
 					Body:  sb.String(),
-				})
+				}); err != nil {
+					log.Fatal().Err(err).Msg("generate file from template failure")
+				}
 			} else {
 				w, err := os.Create(file + ext)
 				if err != nil {
@@ -131,4 +134,9 @@ func main() {
 			}
 		}()
 	}
+}
+
+func main() {
+	processPages()
+	index.Generate()
 }

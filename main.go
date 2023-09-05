@@ -1,4 +1,4 @@
-//go:generate go run build.go
+//go:generate go run -tags build build.go
 
 package main
 

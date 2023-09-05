@@ -1,0 +1,9 @@
+package index
+
+import "{{ .Module }}/index"
+
+var Page = map[string]index.Index{
+  {{- range $key, $value := .Index}}
+  "{{$key}}": {},
+  {{- end}}
+}

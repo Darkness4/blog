@@ -25,7 +25,7 @@ run: generate
 
 .PHONY: watch
 watch:
-	nodemon -i "gen/" -i "bin/" -e go,md,js,css,tmpl,css,env,local,mod --exec 'make run || exit 1' --signal SIGTERM
+	nodemon -i "gen/" -i "bin/" -e "*" --exec 'make run || exit 1' --signal SIGTERM
 
 .PHONY: lint
 lint: $(golint)
