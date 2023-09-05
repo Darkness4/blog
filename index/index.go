@@ -5,13 +5,19 @@ package index
 import (
 	"bytes"
 	"embed"
+	"fmt"
 	"go/format"
-	"html/template"
+	"io"
 	"os"
 	"path/filepath"
 	"runtime/debug"
+	"text/template"
 
+	"github.com/Masterminds/sprig/v3"
 	"github.com/rs/zerolog/log"
+	"github.com/yuin/goldmark"
+	meta "github.com/yuin/goldmark-meta"
+	"github.com/yuin/goldmark/text"
 )
 
 var (
@@ -20,6 +26,9 @@ var (
 )
 
 type Index struct {
+	Title       string
+	Description string
+	Href        string
 }
 
 func buildIndex() (index map[string]Index, err error) {
@@ -28,18 +37,27 @@ func buildIndex() (index map[string]Index, err error) {
 		return index, err
 	}
 
+	// Markdown Parser
+	markdown := goldmark.New(
+		goldmark.WithExtensions(
+			meta.New(
+				meta.WithStoresInDocument(),
+			),
+		),
+	)
+
 	// Filters non-page
 	index = make(map[string]Index)
 	for _, entry := range entries {
 		if !entry.IsDir() {
 			continue
 		}
-		f, err := os.Open(filepath.Join("gen/pages/blog", entry.Name(), "page.tmpl"))
+		f, err := os.Open(filepath.Join("pages/blog", entry.Name(), "page.md"))
 		if err != nil {
 			log.Debug().
 				Err(err).
 				Str("entry", entry.Name()).
-				Msg("ignored for index, failed to open page.tmpl")
+				Msg("ignored for index, failed to open page.md")
 			continue
 		}
 		finfo, err := f.Stat()
@@ -47,13 +65,23 @@ func buildIndex() (index map[string]Index, err error) {
 			log.Debug().
 				Err(err).
 				Str("entry", entry.Name()).
-				Msg("ignored for index, failed to stat page.tmpl")
+				Msg("ignored for index, failed to stat page.md")
 			continue
 		}
 		if finfo.IsDir() {
 			continue
 		}
-		index[entry.Name()] = Index{}
+		b, err := io.ReadAll(f)
+		if err != nil {
+			log.Fatal().Err(err).Msg("read file failure")
+		}
+		document := markdown.Parser().Parse(text.NewReader(b))
+		metaData := document.OwnerDocument().Meta()
+		index[entry.Name()] = Index{
+			Title:       fmt.Sprintf("%v", metaData["title"]),
+			Description: fmt.Sprintf("%v", metaData["description"]),
+			Href:        filepath.Join("blog", entry.Name()),
+		}
 	}
 
 	return index, nil
@@ -84,8 +112,12 @@ func Generate() {
 		defer f.Close()
 
 		var buf bytes.Buffer
-		t := template.Must(template.ParseFS(indexTmpl, "templates/index.tmpl"))
-		if err := t.Execute(&buf, struct {
+		t := template.Must(
+			template.New("index").
+				Funcs(sprig.TxtFuncMap()).
+				ParseFS(indexTmpl, "templates/index.tmpl"),
+		)
+		if err := t.ExecuteTemplate(&buf, "index", struct {
 			Module string
 			Index  map[string]Index
 		}{
@@ -95,11 +127,14 @@ func Generate() {
 			log.Fatal().Err(err).Msg("template failure")
 		}
 
-		formated, err := format.Source(buf.Bytes())
+		formatted, err := format.Source(buf.Bytes())
 		if err != nil {
+			fmt.Println(buf.String())
 			log.Fatal().Err(err).Msg("format code from template failure")
 		}
 
-		f.Write(formated)
+		if _, err = f.Write(formatted); err != nil {
+			log.Fatal().Err(err).Msg("write failure")
+		}
 	}()
 }

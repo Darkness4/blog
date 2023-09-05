@@ -1,0 +1,19 @@
+{{define "index"}}
+package index
+
+type Index struct {
+	Title       string
+	Description string
+	Href        string
+}
+
+var Page = map[string]Index{
+	{{- range $key, $value := .Index}}
+	"{{$key}}": {
+		Title: {{ $value.Title | quote }},
+		Description: {{ $value.Description | quote }},
+		Href: {{ $value.Href | quote }},
+	},
+	{{- end}}
+}
+{{- end}}

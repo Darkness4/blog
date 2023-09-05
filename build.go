@@ -10,7 +10,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/Darkness4/blog/build/index"
+	"github.com/Darkness4/blog/index"
 	chromahtml "github.com/alecthomas/chroma/v2/formatters/html"
 	"github.com/rs/zerolog/log"
 	"github.com/yuin/goldmark"

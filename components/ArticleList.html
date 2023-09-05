@@ -1,0 +1,5 @@
+{{ define "ArticleList" }}
+{{- range $key, $value := .Index }}
+{{ template "ArticleCard" $value }}
+{{- end }}
+{{ end }}

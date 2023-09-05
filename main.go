@@ -14,6 +14,8 @@ import (
 
 	"embed"
 
+	"github.com/Darkness4/blog/gen/index"
+	"github.com/Masterminds/sprig/v3"
 	"github.com/go-chi/chi/v5"
 	"github.com/joho/godotenv"
 	"github.com/rs/zerolog"
@@ -63,7 +65,7 @@ var app = &cli.App{
 					return
 				}
 				if !finfo.IsDir() {
-					buf := make([]byte, 256)
+					buf := make([]byte, 512)
 					for {
 						_, err := f.Read(buf)
 						if err == io.EOF {
@@ -100,13 +102,23 @@ var app = &cli.App{
 				// SSR
 				base = "base.htmx"
 			}
-			t, err := template.ParseFS(html, base, path, "components/*")
+			t, err := template.New("base").
+				Funcs(sprig.TxtFuncMap()).
+				ParseFS(html, base, path, "components/*")
 			if err != nil {
-				// The page doesn't exist
-				http.Error(w, "not found", http.StatusNotFound)
+				if errors.Is(err, fs.ErrNotExist) {
+					http.Error(w, "not found", http.StatusNotFound)
+				} else {
+					log.Err(err).Msg("template error")
+					http.Error(w, err.Error(), http.StatusNotFound)
+				}
 				return
 			}
-			if err := t.ExecuteTemplate(w, "base", struct{}{}); err != nil {
+			if err := t.ExecuteTemplate(w, "base", struct {
+				Index map[string]index.Index
+			}{
+				Index: index.Page,
+			}); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 		}

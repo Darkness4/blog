@@ -1,4 +1,4 @@
-# Blog in Go and HTMX
+# A compile-time blog in Go and HTMX
 
 A very simple example efficient blog in Go and HTMX.
 
