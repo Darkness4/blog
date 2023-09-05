@@ -14,16 +14,20 @@
       integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO"
       crossorigin="anonymous"
     ></script>
+    <script
+      hx-preserve="true"
+      src="https://unpkg.com/htmx.org@1.9.5/dist/ext/head-support.js"
+      integrity="sha384-CtqhRhV1bHrqMSWc8cQGQL4epjUqCHjq/kJ9ztGHS39vO/1phOgyhFIieE87UKMu"
+      crossorigin="anonymous"
+    ></script>
     <link
       hx-preserve="true"
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@next/css/pico.classless.min.css"
+      integrity="sha384-b0yMD65FTVA7qviRyRHAAjYND6LM3N/6oWeTlN0HEoq9xKpIVlyG/zgGkLlbwxt+"
+      crossorigin="anonymous"
     />
     <link hx-preserve="true" rel="stylesheet" href="/static/app.css" />
-    <script
-      hx-preserve="true"
-      src="https://unpkg.com/htmx.org/dist/ext/head-support.js"
-    ></script>
     {{ template "head" . }}
   </head>
   <body hx-ext="head-support" hx-boost="true">
