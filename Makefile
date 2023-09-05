@@ -11,8 +11,8 @@ ifeq ($(golint),)
 golint := $(shell go env GOPATH)/bin/golangci-lint
 endif
 
-.PHONY: bin/auth-htmx
-bin/auth-htmx: $(GO_SRCS) generate
+.PHONY: bin/blog
+bin/blog: $(GO_SRCS) generate
 	go build -ldflags "-s -w -X main.version=${VERSION}" -o "$@" ./main.go
 
 .PHONY: generate
@@ -26,6 +26,10 @@ run: generate
 .PHONY: watch
 watch:
 	nodemon -i "gen/" -i "bin/" -e "*" --exec 'make run || exit 1' --signal SIGTERM
+
+.PHONY: unit
+unit:
+	go test -race -covermode=atomic -timeout=30s ./...
 
 .PHONY: lint
 lint: $(golint)
