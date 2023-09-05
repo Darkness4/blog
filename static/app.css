@@ -1,0 +1,4 @@
+body>footer, body>header, body>main {
+  padding-top: 0;
+  padding-bottom: 0;
+}

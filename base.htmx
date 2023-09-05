@@ -1,0 +1,7 @@
+{{ define "base" }}
+<head>
+  {{ template "head" . }}
+</head>
+
+<header>{{ template "Nav" . }}</header>
+{{ template "body" . }} {{ end }}
