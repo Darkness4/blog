@@ -80,7 +80,7 @@ func buildIndex() (index map[string]Index, err error) {
 		index[entry.Name()] = Index{
 			Title:       fmt.Sprintf("%v", metaData["title"]),
 			Description: fmt.Sprintf("%v", metaData["description"]),
-			Href:        filepath.Join("blog", entry.Name()),
+			Href:        filepath.Join("/blog", entry.Name()),
 		}
 	}
 
