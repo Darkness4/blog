@@ -15,6 +15,7 @@ import (
 	"github.com/yuin/goldmark"
 	highlighting "github.com/yuin/goldmark-highlighting/v2"
 	meta "github.com/yuin/goldmark-meta"
+	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 )
 
@@ -58,15 +59,23 @@ func files() <-chan string {
 }
 
 func main() {
+	_ = os.RemoveAll("gen")
+
 	// Markdown engine
+	var cssBuffer strings.Builder
 	markdown := goldmark.New(
 		goldmark.WithExtensions(
 			highlighting.NewHighlighting(
 				highlighting.WithStyle("onedark"),
+				highlighting.WithCSSWriter(&cssBuffer),
 				highlighting.WithFormatOptions(
 					chromahtml.WithLineNumbers(true),
+					chromahtml.WithClasses(true),
 				),
 			),
+			extension.Linkify,
+			extension.Table,
+			extension.Strikethrough,
 			meta.Meta,
 		),
 	)
@@ -77,20 +86,20 @@ func main() {
 			log.Fatal().Err(err).Msg("read file failure")
 		}
 		ext := filepath.Ext(file)
-		file = filepath.Join("gen", strings.TrimSuffix(file, ext)+".tmpl")
+		file = filepath.Join("gen", strings.TrimSuffix(file, ext))
 
 		if err := os.MkdirAll(filepath.Dir(file), 0o777); err != nil {
 			log.Fatal().Err(err).Msg("mkdir failure")
 		}
 
 		func() {
-			w, err := os.Create(file)
-			if err != nil {
-				log.Fatal().Err(err).Msg("create file failure")
-			}
-			defer w.Close()
-
 			if ext == ".md" {
+				w, err := os.Create(file + ".tmpl")
+				if err != nil {
+					log.Fatal().Err(err).Msg("create file failure")
+				}
+				defer w.Close()
+
 				var sb strings.Builder
 
 				ctx := parser.NewContext()
@@ -102,12 +111,20 @@ func main() {
 				t := template.Must(template.ParseFS(mdTmpl, "templates/markdown.tmpl"))
 				t.Execute(w, struct {
 					Title string
+					Style string
 					Body  string
 				}{
 					Title: fmt.Sprintf("%v", metaData["title"]),
+					Style: cssBuffer.String(),
 					Body:  sb.String(),
 				})
 			} else {
+				w, err := os.Create(file + ext)
+				if err != nil {
+					log.Fatal().Err(err).Msg("create file failure")
+				}
+				defer w.Close()
+
 				if _, err := w.Write(content); err != nil {
 					log.Fatal().Err(err).Msg("write file failure")
 				}

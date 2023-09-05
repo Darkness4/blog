@@ -1,4 +1,4 @@
-body>footer, body>header, body>main {
-  padding-top: 0;
+body>footer, body>header {
+  padding-top: 1em;
   padding-bottom: 0;
 }

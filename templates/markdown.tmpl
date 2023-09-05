@@ -1,9 +1,16 @@
 {{ `{{define "head"}}` }}
 <title>{{ .Title }}</title>
+<style>
+{{ .Style }}
+</style>
 {{ `{{ end }}` }}
 
 {{ `{{define "body"}}` }}
 <main>
+<h1>{{ .Title }}</h1>
+TODO: add published date
+TODO: support images
 {{ .Body }}
+TODO: next and previous article
 </main>
 {{ `{{ end }}` }}
