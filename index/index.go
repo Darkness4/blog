@@ -11,7 +11,9 @@ import (
 	"os"
 	"path/filepath"
 	"runtime/debug"
+	"strings"
 	"text/template"
+	"time"
 
 	"github.com/Masterminds/sprig/v3"
 	"github.com/rs/zerolog/log"
@@ -25,13 +27,37 @@ var (
 	indexTmpl embed.FS
 )
 
+const elementPerPage = 50
+
 type Index struct {
-	Title       string
-	Description string
-	Href        string
+	Title         string
+	Description   string
+	PublishedDate string
+	Href          string
 }
 
-func buildIndex() (index map[string]Index, err error) {
+func extractDateFromFilename(filename string) (time.Time, error) {
+	// Split the filename by "-"
+	parts := strings.Split(filename, "-")
+
+	// Check if there are enough parts in the filename
+	if len(parts) < 3 {
+		return time.Time{}, fmt.Errorf("Invalid filename format: %s", filename)
+	}
+
+	// Extract the date part (YYYY-MM-DD)
+	dateStr := strings.Join(parts[:3], "-")
+
+	// Parse the date string into a time.Time object
+	date, err := time.Parse("2006-01-02", dateStr)
+	if err != nil {
+		return time.Time{}, err
+	}
+
+	return date, nil
+}
+
+func buildPages() (index []map[string]Index, err error) {
 	entries, err := os.ReadDir("gen/pages/blog")
 	if err != nil {
 		return index, err
@@ -47,10 +73,14 @@ func buildIndex() (index map[string]Index, err error) {
 	)
 
 	// Filters non-page
-	index = make(map[string]Index)
-	for _, entry := range entries {
+	index = make([]map[string]Index, len(entries)/elementPerPage+1)
+	for i, entry := range entries {
 		if !entry.IsDir() {
 			continue
+		}
+		page := i / elementPerPage
+		if index[page] == nil {
+			index[page] = make(map[string]Index)
 		}
 		f, err := os.Open(filepath.Join("pages/blog", entry.Name(), "page.md"))
 		if err != nil {
@@ -77,10 +107,16 @@ func buildIndex() (index map[string]Index, err error) {
 		}
 		document := markdown.Parser().Parse(text.NewReader(b))
 		metaData := document.OwnerDocument().Meta()
-		index[entry.Name()] = Index{
-			Title:       fmt.Sprintf("%v", metaData["title"]),
-			Description: fmt.Sprintf("%v", metaData["description"]),
-			Href:        filepath.Join("/blog", entry.Name()),
+		date, err := extractDateFromFilename(entry.Name())
+		if err != nil {
+			log.Fatal().Err(err).Msg("failed to read date")
+		}
+
+		index[page][entry.Name()] = Index{
+			Title:         fmt.Sprintf("%v", metaData["title"]),
+			Description:   fmt.Sprintf("%v", metaData["description"]),
+			PublishedDate: date.Format("Monday 02 January 2006"),
+			Href:          filepath.Join("/blog", entry.Name()),
 		}
 	}
 
@@ -88,7 +124,7 @@ func buildIndex() (index map[string]Index, err error) {
 }
 
 func Generate() {
-	index, err := buildIndex()
+	pages, err := buildPages()
 	if err != nil {
 		log.Fatal().Err(err).Msg("index failure")
 	}
@@ -118,11 +154,13 @@ func Generate() {
 				ParseFS(indexTmpl, "templates/index.tmpl"),
 		)
 		if err := t.ExecuteTemplate(&buf, "index", struct {
-			Module string
-			Index  map[string]Index
+			Module   string
+			Pages    []map[string]Index
+			PageSize int
 		}{
-			Module: bi.Deps[0].Path,
-			Index:  index,
+			Module:   bi.Deps[0].Path,
+			Pages:    pages,
+			PageSize: len(pages),
 		}); err != nil {
 			log.Fatal().Err(err).Msg("template failure")
 		}

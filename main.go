@@ -11,10 +11,12 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
 
 	"embed"
 
 	"github.com/Darkness4/blog/gen/index"
+	"github.com/Darkness4/blog/utils/math"
 	"github.com/Masterminds/sprig/v3"
 	"github.com/go-chi/chi/v5"
 	"github.com/joho/godotenv"
@@ -114,10 +116,33 @@ var app = &cli.App{
 				}
 				return
 			}
+
+			pageS := r.URL.Query().Get("page")
+			page, _ := strconv.Atoi(pageS)
 			if err := t.ExecuteTemplate(w, "base", struct {
+				Pager struct {
+					First   int
+					Prev    int
+					Current int
+					Next    int
+					Last    int
+				}
 				Index map[string]index.Index
 			}{
-				Index: index.Page,
+				Pager: struct {
+					First   int
+					Prev    int
+					Current int
+					Next    int
+					Last    int
+				}{
+					First:   0,
+					Prev:    math.MaxI(0, page-1),
+					Current: page,
+					Next:    math.MinI(index.PageSize-1, page+1),
+					Last:    index.PageSize - 1,
+				},
+				Index: index.Pages[page],
 			}); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}

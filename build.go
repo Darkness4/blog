@@ -59,6 +59,58 @@ func files() <-chan string {
 	return f
 }
 
+func filterBlogPages(input <-chan string) (blogPages <-chan string, rest <-chan string) {
+	o := make(chan string, 100)
+	r := make(chan string, 100)
+	go func() {
+		defer close(o)
+		defer close(r)
+		for file := range input {
+			if strings.HasPrefix(file, "pages/blog") && strings.HasSuffix(file, "page.md") {
+				o <- file
+			} else {
+				r <- file
+			}
+		}
+	}()
+	return o, r
+}
+
+func triple(input <-chan string) <-chan struct {
+	prev string
+	curr string
+	next string
+} {
+	output := make(chan struct {
+		prev string
+		curr string
+		next string
+	}, 100)
+	go func() {
+		defer close(output)
+		var prev, curr string
+		for next := range input {
+			if curr != "" {
+				output <- struct {
+					prev string
+					curr string
+					next string
+				}{prev: prev, curr: curr, next: next}
+			}
+			prev, curr = curr, next
+		}
+
+		if curr != "" {
+			output <- struct {
+				prev string
+				curr string
+				next string
+			}{prev: prev, curr: curr, next: ""}
+		}
+	}()
+	return output
+}
+
 func processPages() {
 	_ = os.RemoveAll("gen")
 
@@ -74,14 +126,63 @@ func processPages() {
 					chromahtml.WithClasses(true),
 				),
 			),
-			extension.Linkify,
-			extension.Table,
-			extension.Strikethrough,
+			extension.GFM,
 			meta.Meta,
 		),
 	)
 
-	for file := range files() {
+	files := files()
+	blogPages, files := filterBlogPages(files)
+
+	// Process blogPages
+	for file := range triple(blogPages) {
+		curr := file.curr
+		content, err := md.ReadFile(curr)
+		if err != nil {
+			log.Fatal().Err(err).Msg("read file failure")
+		}
+		ext := filepath.Ext(curr)
+		curr = filepath.Join("gen", strings.TrimSuffix(curr, ext))
+
+		if err := os.MkdirAll(filepath.Dir(curr), 0o755); err != nil {
+			log.Fatal().Err(err).Msg("mkdir failure")
+		}
+
+		func() {
+			w, err := os.Create(curr + ".tmpl")
+			if err != nil {
+				log.Fatal().Err(err).Msg("create file failure")
+			}
+			defer w.Close()
+
+			var sb strings.Builder
+
+			ctx := parser.NewContext()
+			if err := markdown.Convert(content, &sb, parser.WithContext(ctx)); err != nil {
+				log.Fatal().Err(err).Msg("write file failure")
+			}
+			metaData := meta.Get(ctx)
+
+			t := template.Must(template.ParseFS(mdTmpl, "templates/markdown.tmpl"))
+			if err := t.Execute(w, struct {
+				Title string
+				Style string
+				Body  string
+				Prev  string
+				Next  string
+			}{
+				Title: fmt.Sprintf("%v", metaData["title"]),
+				Style: cssBuffer.String(),
+				Body:  sb.String(),
+				Prev:  strings.TrimSuffix(strings.TrimPrefix(file.next, "pages"), "/page.md"),
+				Next:  strings.TrimSuffix(strings.TrimPrefix(file.prev, "pages"), "/page.md"),
+			}); err != nil {
+				log.Fatal().Err(err).Msg("generate file from template failure")
+			}
+		}()
+	}
+
+	for file := range files {
 		content, err := md.ReadFile(file)
 		if err != nil {
 			log.Fatal().Err(err).Msg("read file failure")

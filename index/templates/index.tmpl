@@ -2,17 +2,25 @@
 package index
 
 type Index struct {
-	Title       string
-	Description string
-	Href        string
+	Title         string
+	Description   string
+	PublishedDate string
+	Href          string
 }
 
-var Page = map[string]Index{
-	{{- range $key, $value := .Index}}
-	"{{$key}}": {
-		Title: {{ $value.Title | quote }},
-		Description: {{ $value.Description | quote }},
-		Href: {{ $value.Href | quote }},
+const PageSize = {{ .PageSize }}
+
+var Pages = []map[string]Index{
+	{{- range $page := .Pages}}
+	{
+		{{- range $key, $value := $page}}
+		"{{$key}}": {
+			Title: {{ $value.Title | quote }},
+			Description: {{ $value.Description | quote }},
+			PublishedDate: {{ $value.PublishedDate | quote }},
+			Href: {{ $value.Href | quote }},
+		},
+		{{- end}}
 	},
 	{{- end}}
 }

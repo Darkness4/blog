@@ -4,6 +4,12 @@
 
 {{define "body"}}
 <main>
+{{- if ne .Pager.Current 0 }}
+{{ template "Pager" .Pager }}
+{{- end }}
 {{ template "ArticleList" . }}
+{{- if ne .Pager.Current .Pager.Last }}
+{{ template "Pager" .Pager }}
+{{- end }}
 </main>
 {{ end }}

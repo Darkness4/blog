@@ -1,18 +1,32 @@
 {{ `{{define "head"}}` }}
 <title>{{ .Title }}</title>
 <style>
-{{ .Style }}
+  {{ .Style }}
 </style>
 {{ `{{ end }}` }}
 
 {{ `{{define "body"}}` }}
 <main>
-<article>
-<center><h1>{{ .Title }}</h1></center>
-TODO: add published date
-TODO: support images
-{{ .Body }}
-TODO: next and previous article
-</article>
+  <article>
+    <center>
+      <hgroup>
+        <h1>{{ .Title }}</h1>
+      </hgroup>
+    </center>
+    <main>
+    TODO: add published date TODO: support images
+    {{ .Body }}
+    </main>
+  </article>
+  <nav style="direction: rtl">
+    {{- if .Prev }}
+    <a href="{{ .Prev }}">Previous</a>
+    {{- else }}
+    <a></a>
+    {{- end }}
+    {{- if .Next }}
+    <a href="{{ .Next }}">Next</a>
+    {{- end }}
+  </nav>
 </main>
 {{ `{{ end }}` }}

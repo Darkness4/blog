@@ -1,0 +1,23 @@
+{{ define "Pager" }}
+<nav style="justify-content: space-around">
+  <ul>
+    {{- if and (ne .First .Current) (ne .First .Prev) }}
+    <a href="?page={{ .First }}">{{ .First }}</a>
+    {{- end }}
+  </ul>
+  <ul>
+    {{- if ne .First .Current }}
+    <li><a href="?page={{ .Prev }}">{{ .Prev }}</a></li>
+    {{- end }}
+    <li>{{ .Current }}</li>
+    {{- if ne .Last .Current }}
+    <li><a href="?page={{ .Next }}">{{ .Next }}</a></li>
+    {{- end }}
+  </ul>
+  <ul>
+    {{- if and (ne .Last .Current) (ne .Last .Next) }}
+    <li><a href="?page={{ .Last }}">{{ .Last }}</a></li>
+    {{- end }}
+  </ul>
+</nav>
+{{ end }}
