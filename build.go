@@ -11,6 +11,7 @@ import (
 	"text/template"
 
 	"github.com/Darkness4/blog/index"
+	"github.com/Darkness4/blog/utils/blog"
 	chromahtml "github.com/alecthomas/chroma/v2/formatters/html"
 	"github.com/rs/zerolog/log"
 	"github.com/yuin/goldmark"
@@ -162,20 +163,28 @@ func processPages() {
 				log.Fatal().Err(err).Msg("write file failure")
 			}
 			metaData := meta.Get(ctx)
+			date, err := blog.ExtractDate(filepath.Base(filepath.Dir(curr)))
+			if err != nil {
+				log.Fatal().Err(err).Msg("failed to parse date failure")
+			}
 
 			t := template.Must(template.ParseFS(mdTmpl, "templates/markdown.tmpl"))
 			if err := t.Execute(w, struct {
-				Title string
-				Style string
-				Body  string
-				Prev  string
-				Next  string
+				Title         string
+				Style         string
+				Body          string
+				PublishedDate string
+
+				Prev string
+				Next string
 			}{
-				Title: fmt.Sprintf("%v", metaData["title"]),
-				Style: cssBuffer.String(),
-				Body:  sb.String(),
-				Prev:  strings.TrimSuffix(strings.TrimPrefix(file.next, "pages"), "/page.md"),
-				Next:  strings.TrimSuffix(strings.TrimPrefix(file.prev, "pages"), "/page.md"),
+				Title:         fmt.Sprintf("%v", metaData["title"]),
+				Style:         cssBuffer.String(),
+				Body:          sb.String(),
+				PublishedDate: date.Format("Monday 02 January 2006"),
+
+				Prev: strings.TrimSuffix(strings.TrimPrefix(file.next, "pages"), "/page.md"),
+				Next: strings.TrimSuffix(strings.TrimPrefix(file.prev, "pages"), "/page.md"),
 			}); err != nil {
 				log.Fatal().Err(err).Msg("generate file from template failure")
 			}

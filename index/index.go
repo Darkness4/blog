@@ -11,10 +11,9 @@ import (
 	"os"
 	"path/filepath"
 	"runtime/debug"
-	"strings"
 	"text/template"
-	"time"
 
+	"github.com/Darkness4/blog/utils/blog"
 	"github.com/Masterminds/sprig/v3"
 	"github.com/rs/zerolog/log"
 	"github.com/yuin/goldmark"
@@ -34,27 +33,6 @@ type Index struct {
 	Description   string
 	PublishedDate string
 	Href          string
-}
-
-func extractDateFromFilename(filename string) (time.Time, error) {
-	// Split the filename by "-"
-	parts := strings.Split(filename, "-")
-
-	// Check if there are enough parts in the filename
-	if len(parts) < 3 {
-		return time.Time{}, fmt.Errorf("Invalid filename format: %s", filename)
-	}
-
-	// Extract the date part (YYYY-MM-DD)
-	dateStr := strings.Join(parts[:3], "-")
-
-	// Parse the date string into a time.Time object
-	date, err := time.Parse("2006-01-02", dateStr)
-	if err != nil {
-		return time.Time{}, err
-	}
-
-	return date, nil
 }
 
 func buildPages() (index []map[string]Index, err error) {
@@ -107,7 +85,7 @@ func buildPages() (index []map[string]Index, err error) {
 		}
 		document := markdown.Parser().Parse(text.NewReader(b))
 		metaData := document.OwnerDocument().Meta()
-		date, err := extractDateFromFilename(entry.Name())
+		date, err := blog.ExtractDate(entry.Name())
 		if err != nil {
 			log.Fatal().Err(err).Msg("failed to read date")
 		}
