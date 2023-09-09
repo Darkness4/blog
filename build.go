@@ -185,8 +185,8 @@ func processPages() {
 				Body:          out,
 				PublishedDate: date.Format("Monday 02 January 2006"),
 
-				Prev: strings.TrimSuffix(strings.TrimPrefix(file.next, "pages"), "/page.md"),
-				Next: strings.TrimSuffix(strings.TrimPrefix(file.prev, "pages"), "/page.md"),
+				Prev: strings.TrimSuffix(strings.TrimPrefix(file.prev, "pages"), "/page.md"),
+				Next: strings.TrimSuffix(strings.TrimPrefix(file.next, "pages"), "/page.md"),
 			}); err != nil {
 				log.Fatal().Err(err).Msg("generate file from template failure")
 			}
