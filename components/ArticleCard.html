@@ -1,10 +1,9 @@
 {{define "ArticleCard"}}
 <article style="padding: 2em; margin-bottom: 1em">
   <main>
-    <h2>{{ .Title }}</h2>
+    <a href="{{ .Href }}"><h2>{{ .Title }}</h2></a>
     <small>{{ .PublishedDate }}</small>
     <p>{{ .Description }}</p>
-    <a href="{{ .Href }}">Read more...</a>
   </main>
 </article>
 {{ end }}
