@@ -5,13 +5,14 @@ package main
 import (
 	"errors"
 	"fmt"
-	"html/template"
 	"io"
 	"io/fs"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strconv"
+	"strings"
+	"text/template"
 
 	"embed"
 
@@ -108,7 +109,7 @@ var app = &cli.App{
 				Funcs(sprig.TxtFuncMap()).
 				ParseFS(html, base, path, "components/*")
 			if err != nil {
-				if errors.Is(err, fs.ErrNotExist) {
+				if strings.Contains(err.Error(), "no files") {
 					http.Error(w, "not found", http.StatusNotFound)
 				} else {
 					log.Err(err).Msg("template error")
@@ -127,7 +128,7 @@ var app = &cli.App{
 					Next    int
 					Last    int
 				}
-				Index map[string]index.Index
+				Index []index.Index
 			}{
 				Pager: struct {
 					First   int

@@ -162,6 +162,8 @@ func processPages() {
 			if err := markdown.Convert(content, &sb, parser.WithContext(ctx)); err != nil {
 				log.Fatal().Err(err).Msg("write file failure")
 			}
+			// Replace {{ with &#123;&#123;
+			out := strings.ReplaceAll(sb.String(), "{{", "&#123;&#123;")
 			metaData := meta.Get(ctx)
 			date, err := blog.ExtractDate(filepath.Base(filepath.Dir(curr)))
 			if err != nil {
@@ -180,7 +182,7 @@ func processPages() {
 			}{
 				Title:         fmt.Sprintf("%v", metaData["title"]),
 				Style:         cssBuffer.String(),
-				Body:          sb.String(),
+				Body:          out,
 				PublishedDate: date.Format("Monday 02 January 2006"),
 
 				Prev: strings.TrimSuffix(strings.TrimPrefix(file.next, "pages"), "/page.md"),
@@ -218,6 +220,7 @@ func processPages() {
 					log.Fatal().Err(err).Msg("write file failure")
 				}
 				metaData := meta.Get(ctx)
+				out := strings.ReplaceAll(sb.String(), "{{", "&#123;&#123;")
 
 				t := template.Must(template.ParseFS(mdTmpl, "templates/markdown.tmpl"))
 				if err := t.Execute(w, struct {
@@ -227,7 +230,7 @@ func processPages() {
 				}{
 					Title: fmt.Sprintf("%v", metaData["title"]),
 					Style: cssBuffer.String(),
-					Body:  sb.String(),
+					Body:  out,
 				}); err != nil {
 					log.Fatal().Err(err).Msg("generate file from template failure")
 				}

@@ -10,7 +10,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
-	"runtime/debug"
+	"sort"
 	"text/template"
 
 	"github.com/Darkness4/blog/utils/blog"
@@ -33,13 +33,19 @@ type Index struct {
 	Description   string
 	PublishedDate string
 	Href          string
+	EntryName     string
 }
 
-func buildPages() (index []map[string]Index, err error) {
+func buildPages() (index [][]Index, err error) {
 	entries, err := os.ReadDir("gen/pages/blog")
 	if err != nil {
 		return index, err
 	}
+
+	// Sort the files in reverse order
+	sort.SliceStable(entries, func(i, j int) bool {
+		return entries[i].Name() > entries[j].Name()
+	})
 
 	// Markdown Parser
 	markdown := goldmark.New(
@@ -50,15 +56,15 @@ func buildPages() (index []map[string]Index, err error) {
 		),
 	)
 
-	// Filters non-page
-	index = make([]map[string]Index, len(entries)/elementPerPage+1)
-	for i, entry := range entries {
+	index = make([][]Index, 0, len(entries)/elementPerPage+1)
+	i := 0
+	for _, entry := range entries {
 		if !entry.IsDir() {
 			continue
 		}
 		page := i / elementPerPage
-		if index[page] == nil {
-			index[page] = make(map[string]Index)
+		if page >= len(index) {
+			index = append(index, make([]Index, 0, elementPerPage))
 		}
 		f, err := os.Open(filepath.Join("pages/blog", entry.Name(), "page.md"))
 		if err != nil {
@@ -90,12 +96,14 @@ func buildPages() (index []map[string]Index, err error) {
 			log.Fatal().Err(err).Msg("failed to read date")
 		}
 
-		index[page][entry.Name()] = Index{
+		index[page] = append(index[page], Index{
+			EntryName:     entry.Name(),
 			Title:         fmt.Sprintf("%v", metaData["title"]),
 			Description:   fmt.Sprintf("%v", metaData["description"]),
 			PublishedDate: date.Format("Monday 02 January 2006"),
 			Href:          filepath.Join("/blog", entry.Name()),
-		}
+		})
+		i++
 	}
 
 	return index, nil
@@ -105,12 +113,6 @@ func Generate() {
 	pages, err := buildPages()
 	if err != nil {
 		log.Fatal().Err(err).Msg("index failure")
-	}
-
-	bi, ok := debug.ReadBuildInfo()
-	if !ok {
-		log.Printf("Failed to read build info")
-		return
 	}
 
 	out := "gen/index/index.go"
@@ -132,11 +134,9 @@ func Generate() {
 				ParseFS(indexTmpl, "templates/index.tmpl"),
 		)
 		if err := t.ExecuteTemplate(&buf, "index", struct {
-			Module   string
-			Pages    []map[string]Index
+			Pages    [][]Index
 			PageSize int
 		}{
-			Module:   bi.Deps[0].Path,
 			Pages:    pages,
 			PageSize: len(pages),
 		}); err != nil {

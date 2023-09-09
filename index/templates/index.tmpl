@@ -6,15 +6,17 @@ type Index struct {
 	Description   string
 	PublishedDate string
 	Href          string
+	EntryName     string
 }
 
 const PageSize = {{ .PageSize }}
 
-var Pages = []map[string]Index{
+var Pages = [][]Index{
 	{{- range $page := .Pages}}
 	{
-		{{- range $key, $value := $page}}
-		"{{$key}}": {
+		{{- range $i, $value := $page}}
+		{
+			EntryName: {{ $value.EntryName | quote }},
 			Title: {{ $value.Title | quote }},
 			Description: {{ $value.Description | quote }},
 			PublishedDate: {{ $value.PublishedDate | quote }},
