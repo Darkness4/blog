@@ -122,7 +122,7 @@ Like any HTTP server, there is a `static` directory where we can store unprocess
 
 #### Initial Request and Server-Side rendering
 
-The initial request happens when using the URL to seek a page. The initial request must load ht HTMX library and application CSS. To do this, I've created a `base.html` template:
+The initial request happens when using the user uses the URL to seek a page. The initial request must load the HTMX library and application CSS. To do this, I've created a `base.html` template:
 
 ```html
 {{ define "base" }}
@@ -155,11 +155,13 @@ The initial request happens when using the URL to seek a page. The initial reque
 {{ end }}
 ```
 
-This is very similar to SvelteKit [`app.html`](https://github.com/sveltejs/kit/blob/92eb1aacb2355f36dd0d0e88048b8a9bd8219ea3/packages/create-svelte/templates/default/src/app.html).
+This is very similar to SvelteKit's [`app.html`](https://github.com/sveltejs/kit/blob/92eb1aacb2355f36dd0d0e88048b8a9bd8219ea3/packages/create-svelte/templates/default/src/app.html).
+
+Pages in the `pages` directory define the `head` and `body` template. Therefore, when reaching any URL, the template will be rendered base on the path
 
 When the user has loaded the initial page, clicking on any `a` element will make a HTMX request to server thanks to [`hx-boost`](https://htmx.org/attributes/hx-boost/).
 
-The `hx-boost` attribute will replace the `body` when the user clicks on a `a` element. I've added the `head-support` for HTMX so that we can also replace `head` when doing SSR. This is used to dynamically change the `title` and CSS.
+The `hx-boost` attribute will replace the `body` when the user clicks on a `a` element. I've also added the `head-support` for HTMX so that we can also replace `head` when doing SSR. This is used to dynamically change the `title` and CSS.
 
 Example:
 
@@ -242,7 +244,7 @@ if err := t.Execute(w, struct {
 
 ### Compile-time rendering
 
-Since a blog is primarly static, I want to render everything at compile-time.
+Since a blog is primarly static, I want to render the markdown and index page at compile-time.
 
 Go doesn't have any [`comptime`](https://ziglang.org/documentation/master/#comptime) like Zig, but we can at least use `go generate`.
 
@@ -274,11 +276,11 @@ func main() {
 }
 ```
 
-The `processPages` function executes the markdown rendering and template rendering and outputs the resulting files in the `gen/` directory.
+The `processPages` function executes the markdown rendering and outputs the resulting files in the `gen/` directory.
 
 Example: `pages/blog/2023-09-09-hello-world/page.md` ⟶ `gen/pages/blog/2023-09-09-hello-world/page.tmpl`.
 
-The HTTP server uses the `body` and `head` templates defined in the `gen/pages/blog/2023-09-09-hello-world/page.tmpl`:
+As I said earlier, the HTTP server uses the `body` and `head` templates defined in the `gen/pages/blog/2023-09-09-hello-world/page.tmpl` for the initial request or SSR. This is how we can render the `body` and `head` templates with the `base` template:
 
 ```go
 //go:embed gen components base.html base.htmx
