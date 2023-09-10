@@ -76,7 +76,7 @@ The only thing missing is SSR routing.
 
 [HTMX](https://htmx.org) is a JS library which abstracts the use of JS to manipulate the HTML documentation. It also allow the uses of Hypermedia as medium between the client and server. No need for JSON encode/decode. This is particularly great for SSR.
 
-[Go] is a programming language. It is compiled, has garbage collection, structures and is "OOP" compatible. Go stands out for its standard library, which allows easy concurrency and rapid development. Go's syntax is also fairly strict and explicit, so it's easy to read other developers' code. Basically, Go is dead simple and only allows one type of solution.
+[Go](https://go.dev) is a programming language. It is compiled, has garbage collection, structures and is "OOP" compatible. Go stands out for its standard library, which allows easy concurrency and rapid development. Go's syntax is also fairly strict and explicit, so it's easy to read other developers' code. Basically, Go is dead simple and only allows one type of solution.
 
 The reason I chose Go over C, Rust, C++, Java, ... is that static cross compilation is easy. Also, I write Go super fast and I don't have to fight with the language to choose a solution on "how I want to handle a string" (`String`, `char[]`, `std::string` ?!, give me one please!).
 
@@ -204,7 +204,7 @@ The `base.htmx` is just simply the `body` and `head`:
 
 #### Markdown rendering
 
-Like Hugo, we will use the Goldmark markdown rendering engine, coupled with chroma for syntax highlighting:
+Like Hugo, we will use the [Goldmark](https://github.com/yuin/goldmark) markdown rendering engine, coupled with chroma for syntax highlighting:
 
 ```go
 var cssBuffer strings.Builder
