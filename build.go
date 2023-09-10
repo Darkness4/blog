@@ -19,6 +19,7 @@ import (
 	meta "github.com/yuin/goldmark-meta"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
+	"go.abhg.dev/goldmark/anchor"
 )
 
 var (
@@ -118,6 +119,7 @@ func processPages() {
 	// Markdown engine
 	var cssBuffer strings.Builder
 	markdown := goldmark.New(
+		goldmark.WithParserOptions(parser.WithAutoHeadingID()),
 		goldmark.WithExtensions(
 			highlighting.NewHighlighting(
 				highlighting.WithStyle("onedark"),
@@ -129,6 +131,9 @@ func processPages() {
 			),
 			extension.GFM,
 			meta.Meta,
+			&anchor.Extender{
+				Texter: anchor.Text("#"),
+			},
 		),
 	)
 

@@ -209,6 +209,7 @@ Like Hugo, we will use the [Goldmark](https://github.com/yuin/goldmark) markdown
 ```go
 var cssBuffer strings.Builder
 markdown := goldmark.New(
+	goldmark.WithParserOptions(parser.WithAutoHeadingID()),
 	goldmark.WithExtensions(
 		highlighting.NewHighlighting(
 			highlighting.WithStyle("onedark"),
@@ -220,6 +221,7 @@ markdown := goldmark.New(
 		),
 		extension.GFM,
 		meta.Meta,
+		&anchor.Extender{},
 	),
 )
 
