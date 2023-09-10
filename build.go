@@ -133,6 +133,9 @@ func processPages() {
 			meta.Meta,
 			&anchor.Extender{
 				Texter: anchor.Text("#"),
+				Attributer: anchor.Attributes{
+					"class": "anchor",
+				},
 			},
 		),
 	)

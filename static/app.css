@@ -2,3 +2,12 @@ body>footer, body>header {
   padding-top: 1em;
   padding-bottom: 0;
 }
+
+.anchor {
+  opacity: 0.3;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.anchor:hover {
+  opacity: 1;
+}
