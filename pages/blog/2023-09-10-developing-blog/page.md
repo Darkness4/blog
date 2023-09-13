@@ -30,32 +30,32 @@ There are a lot of existing solution to write a blog. I will only cite the solut
 
 ### Docusaurus
 
-[Docusaurus](https://docusaurus.io) is a library on top of React which permits to write "content" very easily. It's light, fast, it has SSR and it is also extensible.
+[Docusaurus](https://docusaurus.io) is a library on top of React that makes writing "content" very easy. It's lightweight, fast, has SSR and is also extensible.
 
-However, the drawbacks are:
+However, the disadvantages are:
 
-- The dependencies: Too much dependencies. The latest [React is not even officially compatible](https://github.com/facebook/docusaurus/issues/7264#issuecomment-1257061642) with docusaurus. This prove basically that the product could involve a maintenance hell.
-- React: This is my opinion, but, React is complex for nothing. The state management is hell, the component creation is conflicting (Class or function ? Man I don't care, just for one standard.). React may be "cool" for people who do a lot of web. development, to me it is just overkill.
+- Dependencies: Too many dependencies. The latest [React is not even officially compatible](https://github.com/facebook/docusaurus/issues/7264#issuecomment-1257061642) with Docusaurus. This basically could involve maintenance hell, since I cannot assure that each dependencies (espcially in the npm ecosystem) that any of them will be maintained.
+- React: That's my opinion, but I think React is complex for nothing. State management is hellish, component creation is conflicting (class or function?!), and its performance is unsatisfactory. React may be "cool" for people who do a lot of web development, but for me it's just an overkill. Alternatively, SvelteKit is already an excellent replacement for React by removing the VDOM and by having a compiler to check errors.
 
 ### SvelteKit or SveltePress
 
-[SvelteKit](https://kit.svelte.dev) is a blazingly fast JS framework for web development. It shines particularly at SSR, and it "fun" to write code with it. SvelteKit is "HTML"-first compared to its competitor [Next.js](https://nextjs.org).
+[SvelteKit](https://kit.svelte.dev) is an extremely fast JS framework for web development. It shines particularly at SSR, and is "fun" to write code with. SvelteKit is more "HTML"-first than its competitor [Next.js](https://nextjs.org), React, etc.
 
-[SveltePress](https://sveltepress.site) is a library on top of SvelteKit which simplifies the writing of "content" thanks to its supports for Markdown. A similar solution would be [Docusaurus](https://docusaurus.io), which is a library on top of React.
+[SveltePress](https://sveltepress.site) is a library on top of SvelteKit which simplifies the writing of "content" thanks to its supports for Markdown, an equivalent of Docusaurus.
 
 Thanks to [Vite](https://vitejs.dev), the resulting "bundle" is quite light and fast.
 
-There isn't any drawbacks to say, and would have been my solution. And to be fair, I'm pretty sure this could have lead me to reach the end product a lot more faster.
+There's no downside to saying, and that would have been my solution. And to be honest, I'm pretty sure it would have got me to the final product a lot quicker.
 
-So why I didn't choose this solution?
+Why didn't I choose this solution?
 
-Because I don't want a framework to dictate how I should write my code. This is still overkill for a blog.
+Because I don't want a framework telling me how to write my code. It's still too much for a blog.
 
 ### HTML-only
 
-Like the [motherfuckingwebsite](https://motherfuckingwebsite.com/), HTML-only would have been a pretty good solution. It's obviously SSR, It's readable, and simple. I mean, I can write HTML after all, so why not?
+As with [motherfuckingwebsite](https://motherfuckingwebsite.com/), HTML alone would have been a good solution. It's obviously SSR, it's readable, and it's simple. I mean, I can write HTML after all, so why not?
 
-Simple: Markdown is better.
+It's simple: Markdown is better.
 
 ### Taking inspiration of my favorite blog structure: The Go dev blog.
 
@@ -70,59 +70,79 @@ The only thing missing is SSR routing.
 
 ### Hugo
 
-[Hugo](https://gohugo.io) is a framework to build static website focused on content. It uses Go under the hood. It is fast, light, etc... **SSR is missing obviously.** Also, why the [Hugo documentation is slow/weird](https://gohugo.io/documentation/)?
+[Hugo](https://gohugo.io) is a framework for building static, content-centric websites. It uses Go under the hood. It's fast, lightweight, etc... **Also, why is [Hugo documentation slow/weird](https://gohugo.io/documentation/)**?
+
+Anyway, it's a pass for me.
 
 ### HTMX and Go
 
-[HTMX](https://htmx.org) is a JS library which abstracts the use of JS to manipulate the HTML documentation. It also allow the uses of Hypermedia as medium between the client and server. No need for JSON encode/decode. This is particularly great for SSR.
+[HTMX](https://htmx.org) is a JS library that abstracts the use of JS to manipulate HTML documentation. It also allows the use of hypermedia as a medium between client and server. There's no need to encode/decode JSON. This is particularly interesting for SSR where latency is important.
 
-[Go](https://go.dev) is a programming language. It is compiled, has garbage collection, structures and is "OOP" compatible. Go stands out for its standard library, which allows easy concurrency and rapid development. Go's syntax is also fairly strict and explicit, so it's easy to read other developers' code. Basically, Go is dead simple and only allows one type of solution.
+[Go](https://go.dev) is a programming language. It is compiled, has a garbage collection system, structures and is OOP-compatible. Go stands out for its standard library, which allows easy concurrency and rapid development. Go's syntax is also fairly strict and explicit, so it's easy to read other developers' code. In fact, Go is so simple that most of the time it allows only one type of solution, thus achieving the [Zen of Python](https://peps.python.org/pep-0020/) better than Python itself.
 
 The reason I chose Go over C, Rust, C++, Java, ... is that static cross compilation is easy. Also, I write Go super fast and I don't have to fight with the language to choose a solution on "how I want to handle a string" (`String`, `char[]`, `std::string` ?!, give me one please!).
 
-This is the solution I chose. Basically, I build my own HTTP server, similar to The Go Blog, and use HTMX to change pages quickly. I can take some of Hugo's Markdown rendering technologies, and bingo! I've got my blog!
+This is the solution I've chosen. Basically, the idea is as follows:
 
-Isn't just simple? (I'm gonna regret this.)
+- I build my own HTTP server, similar to The Go Blog
+- I use HTMX to change pages quickly.
+- I can use some of Hugo's Markdown rendering technologies.
+
+And bingo! I've got my blog!
+
+Simple, isn't it? (I'm going to regret this.)
 
 ## Development
 
 ### Proof of Concept
 
-Before even building a blog with HTMX, I must attest of HTMX capabilities. This is very important because, if a technology is too young, this means it is very sensible of breaking changes. When working actively on a project, breaking changes can be handled quite easily. However, this blog is a **side**-project, there are moment where I'm simply not maintaining this project, or worse, I haven't finished the project and simply throw this project to the trash.
+Before I even start building a blog with HTMX, I have to certify HTMX's capabilities. This is very important because, if a technology is too young, it means it's very sensitive to breaking changes. When you're actively working on a project, disruptions can be managed quite easily. However, this blog is a **side project**, there are times when I simply don't maintain this project, or worse, I haven't completed the project and simply throw it in the garbage can.
 
 Keep it simple stupid.
 
-My PoC is to write a simple [authentication page](https://github.com/Darkness4/auth-htmx) with a counter behind it. It uses Go, HTMX and OAuth2. This is more complex than a blog, however, this PoC tests HTMX in depth.
+My PoC is to write a simple [authentication page](https://github.com/Darkness4/auth-htmx) with a counter behind it. It uses Go, HTMX and OAuth2. It's more complex than a blog, but this PoC tests HTMX in depth.
 
-My conclusion from this experiment is that:
+Testing with OAuth2 is a good PoC because:
 
-- HTMX is pretty good for **only** rendering HTML. If I have a Android App, I would still need to use JSON or Protobuf.
-- Error handling with HTMX is not that strightforward.
-- HTMX is production-ready.
+- It tests the UX of login flow (login, logout).
+- It tests a small state management ("is logged").
+- It tests the authorization ("count only if is logged").
 
-Which means it is pretty good for a writing blog.
+The conclusion I draw from this experiment is as follows:
+
+- HTMX is good enough for **only** rendering HTML. If I had an Android application, I'd still need to use JSON or Protobuf.
+- Error handling with HTMX is not that simple. Some say it's just different, which I can agree.
+- HTMX is ready for production.
+
+Which means it's great for writing a blog!
 
 ### Architecture
 
 #### Content directory
 
-I'd like to follow the SvelteKit/Sveltepress directory structure. It's battle-tested, and sufficiently explicit.
+I followed the SvelteKit/Sveltepress directory structure. It's battle-tested, and sufficiently explicit.
 
-Basically, there is a `pages` directory which accepts `.md` files and `.svelte` files. `.md` with [front matter](https://gohugo.io/content-management/front-matter/) are converted in html.
+Basically, there is a `pages` directory which accepts `.md` files and `.svelte` files. `.md` with [front matter](https://gohugo.io/content-management/front-matter/) are converted in html using a Markdown rendering engine.
 
 #### Templates and Components
 
 With Go, templates can be named. With this, we can define components inside the `components` directory. These templates are passed to the templating engine.
 
+There is also the `base.html` and `base.htmx` templates for the initial request and SSR request with HTMX.
+
+The final template is `markdown.tmpl`, which is used with the Markdown renderer to arrange the page. It essentially surrounds the output of the Markdown renderer.
+
 #### Static directory
 
-Like any HTTP server, there is a `static` directory where we can store unprocessed assets like images, icons, etc.
+Like any HTTP server, there is a `static` directory where we can store unprocessed assets like images, icons, etc. This is served like any Go file server.
 
 ### Implementation
 
 #### Initial Request and Server-Side rendering
 
-The initial request happens when using the user uses the URL to seek a page. The initial request must load the HTMX library and application CSS. To do this, I've created a `base.html` template:
+The initial request happens when using the user uses the URL to seek a page. The initial request must load the HTMX library and application CSS. To do this, I've created a `base.html` template.
+
+**base.html**
 
 ```html
 {{ define "base" }}
@@ -174,7 +194,9 @@ Example:
 
 Clicking on `Go To Page 1` will make a HTMX request to the server `GET /page1` with the HTTP Header `Hx-Request: true`. The response of the server will replace the entire `body` element.
 
-Thanks to that header, the server can identify if the client is doing an initial request or a SSR request:
+Thanks to the header `Hx-Request: true`, the server can identify if the client is doing an initial request or a SSR request:
+
+**main.go**
 
 ```go
 r.Get("/*", func(w http.ResponseWriter, r *http.Request) {
@@ -191,7 +213,9 @@ r.Get("/*", func(w http.ResponseWriter, r *http.Request) {
 })
 ```
 
-The `base.htmx` is just simply the `body` and `head`:
+The `base.htmx` is just simply the `body` and `head`.
+
+**base.htmx**
 
 ```html
 {{ define "base" }}
@@ -205,6 +229,8 @@ The `base.htmx` is just simply the `body` and `head`:
 #### Markdown rendering
 
 Like Hugo, we will use the [Goldmark](https://github.com/yuin/goldmark) markdown rendering engine, coupled with chroma for syntax highlighting:
+
+**Example:**
 
 ```go
 var cssBuffer strings.Builder
@@ -282,7 +308,9 @@ The `processPages` function executes the markdown rendering and outputs the resu
 
 Example: `pages/blog/2023-09-09-hello-world/page.md` ⟶ `gen/pages/blog/2023-09-09-hello-world/page.tmpl`.
 
-As I said earlier, the HTTP server uses the `body` and `head` templates defined in the `gen/pages/blog/2023-09-09-hello-world/page.tmpl` for the initial request or SSR. This is how we can render the `body` and `head` templates with the `base` template:
+As I said earlier, the HTTP server uses the `body` and `head` templates defined in the `gen/pages/blog/2023-09-09-hello-world/page.tmpl` for the initial request or SSR. This is how we can render the `body` and `head` templates with the `base` template.
+
+**main.go**
 
 ```go
 //go:embed gen components base.html base.htmx
@@ -320,14 +348,17 @@ This page is also generated at compile-time.
 
 Therefore, at compile-time, we need a function that fetches the list of blog pages, and group them.
 
+**index.go**
+
 ```go
 func buildPages() (index [][]Index, err error) {
+	// Read the blog pages
 	entries, err := os.ReadDir("gen/pages/blog")
 	if err != nil {
 		return index, err
 	}
 
-	// Sort the files in reverse order
+	// Sort the pages in reverse order
 	sort.SliceStable(entries, func(i, j int) bool {
 		return entries[i].Name() > entries[i].Name()
 	})
@@ -484,15 +515,22 @@ func Generate() {
 
 ## Conclusion
 
+To summary, when I write a page of the blog, I create a `page.md` file in the `pages/blog/<date-url>/` directory like SveltePress. Then I compile the pages into html by running `go generate` which `go run build.go`. The `build.go` script generates the html pages from markdown, and also creates the `gen/index/index.go` file which contains the necessery data for the index page.
+
+After compiling the pages, the server can run and accepts two type of request: the initial request and the SSR request with HTMX. Based on the request, we can create a router which executes SSR and allow quick rendering without the need to redownload everything (like the HTMX library, CSS, and other "app"-time assets...).
+
 With the implementation of these features, my blog has reached the minimum viable product. Missing from this article are discussions on:
 
 - The Pager.
-- Retrieving metadata (front matter) from an article in markdown.
 - Escaping `{{` to avoid weird behavior with the templating engine.
 - CSS, which is just PicoCSS.
 
 The source code is available [here](https://github.com/Darkness4/blog).
 
-Was it worth it? Hell yeah, I control everything in this blog, and most issues are indicated at compile time. With HTMX, PicoCSS and Goldmark, I don't write any HTML, CSS and JS, isn't that crazy?
+_Was it worth it?_ Hell yeah, I control everything in this blog, and most problems are indicated at compile time. With HTMX, PicoCSS and Goldmark, I'm no longer writing HTML, CSS and JS to write an article, how crazy is that?
 
-Can this be a library like Hugo? F- no, I ain't ready for this.
+_How difficult was it?_ It's not really "hard", but there are certainly more steps than bootstrapping SveltePress or Docusaurus. It's also more prone to bugs than an established product like SveltePress or Docusaurus.
+
+_Can it be a library like Hugo?_ No, I'm not ready for that.
+
+Anyway, this is like installing Gentoo: it's for learning, having full-control and being ultra-optimized.
