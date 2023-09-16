@@ -1,10 +1,16 @@
 {{define "index"}}
 package index
 
+import (
+	"time"
+
+	"github.com/gorilla/feeds"
+)
+
 type Index struct {
 	Title         string
 	Description   string
-	PublishedDate string
+	PublishedDate time.Time
 	Href          string
 	EntryName     string
 }
@@ -19,11 +25,39 @@ var Pages = [][]Index{
 			EntryName: {{ $value.EntryName | quote }},
 			Title: {{ $value.Title | quote }},
 			Description: {{ $value.Description | quote }},
-			PublishedDate: {{ $value.PublishedDate | quote }},
+			PublishedDate: time.Unix({{ $value.PublishedDate }}, 0),
 			Href: {{ $value.Href | quote }},
 		},
 		{{- end}}
 	},
 	{{- end}}
+}
+
+var Feed = &feeds.Feed{
+	Title: {{ .Title | quote }},
+	Link:  &feeds.Link{
+		Href: {{ .Href | quote }},
+	},
+	Description: {{ .Description | quote }},
+	Author:   &feeds.Author{
+		Name:	{{ .AuthorName | quote }},
+		Email: {{ .AuthorEmail | quote }},
+	},
+	Created: time.Unix({{ .Created }}, 0),
+	Updated: time.Unix({{ .Updated }}, 0),
+	Items: []*feeds.Item{
+		{{- range $page := .Pages}}
+		{{- range $i, $value := $page}}
+		{
+			Title: {{ $value.Title | quote }},
+			Description: {{ $value.Description | quote }},
+			Created: time.Unix({{ $value.PublishedDate }}, 0),
+			Link: &feeds.Link{
+				Href: {{ (print $.Href $value.Href) | quote }},
+			},
+		},
+		{{- end}}
+		{{- end}}
+	},
 }
 {{- end}}

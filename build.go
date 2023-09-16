@@ -10,6 +10,7 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/Darkness4/blog/images"
 	"github.com/Darkness4/blog/index"
 	"github.com/Darkness4/blog/utils/blog"
 	chromahtml "github.com/alecthomas/chroma/v2/formatters/html"
@@ -120,6 +121,12 @@ func processPages() {
 	var cssBuffer strings.Builder
 	markdown := goldmark.New(
 		goldmark.WithParserOptions(parser.WithAutoHeadingID()),
+		images.NewReplacer(func(link string) string {
+			if filepath.IsAbs(link) || strings.HasPrefix(strings.ToLower(link), "http") {
+				return link
+			}
+			return filepath.Join("\\{\\{ $.Path }}", link)
+		}),
 		goldmark.WithExtensions(
 			highlighting.NewHighlighting(
 				highlighting.WithStyle("onedark"),
@@ -172,6 +179,7 @@ func processPages() {
 			}
 			// Replace {{ with &#123;&#123;
 			out := strings.ReplaceAll(sb.String(), "{{", "&#123;&#123;")
+			out = strings.ReplaceAll(out, "\\{\\{", "{{")
 			metaData := meta.Get(ctx)
 			date, err := blog.ExtractDate(filepath.Base(filepath.Dir(curr)))
 			if err != nil {

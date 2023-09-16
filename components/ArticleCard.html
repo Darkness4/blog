@@ -2,7 +2,7 @@
 <article style="padding: 2em; margin-bottom: 1em">
   <main>
     <a href="{{ .Href }}"><h2>{{ .Title }}</h2></a>
-    <small>{{ .PublishedDate }}</small>
+    <small>{{ .PublishedDate | date "Monday January 02 2006" }}</small>
     <p>{{ .Description }}</p>
   </main>
 </article>

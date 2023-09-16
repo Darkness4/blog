@@ -4,12 +4,18 @@
 
 {{define "body"}}
 <main>
-{{- if ne .Pager.Current 0 }}
-{{ template "Pager" .Pager }}
-{{- end }}
-{{ template "ArticleList" . }}
-{{- if ne .Pager.Current .Pager.Last }}
-{{ template "Pager" .Pager }}
-{{- end }}
+  <nav>
+    <ul>
+      <li><small><a hx-boost="false" href="/rss">RSS</a></small></li>
+      <li><small><a hx-boost="false" href="/rss">Atom</a></small></li>
+    </ul>
+  </nav>
+  {{- if ne .Pager.Current 0 }}
+  {{ template "Pager" .Pager }}
+  {{- end }}
+  {{ template "ArticleList" . }}
+  {{- if ne .Pager.Current .Pager.Last }}
+  {{ template "Pager" .Pager }}
+  {{- end }}
 </main>
 {{ end }}

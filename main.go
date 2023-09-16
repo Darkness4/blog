@@ -129,7 +129,9 @@ var app = &cli.App{
 					Last    int
 				}
 				Index []index.Index
+				Path  string
 			}{
+				Path: r.URL.Path,
 				Pager: struct {
 					First   int
 					Prev    int
@@ -148,6 +150,21 @@ var app = &cli.App{
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 		}
+		r.Get("/rss", func(w http.ResponseWriter, r *http.Request) {
+			if err := index.Feed.WriteRss(w); err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+			}
+		})
+		r.Get("/atom", func(w http.ResponseWriter, r *http.Request) {
+			if err := index.Feed.WriteAtom(w); err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+			}
+		})
+		r.Get("/json", func(w http.ResponseWriter, r *http.Request) {
+			if err := index.Feed.WriteJSON(w); err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+			}
+		})
 		r.Get("/*", renderFn)
 		r.Handle("/static/*", http.FileServer(http.FS(static)))
 

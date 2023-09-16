@@ -12,6 +12,7 @@ import (
 	"path/filepath"
 	"sort"
 	"text/template"
+	"time"
 
 	"github.com/Darkness4/blog/utils/blog"
 	"github.com/Masterminds/sprig/v3"
@@ -20,6 +21,21 @@ import (
 	meta "github.com/yuin/goldmark-meta"
 	"github.com/yuin/goldmark/text"
 )
+
+// TODO: remove hardcoded value and put into a .env
+const (
+	title       = "Darkness4's Blog"
+	href        = "https://blog.mnguyen.fr"
+	authorName  = "Marc Nguyen"
+	authorEmail = "nguyen_marc@live.fr"
+	description = "Darkness4's blog is a personal and technical blog about documenting some processes, implementations, etc."
+)
+
+var created time.Time
+
+func init() {
+	created, _ = time.Parse("02 January 2006", "08 September 2023")
+}
 
 var (
 	//go:embed templates/index.tmpl
@@ -31,7 +47,7 @@ const elementPerPage = 50
 type Index struct {
 	Title         string
 	Description   string
-	PublishedDate string
+	PublishedDate int64
 	Href          string
 	EntryName     string
 }
@@ -95,12 +111,11 @@ func buildPages() (index [][]Index, err error) {
 		if err != nil {
 			log.Fatal().Err(err).Msg("failed to read date")
 		}
-
 		index[page] = append(index[page], Index{
 			EntryName:     entry.Name(),
 			Title:         fmt.Sprintf("%v", metaData["title"]),
 			Description:   fmt.Sprintf("%v", metaData["description"]),
-			PublishedDate: date.Format("Monday 02 January 2006"),
+			PublishedDate: date.Unix(),
 			Href:          filepath.Join("/blog", entry.Name()),
 		})
 		i++
@@ -134,11 +149,25 @@ func Generate() {
 				ParseFS(indexTmpl, "templates/index.tmpl"),
 		)
 		if err := t.ExecuteTemplate(&buf, "index", struct {
-			Pages    [][]Index
-			PageSize int
+			Pages       [][]Index
+			PageSize    int
+			Title       string
+			Href        string
+			AuthorName  string
+			AuthorEmail string
+			Created     int64
+			Updated     int64
+			Description string
 		}{
-			Pages:    pages,
-			PageSize: len(pages),
+			Pages:       pages,
+			PageSize:    len(pages),
+			Updated:     time.Now().Unix(),
+			Title:       title,
+			Href:        href,
+			AuthorName:  authorName,
+			AuthorEmail: authorEmail,
+			Created:     created.Unix(),
+			Description: description,
 		}); err != nil {
 			log.Fatal().Err(err).Msg("template failure")
 		}
