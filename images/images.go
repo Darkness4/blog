@@ -67,23 +67,41 @@ func (r *replacer) renderImage(
 		n.Destination = util.StringToReadOnlyBytes(src)
 	}
 
-	w.WriteString("<img src=\"")
-	w.Write(n.Destination)
-	w.WriteString(`" alt="`)
-	w.Write(n.Text(source))
-	w.WriteByte('"')
+	if _, err := w.WriteString("<img src=\""); err != nil {
+		return ast.WalkSkipChildren, err
+	}
+	if _, err := w.Write(n.Destination); err != nil {
+		return ast.WalkSkipChildren, err
+	}
+	if _, err := w.WriteString(`" alt="`); err != nil {
+		return ast.WalkSkipChildren, err
+	}
+	if _, err := w.Write(n.Text(source)); err != nil {
+		return ast.WalkSkipChildren, err
+	}
+	if err := w.WriteByte('"'); err != nil {
+		return ast.WalkSkipChildren, err
+	}
 	if n.Title != nil {
-		w.WriteString(` title="`)
+		if _, err := w.WriteString(` title="`); err != nil {
+			return ast.WalkSkipChildren, err
+		}
 		r.Writer.Write(w, n.Title)
-		w.WriteByte('"')
+		if err := w.WriteByte('"'); err != nil {
+			return ast.WalkSkipChildren, err
+		}
 	}
 	if n.Attributes() != nil {
 		html.RenderAttributes(w, n, html.ImageAttributeFilter)
 	}
 	if r.XHTML {
-		w.WriteString(" />")
+		if _, err := w.WriteString(" />"); err != nil {
+			return ast.WalkSkipChildren, err
+		}
 	} else {
-		w.WriteString(">")
+		if _, err := w.WriteString(">"); err != nil {
+			return ast.WalkSkipChildren, err
+		}
 	}
 	return ast.WalkSkipChildren, nil
 }
