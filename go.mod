@@ -4,11 +4,10 @@ go 1.21
 
 require (
 	github.com/Masterminds/sprig/v3 v3.2.3
-	github.com/alecthomas/chroma/v2 v2.8.0
+	github.com/alecthomas/chroma/v2 v2.9.1
 	github.com/go-chi/chi/v5 v5.0.10
 	github.com/gorilla/feeds v1.1.1
 	github.com/joho/godotenv v1.5.1
-	github.com/mdigger/goldmark-images v0.0.0-20191226150935-49b26b7ee43c
 	github.com/rs/zerolog v1.30.0
 	github.com/urfave/cli/v2 v2.25.7
 	github.com/yuin/goldmark v1.5.6
