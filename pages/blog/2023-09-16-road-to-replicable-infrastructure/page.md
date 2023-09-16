@@ -447,4 +447,6 @@ This is how I did it at my company to be able to serve stateless image to an HPC
 
 To manage the servers, each server has a IPMI controller, and if one server has a dirty state, we only need to reboot the server to clean it.
 
-By separating the immutable OS components from user-specific data, we can achieve greater efficiency, security, and scalability in your systems.
+Not only it is easier to manage, but it is replicable. We can use the same squashfs file for our entire infrastructure, then use Git to customize the infrastructure.
+
+By separating the immutable OS components from user-specific data, we can achieve greater efficiency, security, and scalability in our systems.
