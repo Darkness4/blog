@@ -58,7 +58,7 @@ When you power on a Linux-based system, the boot sequence initiates a defined se
 To summarize:
 
 - We need to build a stateless image that can be used by the initramfs.
-- We need to customize the initramfs, which may implies to customize the kernel to fetch kernel modules..
+- We need to customize the initramfs, which may implies to customize the kernel to fetch kernel modules.
 
 ## Stateless images
 
@@ -138,7 +138,7 @@ We can also use Packer, customize a virtual machine, and extract the root file-s
 
 #### Add root password
 
-While it may not be necessary to set a root password since we are using a post-boot script, it's better to hardcode a recovery root password that can be deleted by a postscript instead of doing the inverse.
+While it may not be necessary to set a root password since we are using a post-boot script, it's better to hard-code a recovery root password that can be deleted by a postscript instead of doing the inverse.
 
 ```shell
 chroot /gentoo-minimal
@@ -153,7 +153,7 @@ exit
 
 #### Post-boot script
 
-After the OS is built, we want customize the OS further to do a pull-based configuration. To do that, we can either install [cloud-init](https://cloudinit.readthedocs.io/en/latest/), or we can simply make a init service which pull the configuration:
+After the OS is built, we want to customize the OS further to do a pull-based configuration. To do that, we can either install [cloud-init](https://cloudinit.readthedocs.io/en/latest/), or we can simply make an init service which pull the configuration:
 
 **/gentoo-minimal/sbin/pull-config**
 
@@ -196,9 +196,9 @@ This postscript assumes two things:
 
 1. We set the hostname by putting a custom parameter in the kernel cmdline parameters: `my.hostname=my-node`
 
-2. We set the git repository URL by putting a another custom paramet in the kernel cmdline parameters: `my.git=https://github.com/Darkness4/node-config.git`
+2. We set the git repository URL by putting a custom parameter in the kernel cmdline parameters: `my.git=https://github.com/Darkness4/node-config.git`
 
-3. The post-boot script inside the git repository is named `run.sh`. For the sake of the example, lets say the postscript is simply running:
+3. The post-boot script inside the git repository is named `run.sh`. For the sake of the example, let's say the postscript is simply running:
 
    ```shell
    #!/bin/sh
@@ -217,7 +217,7 @@ This postscript assumes two things:
 
 #### Building the kernel, install kernel modules, packing the kernel
 
-Normally, we would install the kernel sources inside the image, compile it and install the kernel modules. However, to make the image light, we will compile the kernel outside of the root file-system.
+Normally, we would install the kernel sources inside the image, compile it and install the kernel modules. However, to make the image light, we will compile the kernel outside the root file-system.
 
 If we were to use `dnf` and `debootstrap`, we just have to install the `kernel` packages inside the root file-system and grab the kernel from the `/boot` directory.
 
@@ -255,7 +255,7 @@ We will need to enable these kernel features for dracut:
       -> Squashfs XATTR support (SQUASHFS_XATTR [=y]) # <---
 ```
 
-(If it's your first time using `make menuconfig`, use `/` to search the keyword like `SQUASH`, and then press the number indicated in parenthesis. `(1) -> SquashFS` means press <kbd>1</kbd>)
+(If it's your first time using `make menuconfig`, use `/` to search the keyword like `SQUASH`, and then press the number indicated in parentheses. `(1) -> SquashFS` means press <kbd>1</kbd>)
 
 You can use [Fedora Kernel config](https://raw.githubusercontent.com/projg2/fedora-kernel-config-for-gentoo/6.5.2-gentoo/kernel-x86_64-fedora.config) to set sane defaults and use the [Gentoo handbook](https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/Kernel) to get the minimum configuration.
 
@@ -275,7 +275,7 @@ If everything goes well, the `./kernel-output` should contain the `vmlinuz-<kern
 
 The `./gentoo-minimal/lib/modules/<kernel-ver>` should also be populated as well.
 
-#### Mksquashfs
+#### Packing the image with mksquashfs
 
 Let's pack our OS image.
 
@@ -298,7 +298,7 @@ dr-xr-xr-x 1 root root  149 Sep 15 20:47 ..
 
 ### Building the initramfs with Dracut
 
-[Dracut](https://wiki.gentoo.org/wiki/Dracut) is a the tool used for creating the initial ramdisk (initramfs). The initramfs is a file system that is invoked during the early stage of the Linux boot process to load essential drivers, modules and tools to mount the root file system and complete the boot procedure.
+[Dracut](https://wiki.gentoo.org/wiki/Dracut) is a tool used for creating the initial ramdisk (initramfs). The initramfs is a file system that is invoked during the early stage of the Linux boot process to load essential drivers, modules and tools to mount the root file system and complete the boot procedure.
 
 With dracut, one of its key capabilities is the dmsquash-live dracut module, which allows the integration of compressed squashfs file systems into initramfs images. Combined with the livenet dracut module, it is possible to boot an OS by fetching the squashfs file system from the network, via HTTP, HTTPS, FTP, Torrent, or TFTP.
 
@@ -382,7 +382,7 @@ We have 1G of memory reserved for the writable layer.
 
 ## Booting the OS with PXE
 
-From this point on, this is standard network booting. We need to setup a DHCP, PXE and TFTP server to server our kernel, inird and kernel cmdline parameters.
+From this point on, this is standard network booting. We need to set up a DHCP, PXE and TFTP server to server our kernel, initrd and kernel cmdline parameters.
 
 I will NOT describe in details how to do it, but this is the big steps:
 
@@ -427,7 +427,7 @@ I will NOT describe in details how to do it, but this is the big steps:
 
 Because we are already running on an OverlayFS, applications using OverlayFS like Podman/Docker won't be able to use the `overlay2` driver.
 
-To solve this issue, either mount a volume or use an another driver.
+To solve this issue, either mount a volume or use another driver.
 
 ### NVIDIA drivers
 

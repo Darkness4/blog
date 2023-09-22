@@ -9,9 +9,9 @@ Yes, I'm writing this blog post to fill up my blog. Also, when searching "first 
 
 Most of them recommend Python, in which I certainly do **not** recommend.
 
-There is a lot of criterias to consider when choosing a programming language, especially the first.
+There is a lot of criteria to consider when choosing a programming language, especially the first.
 
-## Criterias
+## Criteria
 
 Before they even start, in reality, someone never wants to program first. Instead, they have an idea in mind, and want to make it possible.
 
@@ -31,24 +31,24 @@ In software programming, the first-time programmer often need to learn these con
 
 That's a lot, and most of the time, the novice programmer doesn't want to learn it all. However, learning as much as possible will certainly benefit the novice programmer's future work.
 
-This is why, my criterias for choosing a programming language are the following:
+This is why, my criteria for choosing a programming language are the following:
 
 1. **Ease of Learning**: Being able to learn most of the concepts in a minimum of time.
-2. **Availability**: Not every programming language is accessible. Setup a programming environment should no be difficult.
+2. **Availability**: Not every programming language is accessible. Setting up a programming environment should not be difficult.
 3. **Goal**: It is possible to program in every language. But some are certainly "domain"-specific.
 4. **Trend**: Learning a dying programming language will simply demotivate the programmer.
 
 I'm also taking account that the person won't be learning one programming language.
 
-To be a good developper is to diversify since the future is uncertain. **Do not over-specialize, be a generalist.**
+To be a good developer is to diversify since the future is uncertain. **Do not over-specialize, be a generalist.**
 
 I've used all the languages mentioned in this article at some point in my life as a software engineer. I used develop software for Embedded Systems, Machine Learning, DevOps, Games, VR, Backend, Front-end (Web, Qt, Flutter, Android). It's always interesting to learn the syntax, rationale, behavior and paradigm of a programming language to understand how the programming ecosystem will evolve.
 
-## Your first programming language for embbeded systems: Arduino (C++)
+## Your first programming language for embedded systems: Arduino (C++)
 
 Are we already starting with something hard? Not really, let me explain.
 
-A good gift to someone to start programming is often an Arduino with a LCD shield.
+A good gift to someone to start programming is often an Arduino with an LCD shield.
 
 While C++ is often recognized as a complex language, Arduino has abstracted most complex parts and propose a simple syntax:
 
@@ -93,7 +93,7 @@ void loop() {
 }
 ```
 
-The code is commented and the syntax is easy to understand:
+The code is commented, and the syntax is easy to understand:
 
 ```cpp
 // Decleare a variable
@@ -140,7 +140,7 @@ I will be quick, these are languages that programmers often start to learn:
 - Lua
 - Ruby
 
-That's a lot, and all of them can make software (to a certain level). As a senior developper, I would recommend a programming language in which you will be able to refactor and maintain in the future. **It's almost certain that the first project of a programmer is ugly, filled with bad practices.**
+That's a lot, and all of them can make software (to a certain level). As a senior developer, I would recommend a programming language in which you will be able to refactor and maintain in the future. **It's almost certain that the first project of a programmer is ugly, filled with bad practices.**
 
 I will immediately remove languages that are too domain-specific and that are hard to make a Terminal User Interface or Graphical User Interface. After all, one concept to learn is input/output, meaning being able to print and read from the user inputs.
 
@@ -150,9 +150,9 @@ We can also remove language that a "dying": **Lua** and **Ruby**. Note that they
 
 I will now talk about the rest.
 
-### Python, Javascript and Typescript: Simple, but full of the bad practices, like the scripting languages they are.
+### Python, JavaScript and Typescript: Simple, but full of the bad practices, like the scripting languages they are.
 
-To understand why I would not recommend Python, Javascript and Typescript. Let me cite the Wikipedia definition of Python:
+To understand why I would not recommend Python, JavaScript and Typescript. Let me cite the Wikipedia definition of Python:
 
 > **Python** is a [high-level](https://en.wikipedia.org/wiki/High-level_programming_language), [general-purpose programming language](https://en.wikipedia.org/wiki/General-purpose_programming_language). Its design philosophy emphasizes [code readability](https://en.wikipedia.org/wiki/Code_readability) with the use of [significant indentation](https://en.wikipedia.org/wiki/Off-side_rule).
 >
@@ -160,7 +160,7 @@ To understand why I would not recommend Python, Javascript and Typescript. Let m
 
 All of these features abstracts a **lot** of programming concepts that are important as a software engineer.
 
-- Let's start by **high-level**: this means a lot of computer and programming "details" are heavily abstracted like the compilation step and memory management. While I do also think that **memory management** (memory allocation and freeing) is not required, I do think that missing the **compilation step** is a grave mistake. When using a **interpreted** (vs compiled) programming languages, most errors happens at runtime. To avoid most errors, you need to install tools like the static analyzer **pylint** (which is not included in the REPL/interactive mode).
+- Let's start by **high-level**: this means a lot of computer and programming "details" are heavily abstracted like the compilation step and memory management. While I do also think that **memory management** (memory allocation and freeing) is not required, I do think that missing the **compilation step** is a grave mistake. When using an **interpreted** (vs compiled) programming languages, most errors happens at runtime. To avoid most errors, you need to install tools like the static analyzer **pylint** (which is not included in the REPL/interactive mode).
 
 - **Dynamically typed**: This means that types are NOT strict. For example:
 
@@ -180,30 +180,30 @@ All of these features abstracts a **lot** of programming concepts that are impor
   console.log(a); // Prints "test"
   ```
 
-- **Garbage-collected**: This means that the language manages memory allocation for you. To be honest, this isn't really a problem, especially since we all have buffy computers.
+- **Garbage-collected**: This means that the language manages memory allocation for you. To be honest, this isn't really a problem, especially since we all have buffed computers.
 
-- **Multiple programming paradigms**: This means there is multiple way to achieve a solution. While you may say: "Good! That mean I'm free to do whatever I want, with the syntax that I prefer.", this also means: "I cannot read other people solution because I don't understand the syntax". This feature adds **complexity** and **implicitness** to the language.
+- **Multiple programming paradigms**: This means there are multiple ways to achieve a solution. While you may say: "Good! That mean I'm free to do whatever I want, with the syntax that I prefer.", this also means: "I cannot read other people solution because I don't understand the syntax". This feature adds **complexity** and **implicitness** to the language.
 
 - **Indents** vs **Brackets**: In reality, you don't care about indents (tab, spaces...) and brackets. You should let your IDE format your code, so that it is **standard**.
 
-That's why I would never recommend Python, Javascript or Typescript. These are **scripting** languages like **Bash** and **Perl**. Learning them can be easy at first, but like any scripting language, you're much more likely to shoot yourself in the foot when you scale up.
+That's why I would never recommend Python, JavaScript or Typescript. These are **scripting** languages like **Bash** and **Perl**. Learning them can be easy at first, but like any scripting language, you're much more likely to shoot yourself in the foot when you scale up.
 
 To avoid shooting yourself in the foot, you have to learn best practices like the PEP8 and PEP257 and have a multitude of tools to lint and format.
 
-To sumarize, Python, Javascript and Typescript suffer from:
+To summarize, Python, JavaScript and Typescript suffer from:
 
 - **Implicitness**
 - **Error-prone** and likely at **runtime**
-- Syntax is simple but the number of solutions adds in **complexity**
+- Syntax is simple, but the number of solutions adds in **complexity**
 - Prone to **bad practices**
 
-And I haven't talk about Typescript `let`, `var` `const`, `===`... and the packaging ecosystem which is also dreadful (`pnpm` or `yarn` or `bun`? `pip` or `conda`? `left-pad`???).
+And I haven't talked about Typescript `let`, `var` `const`, `===`... and the packaging ecosystem which is also dreadful (`pnpm` or `yarn` or `bun`? `pip` or `conda`? `left-pad`???).
 
 Overall, to be avoided at all costs. Especially, for learning programming concepts.
 
 ### C: simple to write, hard to bootstrap, compile and debug
 
-Compared to what we saw, C is a low-level compiled programming language with a static type system. C is **not** designed for Object Oriented Programming, but it is still possible to do OOP by using structures, header files and composition.
+Compared to what we saw, C is a low-level compiled programming language with a static type system. C is **not** designed for Object-Oriented Programming, but it is still possible to do OOP by using structures, header files and composition.
 
 C syntax is quite explicit and simple:
 
@@ -258,7 +258,7 @@ int main() {
 
 To summary, a pointer holds a memory address. `malloc(sizeof(int))` allocates memory for a `integer` (natural number) and returns the memory address. To change/get the value of the allocated memory, you must invoke `*ptr`. After doing `malloc`, you should always call `free` at the end.
 
-Since C is too "simple" and low-level, managing the memory can be quite dreadful. There is noo safety for the pointer: when reading the value of a pointer (also known as **dereferencing**), this may read garbage because the memory wasn't allocated or the pointer is NULL. Reading a NULL pointer also crash the program with a **segmentation fault (core dump)**, with no log nor stacktrace. You need to use a **debugger** to be able to check where the program crashed. Also, fetching the `core dump` is not trivial.
+Since C is too "simple" and low-level, managing the memory can be quite dreadful. There is no safety for the pointer: when reading the value of a pointer (also known as **dereferencing**), this may read garbage because the memory wasn't allocated, or the pointer is NULL. Reading a NULL pointer also crash the program with a **segmentation fault (core dump)**, with no log nor stack-trace. You need to use a **debugger** to be able to check where the program crashed. Also, fetching the `core dump` is not trivial.
 
 There are other drawbacks too:
 
@@ -291,13 +291,13 @@ There are other drawbacks too:
       rm -f $(TARGET)
   ```
 
-- Dreadful static compilation and export: The program is hard to share. You need the libraries versions to match between computers if compiled as a dynamically-linked executable (default behavior). If compiled as a static executable, you need all of the C library to be statically compiled. However, **glibc is not statically compilable**, and you need to use **muslc**.
+- Dreadful static compilation and export: The program is hard to share. You need the libraries versions to match between computers if compiled as a dynamically-linked executable (default behavior). If compiled as a static executable, you need all the C library to be statically compiled. However, **glibc is not statically compilable**, and you need to use **muslc**.
 
-- Dreadful ecosystem due the the two last points.
+- Dreadful ecosystem due the last two points.
 
 - Macros which are used for compile-time operations. This is often abused due to the lack of "checks" to the macros.
 
-I would recommend to learn **C** as the second programming language to understand how memory allocation works. Otherwise, there are better alternatives.
+I would recommend learning **C** as the second programming language to understand how memory allocation works. Otherwise, there are better alternatives.
 
 ### C++: same as C, but with a better standard library and easier to use for OOP
 
@@ -453,7 +453,7 @@ However, C++ adds a few new drawbacks:
   }
   ```
 
-- Abusive templating in some cases, making it hard to debug or even read/write code.
+- Abusive templates in some cases, making it hard to debug or even read/write code.
 
 Overalls, C++ is a no-go to learn as a first programming language.
 
@@ -514,7 +514,7 @@ numbers.iter().for_each(|&num| {
 });
 ```
 
-Rust is still complex due to the richness of the ecosystem. This could causes issues when reading the code of an another person.
+Rust is still complex due to the richness of the ecosystem. This could cause issues when reading the code of a person.
 
 Rust solves these issues compared to C++:
 
@@ -532,7 +532,7 @@ Overalls, Rust is pretty good to start with, until you hit the memory management
 
 Go is a compiled high-level programming language with static typing and garbage collection.
 
-Immediately, one drawback is implicit memory management and hardware abstraction. However, this issue only comes if we WANT to memory manage and handle hardware at low-level.
+Immediately, one drawback is implicit memory management and hardware abstraction. However, this issue only comes if we WANT to manage memory and handle hardware at low-level.
 
 Go's syntax is **simple and explicit** and actually shines because of it. Almost all program written in Go will have the same solution. This is to iterate a slice (dynamically-sized view of an array):
 
@@ -639,7 +639,7 @@ Go shines by being simple and explicit, making it easy to read by other people. 
 
 Even if Go is simple, it might be too simple. Go is missing some features that some other modern programming language has:
 
-- No default parameters. But there is one way to achieve this, is to use the optional functions via variadic parameters:
+- No default parameters. But there is one way to achieve this, is to use the optional functions via variable-length parameters list:
 
   ```go
   // Options is a struct for specifying optional parameters
@@ -695,7 +695,7 @@ Even if Go is simple, it might be too simple. Go is missing some features that s
   }
   ```
 
-And, that's it. Some may say that Go is too simple. I do believe that **explicitness** and **simplicity** are the most important criterias to select the first programming language to learn all of the programming concepts.
+And, that's it. Some may say that Go is too simple. I do believe that **explicitness** and **simplicity** are the most important criteria to select the first programming language to learn all the programming concepts.
 
 Overall, Go is the language I recommend.
 
@@ -736,7 +736,7 @@ Overall, if Zig is stable, you should learn it, because it may be the next C/C++
 
 ## One last point: To OOP or not
 
-Object Oriented Programming or Functional Programming are programming paradigms that can be used to architecture your code.
+Object-Oriented Programming or Functional Programming are programming paradigms that can be used to architecture your code.
 
 Some talk about Clean Code, Clean Architecture, others talk about functions purity.
 
@@ -745,7 +745,7 @@ In reality, as I said at the beginning, you should never over-specialize. Always
 A computer is naturally "procedural" so functional programming may not be adapter. Same for OOP:
 
 - There more case where composition is better than inheritance
-- Over-architecturing is useless if your coworker don't know about it
+- Over-architecture is useless if your coworker don't know about it
 
 ## Conclusion
 
@@ -764,9 +764,9 @@ Also, this is my recommendations for domain-specific programming languages:
 - Android: Kotlin or C++.
 - Embedded Systems: C, C++, Zig, Rust or Arduino (if possible).
 - High Performance Computing: C, C++, Zig, Rust.
-- Games: C++ with Unreal, C# with Godot (F- Unity). For the choice of the game engine, I would recommended to start with any of them and let your passion go crazy.
+- Games: C++ with Unreal, C# with Godot (F- Unity). For the choice of the game engine, I would recommend to start with any of them and let your passion go crazy.
 
-While I gave you recommendations on these languages, the final criteria is often the same: "Do you have enough resources (time, money, ...) to learn and use it?". **Like any tool, the true cost is not the tool itself, it's the consequences that comes with it.**
+Although I've given you some recommendations on these languages, the final criterion is often the same: "Do you have enough resources (time, money, ...) to learn and use it?". **Like any tool, the real cost is not the tool itself, but the consequences that come from it.**
 
 I recommend you to also learn about:
 

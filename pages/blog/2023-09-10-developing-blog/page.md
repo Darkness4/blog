@@ -5,16 +5,16 @@ description: This article documents about how this blog came to be. From technic
 
 ## Motivation
 
-I want to create, write and maintain a simple blog about personal and technical discoveries. I will self-host this blog on my Raspberry Pi cluster with kubernetes.
+I want to create, write and maintain a simple blog about personal and technical discoveries. I will self-host this blog on my Raspberry Pi cluster with Kubernetes.
 
 This already adds some constraints:
 
 - Self-hostable.
 - Lightweight: under 64Mo of RAM usage.
-- Multiarch: ARM64 and AMD64.
+- Multi-arch: ARM64 and AMD64.
 - Low dependencies: for long term maintenance.
 - Simplicity: simple articles, nothing special.
-- Maintenable at long term.
+- Maintainable at long term.
 
 These are the minimal constraints.
 
@@ -34,8 +34,8 @@ There are a lot of existing solution to write a blog. I will only cite the solut
 
 However, the disadvantages are:
 
-- Dependencies: Too many dependencies. The latest [React is not even officially compatible](https://github.com/facebook/docusaurus/issues/7264#issuecomment-1257061642) with Docusaurus. This basically could involve maintenance hell, since I cannot assure that each dependencies (espcially in the npm ecosystem) that any of them will be maintained.
-- React: That's my opinion, but I think React is complex for nothing. State management is hellish, component creation is conflicting (class or function?!), and its performance is unsatisfactory. React may be "cool" for people who do a lot of web development, but for me it's just an overkill. Alternatively, SvelteKit is already an excellent replacement for React by removing the VDOM and by having a compiler to check errors.
+- Dependencies: Too many dependencies. The latest [React is not even officially compatible](https://github.com/facebook/docusaurus/issues/7264#issuecomment-1257061642) with Docusaurus. This basically could involve maintenance hell, since I cannot assure that each dependency (especially in the npm ecosystem) that any of them will be maintained.
+- React: That's my opinion, but I think React is complex for nothing. State management is hellish, component creation is conflicting (class or function?!), and its performance is unsatisfactory. React may be "cool" for people who do a lot of web development, but for me, it's just an overkill. Alternatively, SvelteKit is already an excellent replacement for React by removing the VDOM and by having a compiler to check errors.
 
 ### SvelteKit or SveltePress
 
@@ -80,7 +80,7 @@ Anyway, it's a pass for me.
 
 [Go](https://go.dev) is a programming language. It is compiled, has a garbage collection system, structures and is OOP-compatible. Go stands out for its standard library, which allows easy concurrency and rapid development. Go's syntax is also fairly strict and explicit, so it's easy to read other developers' code. In fact, Go is so simple that most of the time it allows only one type of solution, thus achieving the [Zen of Python](https://peps.python.org/pep-0020/) better than Python itself.
 
-The reason I chose Go over C, Rust, C++, Java, ... is that static cross compilation is easy. Also, I write Go super fast and I don't have to fight with the language to choose a solution on "how I want to handle a string" (`String`, `char[]`, `std::string` ?!, give me one please!).
+The reason I chose Go over C, Rust, C++, Java, ... is that static cross compilation is easy. Also, I write Go superfast and I don't have to fight with the language to choose a solution on "how I want to handle a string" (`String`, `char[]`, `std::string` ?!, give me one please!).
 
 This is the solution I've chosen. Basically, the idea is as follows:
 
@@ -102,11 +102,11 @@ Keep it simple stupid.
 
 My PoC is to write a simple [authentication page](https://github.com/Darkness4/auth-htmx) with a counter behind it. It uses Go, HTMX and OAuth2. It's more complex than a blog, but this PoC tests HTMX in depth.
 
-Testing with OAuth2 is a good PoC because:
+Testing with OAuth2 is a good PoC because it tests:
 
-- It tests the UX of login flow (login, logout).
-- It tests a small state management ("is logged").
-- It tests the authorization ("count only if is logged").
+- The UX of login flow (login, logout).
+- A small state management ("is logged").
+- The authorization ("count only if is logged").
 
 The conclusion I draw from this experiment is as follows:
 
@@ -126,7 +126,7 @@ Basically, there is a `pages` directory which accepts `.md` files and `.svelte` 
 
 #### Templates and Components
 
-With Go, templates can be named. With this, we can define components inside the `components` directory. These templates are passed to the templating engine.
+With Go, templates can be named. With this, we can define components inside the `components` directory. These templates are passed to the template engine.
 
 There is also the `base.html` and `base.htmx` templates for the initial request and SSR request with HTMX.
 
@@ -194,7 +194,7 @@ Example:
 
 Clicking on `Go To Page 1` will make a HTMX request to the server `GET /page1` with the HTTP Header `Hx-Request: true`. The response of the server will replace the entire `body` element.
 
-Thanks to the header `Hx-Request: true`, the server can identify if the client is doing an initial request or a SSR request:
+Thanks to the header `Hx-Request: true`, the server can identify if the client is doing an initial request or an SSR request:
 
 **main.go**
 
@@ -272,7 +272,7 @@ if err := t.Execute(w, struct {
 
 ### Compile-time rendering
 
-Since a blog is primarly static, I want to render the markdown and index page at compile-time.
+Since a blog is primarily static, I want to render the markdown and index page at compile-time.
 
 Go doesn't have any [`comptime`](https://ziglang.org/documentation/master/#comptime) like Zig, but we can at least use `go generate`.
 
@@ -515,7 +515,7 @@ func Generate() {
 
 ## Conclusion
 
-To summary, when I write a page of the blog, I create a `page.md` file in the `pages/blog/<date-url>/` directory like SveltePress. Then I compile the pages into html by running `go generate` which `go run build.go`. The `build.go` script generates the html pages from markdown, and also creates the `gen/index/index.go` file which contains the necessery data for the index page.
+To summary, when I write a page of the blog, I create a `page.md` file in the `pages/blog/<date-url>/` directory like SveltePress. Then I compile the pages into html by running `go generate` which `go run build.go`. The `build.go` script generates the html pages from markdown, and also creates the `gen/index/index.go` file which contains the necessary data for the index page.
 
 After compiling the pages, the server can run and accepts two type of request: the initial request and the SSR request with HTMX. Based on the request, we can create a router which executes SSR and allow quick rendering without the need to redownload everything (like the HTMX library, CSS, and other "app"-time assets...).
 
