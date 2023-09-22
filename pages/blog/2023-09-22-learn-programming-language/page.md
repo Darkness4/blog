@@ -757,7 +757,7 @@ Based on explicitness and simplicity, here's my recommendation on which programm
 
 With these programming languages, you can learn most of the programming concepts rapidly and naturally, without learning bad practices.
 
-This is my recommendations for domain-specific programming languages:
+Also, this is my recommendations for domain-specific programming languages:
 
 - Web front-end: TypeScript
 - GUI: C++ with Qt, or Python with Qt. (Or Typescript with Electron, please don't). Dart with Flutter. Kotlin with JavaFX.
@@ -765,6 +765,8 @@ This is my recommendations for domain-specific programming languages:
 - Embedded Systems: C, C++, Zig, Rust or Arduino (if possible).
 - High Performance Computing: C, C++, Zig, Rust.
 - Games: C++ with Unreal, C# with Godot (F- Unity). For the choice of the game engine, I would recommended to start with any of them and let your passion go crazy.
+
+While I gave you recommendations on these languages, the final criteria is often the same: "Do you have enough resources (time, money, ...) to learn and use it?". **Like any tool, the true cost is not the tool itself, it's the consequences that comes with it.**
 
 I recommend you to also learn about:
 
