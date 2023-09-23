@@ -20,7 +20,9 @@ import (
 	meta "github.com/yuin/goldmark-meta"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
+	"github.com/yuin/goldmark/text"
 	"go.abhg.dev/goldmark/anchor"
+	"go.abhg.dev/goldmark/toc"
 )
 
 var (
@@ -174,8 +176,17 @@ func processPages() {
 			var sb strings.Builder
 
 			ctx := parser.NewContext()
-			if err := markdown.Convert(content, &sb, parser.WithContext(ctx)); err != nil {
+			doc := markdown.Parser().Parse(text.NewReader(content), parser.WithContext(ctx))
+			if err := markdown.Renderer().Render(&sb, content, doc); err != nil {
 				log.Fatal().Err(err).Msg("write file failure")
+			}
+			tree, err := toc.Inspect(doc, content, toc.Compact(true))
+			if err != nil {
+				log.Fatal().Err(err).Msg("toc failure")
+			}
+			var tocSB strings.Builder
+			if err := markdown.Renderer().Render(&tocSB, content, toc.RenderList(tree)); err != nil {
+				log.Fatal().Err(err).Msg("toc render failure")
 			}
 			// Replace {{ with &#123;&#123;
 			out := strings.ReplaceAll(sb.String(), "{{", "&#123;&#123;")
@@ -184,6 +195,19 @@ func processPages() {
 			date, err := blog.ExtractDate(filepath.Base(filepath.Dir(curr)))
 			if err != nil {
 				log.Fatal().Err(err).Msg("failed to parse date failure")
+			}
+
+			// Compile time variable
+			var bodySB strings.Builder
+			tBody := template.Must(template.New("body").Parse(out))
+			if err := tBody.Execute(&bodySB, struct {
+				TOC  string
+				Path string
+			}{
+				TOC:  tocSB.String(),
+				Path: "{{ $.Path }}", // Pass variable to runtime
+			}); err != nil {
+				log.Fatal().Err(err).Msg("body template failure")
 			}
 
 			t := template.Must(template.ParseFS(mdTmpl, "templates/markdown.tmpl"))
@@ -198,7 +222,7 @@ func processPages() {
 			}{
 				Title:         fmt.Sprintf("%v", metaData["title"]),
 				Style:         cssBuffer.String(),
-				Body:          out,
+				Body:          bodySB.String(),
 				PublishedDate: date.Format("Monday 02 January 2006"),
 
 				Prev: strings.TrimSuffix(strings.TrimPrefix(file.prev, "pages"), "/page.md"),

@@ -3,6 +3,12 @@ title: Road to replicable infrastructure with OverlayFS and dracut live image
 description: About replicable infrastructure when containerization and virtualization is not allowed.
 ---
 
+## Table of contents
+
+\\{\\{ $.TOC }}
+
+## Introduction
+
 Imagine this scenario: you have hardware for which you are not authorized to use virtualization or containerization, as in the case of a Raspberry Pi cluster or an HPC (High-Performance Computing) cluster, because you want to use the full "bare-metal" performance.
 
 No hypervisor like [Proxmox](https://www.proxmox.com/) to manage virtual machines and no container runtime like [containerd](https://containerd.io) to manage containers are allowed.

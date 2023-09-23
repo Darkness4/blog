@@ -9,6 +9,10 @@ This article written in Markdown is rendered with an HTTP server in Go, and rend
 
 Try switching articles to see how fast they load!
 
+## Table of contents
+
+\\{\\{ $.TOC }}
+
 ## Why ?
 
 Let's say I don't like any of the existing solutions for writing a blog.

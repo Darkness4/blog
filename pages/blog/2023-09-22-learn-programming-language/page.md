@@ -3,6 +3,12 @@ title: Learning your first programming language
 description: About the programming language to learn first in 2023. It is a may be a filler post, but my opinion are here.
 ---
 
+## Table of contents
+
+\\{\\{ $.TOC }}
+
+## Introduction
+
 _Wow. It's one of those posts again!_
 
 Yes, I'm writing this blog post to fill up my blog. Also, when searching "first programming language to learn", it's always a "top 5" with no example and just bullet points.
@@ -702,10 +708,10 @@ Even if Go is simple, it might be too simple. Go is missing some features that s
   type MyInterface interface {
       SayHello()
   }
-  
+
   func main() {
       var myVar MyInterface // MyInterface is nil, not MyInterface{} because it is an unimplemented type
-  
+
       // This will cause a runtime panic because myVar is nil
       myInterface.SayHello()
   }
@@ -739,7 +745,7 @@ Zig has already [an article explaining why Zig is needed](https://ziglang.org/le
   fn multiply(a: i64, b: i64) i64 {
       return a * b;
   }
-  
+
   pub fn main() void {
       const len = comptime multiply(4, 5);
       const my_static_array: [len]u8 = undefined;
@@ -793,5 +799,4 @@ Which should be included in your favorite IDE. These are the tools used to make 
 
 Although I've given you some recommendations on these languages, the final criterion is often the same: "Do you have enough resources (time, money, ...) to learn and use it?". **Like any tool, the real cost is not the tool itself, but the consequences that come from it.**
 
-*If you have more or less time and are used to programming syntax, you can learn a large number of programming languages with [Learn X in Y minutes](https://learnxinyminutes.com).*
-
+_If you have more or less time and are used to programming syntax, you can learn a large number of programming languages with [Learn X in Y minutes](https://learnxinyminutes.com)._

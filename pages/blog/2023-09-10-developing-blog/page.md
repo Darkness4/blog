@@ -3,6 +3,10 @@ title: Developing this blog in Go and HTMX
 description: This article documents about how this blog came to be. From technical choices to deploying this blog.
 ---
 
+## Table of contents
+
+\\{\\{ $.TOC }}
+
 ## Motivation
 
 I want to create, write and maintain a simple blog about personal and technical discoveries. I will self-host this blog on my Raspberry Pi cluster with Kubernetes.
@@ -270,7 +274,7 @@ if err := t.Execute(w, struct {
 }
 ```
 
-### Compile-time rendering
+#### Compile-time rendering
 
 Since a blog is primarily static, I want to render the markdown and index page at compile-time.
 
