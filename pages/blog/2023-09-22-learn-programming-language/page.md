@@ -657,7 +657,7 @@ Since this is the language I recommend, let me list all the benefits of Go:
 
 - And more...
 
-Go shines by being simple and explicit, making it easy to read by other people. It enables to follows best practices automatically and write idiomatic Go code. Therefore, it is a great language for open-source.
+Go shines by being simple and explicit, making it easy to read by other people. It enables to follow best practices automatically and write idiomatic Go code. Therefore, it is a great language for open-source.
 
 Even if Go is simple, it might be too simple. Go is missing some features that some other modern programming language has:
 
