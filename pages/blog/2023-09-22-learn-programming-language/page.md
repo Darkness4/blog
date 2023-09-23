@@ -557,11 +557,13 @@ While the language has no `;`, the indentation is also not important compared to
 
 Since this is the language I recommend, let me list all the benefits of Go:
 
-- **Explicit** and **simple** syntax
+- **Explicit** and **simple** syntax.
 
-- **Easy package management**, directly included in Go via `go get`
+- **Easy install and setting up** of Go in your favorite IDE
 
-- **Easy formatting** with `goimports` or `gofmt`
+- **Easy package management**, directly included in Go via `go get`.
+
+- **Easy formatting** with `goimports` or `gofmt`.
 
 - **Easy concurrency** with goroutines and standard patterns like the Context API.
 
@@ -589,9 +591,18 @@ Since this is the language I recommend, let me list all the benefits of Go:
   }
   ```
 
-- **Easy directory structure** via modules and packages
+- **Easy directory structure** via modules and packages:
 
-- **Easy and explicit error handling** via error has a value.
+  ```shell
+  .
+  ├── cmd # <your-module>/cmd
+  │   └── cmd.go
+  ├── main.go
+  ├── go.mod # <your-module>
+  └── go.sum
+  ```
+
+- **Easy and explicit error handling** via error as a value:
 
   ```go
   // Divide function returns a result and an error
@@ -631,7 +642,12 @@ Since this is the language I recommend, let me list all the benefits of Go:
   }
   ```
 
-- **Easy static and multi-platform compilation**
+- **Easy static and multi-platform compilation**:
+
+  ```shell
+  CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./executable ./main.go # static executable for linux
+  CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o ./executable ./main.go # static executable for windows
+  ```
 
 - And more...
 
@@ -686,10 +702,10 @@ Even if Go is simple, it might be too simple. Go is missing some features that s
   type MyInterface interface {
       SayHello()
   }
-
+  
   func main() {
       var myVar MyInterface // MyInterface is nil, not MyInterface{} because it is an unimplemented type
-
+  
       // This will cause a runtime panic because myVar is nil
       myInterface.SayHello()
   }
@@ -723,7 +739,7 @@ Zig has already [an article explaining why Zig is needed](https://ziglang.org/le
   fn multiply(a: i64, b: i64) i64 {
       return a * b;
   }
-
+  
   pub fn main() void {
       const len = comptime multiply(4, 5);
       const my_static_array: [len]u8 = undefined;
@@ -766,9 +782,7 @@ Also, this is my recommendations for domain-specific programming languages:
 - High Performance Computing: C, C++, Zig, Rust.
 - Games: C++ with Unreal, C# with Godot (F- Unity). For the choice of the game engine, I would recommend to start with any of them and let your passion go crazy.
 
-Although I've given you some recommendations on these languages, the final criterion is often the same: "Do you have enough resources (time, money, ...) to learn and use it?". **Like any tool, the real cost is not the tool itself, but the consequences that come from it.**
-
-I recommend you to also learn about:
+I also recommend you to learn about:
 
 - Auto-completion
 - Auto-formatting
@@ -776,3 +790,8 @@ I recommend you to also learn about:
 - Snippets
 
 Which should be included in your favorite IDE. These are the tools used to make programming more fun.
+
+Although I've given you some recommendations on these languages, the final criterion is often the same: "Do you have enough resources (time, money, ...) to learn and use it?". **Like any tool, the real cost is not the tool itself, but the consequences that come from it.**
+
+*If you have more or less time and are used to programming syntax, you can learn a large number of programming languages with [Learn X in Y minutes](https://learnxinyminutes.com).*
+
