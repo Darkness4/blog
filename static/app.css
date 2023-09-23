@@ -1,6 +1,11 @@
-body>footer, body>header {
+body>header {
   padding-top: 2em;
   padding-bottom: 0;
+}
+
+body>footer {
+  padding-top: 0;
+  padding-bottom: 2em;
 }
 
 .anchor {

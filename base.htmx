@@ -4,4 +4,6 @@
 </head>
 
 <header>{{ template "Nav" . }}</header>
-{{ template "body" . }} {{ end }}
+{{ template "body" . }}
+<footer>{{ template "Footer" . }}</footer>
+{{ end }}
