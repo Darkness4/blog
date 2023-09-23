@@ -24,11 +24,11 @@ import (
 
 // TODO: remove hardcoded value and put into a .env
 const (
-	title       = "Darkness4's Blog"
+	title       = "Marc Nguyen's Blog"
 	href        = "https://blog.mnguyen.fr"
 	authorName  = "Marc Nguyen"
 	authorEmail = "nguyen_marc@live.fr"
-	description = "Darkness4's blog is a personal and technical blog about documenting some processes, implementations, etc."
+	description = "Marc Nguyen's blog is a personal and technical blog about documenting some processes, implementations, etc."
 )
 
 var created time.Time
