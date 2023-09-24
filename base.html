@@ -35,7 +35,7 @@
     <link hx-preserve="true" rel="stylesheet" href="/static/app.css" />
     {{ template "head" . }}
   </head>
-  <body hx-ext="head-support" hx-boost="true">
+  <body hx-history="false" hx-ext="head-support" hx-boost="true">
     <header>{{ template "Nav" . }}</header>
     {{ template "body" . }}
     <footer>{{ template "Footer" . }}</footer>

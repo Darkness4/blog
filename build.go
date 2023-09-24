@@ -185,9 +185,13 @@ func processPages() {
 				log.Fatal().Err(err).Msg("toc failure")
 			}
 			var tocSB strings.Builder
-			if err := markdown.Renderer().Render(&tocSB, content, toc.RenderList(tree)); err != nil {
-				log.Fatal().Err(err).Msg("toc render failure")
+			list := toc.RenderList(tree)
+			if list != nil {
+				if err := markdown.Renderer().Render(&tocSB, content, list); err != nil {
+					log.Fatal().Err(err).Msg("toc render failure")
+				}
 			}
+
 			// Replace {{ with &#123;&#123;
 			out := strings.ReplaceAll(sb.String(), "{{", "&#123;&#123;")
 			out = strings.ReplaceAll(out, "\\{\\{", "{{")

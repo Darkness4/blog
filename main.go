@@ -98,7 +98,7 @@ var app = &cli.App{
 
 			// Check if SSR
 			var base string
-			if r.Header.Get("Hx-Request") != "true" {
+			if r.Header.Get("Hx-Boosted") != "true" {
 				// Initial Rendering
 				base = "base.html"
 			} else {

@@ -196,16 +196,16 @@ Example:
 </div>
 ```
 
-Clicking on `Go To Page 1` will make a HTMX request to the server `GET /page1` with the HTTP Header `Hx-Request: true`. The response of the server will replace the entire `body` element.
+Clicking on `Go To Page 1` will make a HTMX request to the server `GET /page1` with the HTTP Header `Hx-Boosted: true`. The response of the server will replace the entire `body` element.
 
-Thanks to the header `Hx-Request: true`, the server can identify if the client is doing an initial request or an SSR request:
+Thanks to the header `Hx-Boosted: true`, the server can identify if the client is doing an initial request or an SSR request:
 
 **main.go**
 
 ```go
 r.Get("/*", func(w http.ResponseWriter, r *http.Request) {
 	var base string
-	if r.Header.Get("Hx-Request") != "true" {
+	if r.Header.Get("Hx-Boosted") != "true" {
 		// Initial Rendering
 		base = "base.html"
 	} else {
