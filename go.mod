@@ -8,7 +8,7 @@ require (
 	github.com/go-chi/chi/v5 v5.0.10
 	github.com/gorilla/feeds v1.1.1
 	github.com/joho/godotenv v1.5.1
-	github.com/rs/zerolog v1.30.0
+	github.com/rs/zerolog v1.31.0
 	github.com/urfave/cli/v2 v2.25.7
 	github.com/yuin/goldmark v1.5.6
 	github.com/yuin/goldmark-highlighting/v2 v2.0.0-20230729083705-37449abec8cc
