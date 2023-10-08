@@ -3,18 +3,24 @@ FROM --platform=$BUILDPLATFORM registry-1.docker.io/library/alpine:latest as cer
 RUN apk update && apk add --no-cache ca-certificates
 
 # ---
-FROM --platform=$BUILDPLATFORM registry-1.docker.io/library/golang:1.21 as builder
+FROM --platform=$BUILDPLATFORM registry-1.docker.io/library/golang:1.21-alpine as builder
+
+RUN apk add --no-cache nodejs npm chromium
+RUN npm install -g @mermaid-js/mermaid-cli
+ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
+
+RUN adduser -D rootless
+USER rootless
+
 WORKDIR /build/
-COPY go.mod go.sum ./
+COPY --chown=rootless go.mod go.sum ./
 RUN go mod download
 
 ARG TARGETOS TARGETARCH VERSION
-COPY . /build/
+COPY --chown=rootless . /build/
 
-RUN --mount=type=cache,target=/root/.cache/go-build \
-  --mount=type=cache,target=/go/pkg \
-  go generate ./... \
-  && CGO_ENABLED=0 GOOS=$TARGETOS GOARCH=$TARGETARCH go build -a -ldflags "-s -w -X main.version=${VERSION}" -o /out/blog ./main.go
+RUN go generate ./... \
+  && CGO_ENABLED=0 GOOS=$TARGETOS GOARCH=$TARGETARCH go build -a -ldflags "-s -w -X main.version=${VERSION}" -o /build/blog ./main.go
 
 # ---
 FROM registry-1.docker.io/library/busybox:1.36.1
@@ -29,7 +35,7 @@ RUN mkdir /app
 RUN addgroup -S app && adduser -S -G app app
 WORKDIR /app
 
-COPY --from=builder /out/blog .
+COPY --from=builder /build/blog .
 COPY --from=certs /etc/ssl/certs /etc/ssl/certs
 
 RUN chown -R app:app .

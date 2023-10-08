@@ -13,6 +13,8 @@ import (
 	"github.com/Darkness4/blog/images"
 	"github.com/Darkness4/blog/index"
 	"github.com/Darkness4/blog/utils/blog"
+	"github.com/Darkness4/blog/utils/mermaid"
+	"github.com/Darkness4/blog/utils/unique"
 	chromahtml "github.com/alecthomas/chroma/v2/formatters/html"
 	"github.com/rs/zerolog/log"
 	"github.com/yuin/goldmark"
@@ -20,8 +22,10 @@ import (
 	meta "github.com/yuin/goldmark-meta"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
+	goldmarkhtml "github.com/yuin/goldmark/renderer/html"
 	"github.com/yuin/goldmark/text"
 	"go.abhg.dev/goldmark/anchor"
+	goldmarkmermaid "go.abhg.dev/goldmark/mermaid"
 	"go.abhg.dev/goldmark/toc"
 )
 
@@ -120,9 +124,10 @@ func processPages() {
 	_ = os.RemoveAll("gen")
 
 	// Markdown engine
-	var cssBuffer strings.Builder
+	cssBuffer := unique.NewLineWriter()
 	markdown := goldmark.New(
 		goldmark.WithParserOptions(parser.WithAutoHeadingID()),
+		goldmark.WithRendererOptions(goldmarkhtml.WithUnsafe()),
 		images.NewReplacer(func(link string) string {
 			if filepath.IsAbs(link) || strings.HasPrefix(strings.ToLower(link), "http") {
 				return link
@@ -130,9 +135,14 @@ func processPages() {
 			return filepath.Join("\\{\\{ $.Path }}", link)
 		}),
 		goldmark.WithExtensions(
+			&goldmarkmermaid.Extender{
+				RenderMode: goldmarkmermaid.RenderModeServer,
+				Theme:      "dark",
+				MMDC:       &mermaid.CLI{},
+			},
 			highlighting.NewHighlighting(
 				highlighting.WithStyle("onedark"),
-				highlighting.WithCSSWriter(&cssBuffer),
+				highlighting.WithCSSWriter(cssBuffer),
 				highlighting.WithFormatOptions(
 					chromahtml.WithLineNumbers(true),
 					chromahtml.WithClasses(true),
@@ -234,6 +244,7 @@ func processPages() {
 			}); err != nil {
 				log.Fatal().Err(err).Msg("generate file from template failure")
 			}
+			cssBuffer.Reset()
 		}()
 	}
 
@@ -278,6 +289,7 @@ func processPages() {
 				}); err != nil {
 					log.Fatal().Err(err).Msg("generate file from template failure")
 				}
+				cssBuffer.Reset()
 			} else {
 				w, err := os.Create(file + ext)
 				if err != nil {
