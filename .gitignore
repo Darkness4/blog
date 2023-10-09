@@ -2,4 +2,5 @@ bin/
 
 **/*.local
 db.sqlite3
-gen/
+gen/*
+!gen/index

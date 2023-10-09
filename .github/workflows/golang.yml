@@ -26,9 +26,6 @@ jobs:
           cache: true
           cache-dependency-path: go.sum
 
-      - name: generate
-        run: go generate ./...
-
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
         with:
@@ -51,9 +48,6 @@ jobs:
           go-version-file: 'go.mod'
           cache: true
           cache-dependency-path: go.sum
-
-      - name: generate
-        run: go generate ./...
 
       - name: Run tests
         run: go test -race -covermode=atomic -timeout=30s ./...
