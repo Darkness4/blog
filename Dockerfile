@@ -9,15 +9,12 @@ RUN apk add --no-cache nodejs npm chromium
 RUN npm install -g @mermaid-js/mermaid-cli
 ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
 
-RUN adduser -D rootless
-USER rootless
-
 WORKDIR /build/
-COPY --chown=rootless go.mod go.sum ./
+COPY go.mod go.sum ./
 RUN go mod download
 
 ARG TARGETOS TARGETARCH VERSION
-COPY --chown=rootless . /build/
+COPY . /build/
 
 RUN go generate ./... \
   && CGO_ENABLED=0 GOOS=$TARGETOS GOARCH=$TARGETARCH go build -a -ldflags "-s -w -X main.version=${VERSION}" -o /build/blog ./main.go

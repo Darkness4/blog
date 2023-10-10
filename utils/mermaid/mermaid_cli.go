@@ -13,7 +13,7 @@ type CLI struct {
 // Command builds an exec.Cmd to run 'mmdc' with the given arguments.
 func (c *CLI) Command(args ...string) *exec.Cmd {
 	args = append(
-		[]string{"-b", "transparent"},
+		[]string{"-b", "transparent", "-p", "puppeteer-config.json"},
 		args...,
 	)
 	return c.CLI.Command(args...)
