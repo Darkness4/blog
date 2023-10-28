@@ -5,7 +5,6 @@ import (
 	"context"
 
 	"cdr.dev/slog"
-	"github.com/Darkness4/blog/utils/ptr"
 	"github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/renderer"
 	"github.com/yuin/goldmark/util"
@@ -57,7 +56,7 @@ func (r *HTMLRenderer) Render(
 	if err != nil {
 		return ast.WalkStop, err
 	}
-	compileOpts := r.CompileOptions
+	compileOpts := d2lib.CompileOptions(r.CompileOptions)
 	if compileOpts.Ruler == nil {
 		compileOpts.Ruler = ruler
 	}
@@ -66,18 +65,18 @@ func (r *HTMLRenderer) Render(
 			return d2dagrelayout.DefaultLayout, nil
 		}
 	}
-	renderOpts := r.RenderOptions
+	renderOpts := d2svg.RenderOpts(r.RenderOptions)
 	diagram, _, err := d2lib.Compile(
 		log.With(context.Background(), slog.Make()),
 		b.String(),
-		ptr.Ref[d2lib.CompileOptions](d2lib.CompileOptions(compileOpts)),
-		ptr.Ref[d2svg.RenderOpts](d2svg.RenderOpts(renderOpts)),
+		&compileOpts,
+		&renderOpts,
 	)
 	if err != nil {
 		_, _ = w.Write(b.Bytes())
 		return ast.WalkContinue, err
 	}
-	out, err := d2svg.Render(diagram, ptr.Ref(d2svg.RenderOpts(renderOpts)))
+	out, err := d2svg.Render(diagram, &renderOpts)
 	if err != nil {
 		_, _ = w.Write(b.Bytes())
 		return ast.WalkContinue, err
