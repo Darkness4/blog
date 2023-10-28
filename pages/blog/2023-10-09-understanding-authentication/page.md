@@ -313,7 +313,7 @@ And that's should be it! We've used a library, but we can also do it with bare H
 
 Run the server (`go run ./main.go`) and go to the login page ([http://localhost:3000/login](http://localhost:3000/login)) and see the Google OAuth2 grant page!
 
-Now that we have an example running, there is one issue: we support only one authentication service. What if the user what to log in with GitHub instead of Google? Sure we can try to add a list of providers, but GitHub doesn't support OIDC! We cannot handle every edge case of every identity providers. **We have to an OIDC provider that connects to multiple providers.**
+Now that we have an example running, there is one issue: we support only one authentication service. What if the user what to log in with GitHub instead of Google? Sure we can try to add a list of providers, but GitHub doesn't support OIDC! We cannot handle every edge case of every identity providers. **We have to use an OIDC provider that connects to multiple providers.**
 
 That's why Firebase Auth, Google Identity Platform, Auth0, Okta, Dex and Keycloak exists. They are services that allow multiple identity providers and aggregate them into one unique endpoint.
 
