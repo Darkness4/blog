@@ -5,10 +5,6 @@ RUN apk update && apk add --no-cache ca-certificates
 # ---
 FROM --platform=$BUILDPLATFORM registry-1.docker.io/library/golang:1.21-alpine as builder
 
-RUN apk add --no-cache nodejs npm chromium
-RUN npm install -g @mermaid-js/mermaid-cli
-ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
-
 WORKDIR /build/
 COPY go.mod go.sum ./
 RUN go mod download

@@ -10,10 +10,11 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/Darkness4/blog/d2"
 	"github.com/Darkness4/blog/images"
 	"github.com/Darkness4/blog/index"
 	"github.com/Darkness4/blog/utils/blog"
-	"github.com/Darkness4/blog/utils/mermaid"
+	"github.com/Darkness4/blog/utils/ptr"
 	"github.com/Darkness4/blog/utils/unique"
 	chromahtml "github.com/alecthomas/chroma/v2/formatters/html"
 	"github.com/rs/zerolog/log"
@@ -25,8 +26,8 @@ import (
 	goldmarkhtml "github.com/yuin/goldmark/renderer/html"
 	"github.com/yuin/goldmark/text"
 	"go.abhg.dev/goldmark/anchor"
-	goldmarkmermaid "go.abhg.dev/goldmark/mermaid"
 	"go.abhg.dev/goldmark/toc"
+	"oss.terrastruct.com/d2/d2themes/d2themescatalog"
 )
 
 var (
@@ -135,10 +136,12 @@ func processPages() {
 			return filepath.Join("\\{\\{ $.Path }}", link)
 		}),
 		goldmark.WithExtensions(
-			&goldmarkmermaid.Extender{
-				RenderMode: goldmarkmermaid.RenderModeServer,
-				Theme:      "dark",
-				MMDC:       &mermaid.CLI{},
+			&d2.Extender{
+				RenderOptions: d2.RenderOptions{
+					ThemeID: &d2themescatalog.DarkMauve.ID,
+					Scale:   ptr.Ref(0.9),
+					Pad:     ptr.Ref(int64(25)),
+				},
 			},
 			highlighting.NewHighlighting(
 				highlighting.WithStyle("onedark"),

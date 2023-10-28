@@ -67,7 +67,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1696943945, 0),
+	Updated: time.Unix(1698501924, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "Just use OAuth2/OIDC.",
