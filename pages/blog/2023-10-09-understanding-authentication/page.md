@@ -447,7 +447,7 @@ If you work in a company, most of the time, you want to self-host your own user 
 
 There are a **lot** of solution to host an active directory. But I recommend only one: **389ds**. Before I explain, let me explain LDAP.
 
-Lightweight Directory Access Protocol is a protocol to store/find/manage users information. It's a **very** old protocol used for telecommunication, but LDAPv3 was published in 1998. To host an LDAP server, there is OpenLDAP, but managing it is a hellish experience where you have. Example:
+Lightweight Directory Access Protocol is a protocol to store/find/manage users information. It's a **very** old protocol used for telecommunication. The latest version, LDAPv3, was published in 1998! To host an LDAP server, there is OpenLDAP, but managing it is a hellish experience. Example of usage:
 
 ```shell
 cat << 'EOF' >> user.ldif
@@ -467,13 +467,13 @@ EOF
 ldapadd -x -D "cn=admin,dc=example,dc=com" -W -f user.ldif
 ```
 
-This is quite complicated for nothing. Instead of using OpenLDAP, I recommend **389ds** because it includes a CLI which allows quick commands. Example:
+This is quite complicated for nothing and you need to read the documentation often to be able to write LDIF files, which sucks when an incident occurs. Instead of using OpenLDAP, I recommend **389ds** because it includes a CLI which allows quick commands. Example:
 
 ```shell
 dsidm create user --container "ou=people,dc=example,dc=com" --uid johndoe --cn "John Doe" --sn Doe --givenName John --mail johndoe@example.com --userPassword secretPassword
 ```
 
-There is also FreeIPA, but it is a full blown solution which also contains a DNS server.
+There is also FreeIPA, but it is a full-blown solution which also contains a DNS server, and is therefore difficult to containerize and maintain.
 
 Let's just use 389ds for now:
 
@@ -604,7 +604,7 @@ dsidm -b "dc=example,dc=com" localhost user modify \
   example-user add:mail:example-user@example.com
 ```
 
-You can use [Keycloak](https://www.keycloak.org/docs/latest/server_admin/#_user-storage-federation) or [Zitadel](https://zitadel.com/docs/guides/integrate/identity-providers/ldap) which are solutions that are waaayyy larger.
+You can use [Keycloak](https://www.keycloak.org/docs/latest/server_admin/#_user-storage-federation) or [Zitadel](https://zitadel.com/docs/guides/integrate/identity-providers/ldap) which are solutions that are waaayyy larger but offer self-registration.
 
 ## Conclusion
 
