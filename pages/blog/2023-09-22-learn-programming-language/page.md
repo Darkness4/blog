@@ -1,6 +1,6 @@
 ---
 title: Learning your first programming language
-description: About the programming language to learn first in 2023. It is a may be a filler post, but my opinion are here.
+description: About learning your first programming language in 2023. Yes, it's a filler post.
 ---
 
 ## Table of contents
