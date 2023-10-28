@@ -13,11 +13,11 @@ type Transformer struct {
 
 var _d2 = []byte("d2")
 
-func (s *Transformer) Transform(doc *ast.Document, reader text.Reader, pctx parser.Context) {
+func (s *Transformer) Transform(doc *ast.Document, reader text.Reader, _ parser.Context) {
 	var blocks []*ast.FencedCodeBlock
 
 	// Collect all blocks to be replaced without modifying the tree.
-	ast.Walk(doc, func(node ast.Node, enter bool) (ast.WalkStatus, error) {
+	_ = ast.Walk(doc, func(node ast.Node, enter bool) (ast.WalkStatus, error) {
 		if !enter {
 			return ast.WalkContinue, nil
 		}

@@ -37,10 +37,10 @@ func (r *HTMLRenderer) Render(
 ) (ast.WalkStatus, error) {
 	n := node.(*Block)
 	if !entering {
-		w.WriteString("</div>")
+		_, _ = w.WriteString("</div>")
 		return ast.WalkContinue, nil
 	}
-	w.WriteString(`<div class="d2">`)
+	_, _ = w.WriteString(`<div class="d2">`)
 
 	b := bytes.Buffer{}
 	lines := n.Lines()
@@ -70,8 +70,8 @@ func (r *HTMLRenderer) Render(
 	diagram, _, err := d2lib.Compile(
 		log.With(context.Background(), slog.Make()),
 		b.String(),
-		ptr.Ref(d2lib.CompileOptions(compileOpts)),
-		ptr.Ref(d2svg.RenderOpts(renderOpts)),
+		ptr.Ref[d2lib.CompileOptions](d2lib.CompileOptions(compileOpts)),
+		ptr.Ref[d2svg.RenderOpts](d2svg.RenderOpts(renderOpts)),
 	)
 	if err != nil {
 		_, _ = w.Write(b.Bytes())
