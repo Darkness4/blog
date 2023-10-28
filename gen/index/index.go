@@ -35,7 +35,7 @@ var Pages = [][]Index{
 		{
 			EntryName:     "2023-09-16-road-to-replicable-infrastructure",
 			Title:         "Road to replicable infrastructure with OverlayFS and dracut live image",
-			Description:   "About replicable infrastructure when containerization and virtualization is not allowed.",
+			Description:   "About replicable infrastructure when containerization and virtualization are not allowed.",
 			PublishedDate: time.Unix(1694822400, 0),
 			Href:          "/blog/2023-09-16-road-to-replicable-infrastructure",
 		},
@@ -67,7 +67,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1698503764, 0),
+	Updated: time.Unix(1698503846, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "Just use OAuth2/OIDC.",
@@ -87,7 +87,7 @@ var Feed = &feeds.Feed{
 		},
 		{
 			Title:       "Road to replicable infrastructure with OverlayFS and dracut live image",
-			Description: "About replicable infrastructure when containerization and virtualization is not allowed.",
+			Description: "About replicable infrastructure when containerization and virtualization are not allowed.",
 			Created:     time.Unix(1694822400, 0),
 			Link: &feeds.Link{
 				Href: "https://blog.mnguyen.fr/blog/2023-09-16-road-to-replicable-infrastructure",

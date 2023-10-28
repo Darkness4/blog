@@ -1,6 +1,6 @@
 ---
 title: Road to replicable infrastructure with OverlayFS and dracut live image
-description: About replicable infrastructure when containerization and virtualization is not allowed.
+description: About replicable infrastructure when containerization and virtualization are not allowed.
 ---
 
 ## Table of contents
