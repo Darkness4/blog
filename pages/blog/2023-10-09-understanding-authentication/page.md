@@ -50,7 +50,7 @@ So what if we were to dedicate authentication to a service? Well, let's talk abo
 
 ```d2
 shape: sequence_diagram
-    OAuth2 Application -> User: 1. Ask for authorization.
+    OAuth2 Application -> Authorization Server -> User: 1. Ask for authorization.
     User -> OAuth2 Application: 2. Authorize application (code is given with specific URL). (/callback)
     OAuth2 Application -> Authorization Server: 3. Check code.
     Authorization Server -> OAuth2 Application: 4. Returns Access Token.
