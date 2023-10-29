@@ -7,8 +7,14 @@ VERSION_CORE_DEV = $(shell echo $(TAG_NAME_DEV))
 GIT_COMMIT = $(shell git rev-parse --short=7 HEAD)
 VERSION = $(or $(and $(TAG_NAME),$(VERSION_CORE)),$(and $(TAG_NAME_DEV),$(VERSION_CORE_DEV)-dev),$(GIT_COMMIT))
 
+golint :=  $(shell which golangci-lint)
 ifeq ($(golint),)
 golint := $(shell go env GOPATH)/bin/golangci-lint
+endif
+
+wgo :=  $(shell which wgo)
+ifeq ($(wgo),)
+wgo := $(shell go env GOPATH)/bin/wgo
 endif
 
 .PHONY: bin/blog
@@ -24,8 +30,8 @@ run: generate
 	go run ./main.go
 
 .PHONY: watch
-watch:
-	nodemon -i "gen/" -i "bin/" -e "*" --exec 'make run || exit 1' --signal SIGTERM
+watch: $(wgo)
+	$(wgo) -xdir "gen/" -xdir "bin/" sh -c 'make run || exit 1' --signal SIGTERM
 
 .PHONY: unit
 unit:
@@ -38,6 +44,9 @@ lint: $(golint)
 .PHONY: clean
 clean:
 	rm -rf bin/
+
+$(wgo):
+	go install github.com/bokwoon95/wgo@latest
 
 $(golint):
 	go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
