@@ -723,9 +723,21 @@ Overall, Go is the language I recommend.
 
 ### Bonus: Zig: THE next language that I recommend
 
-Zig is a compiled low-level programming language with static typing that can be used to replace C.
+Zig is a compiled low-level programming language with static typing that can be used to replace/complement C.
 
-Zig has already [an article explaining why Zig is needed](https://ziglang.org/learn/why_zig_rust_d_cpp/). To summarize, it want to be even more explicit and simple:
+It looks like this:
+
+```zig
+const print = @import("std").debug.print;
+
+pub fn main() void {
+    print("Hello, world!\n", .{});
+}
+```
+
+Syntax-wise, it almost looks like Rust, but it is way more explicit.
+
+Zig has already [an article explaining why Zig is needed](https://ziglang.org/learn/why_zig_rust_d_cpp/). To summarize, it wants to be even more explicit and simple:
 
 - **No hidden control flow**
 
@@ -754,7 +766,7 @@ Zig has already [an article explaining why Zig is needed](https://ziglang.org/le
 
 Zig is still not production-ready, so we have to wait for concurrency. Zig is also lacking in linting/formatting due to the zig language server slow development.
 
-Overall, if Zig is stable, you should learn it, because it may be the next C/C++/Go/Rust. It is already used in production with [Bun](https://github.com/oven-sh/bun).
+Overall, if Zig is stable, you should learn it, because it may be as good as C/C++/Go/Rust. It is already used in production with [Bun](https://github.com/oven-sh/bun).
 
 ## One last point: To OOP or not
 
@@ -764,10 +776,10 @@ Some talk about Clean Code, Clean Architecture, others talk about functions puri
 
 In reality, as I said at the beginning, you should never over-specialize. Always take these principles with a pinch of salt. You can try them, but you have to accept that there may be other ways.
 
-A computer is naturally "procedural" so functional programming may not be adapter. Same for OOP:
+A computer is naturally "procedural", so functional programming may not be adapted. Same for OOP:
 
-- There more case where composition is better than inheritance
-- Over-architecture is useless if your coworker don't know about it
+- There are more cases where composition is better than inheritance.
+- Over-architecturing is useless if your coworker don't know about it.
 
 ## Conclusion
 
@@ -799,4 +811,4 @@ Which should be included in your favorite IDE. These are the tools used to make 
 
 Although I've given you some recommendations on these languages, the final criterion is often the same: "Do you have enough resources (time, money, ...) to learn and use it?". **Like any tool, the real cost is not the tool itself, but the consequences that come from it.**
 
-_If you have more or less time and are used to programming syntax, you can learn a large number of programming languages with [Learn X in Y minutes](https://learnxinyminutes.com)._
+_If you have more or less time and are used to programming syntax, you can learn numerous programming languages with [Learn X in Y minutes](https://learnxinyminutes.com)._
