@@ -265,7 +265,7 @@ We will need to enable these kernel features for dracut:
 
 You can use [Fedora Kernel config](https://raw.githubusercontent.com/projg2/fedora-kernel-config-for-gentoo/6.5.2-gentoo/kernel-x86_64-fedora.config) to set sane defaults and use the [Gentoo handbook](https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/Kernel) to get the minimum configuration.
 
-My kernel config is available [here](https://gist.github.com/Darkness4/d8e009bedd7c04db2a213c7913b5831e).
+My [kernel config is available on GitHub](https://gist.github.com/Darkness4/d8e009bedd7c04db2a213c7913b5831e).
 
 ```shell
 # make menuconfig # Configure the kernel manually
@@ -349,7 +349,7 @@ console=ttyS0 console=tty0 root=live:http://<my-http-server>.squashfs my.hostnam
 - `rd.live.overlay.overlayfs=1`: Specifies that the OverlayFS should be used for the live overlay, which allows for layered file system modifications in a live environment.
 - `rd.neednet=1`: Indicates that the system requires network connectivity during the boot process. This is often used in live environments that rely on network resources.
 - `rd.debug=1`: Specifies that the dracut process inside the initramfs should be more verbose.
-- If we want to statically configure the network, we can add: `ip=<client-IP>:[<peer>]:<gateway-IP>:<netmask>:<client_hostname>:<interface>:{none|off|dhcp|on|any|dhcp6|auto6|ibft}[:[<dns1>][:<dns2>]]`. More info [here](https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html#:~:text=ip%3D%3Cclient%2DIP%3E%3A%5B%3Cpeer%3E%5D%3A%3Cgateway%2DIP%3E%3A%3Cnetmask%3E%3A%3Cclient_hostname%3E%3A%3Cinterface%3E%3A%7Bnone%7Coff%7Cdhcp%7Con%7Cany%7Cdhcp6%7Cauto6%7Cibft%7D%5B%3A%5B%3Cdns1%3E%5D%5B%3A%3Cdns2%3E%5D%5D).
+- If we want to statically configure the network, we can add: `ip=<client-IP>:[<peer>]:<gateway-IP>:<netmask>:<client_hostname>:<interface>:{none|off|dhcp|on|any|dhcp6|auto6|ibft}[:[<dns1>][:<dns2>]]`. More info [about Dracut on the man pages](https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html#:~:text=ip%3D%3Cclient%2DIP%3E%3A%5B%3Cpeer%3E%5D%3A%3Cgateway%2DIP%3E%3A%3Cnetmask%3E%3A%3Cclient_hostname%3E%3A%3Cinterface%3E%3A%7Bnone%7Coff%7Cdhcp%7Con%7Cany%7Cdhcp6%7Cauto6%7Cibft%7D%5B%3A%5B%3Cdns1%3E%5D%5B%3A%3Cdns2%3E%5D%5D).
 
 ### Testing Locally
 

@@ -16,3 +16,8 @@ body>footer {
 .anchor:hover {
   opacity: 1;
 }
+
+ul li, ol li {
+  line-height: 2em;
+}
+

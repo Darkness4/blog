@@ -99,7 +99,7 @@ To better convince you to NOT implement your own authentication service when you
 
 This example represents the type of services that are public (accessible to all), i.e. customers-facing.
 
-As an example, let's use Google Auth with OIDC! Official guide is offered by Google [here](https://developers.google.com/identity/openid-connect/openid-connect).
+As an example, let's use Google Auth with OIDC! An [official guide on OIDC is available on Google](https://developers.google.com/identity/openid-connect/openid-connect).
 
 To develop an OAuth2 application, you need a client ID, a client secret and information about the authorization endpoints. Since we use OIDC, we can use the [discovery document](https://accounts.google.com/.well-known/openid-configuration) to gather the information about the authorization endpoints.
 

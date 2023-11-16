@@ -529,7 +529,7 @@ With the implementation of these features, my blog has reached the minimum viabl
 - Escaping `{{` to avoid weird behavior with the templating engine.
 - CSS, which is just PicoCSS.
 
-The source code is available [here](https://github.com/Darkness4/blog).
+The [source code is available on GitHub](https://github.com/Darkness4/blog).
 
 _Was it worth it?_ Hell yeah, I control everything in this blog, and most problems are indicated at compile time. With HTMX, PicoCSS and Goldmark, I'm no longer writing HTML, CSS and JS to write an article, how crazy is that?
 

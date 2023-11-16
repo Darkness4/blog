@@ -56,3 +56,7 @@ version:
 	@echo VERSION_CORE=${VERSION_CORE}
 	@echo VERSION_CORE_DEV=${VERSION_CORE_DEV}
 	@echo VERSION=${VERSION}
+
+.PHONY: lighthouse
+lighthouse:
+	pnpm dlx unlighthouse --site http://localhost:3000
