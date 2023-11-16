@@ -74,7 +74,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1699488944, 0),
+	Updated: time.Unix(1700161056, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "Go with Portage and Crossdev, for easy static multi-platform compilation of CGO_ENABLED software.",

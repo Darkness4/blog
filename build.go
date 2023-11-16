@@ -230,6 +230,7 @@ func processPages() {
 			t := template.Must(template.ParseFS(mdTmpl, "templates/markdown.tmpl"))
 			if err := t.Execute(w, struct {
 				Title         string
+				Description   string
 				Style         string
 				Body          string
 				PublishedDate string
@@ -238,6 +239,7 @@ func processPages() {
 				Next string
 			}{
 				Title:         fmt.Sprintf("%v", metaData["title"]),
+				Description:   fmt.Sprintf("%v", metaData["description"]),
 				Style:         cssBuffer.String(),
 				Body:          bodySB.String(),
 				PublishedDate: date.Format("Monday 02 January 2006"),
@@ -282,13 +284,15 @@ func processPages() {
 
 				t := template.Must(template.ParseFS(mdTmpl, "templates/markdown.tmpl"))
 				if err := t.Execute(w, struct {
-					Title string
-					Style string
-					Body  string
+					Title       string
+					Description string
+					Style       string
+					Body        string
 				}{
-					Title: fmt.Sprintf("%v", metaData["title"]),
-					Style: cssBuffer.String(),
-					Body:  out,
+					Title:       fmt.Sprintf("%v", metaData["title"]),
+					Description: fmt.Sprintf("%v", metaData["description"]),
+					Style:       cssBuffer.String(),
+					Body:        out,
 				}); err != nil {
 					log.Fatal().Err(err).Msg("generate file from template failure")
 				}
