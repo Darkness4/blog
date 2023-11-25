@@ -195,6 +195,8 @@ go.abhg.dev/goldmark/anchor v0.1.1 h1:NUH3hAzhfeymRqZKOkSoFReZlEAmfXBZlbXEzpD2Qg
 go.abhg.dev/goldmark/anchor v0.1.1/go.mod h1:zYKiaHXTdugwVJRZqInVdmNGQRM3ZRJ6AGBC7xP7its=
 go.abhg.dev/goldmark/toc v0.7.0 h1:k/4ggeiYOvwZzKF1NPASwehjJsAeYwXLLaqsbAcvzBQ=
 go.abhg.dev/goldmark/toc v0.7.0/go.mod h1:ImHqxNKoALqRKZJ+or2uFpGaEpf/+c0qKKPK0TX/gjI=
+go.abhg.dev/goldmark/toc v0.9.0 h1:5JXaBbTBqsj68lFk30efZrncdBXNE+CTIVV3yleslmc=
+go.abhg.dev/goldmark/toc v0.9.0/go.mod h1:ImHqxNKoALqRKZJ+or2uFpGaEpf/+c0qKKPK0TX/gjI=
 go.opencensus.io v0.24.0 h1:y73uSU6J157QMP2kn2r30vwW1A2W2WFwSCGnAVxeaD0=
 go.opencensus.io v0.24.0/go.mod h1:vNK8G9p7aAivkbmorf4v+7Hgx+Zs0yY+0fOtgBfjQKo=
 go.uber.org/atomic v1.7.0 h1:ADUqmZGgLDDfbSL9ZmPxKTybcoEYHgpYfELNoN+7hsw=
