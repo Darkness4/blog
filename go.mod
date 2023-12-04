@@ -5,7 +5,7 @@ go 1.21
 require (
 	cdr.dev/slog v1.4.2
 	github.com/Masterminds/sprig/v3 v3.2.3
-	github.com/alecthomas/chroma/v2 v2.10.0
+	github.com/alecthomas/chroma/v2 v2.12.0
 	github.com/go-chi/chi/v5 v5.0.10
 	github.com/gorilla/feeds v1.1.1
 	github.com/joho/godotenv v1.5.1
