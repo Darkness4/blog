@@ -19,6 +19,13 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2023-12-14-about-gentoo-linux",
+			Title:         "Gentoo Linux is the best OS for gaming and software development on desktop.",
+			Description:   "The review about Gentoo Linux after 1 year of intensive usage in gaming and development: it's the best OS in the world.",
+			PublishedDate: time.Unix(1702512000, 0),
+			Href:          "/blog/2023-12-14-about-gentoo-linux",
+		},
+		{
 			EntryName:     "2023-11-08-go-with-portage-and-crossdev",
 			Title:         "Go with Portage and Crossdev, for easy static multi-platform compilation of CGO_ENABLED software.",
 			Description:   "Wanna statically compile for multi-platform in Go super-easily? Let me introduce Portage, Gentoo's package manager, and Crossdev, Gentoo's solution for cross-compilation.",
@@ -74,8 +81,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1702347368, 0),
+	Updated: time.Unix(1702576526, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "Gentoo Linux is the best OS for gaming and software development on desktop.",
+			Description: "The review about Gentoo Linux after 1 year of intensive usage in gaming and development: it's the best OS in the world.",
+			Created:     time.Unix(1702512000, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2023-12-14-about-gentoo-linux",
+			},
+		},
 		{
 			Title:       "Go with Portage and Crossdev, for easy static multi-platform compilation of CGO_ENABLED software.",
 			Description: "Wanna statically compile for multi-platform in Go super-easily? Let me introduce Portage, Gentoo's package manager, and Crossdev, Gentoo's solution for cross-compilation.",
