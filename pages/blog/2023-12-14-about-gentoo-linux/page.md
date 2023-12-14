@@ -174,17 +174,21 @@ It's playable, but not as comfy as on Windows.
 
 **Programming**
 
-It's heaven. You can fork dependencies easily, install any version of a library. And you can use [Portage with Crossdev for easy cross-compilation](2023-11-08-go-with-portage-and-crossdev).
+It's heaven. You can fork dependencies easily, install any version of a library thanks to Gentoo Overlays. And you can use [Portage with Crossdev for easy cross-compilation](2023-11-08-go-with-portage-and-crossdev).
+
+You can install the latest version of your toolchain (Go, Rust, GCC, ...) without worrying if it's the latest version. Everything is checked at installation time, so you know everything is working.
 
 **Web browsing**
 
 Yes.
 
-**MIDI and stuff**
+**MIDI and Audio**
 
 The documentation is a quite short. Just don't forget the MIDI driver inside the kernel and ALSA. It works quite well and I was able to use Musescore with my MIDI piano (Kawai ES920).
 
-**OpenRC**
+I've installed Pipewire and has no issues. I could "re-wire" using [Helvum](https://gitlab.freedesktop.org/pipewire/helvum), a GUI for PipeWire.
+
+**The init system: OpenRC**
 
 It's fast, it's easy to add our own service. Example with the `iwd`:
 
@@ -213,11 +217,9 @@ I used `mpv` with `ffmpeg`. My USE flags are `fdk libass x264 x265 chromium nven
 
 Truth to be told, the learning curve is not that hard. Not as hard as compiling the kernel anyway.
 
-The [Gentoo Handbook](https://wiki.gentoo.org/wiki/Handbook:AMD64) tells everything that we need to set up a Gentoo Linux OS. Even using the binary kernel is not that hard.
+The [Gentoo Handbook](https://wiki.gentoo.org/wiki/Handbook:AMD64) tells everything that we need to set up a Gentoo Linux OS. You can even use the binary kernel, which is the same kernel as Fedora, and have a fully-featured OS.
 
-The installation steps are not hard to follow, and the wiki is filled with enough description and troubleshooting to avoid any errors.
-
-Even maintenance-wise, I haven't seen any disastrous breaking change.
+The installation steps are easy to follow, and the wiki is filled with enough description and troubleshooting to avoid any errors. Even maintenance-wise, I haven't seen any disastrous breaking change.
 
 This is certainly not an OS for newbie, i.e, non-C programmers, but this is also certainly not an OS for hardcore Linux users living in their basement with programming socks.
 
@@ -225,35 +227,90 @@ Basically, If you can install Arch Linux, there is no reason to try Gentoo Linux
 
 ## Tackling the myths about Gentoo Linux
 
-### "It takes time to compile, and you compile everyday"
+### "It takes time to compile, and you compile every day."
 
-Simply false. On a good computer, it takes maximum one hour. And no, you don't need to compile every time everything, unless you WANT it.
+Simply false. On a good computer, it takes maximum one hour to everything (`emerge -e @world`). We are in 2023, and no, you don't need to compile the whole dependency tree every time, unless you WANT it.
 
-### "It's unmaintainable if you forget about it for one month"
+This:
 
-It's the same experience as Arch Linux. Heck, it's safer than Arch Linux because there are two branches (`amd64` and unstable `~amd64`), so you can have the same experience than a standard release distro.
+```shell
+emerge --sync
+
+emerge --ask --verbose --update --deep --newuse @world
+
+emerge --ask --verbose --depclean
+
+dispatch-conf
+```
+
+Updates only what is needed, and version constraints are indicated inside the ebuild, i.e., package recipe. Example with Podman (container manager):
+
+```shell
+RDEPEND="
+	app-crypt/gpgme:=
+	>=app-containers/conmon-2.0.0
+	>=app-containers/containers-common-0.56.0
+	dev-libs/libassuan:=
+	dev-libs/libgpg-error:=
+	cni? ( >=app-containers/cni-plugins-0.8.6 )
+	netavark? ( app-containers/netavark app-containers/aardvark-dns )
+	sys-apps/shadow:=
+
+	apparmor? ( sys-libs/libapparmor )
+	btrfs? ( sys-fs/btrfs-progs )
+	cgroup-hybrid? ( >=app-containers/runc-1.0.0_rc6  )
+	!cgroup-hybrid? ( app-containers/crun )
+	wrapper? ( !app-containers/docker-cli )
+	fuse? ( sys-fs/fuse-overlayfs )
+	init? ( app-containers/catatonit )
+	rootless? ( app-containers/slirp4netns )
+	seccomp? ( sys-libs/libseccomp:= )
+	selinux? ( sec-policy/selinux-podman sys-libs/libselinux:= )
+	systemd? ( sys-apps/systemd:= )
+"
+DEPEND="${RDEPEND}"
+BDEPEND="
+	dev-go/go-md2man
+"
+```
+
+You can see the USE flags at work and version constraints: `systemd? ( sys-apps/systemd:= )` means if USE `systemd`, then add `sys-apps/systemd` to the runtime dependency list.
+
+### "It's unmaintainable if you forget about it for one month. It's unstable."
+
+What a stupid myth. It's the most stable operating system **because** it's source-based. Think about it. Many applications depend on shared libraries, which adds strict version constraints. Every time there's a change upstream, it takes time to update downstream. There **is** a period of time during which binaries are poorly linked, and there are undefined references. What happens if glibc is updated? How long does it take for all downstream dependencies to be updated?
+
+Of course, C programmers tend to protect backward compatibility, but until when?
+
+On Gentoo Linux, these "undefined references" cannot occur because they are checked at installation time. Of course, it may not compile because the author of a project has not updated its source code, but these problems are quickly reported. And anyway, if it doesn't install, your operating system is **still** functional since nothing has changed, compared to binary operating systems, rolling release or not, where an update can be fatal.
+
+**Gentoo Linux is so stable that it's possible to tinker with it.**
 
 I had to go on vacation for a month, and nothing broke.
 
-The worst experience I had was with Gentoo Prefix (Gentoo as a Linux subsystem), which has to be compiled from step 1. And then everything broke because of a conflict between the host's GLIBC and Gentoo Prefix's GLIBC.
+### "It's bloated with dev dependencies."
 
-### "It's bloated with dev dependencies"
+As a programmer, this is non-issue. Compared with other binary operating systems, Arch Linux is bloated by SystemD, which is much worse. Void Linux is not bloated, but its package manager sucks (tell me the GCC version vs Gentoo or Arch). And I haven't talked about how the kernel is bloated on binary OSes. There are so many useless kernel modules that we don't need.
 
-As a programmer, this is non-issue. Compared with other binary operating systems, Arch Linux is bloated by SystemD, which is much worse. Void Linux is not bloated, but its package manager sucks (tell me the GCC version vs Gentoo or Arch). And I haven't talked about how the kernel is bloated on binary OSes.
+### "It's for expert."
 
-There are so much useless kernel modules that we don't need.
+There is documentation, and everything is explained, RTFM. It's not for non-C programmer, but come on, it's not like a Linux amateur can't install it and use it every day.
 
-### "It's for expert"
-
-There is documentation, and everything is explained. It's not for non-programmer, but come on, it's not like a Linux amateur can't install it and use it every day.
-
-### "It's optimized as hell"
+### "It's optimized as hell."
 
 That's the last point which is not in favor for Gentoo. Binaries offered by binary OSes are often more optimized thanks to PGO. PGO takes too much time on Gentoo Linux, therefore it's not worth it to enable it on Gentoo.
 
-On Gentoo, there is one optimization that Gentoo users benefit, which is `-march=native` which allows optimization by using optimized CPU instructions.
+On Gentoo, there is only one optimization that Gentoo users benefit, which is `-march=native` which allows optimization by using optimized CPU instructions. That optimization is often used on HPC.
 
 But to say it's "optimized as hell" is a generalization. All I can say is that OpenRC is way faster than SystemD.
+
+### "Compiling my browser takes 100 hours."
+
+Just use [`www-client/firefox-bin`](https://packages.gentoo.org/packages/www-client/firefox-bin) and shut the f- up. But I guess being retarded doesn't help.
+
+You also have [flatpak](https://flathub.org/apps/org.mozilla.firefox) you f-ing retarded piece of dung.
+
+Just RTFM.
 
 ## Conclusion
 
