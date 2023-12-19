@@ -81,7 +81,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1702576526, 0),
+	Updated: time.Unix(1702957314, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "Gentoo Linux is the best OS for gaming and software development on desktop.",
