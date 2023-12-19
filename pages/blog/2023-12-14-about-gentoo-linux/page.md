@@ -16,35 +16,36 @@ In the following order, I tried:
 - [Ubuntu](https://ubuntu.com/), as my first OS installed by my big brother. Used frequently in 2012. Didn't know anything about the "insides" of Linux. I just installed Linux games through the Ubuntu software center and played flash games. Switched to Windows two years after that. Was a great experience, but couldn't play good games on Linux at the time (even with Wine).
 - [Kali Linux](https://www.kali.org) in 2018, installed by myself as a script kiddy (literally) on my new gaming desktop. Worked surprisingly well and learn some stuff about hacking and programming. Still didn't learn the internals of Linux (kernel, bootloader, etc...). Used at school.
 - [MX Linux](https://mxlinux.org) in 2020. Was great, but feels off, like the system was bloated (even if Kali was even more bloated).
-- [Debian](https://www.debian.org) in the same year, cleaned everything, started learning Linux seriously. Since it was my first year at engineering school, I've learned C programming (with syscalls and stuff), which means I understood what a software is, and what a library is. It was the OS I used the most, but I've has to switch to the unstable branch of Debian.
-- [Fedora](https://fedoraproject.org) in 2023 on my new gaming/work desktop which was a computer built by myself. The experience was reaaaally smooth and the best, especially since I've had an NVIDIA card and proprietary drivers for Wi-Fi and Ethernet. It's probably the OS that I recommend for new users.
+- [Debian](https://www.debian.org) in the same year, cleaned everything, started learning Linux seriously. Since it was my first year at engineering school, I've learned C programming (with syscalls and stuff), which means I understood what a software is, and what a library is. It was the OS I used the most, but I had to switch to the unstable branch of Debian.
+- [Fedora](https://fedoraproject.org) in 2023 on my new gaming/work desktop which was a computer built by myself. The experience was reaaaally smooth and the best, especially since I've had an NVIDIA card and proprietary drivers for Wi-Fi and Ethernet. It's probably the first OS that I would recommend for new users.
 
-Let's talk about the last operating system I used and the context in which I find myself in 2023. In 2023, I've started remote working for a startup. I'm doing Software Development for Web3, HPC and DevOps, which means this includes:
+Let's talk about Fedora, the last operating system I used and the context in which I find myself in 2023. In 2023, I've started remote working for a startup. I'm doing Software Development for Web3, HPC and DevOps, which means this includes:
 
 - Programming from low level to high level for work.
 - Forking projects and installing it to test it locally.
 - Lot of windows with lots of SSH connections and documentation alongside.
-- Kubernetes at home.
+- Self-hosted Kubernetes.
 
 Outside of work, that includes:
 
 - Gaming.
 - Testing open-source projects and contributing to it.
 - Recreational programming from hackathon to simply start new projects.
+- Youtube, movies and anime. A bit of streaming for a remote cinema between friends (via Secure Reliable Transport, yo!).
 
 Which adds constraints:
 
-- Difficult dependency management with the libraries
-- Have to install a lot of software inside `/usr/local`
-- Having to compile everything by hand
+- Difficult dependency management with the libraries: always the latest, no instability allowed, full customization and easy repair.
+- Have to install a lot of software inside `/usr/local`.
+- Having to compile everything by hand.
 
-Which leads me to switch to Gentoo in the same year. This is all so that I can do programming **in peace**: having full control over what is installed and what is running. F- SystemD (why the f- do you handle DNS?!).
+Which leads me to switch to Gentoo in the same year. This is all so that I can do programming and troubleshooting **in peace**: having full control over what is installed and what is running. F- SystemD (why the f- do you handle DNS?!). F- Debian for pushing patches too slowly (even on unstable).
 
-At the same time, to judge Gentoo Linux, I've installed Void Linux on my laptop.
+At the same time, to be able to compare Gentoo Linux with a rolling release binary OS, I've installed Void Linux on my laptop.
 
 ## A small review of Void Linux, a SystemD-less binary OS
 
-I used Void Linux for a very short time, but it was enough to tell me it is worse than Arch Linux.
+I used Void Linux for a very short time, but it was enough to tell me it is not good.
 
 I know some people may say that the packing ecosystem of Void Linux is more "healthy", but the packaging software sucks hard.
 
@@ -60,7 +61,7 @@ You've come to read my propaganda, great. Let's start with the installation.
 
 The [Gentoo Handbook](https://wiki.gentoo.org/wiki/Handbook:AMD64) tells everything a person need to know to install Gentoo Linux. And none of these steps has caused major issues. I've used the binary kernel the first time, and trimmed it [later](about-kernel-configuration).
 
-You can also use any bootable Linux OS to install Gentoo Linux. I've personally used the Void Linux installation ISO since it's only ~600MB, and it has a package manager so that I can install missing tools.
+You can also use any bootable Linux OS to install Gentoo Linux. I've personally used the Void Linux installation ISO since it's only ~600MB, and it has a package manager so that I can install missing tools. (Like I said, Void is still great for small devices, thanks to its small rootfs).
 
 To summarize my installation:
 
@@ -123,23 +124,23 @@ Portage uses `rsync` or `git` to synchronize `ebuild` repositories, `ebuild` bei
 
 Portage uses `USE` flags to customize a package, and `USE` flags can also change the dependencies of the package, meaning you can trim a package to the minimum (for example, `ffmpeg` with only `x264` and no other encoders).
 
-Portage can also use third-party repositories through Overlays, which also includes your own overlay. Meaning, you can change a recipe and install it directly without any extra steps.
+Portage can also use third-party repositories through Overlays, which can also includes your own overlay. You can change a recipe and install it directly without any extra steps. It's great for Open Source and early testers.
 
-Since we are compiling all the software, you can customize the compilation flags inside the `/etc/portage/make.conf` and add `-march=native` to optimize for the CPU. You can also optimize with Link-Time Optimization (LTO) and Profile Guided Optimization (PGO).
+Since we are compiling all the applications, you can customize the compilation flags inside the `/etc/portage/make.conf` and add `-march=native` to optimize for the CPU. You can also optimize with Link-Time Optimization (LTO) and Profile Guided Optimization (PGO), though PGO takes too much time to compile.
 
-Even if Portage is a source-based package manager, it is also able to install binaries, especially for software without any dependencies (Firefox, Vivaldi, the Linux kernel...). If the package cannot not found, there is still flatpak.
+Even if Portage is a source-based package manager, it is also able to install binaries, especially for software without any dependencies (Firefox, Vivaldi, the Linux kernel...). If the package cannot be found, there is still flatpak.
 
 Lastly, there are no runtime/linking issues due to the fact it is checked during installation time, i.e., no more `missing *.so` or `undefined reference`.
 
-When using it with a good computer, installing packages are not that long. I've never had to wait at night for everything to compile. And when everything breaks, it is possible to rollback packages and/or debug the compilation steps since the packages are being compiled in the `/var/tmp/portage` directory. But that's even rare, even on the unstable branch `~amd64`.
+When using Portage with a good computer, installing packages are not that long. I've never had to wait at night for everything to compile. And when everything breaks, it is possible to rollback packages and/or debug the compilation steps since the packages are being compiled in the `/var/tmp/portage` directory. But that's even rare, even on the unstable branch `~amd64`. And, worst case scenario: `emerge -e @world`, rebuild everything.
 
-However, there is one major drawback (for non-programmers), build dependencies are kept on the computer to avoid multiple re-downloads, making the operating system bloated with toolchains. However, since I'm a software developer for HPC and Web3, I'm using these toolchains anyway.
+There is one major drawback (for non-programmers), build dependencies are kept on the computer to avoid multiple re-downloads, making the operating system bloated with toolchains. However, since I'm a software developer for HPC and Web3, I'm using these toolchains anyway. C, C++, Go, Python, Rust... you name it.
 
 Overall, Portage is probably one of the greatest package manager of all time.
 
 ### About Kernel Configuration
 
-After 6 months of usage, I wanted to optimize my kernel and kernel modules. I configured my OS to use a `zstd`-compressed `linux-firmware` and `zstd`-compressed kernel modules.
+After 6 months of usage, I wanted to optimize my kernel and kernel modules. I configured my Kernel to use a `zstd`-compressed `linux-firmware` and `zstd`-compressed kernel modules.
 
 Then, I've removed everything through the `make menuconfig` of the kernel. I did everything legit without `genkernel`.
 
@@ -150,13 +151,13 @@ Tricks I used:
 - Use <kbd>H</kbd> to show the description of the kernel feature.
 - Use <kbd>/</kbd> to search for a kernel feature and its reverse dependencies. Use <kbd>0</kbd> through <kbd>9</kbd> to go to the right page.
 
-Most importantly, I've removed anything related to embedded systems and enterprise-class systems. I've removed unused audio, file-system, Wi-Fi and Ethernet drivers.
+Most importantly, I've removed anything related to embedded systems and enterprise-class systems. I've removed unused audio, file-system, Wi-Fi and Ethernet drivers. If I have to use one, I can compile it later and `modprobe` it.
 
-Overall, it takes a full day to check everything settings. Starting from scratch is very dangerous, so I recommend to use the kernel config of Fedora, which is the [kernel config of Gentoo used for the binary kernel](https://github.com/projg2/fedora-kernel-config-for-gentoo). You can also use [snippets shared by the community](https://codeberg.org/ranguli/gentoo-popcorn-kernel/). I've managed to reduce the size from 200MB to 87MB of kernel modules, the heaviest being NVIDIA (44MB).
+Overall, it takes a full day to check every setting. Starting from scratch is very dangerous, so I recommend using the kernel config of Fedora, which is the [kernel config of Gentoo used for the binary kernel](https://github.com/projg2/fedora-kernel-config-for-gentoo). You can also use [snippets shared by the community](https://codeberg.org/ranguli/gentoo-popcorn-kernel/). I've managed to reduce the size from 200 MB to 87 MB of kernel modules, the heaviest being NVIDIA (44 MB).
 
 ### Stability/Maintenance Review
 
-It's been one year, and nothing happened. Literally. There was a major version change with Python (3.10 to 3.11) and a Pipewire breaking change, but nothing really happened. Most breaking changes are notified through the news:
+It's been one year, and nothing happened. Literally. There was a major version change with Python (3.10 to 3.11) and a PipeWire breaking change, but nothing really happened. Most breaking changes are notified through the news:
 
 ```shell
 eselect news read
@@ -168,9 +169,13 @@ Besides that, everything has been stable.
 
 **Gaming**
 
-Let's talk about gaming with x11. Installing and playing is super-easy through Steam or Wine. However, there is a clear performance drop on Linux compared to Windows.
+~~Let's talk about gaming with x11. Installing and playing is super-easy through Steam or Wine. However, there is a clear performance drop on Linux compared to Windows (probably because of NVIDIA).~~
 
-It's playable, but not as comfy as on Windows.
+~~It's playable, but not as comfy as on Windows.~~
+
+EDIT: I said nothing. It's fast as f-. Basically add `CLUTTER_DEFAULT_FPS=144` and `__GL_SYNC_DISPLAY_DEVICE=<screen with highest refresh rate>` (reported by `xrandr --listmonitors`) to `/etc/environment`, and set `unredir-if-possible·=·true` to Picom (or simply kill the compositor when gaming).
+
+But I guess the plug-and-play experience of Windows is still better. Anyway, I've installed Gentoo, it's not like I'm looking for plug-and-play.
 
 **Programming**
 
@@ -178,15 +183,19 @@ It's heaven. You can fork dependencies easily, install any version of a library 
 
 You can install the latest version of your toolchain (Go, Rust, GCC, ...) without worrying if it's the latest version. Everything is checked at installation time, so you know everything is working.
 
+You can install **everything** at the **latest version** knowing **why it's not compiling or working**. You can install **non-free** stuff (like the NVIDIA drivers) and have **USE flags** to customize it, 'cause why the -f not.
+
+The **best development environment ever.**
+
 **Web browsing**
 
 Yes.
 
 **MIDI and Audio**
 
-The documentation is a quite short. Just don't forget the MIDI driver inside the kernel and ALSA. It works quite well and I was able to use Musescore with my MIDI piano (Kawai ES920).
+The documentation is a quite short. Just don't forget the MIDI driver inside the kernel and ALSA. It works quite well, and I was able to use MuseScore with my MIDI piano (Kawai ES920). Used `fluidsynth -a pulseaudio -m alsa_seq -r 48000 /usr/share/sounds/sf2/MuseScore_General.sf3` to synthesize audio.
 
-I've installed Pipewire and has no issues. I could "re-wire" using [Helvum](https://gitlab.freedesktop.org/pipewire/helvum), a GUI for PipeWire.
+I've installed PipeWire and has no issues. I could "re-wire" using [Helvum](https://gitlab.freedesktop.org/pipewire/helvum), a GUI for PipeWire. Overall, I had no major issue.
 
 **The init system: OpenRC**
 
@@ -209,11 +218,13 @@ depend() {
 }
 ```
 
+What can I say? It's an init system, I don't have to do anything particular with it. I didn't have to kill `systemd-resolved`, that's already handled by `/etc/resolv.conf`. I don't have to guess `service` vs `sysctl`, it's just `rc-service <name> <cmd>`.
+
 **Movies**
 
 I used `mpv` with `ffmpeg`. My USE flags are `fdk libass x264 x265 chromium nvenc vaapi vpx theora opus abi_x86_32`, which was added depending on my needs, or added automatically through `dispatch-conf`.
 
-### Learning curve... what about it?
+### Learning curve... what's about it?
 
 Truth to be told, the learning curve is not that hard. Not as hard as compiling the kernel anyway.
 
@@ -221,9 +232,9 @@ The [Gentoo Handbook](https://wiki.gentoo.org/wiki/Handbook:AMD64) tells everyth
 
 The installation steps are easy to follow, and the wiki is filled with enough description and troubleshooting to avoid any errors. Even maintenance-wise, I haven't seen any disastrous breaking change.
 
-This is certainly not an OS for newbie, i.e, non-C programmers, but this is also certainly not an OS for hardcore Linux users living in their basement with programming socks.
+This is certainly not an OS for newbie, i.e, non-C programmers, but this is also certainly not an OS for hardcore Linux users living in their basement with programming socks. This OS is much closer to Fedora than Arch Linux.
 
-Basically, If you can install Arch Linux, there is no reason to try Gentoo Linux, especially if your computer has a beefy CPU.
+Actually, if you can install Arch Linux, there is no reason not to try Gentoo Linux, especially if your computer has a beefy CPU.
 
 ## Tackling the myths about Gentoo Linux
 
@@ -274,23 +285,27 @@ BDEPEND="
 "
 ```
 
-You can see the USE flags at work and version constraints: `systemd? ( sys-apps/systemd:= )` means if USE `systemd`, then add `sys-apps/systemd` to the runtime dependency list.
+You can see the USE flags at work and version constraints: `systemd? ( sys-apps/systemd:= )` means if USE `systemd`, then add `sys-apps/systemd` to the runtime dependency list. No need to install weak dependencies.
 
 ### "It's unmaintainable if you forget about it for one month. It's unstable."
 
-What a stupid myth. It's the most stable operating system **because** it's source-based. Think about it. Many applications depend on shared libraries, which adds strict version constraints. Every time there's a change upstream, it takes time to update downstream. There **is** a period of time during which binaries are poorly linked, and there are undefined references. What happens if glibc is updated? How long does it take for all downstream dependencies to be updated?
+What a stupid myth. It's the most stable operating system **because** it's source-based. Think about it. Many applications depend on shared libraries, which adds strict version constraints. Every time there's a change upstream, it takes time to update downstream. There **is** a period of time during which binaries are poorly linked, and there are undefined references. What happens if glibc is updated? How long does it take for all downstream dependencies to be updated? Do you think it's easy to jump from Ubuntu 12 to Ubuntu 18?
 
 Of course, C programmers tend to protect backward compatibility, but until when?
 
-On Gentoo Linux, these "undefined references" cannot occur because they are checked at installation time. Of course, it may not compile because the author of a project has not updated its source code, but these problems are quickly reported. And anyway, if it doesn't install, your operating system is **still** functional since nothing has changed, compared to binary operating systems, rolling release or not, where an update can be fatal.
+On Gentoo Linux, these "undefined references" cannot occur because they are checked at installation time. Of course, it may not compile because the author of a project has not updated its source code, but these problems are quickly reported. And anyway, if it doesn't install, your operating system is **still** functional since **nothing has changed**, compared to binary operating systems, rolling release or not, where an update can be fatal.
+
+Errors **happen at install time**, not at **runtime**. There are less **side effects** than a binary OS.
 
 **Gentoo Linux is so stable that it's possible to tinker with it.**
 
-I had to go on vacation for a month, and nothing broke.
+And look, I did go on vacation for a month, and nothing broke. What a lazy excuse.
 
 ### "It's bloated with dev dependencies."
 
-As a programmer, this is non-issue. Compared with other binary operating systems, Arch Linux is bloated by SystemD, which is much worse. Void Linux is not bloated, but its package manager sucks (tell me the GCC version vs Gentoo or Arch). And I haven't talked about how the kernel is bloated on binary OSes. There are so many useless kernel modules that we don't need.
+As a programmer, this is non-issue. Compared with other binary operating systems, Arch Linux is bloated by SystemD, which is much worse since it's not respecting the Single Responsibility Principle **at all** (handles the journal, the dns, the login, ...). Void Linux is not bloated, but its package manager sucks (tell me the GCC version vs Gentoo or Arch). And I haven't talked about how the kernel is bloated on binary OSes. There are so many useless kernel modules that we don't need.
+
+Heck, I bet it's not even portable on "extravagant" machines.
 
 ### "It's for expert."
 
@@ -304,9 +319,11 @@ On Gentoo, there is only one optimization that Gentoo users benefit, which is `-
 
 But to say it's "optimized as hell" is a generalization. All I can say is that OpenRC is way faster than SystemD.
 
+You can also install optimized binaries on Gentoo. The best of both world.
+
 ### "Compiling my browser takes 100 hours."
 
-Just use [`www-client/firefox-bin`](https://packages.gentoo.org/packages/www-client/firefox-bin) and shut the f- up. But I guess being retarded doesn't help.
+Just use [`www-client/firefox-bin`](https://packages.gentoo.org/packages/www-client/firefox-bin) and shut the f- up. But I guess being retarded and not being able to Google doesn't help.
 
 You also have [flatpak](https://flathub.org/apps/org.mozilla.firefox) you f-ing retarded piece of dung.
 
