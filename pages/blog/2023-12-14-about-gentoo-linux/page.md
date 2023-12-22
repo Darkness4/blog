@@ -173,7 +173,7 @@ Besides that, everything has been stable.
 
 ~~It's playable, but not as comfy as on Windows.~~
 
-EDIT: I said nothing. It's fast as f-. Basically add `CLUTTER_DEFAULT_FPS=144` and `__GL_SYNC_DISPLAY_DEVICE=<screen with highest refresh rate>` (reported by `xrandr --listmonitors`) to `/etc/environment`, and set `unredir-if-possible·=·true` to Picom (or simply kill the compositor when gaming).
+EDIT: I said nothing. It's fast as f-. Basically add `CLUTTER_DEFAULT_FPS=144` and `__GL_SYNC_DISPLAY_DEVICE=<screen with highest refresh rate>` (reported by `xrandr --listmonitors`) to `/etc/environment`, and set `unredir-if-possible = true` to Picom (or simply kill the compositor when gaming).
 
 But I guess the plug-and-play experience of Windows is still better. Anyway, I've installed Gentoo, it's not like I'm looking for plug-and-play.
 
