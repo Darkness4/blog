@@ -19,6 +19,13 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2023-12-28-architecture-paradigms",
+			Title:         "Learn software architecture, paradigms and patterns... even the wrong ones.",
+			Description:   "Have you ever wondered whether learning the wrong software architecture is really \"wrong\"? Personally, I've always asked myself this question, and more often than not I've found my answer on the job.",
+			PublishedDate: time.Unix(1703721600, 0),
+			Href:          "/blog/2023-12-28-architecture-paradigms",
+		},
+		{
 			EntryName:     "2023-12-14-about-gentoo-linux",
 			Title:         "Gentoo Linux is the best OS for gaming and software development on desktop.",
 			Description:   "The review about Gentoo Linux after 1 year of intensive usage in gaming and development: it's the best OS in the world.",
@@ -81,8 +88,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1702959943, 0),
+	Updated: time.Unix(1703728552, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "Learn software architecture, paradigms and patterns... even the wrong ones.",
+			Description: "Have you ever wondered whether learning the wrong software architecture is really \"wrong\"? Personally, I've always asked myself this question, and more often than not I've found my answer on the job.",
+			Created:     time.Unix(1703721600, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2023-12-28-architecture-paradigms",
+			},
+		},
 		{
 			Title:       "Gentoo Linux is the best OS for gaming and software development on desktop.",
 			Description: "The review about Gentoo Linux after 1 year of intensive usage in gaming and development: it's the best OS in the world.",
