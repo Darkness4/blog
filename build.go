@@ -17,6 +17,7 @@ import (
 	"github.com/Darkness4/blog/utils/ptr"
 	"github.com/Darkness4/blog/utils/unique"
 	chromahtml "github.com/alecthomas/chroma/v2/formatters/html"
+	mathjax "github.com/litao91/goldmark-mathjax"
 	"github.com/rs/zerolog/log"
 	"github.com/yuin/goldmark"
 	highlighting "github.com/yuin/goldmark-highlighting/v2"
@@ -128,7 +129,9 @@ func processPages() {
 	cssBuffer := unique.NewLineWriter()
 	markdown := goldmark.New(
 		goldmark.WithParserOptions(parser.WithAutoHeadingID()),
-		goldmark.WithRendererOptions(goldmarkhtml.WithUnsafe()),
+		goldmark.WithRendererOptions(
+			goldmarkhtml.WithUnsafe(),
+		),
 		images.NewReplacer(func(link string) string {
 			if filepath.IsAbs(link) || strings.HasPrefix(strings.ToLower(link), "http") {
 				return link
@@ -136,6 +139,7 @@ func processPages() {
 			return filepath.Join("\\{\\{ $.Path }}", link)
 		}),
 		goldmark.WithExtensions(
+			mathjax.MathJax,
 			&d2.Extender{
 				RenderOptions: d2.RenderOptions{
 					ThemeID: &d2themescatalog.DarkMauve.ID,

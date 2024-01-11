@@ -9,6 +9,7 @@ require (
 	github.com/go-chi/chi/v5 v5.0.10
 	github.com/gorilla/feeds v1.1.2
 	github.com/joho/godotenv v1.5.1
+	github.com/litao91/goldmark-mathjax v0.0.0-20210217064022-a43cf739a50f
 	github.com/rs/zerolog v1.31.0
 	github.com/urfave/cli/v2 v2.26.0
 	github.com/yuin/goldmark v1.6.0
