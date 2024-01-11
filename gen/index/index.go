@@ -95,7 +95,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1704942256, 0),
+	Updated: time.Unix(1704981646, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "Using C libraries in Go with CGO",

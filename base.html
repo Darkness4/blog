@@ -26,21 +26,27 @@
       src="https://analytics.umami.is/script.js"
       data-website-id="0c4894fc-34fe-48dd-bf1a-79ec70aa621c"
     ></script>
-    <script
-      type="text/javascript"
-      hx-preserve="true"
-      id="MathJax-script"
-      async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"
-      crossorigin="anonymous"
-    ></script>
     <link
       hx-preserve="true"
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@next/css/pico.classless.min.css"
       crossorigin="anonymous"
     />
+    <script
+      type="text/javascript"
+      hx-preserve="true"
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"
+      integrity="sha384-KKWa9jJ1MZvssLeOoXG6FiOAZfAgmzsIIfw8BXwI9+kYm0lPCbC6yTQPBC00F1/L"
+      crossorigin="anonymous"
+    ></script>
     <link hx-preserve="true" rel="stylesheet" href="/static/app.css" />
+    <script hx-preserve="true">
+      document.addEventListener('htmx:afterRequest', function (evt) {
+        MathJax.typeset();
+      });
+    </script>
     {{ template "head" . }}
   </head>
   <body hx-history="false" hx-ext="head-support" hx-boost="true">
