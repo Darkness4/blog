@@ -790,7 +790,7 @@ You could make smaller interfaces (like `UserGetter`) which would conform to Eff
 
 #### The login/register session store
 
-**This is not the JWT session store, this is because we have to store the challenge and the user ID.**
+**This is not the JWT session store, this is because we have to store the WebAuthn challenge and the user ID.** See [SessionData for more information.](https://github.com/go-webauthn/webauthn/blob/45438bf44d105bf35be63245dfeba6c71c0972fe/webauthn/types.go#L205-L216)
 
 To implement the session store, you can use any key-value database. Since this is an example, we will use a simple map.
 
@@ -2018,7 +2018,7 @@ make bin/webauthn
 ./bin/webauthn \
   --jwt.secret="example" \
   --http.addr=":3001" \
-	--public.url="http://localhost:3001"
+  public.url="http://localhost:3001"
 ```
 
 ![image-20240127015257907](./page.assets/image-20240127015257907.png)
@@ -2202,7 +2202,7 @@ We will use [gorilla/csrf](https://github.com/gorilla/csrf), which is a CSRF mid
 
 If the CSRF token of the page, the secret key of the website and the cookie match, then the request is valid.
 
-I'm not going to explain how to use it, the documentation is pretty good. RTFM.
+I'm not going to explain how to use it, the documentation is already pretty good. RTFM.
 
 ```diff
  	jwtSecretFlag  = flag.String("jwt.secret", "", "JWT secret used for signing")
@@ -2213,7 +2213,7 @@ I'm not going to explain how to use it, the documentation is pretty good. RTFM.
 +	if err := http.ListenAndServe(*httpAddrFlag, csrf.Protect([]byte(*csrfSecretFlag))(r)); err != nil {
 ```
 
-Now, let' write the template. We need to use a template to inject the CSRF token in the form.
+Now, let's write the template. We need to use a template to inject the CSRF token in the form.
 
 Let's edit the form for the Go template engine. Add `'X-CSRF-Token': '{{ .CSRFToken }}` to every `POST`:
 
@@ -2225,7 +2225,7 @@ Let's edit the form for the Go template engine. Add `'X-CSRF-Token': '{{ .CSRFTo
            },
 ```
 
-Now, let's change the `main.go` to inject the token. Our server is no more that just a file server, we need to add a template engine and render the right page based on the template location:
+Now, let's change the `main.go` to inject the token. Our server is no more a file server. We need to add a template engine and render the right page based on the template location:
 
 ```diff
  		if err := t.ExecuteTemplate(w, "base", struct {
@@ -2251,11 +2251,13 @@ From now on, there are multiple strategies you could implement:
 - Ask no key to add a new one
 - Etc...
 
-I do not have the experience to tell which one is the best. Since security keys can be lost, and we are not handling passwords, let's implement the third strategy.
+I do not have the experience to tell which one is the best.
+
+Since security keys can be lost, and we are not handling passwords, let's implement the third strategy.
 
 Let's edit the protected page. We need to:
 
-- List every credentials.
+- List every credential.
 - For each credential, add a delete button.
 - Add a button to add a new credential.
 
