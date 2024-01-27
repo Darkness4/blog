@@ -19,9 +19,16 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2024-01-27-webauthn-guide",
+			Title:         "A guide to WebAuthn.",
+			Description:   "Developing a simple WebAuthn authentication service in Go, as there are few functional implementations of WebAuthn with Go, and only a few existing guides.",
+			PublishedDate: time.Unix(1706313600, 0),
+			Href:          "/blog/2024-01-27-webauthn-guide",
+		},
+		{
 			EntryName:     "2024-01-11-cgo-guide",
 			Title:         "Using C libraries in Go with CGO",
-			Description:   "Advices about CGO. For documentation purposes.",
+			Description:   "Simple guide and recommendations about CGO. For documentation purposes.",
 			PublishedDate: time.Unix(1704931200, 0),
 			Href:          "/blog/2024-01-11-cgo-guide",
 		},
@@ -42,7 +49,7 @@ var Pages = [][]Index{
 		{
 			EntryName:     "2023-11-08-go-with-portage-and-crossdev",
 			Title:         "Go with Portage and Crossdev, for easy static multi-platform compilation of CGO_ENABLED software.",
-			Description:   "Wanna statically compile for multi-platform in Go super-easily? Let me introduce Portage, Gentoo's package manager, and Crossdev, Gentoo's solution for cross-compilation.",
+			Description:   "Want to statically compile for multi-platform in Go super-easily? Let me introduce Portage, Gentoo's package manager, and Crossdev, Gentoo's solution for cross-compilation.",
 			PublishedDate: time.Unix(1699401600, 0),
 			Href:          "/blog/2023-11-08-go-with-portage-and-crossdev",
 		},
@@ -95,11 +102,19 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1704981646, 0),
+	Updated: time.Unix(1706325163, 0),
 	Items: []*feeds.Item{
 		{
+			Title:       "A guide to WebAuthn.",
+			Description: "Developing a simple WebAuthn authentication service in Go, as there are few functional implementations of WebAuthn with Go, and only a few existing guides.",
+			Created:     time.Unix(1706313600, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2024-01-27-webauthn-guide",
+			},
+		},
+		{
 			Title:       "Using C libraries in Go with CGO",
-			Description: "Advices about CGO. For documentation purposes.",
+			Description: "Simple guide and recommendations about CGO. For documentation purposes.",
 			Created:     time.Unix(1704931200, 0),
 			Link: &feeds.Link{
 				Href: "https://blog.mnguyen.fr/blog/2024-01-11-cgo-guide",
@@ -123,7 +138,7 @@ var Feed = &feeds.Feed{
 		},
 		{
 			Title:       "Go with Portage and Crossdev, for easy static multi-platform compilation of CGO_ENABLED software.",
-			Description: "Wanna statically compile for multi-platform in Go super-easily? Let me introduce Portage, Gentoo's package manager, and Crossdev, Gentoo's solution for cross-compilation.",
+			Description: "Want to statically compile for multi-platform in Go super-easily? Let me introduce Portage, Gentoo's package manager, and Crossdev, Gentoo's solution for cross-compilation.",
 			Created:     time.Unix(1699401600, 0),
 			Link: &feeds.Link{
 				Href: "https://blog.mnguyen.fr/blog/2023-11-08-go-with-portage-and-crossdev",

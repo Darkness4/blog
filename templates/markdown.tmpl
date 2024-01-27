@@ -9,13 +9,13 @@
 {{ `{{define "body"}}` }}
 <main>
   <article>
-    <center>
-      <hgroup>
-        <h1>{{ .Title }}</h1>
-        <small>{{ .PublishedDate }}</small>
-      </hgroup>
-    </center>
     <main>
+      <center>
+        <hgroup>
+          <h1>{{ .Title }}</h1>
+          <small>{{ .PublishedDate }}</small>
+        </hgroup>
+      </center>
     {{ .Body }}
     </main>
   </article>

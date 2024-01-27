@@ -19,6 +19,7 @@ import (
 	chromahtml "github.com/alecthomas/chroma/v2/formatters/html"
 	mathjax "github.com/litao91/goldmark-mathjax"
 	"github.com/rs/zerolog/log"
+	"github.com/stefanfritsch/goldmark-admonitions"
 	"github.com/yuin/goldmark"
 	highlighting "github.com/yuin/goldmark-highlighting/v2"
 	meta "github.com/yuin/goldmark-meta"
@@ -163,6 +164,7 @@ func processPages() {
 					"class": "anchor",
 				},
 			},
+			&admonitions.Extender{},
 		),
 	)
 

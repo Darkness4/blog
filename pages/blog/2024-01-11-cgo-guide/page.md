@@ -1,6 +1,6 @@
 ---
 title: Using C libraries in Go with CGO
-description: Advices about CGO. For documentation purposes.
+description: Simple guide and recommendations about CGO. For documentation purposes.
 ---
 
 I've made an [article about using Go with Portage and Crossdev for easy static compilation of CGO_ENABLED software](/blog/2023-11-08-go-with-portage-and-crossdev), but I didn't make an article about how to use CGO properly.
@@ -175,7 +175,7 @@ _"But wait! Why some of the most popular library ([go-sqlite3](https://github.co
 
 The reason is quite simple: `libsqlite3` exposes a stable API (stable header files), which means it can be used over a wider version range despite the coupling. This allows users and developers to use any version of `libsqlite3`.
 
-However, in general, when possible, it's better to **write C code** and **minimize the interface between Go and C**.
+However, in general, when possible, it's better to **write the necessary C functions** and **minimize the interface between Go and C**.
 
 _"Wait... I have to write C code?"_
 

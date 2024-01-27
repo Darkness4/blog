@@ -21,3 +21,51 @@ ul li, ol li {
   line-height: 2em;
 }
 
+article > main {
+  margin: 2em;
+}
+
+/** Admonitions **/
+[data-theme=dark] {
+  --info-background-color: #193c47;
+  --info-accent-color: #4cb3d4;
+  --danger-background-color: #3c1a19;
+  --danger-accent-color: #d44c4c;
+  --warning-background-color: #3c2c19;
+  --warning-accent-color: #d4c24c;
+  --pico-font-family-monospace: "JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace,var(--pico-font-family-emoji)
+}
+
+.admonition {
+  margin-bottom: var(--pico-block-spacing-vertical);
+  padding: var(--pico-block-spacing-vertical) var(--pico-block-spacing-horizontal);
+  border-radius: var(--pico-border-radius);
+  background: var(--pico-card-background-color);
+  box-shadow: var(--pico-card-box-shadow);
+  border-left-width: 5px;
+  border-left-style: solid;
+}
+
+.adm-title {
+  font-weight: 600;
+}
+
+.adm-info, .adm-note {
+  background-color: var(--info-background-color);
+  border-color: var(--info-accent-color);
+}
+
+.adm-warning, .adm-caution {
+  background-color: var(--warning-background-color);
+  border-color: var(--warning-accent-color);
+}
+
+.adm-danger {
+  background-color: var(--danger-background-color);
+  border-color: var(--danger-accent-color);
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
