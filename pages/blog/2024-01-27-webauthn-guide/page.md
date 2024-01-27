@@ -9,7 +9,7 @@ description: Developing a simple WebAuthn authentication service in Go, as there
 
 ## Introduction
 
-TL;DR: The article is quite long. [Source Code](https://github.com/Darkness4/webauthn-minimal).
+TL;DR: The article is quite long. [Source Code](https://github.com/Darkness4/webauthn-minimal). [Demo](https://auth-htmx.mnguyen.fr).
 
 This guide will describe how to implement WebAuthn in Go, and how to use it in a web application.
 
