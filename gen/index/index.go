@@ -102,7 +102,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1706325272, 0),
+	Updated: time.Unix(1706402173, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "A guide to WebAuthn.",
