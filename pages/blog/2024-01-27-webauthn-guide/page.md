@@ -1969,7 +1969,7 @@ Simple:
 </html>
 ```
 
-**"Wait!!! The hell is the code that long?!?!**
+**"Wait!!! The hell is the code that long?!?!"**
 
 Well, like I said earlier, JavaScript doesn't handle well Uint8Array to Base64 encoding and vice-versa. We had to manually convert the values using the [`js-base64` library](https://www.npmjs.com/package/js-base64).
 
@@ -1979,9 +1979,9 @@ And, about which fields to convert, I had to look at the go-webauthn source code
 
 Every `URLEncodedBase64` must be decoded/encoded via the `js-base64` library.
 
-!!!note NOTE
+!!!info INFO
 
-To avoid looking at the documentation, `Base64.fromUint8Array(..., true)` encodes to base64 with URL-safe encoding.
+`Base64.fromUint8Array(..., true)` encodes to base64 with URL-safe encoding.
 
 !!!
 
