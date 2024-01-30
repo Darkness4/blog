@@ -119,9 +119,7 @@ func ToSiteMap(ii [][]Index) ([]byte, error) {
 	}
 
 	for _, i := range ii {
-		for _, j := range i {
-			sitemap.Urls = append(sitemap.Urls, j)
-		}
+		sitemap.Urls = append(sitemap.Urls, i...)
 	}
 
 	return xml.MarshalIndent(sitemap, "", "  ")
@@ -138,7 +136,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1706656723, 0),
+	Updated: time.Unix(1706656793, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "A guide to WebAuthn.",

@@ -52,9 +52,7 @@ func ToSiteMap(ii [][]Index) ([]byte, error) {
 	}
 
 	for _, i := range ii {
-		for _, j := range i {
-			sitemap.Urls = append(sitemap.Urls, j)
-		}
+		sitemap.Urls = append(sitemap.Urls, i...)
 	}
 
 	return xml.MarshalIndent(sitemap, "", "  ")
