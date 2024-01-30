@@ -3,16 +3,17 @@ package index
 
 import (
 	"time"
-
+	"encoding/xml"
 	"github.com/gorilla/feeds"
 )
 
 type Index struct {
-	Title         string
-	Description   string
-	PublishedDate time.Time
-	Href          string
-	EntryName     string
+	Title         string    `xml:"-"`
+	Description   string    `xml:"-"`
+	PublishedDate time.Time `xml:"lastmod"`
+	Href          string    `xml:"loc"`
+	EntryName     string    `xml:"-"`
+	Priority      float32   `xml:"priority,omitempty"`
 }
 
 const PageSize = {{ .PageSize }}
@@ -27,10 +28,36 @@ var Pages = [][]Index{
 			Description: {{ $value.Description | quote }},
 			PublishedDate: time.Unix({{ $value.PublishedDate }}, 0),
 			Href: {{ $value.Href | quote }},
+			Priority: 0.5,
 		},
 		{{- end}}
 	},
 	{{- end}}
+}
+
+func ToSiteMap(ii [][]Index) ([]byte, error) {
+	var sitemap = struct {
+		XMLName xml.Name `xml:"http://www.sitemaps.org/schemas/sitemap/0.9 urlset"`
+		Urls    []Index  `xml:"url"`
+	}{
+		Urls: []Index{
+			{
+				Title:         {{ .Title | quote }},
+				Description:   {{ .Description | quote }},
+				PublishedDate: time.Now(),
+				Href:          {{ .Href | quote }},
+				Priority:      0.8,
+			},
+		},
+	}
+
+	for _, i := range ii {
+		for _, j := range i {
+			sitemap.Urls = append(sitemap.Urls, j)
+		}
+	}
+
+	return xml.MarshalIndent(sitemap, "", "  ")
 }
 
 var Feed = &feeds.Feed{

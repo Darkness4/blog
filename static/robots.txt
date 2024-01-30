@@ -1,4 +1,6 @@
 User-agent: *
 Disallow:
 
+Sitemap: https://blog.mnguyen.fr/sitemap.xml
 Sitemap: https://blog.mnguyen.fr/rss
+Sitemap: https://blog.mnguyen.fr/atom

@@ -165,6 +165,13 @@ var app = &cli.App{
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 		})
+		r.Get("/sitemap.xml", func(w http.ResponseWriter, r *http.Request) {
+			b, err := index.ToSiteMap(index.Pages)
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+			}
+			_, _ = w.Write(b)
+		})
 		r.Get("/*", renderFn)
 		r.Handle("/static/*", http.FileServer(http.FS(static)))
 
