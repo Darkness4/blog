@@ -11,8 +11,9 @@ type Index struct {
 	Title         string    `xml:"-"`
 	Description   string    `xml:"-"`
 	PublishedDate time.Time `xml:"lastmod"`
-	Href          string    `xml:"loc"`
+	Href          string    `xml:"-"`
 	EntryName     string    `xml:"-"`
+	Loc           string    `xml:"loc"`
 	Priority      float32   `xml:"priority,omitempty"`
 }
 
@@ -28,6 +29,7 @@ var Pages = [][]Index{
 			Description: {{ $value.Description | quote }},
 			PublishedDate: time.Unix({{ $value.PublishedDate }}, 0),
 			Href: {{ $value.Href | quote }},
+			Loc: {{ (print $.Href $value.Href) | quote }},
 			Priority: 0.5,
 		},
 		{{- end}}
@@ -45,7 +47,7 @@ func ToSiteMap(ii [][]Index) ([]byte, error) {
 				Title:         {{ .Title | quote }},
 				Description:   {{ .Description | quote }},
 				PublishedDate: time.Now(),
-				Href:          {{ .Href | quote }},
+				Loc:          {{ .Href | quote }},
 				Priority:      0.8,
 			},
 		},
