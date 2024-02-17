@@ -59,7 +59,7 @@ Could be great for Raspberry Pi, but not for a development and gaming desktop.
 
 You've come to read my propaganda, great. Let's start with the installation.
 
-The [Gentoo Handbook](https://wiki.gentoo.org/wiki/Handbook:AMD64) tells everything a person need to know to install Gentoo Linux. And none of these steps has caused major issues. I've used the binary kernel the first time, and trimmed it [later](about-kernel-configuration).
+The [Gentoo Handbook](https://wiki.gentoo.org/wiki/Handbook:AMD64) tells everything a person need to know to install Gentoo Linux. And none of these steps has caused major issues. I've used the binary kernel the first time, and trimmed it [later](#about-kernel-configuration).
 
 You can also use any bootable Linux OS to install Gentoo Linux. I've personally used the Void Linux installation ISO since it's only ~600MB, and it has a package manager so that I can install missing tools. (Like I said, Void is still great for small devices, thanks to its small rootfs).
 
