@@ -48,7 +48,7 @@ var app = &cli.App{
 			Destination: &listenAddress,
 		},
 	},
-	Action: func(cCtx *cli.Context) error {
+	Action: func(_ *cli.Context) error {
 		log.Level(zerolog.DebugLevel)
 
 		// Router
@@ -150,22 +150,22 @@ var app = &cli.App{
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 		}
-		r.Get("/rss", func(w http.ResponseWriter, r *http.Request) {
+		r.Get("/rss", func(w http.ResponseWriter, _ *http.Request) {
 			if err := index.Feed.WriteRss(w); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 		})
-		r.Get("/atom", func(w http.ResponseWriter, r *http.Request) {
+		r.Get("/atom", func(w http.ResponseWriter, _ *http.Request) {
 			if err := index.Feed.WriteAtom(w); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 		})
-		r.Get("/json", func(w http.ResponseWriter, r *http.Request) {
+		r.Get("/json", func(w http.ResponseWriter, _ *http.Request) {
 			if err := index.Feed.WriteJSON(w); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 		})
-		r.Get("/sitemap.xml", func(w http.ResponseWriter, r *http.Request) {
+		r.Get("/sitemap.xml", func(w http.ResponseWriter, _ *http.Request) {
 			b, err := index.ToSiteMap(index.Pages)
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)

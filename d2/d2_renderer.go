@@ -61,7 +61,7 @@ func (r *HTMLRenderer) Render(
 		compileOpts.Ruler = ruler
 	}
 	if compileOpts.LayoutResolver == nil {
-		compileOpts.LayoutResolver = func(engine string) (d2graph.LayoutGraph, error) {
+		compileOpts.LayoutResolver = func(_ string) (d2graph.LayoutGraph, error) {
 			return d2dagrelayout.DefaultLayout, nil
 		}
 	}
