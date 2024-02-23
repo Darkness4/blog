@@ -5,7 +5,11 @@ description: "The review about Gentoo Linux after 1 year of intensive usage in g
 
 ## Table of contents
 
+<div class="toc">
+
 \\{\\{ $.TOC }}
+
+</div>
 
 ## Introduction
 

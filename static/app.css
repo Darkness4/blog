@@ -69,3 +69,39 @@ img {
   display: block;
   margin: 0 auto;
 }
+
+.sidebar {
+  position: sticky;
+  align-self: flex-start;
+  flex-shrink: 0;
+  order: 2;
+  top: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  max-height: 100vh;
+  overflow-y: auto;
+  display: none;
+}
+
+.toc li {
+  list-style: none;
+}
+
+.markdown-content {
+  flex-grow: 1;
+  display: block;
+  max-width: 75vw;
+}
+
+@media (min-width: 960px) {
+  .sidebar {
+    display: block;
+    max-width: 20vw;
+  }
+
+  .markdown-content {
+    max-width: 65vw;
+  }
+}
+
+.d2 > svg { width:100%; }

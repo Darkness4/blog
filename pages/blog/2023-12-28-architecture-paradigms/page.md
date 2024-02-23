@@ -5,7 +5,11 @@ description: Have you ever wondered whether learning the wrong software architec
 
 ## Table of contents
 
+<div class="toc">
+
 \\{\\{ $.TOC }}
+
+</div>
 
 ## Introduction
 

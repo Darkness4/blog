@@ -11,7 +11,11 @@ Try switching articles to see how fast they load!
 
 ## Table of contents
 
+<div class="toc">
+
 \\{\\{ $.TOC }}
+
+</div>
 
 ## Why ?
 

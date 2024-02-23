@@ -5,7 +5,11 @@ description: A rant about people implementing their own user database. Also, a g
 
 ## Table of contents
 
+<div class="toc">
+
 \\{\\{ $.TOC }}
+
+</div>
 
 ## Introduction
 

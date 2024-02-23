@@ -5,7 +5,11 @@ description: Want to statically compile for multi-platform in Go super-easily? L
 
 ## Table of contents
 
+<div class="toc">
+
 \\{\\{ $.TOC }}
+
+</div>
 
 ## Introduction
 

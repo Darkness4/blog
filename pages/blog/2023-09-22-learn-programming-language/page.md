@@ -5,7 +5,11 @@ description: About learning your first programming language in 2023. Yes, it's a
 
 ## Table of contents
 
+<div class="toc">
+
 \\{\\{ $.TOC }}
+
+</div>
 
 ## Introduction
 

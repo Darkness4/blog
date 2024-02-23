@@ -5,7 +5,11 @@ description: Pull-based GitOps using SystemD and Git. An alternative to Ansible,
 
 ## Table of contents
 
+<div class="toc">
+
 \\{\\{ $.TOC }}
+
+</div>
 
 ## Introduction
 

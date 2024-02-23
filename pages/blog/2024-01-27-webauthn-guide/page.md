@@ -5,7 +5,11 @@ description: Developing a simple WebAuthn authentication service in Go, as there
 
 ## Table of contents
 
+<div class="toc">
+
 \\{\\{ $.TOC }}
+
+</div>
 
 ## Introduction
 

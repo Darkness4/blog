@@ -156,7 +156,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1708724631, 0),
+	Updated: time.Unix(1708727868, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "GitOps using SystemD",

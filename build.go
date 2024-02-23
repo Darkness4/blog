@@ -19,7 +19,7 @@ import (
 	chromahtml "github.com/alecthomas/chroma/v2/formatters/html"
 	mathjax "github.com/litao91/goldmark-mathjax"
 	"github.com/rs/zerolog/log"
-	"github.com/stefanfritsch/goldmark-admonitions"
+	admonitions "github.com/stefanfritsch/goldmark-admonitions"
 	"github.com/yuin/goldmark"
 	highlighting "github.com/yuin/goldmark-highlighting/v2"
 	meta "github.com/yuin/goldmark-meta"
@@ -146,6 +146,7 @@ func processPages() {
 					ThemeID: &d2themescatalog.DarkMauve.ID,
 					Scale:   ptr.Ref(0.9),
 					Pad:     ptr.Ref(int64(25)),
+					Center:  ptr.Ref(true),
 				},
 			},
 			highlighting.NewHighlighting(
@@ -240,6 +241,7 @@ func processPages() {
 				Style         string
 				Body          string
 				PublishedDate string
+				TOC           string
 
 				Prev string
 				Next string
@@ -248,6 +250,7 @@ func processPages() {
 				Description:   fmt.Sprintf("%v", metaData["description"]),
 				Style:         cssBuffer.String(),
 				Body:          bodySB.String(),
+				TOC:           tocSB.String(),
 				PublishedDate: date.Format("Monday 02 January 2006"),
 
 				Prev: strings.TrimSuffix(strings.TrimPrefix(file.prev, "pages"), "/page.md"),

@@ -5,7 +5,11 @@ description: About replicable infrastructure when containerization and virtualiz
 
 ## Table of contents
 
+<div class="toc">
+
 \\{\\{ $.TOC }}
+
+</div>
 
 ## Introduction
 

@@ -5,7 +5,11 @@ description: This article documents about how this blog came to be. From technic
 
 ## Table of contents
 
+<div class="toc">
+
 \\{\\{ $.TOC }}
+
+</div>
 
 ## Motivation
 
