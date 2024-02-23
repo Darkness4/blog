@@ -21,6 +21,15 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2024-02-17-gitops-systemd",
+			Title:         "GitOps using SystemD",
+			Description:   "Pull-based GitOps using SystemD and Git. An alternative to Ansible, Puppet, Chef, and SaltStack.",
+			PublishedDate: time.Unix(1708128000, 0),
+			Href:          "/blog/2024-02-17-gitops-systemd",
+			Loc:           "https://blog.mnguyen.fr/blog/2024-02-17-gitops-systemd",
+			Priority:      0.5,
+		},
+		{
 			EntryName:     "2024-01-27-webauthn-guide",
 			Title:         "A guide to WebAuthn.",
 			Description:   "Developing a simple WebAuthn authentication service in Go, as there are few functional implementations of WebAuthn with Go, and only a few existing guides.",
@@ -147,8 +156,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1706781068, 0),
+	Updated: time.Unix(1708724616, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "GitOps using SystemD",
+			Description: "Pull-based GitOps using SystemD and Git. An alternative to Ansible, Puppet, Chef, and SaltStack.",
+			Created:     time.Unix(1708128000, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2024-02-17-gitops-systemd",
+			},
+		},
 		{
 			Title:       "A guide to WebAuthn.",
 			Description: "Developing a simple WebAuthn authentication service in Go, as there are few functional implementations of WebAuthn with Go, and only a few existing guides.",
