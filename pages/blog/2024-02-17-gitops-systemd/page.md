@@ -707,7 +707,7 @@ If we were to develop this "reconcilement" stage, we would need to develop the s
 
 About inventory, you can use `hostname` in the scripts to create node specific configuration. If you want to work with "tags", just do some Bash programming. After all, Ansible is just some Python programming.
 
-And about Ceph, well... Ceph does not recommend Ansible anymore, and they recommend [Cephadm](https://docs.ceph.com/en/reef/cephadm/install/#cephadm-deploying-new-cluster) and [Rook](https://rook.io). I recommend using Rook too since I've used it personally and it's quite stable. Using [ArgoCD](https://argoproj.github.io/cd/) or [Flux](https://fluxcd.io), you could do GitOps with Rook.
+And about Ceph, well... Ceph does not recommend Ansible anymore, and they recommend [Cephadm](https://docs.ceph.com/en/reef/cephadm/install/#cephadm-deploying-new-cluster) and [Rook](https://rook.io). I recommend using Rook too since I've used it personally, and it's quite stable. Using [ArgoCD](https://argoproj.github.io/cd/) or [Flux](https://fluxcd.io), you could do GitOps with Rook.
 
 In reality, if I'm starting an infrastructure from scratch, I would deploy a Kubernetes cluster with [K0s](https://k0sproject.io) since their configuration is declarative, which allows push-based GitOps (but we configure our Kubernetes only when deploying or upgrading it, it's not that frequent and that requires admin privileges). Then, I would use ArgoCD or Flux to deploy my application, Rook to deploy Ceph, [KubeVirt](https://kubevirt.io) to deploy VMs, [MetalLB](https://metallb.universe.tf) to deploy a LoadBalancer, ... You name it.
 
