@@ -65,9 +65,14 @@
     </script>
     {{ template "head" . }}
   </head>
-  <body hx-history="false" hx-ext="head-support" hx-boost="true">
+  <body
+    hx-history="false"
+    hx-ext="head-support"
+    hx-boost="true"
+    hx-swap="innerHTML settle:0.05s swap:0.05s"
+  >
     <header>{{ template "Nav" . }}</header>
-    {{ template "body" . }}
+    <main class="fade-out fade-in">{{ template "body" . }}</main>
     <footer>{{ template "Footer" . }}</footer>
   </body>
 </html>

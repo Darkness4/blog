@@ -12,9 +12,9 @@ ifeq ($(golint),)
 golint := $(shell go env GOPATH)/bin/golangci-lint
 endif
 
-wgo :=  $(shell which wgo)
-ifeq ($(wgo),)
-wgo := $(shell go env GOPATH)/bin/wgo
+gow := $(shell which gow)
+ifeq ($(gow),)
+gow := $(shell go env GOPATH)/bin/gow
 endif
 
 .PHONY: bin/blog
@@ -30,8 +30,8 @@ run: generate
 	go run ./main.go
 
 .PHONY: watch
-watch: $(wgo)
-	$(wgo) -xdir "gen/" -xdir "bin/" sh -c 'make run || exit 1' --signal SIGTERM
+watch: $(gow)
+	$(gow) -e=go,mod,html,tmpl,env,local,htmx run ./main.go
 
 .PHONY: unit
 unit:
@@ -45,8 +45,8 @@ lint: $(golint)
 clean:
 	rm -rf bin/
 
-$(wgo):
-	go install github.com/bokwoon95/wgo@latest
+$(gow):
+	go install github.com/mitranim/gow@latest
 
 $(golint):
 	go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest

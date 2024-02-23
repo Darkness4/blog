@@ -8,36 +8,34 @@
 
 {{ `{{define "body"}}` }}
 
-<main>
-  <div style="display: flex; height: 100%;">
-    <div class="sidebar">
-      <div class="toc" style="padding-top: 24px; padding-bottom: 24px;">
-        {{ $.TOC }}
-      </div>
+<div style="display: flex; height: 100%;">
+  <div class="sidebar">
+    <div class="toc" style="padding-top: 24px; padding-bottom: 24px;">
+      {{ $.TOC }}
     </div>
-    <div class="markdown-content">
-      <article>
-        <main>
-          <center>
-            <hgroup>
-              <h1>{{ .Title }}</h1>
-              <small>{{ .PublishedDate }}</small>
-            </hgroup>
-          </center>
-          {{ .Body }}
-        </main>
-      </article>
-      <nav style="direction: rtl">
-        {{- if .Prev }}
-        <a href="{{ .Prev }}">« Old Article</a>
-        {{- else }}
-        <div></div>
-        {{- end }}
-        {{- if .Next }}
-        <a href="{{ .Next }}">New Article »</a>
-        {{- end }}
-      </nav>
-    <div>
+  </div>
+  <div class="markdown-content">
+    <article>
+      <main>
+        <center>
+          <hgroup>
+            <h1>{{ .Title }}</h1>
+            <small>{{ .PublishedDate }}</small>
+          </hgroup>
+        </center>
+        {{ .Body }}
+      </main>
+    </article>
+    <nav style="direction: rtl">
+      {{- if .Prev }}
+      <a href="{{ .Prev }}">« Old Article</a>
+      {{- else }}
+      <div></div>
+      {{- end }}
+      {{- if .Next }}
+      <a href="{{ .Next }}">New Article »</a>
+      {{- end }}
+    </nav>
   <div>
-</main>
+<div>
 {{ `{{ end }}` }}

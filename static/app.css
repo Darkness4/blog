@@ -105,3 +105,20 @@ img {
 }
 
 .d2 > svg { width:100%; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.htmx-swapping .fade-out {
+  opacity: 0;
+  transition: opacity 0.05s ease-out;
+}
+
+.htmx-added .fade-in {
+  opacity: 0;
+}
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.05s ease-out;
+}

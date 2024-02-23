@@ -4,6 +4,6 @@
 </head>
 
 <header>{{ template "Nav" . }}</header>
-{{ template "body" . }}
+<main class="fade-out fade-in">{{ template "body" . }}</main>
 <footer>{{ template "Footer" . }}</footer>
 {{ end }}

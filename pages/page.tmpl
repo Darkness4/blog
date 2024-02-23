@@ -4,21 +4,19 @@
 {{ end }}
 
 {{define "body"}}
-<main>
-  <small>A blog about DevOps, Infrastructure and Programming in general.</small>
+<small>A blog about DevOps, Infrastructure and Programming in general.</small>
 
-  <nav>
-    <ul>
-      <li><small><a hx-boost="false" href="/rss">RSS</a></small></li>
-      <li><small><a hx-boost="false" href="/rss">Atom</a></small></li>
-    </ul>
-  </nav>
-  {{- if ne .Pager.Current 0 }}
-  {{ template "Pager" .Pager }}
-  {{- end }}
-  {{ template "ArticleList" . }}
-  {{- if ne .Pager.Current .Pager.Last }}
-  {{ template "Pager" .Pager }}
-  {{- end }}
-</main>
+<nav>
+  <ul>
+    <li><small><a hx-boost="false" href="/rss">RSS</a></small></li>
+    <li><small><a hx-boost="false" href="/rss">Atom</a></small></li>
+  </ul>
+</nav>
+{{- if ne .Pager.Current 0 }}
+{{ template "Pager" .Pager }}
+{{- end }}
+{{ template "ArticleList" . }}
+{{- if ne .Pager.Current .Pager.Last }}
+{{ template "Pager" .Pager }}
+{{- end }}
 {{ end }}
