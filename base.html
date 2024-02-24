@@ -20,6 +20,7 @@
       crossorigin
     />
     <link
+      hx-preserve="true"
       href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
       rel="stylesheet"
     />
@@ -62,7 +63,12 @@
       crossorigin="anonymous"
     ></script>
     <link hx-preserve="true" rel="stylesheet" href="/static/app.css" />
-    <link rel="icon" type="image/png" href="/static/favicon.png" />
+    <link
+      hx-preserve="true"
+      rel="icon"
+      type="image/png"
+      href="/static/favicon.png"
+    />
     <script hx-preserve="true">
       document.addEventListener('htmx:afterSettle', function (evt) {
         MathJax.typeset();
