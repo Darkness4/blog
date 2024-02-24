@@ -172,6 +172,15 @@ var app = &cli.App{
 			}
 			_, _ = w.Write(b)
 		})
+		r.Get("/robots.txt", func(w http.ResponseWriter, _ *http.Request) {
+			fmt.Fprint(w, `User-agent: *
+Disallow:
+
+Sitemap: https://blog.mnguyen.fr/sitemap.xml
+Sitemap: https://blog.mnguyen.fr/rss
+Sitemap: https://blog.mnguyen.fr/atom
+`)
+		})
 		r.Get("/*", renderFn)
 		r.Handle("/static/*", http.FileServer(http.FS(static)))
 
