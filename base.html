@@ -80,7 +80,33 @@
     hx-ext="head-support"
     hx-boost="true"
     hx-swap="innerHTML settle:0.05s swap:0.05s"
+    style="position: relative"
   >
+    <!-- Overlays -->
+    <div
+      style="
+        position: absolute;
+        z-index: -1000;
+        inset: 0;
+        background-image: url('/static/media/spots1.svg');
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+      "
+    ></div>
+    <div
+      style="
+        position: absolute;
+        z-index: -1000;
+        top: 0;
+        left: 0;
+        height: 100%;
+        backdrop-filter: blur(20px);
+        background-color: #13171f80;
+      "
+    ></div>
+
+    <!-- Content -->
     <header>{{ template "Nav" . }}</header>
     <main class="fade-out fade-in">{{ template "body" . }}</main>
     <footer>{{ template "Footer" . }}</footer>
