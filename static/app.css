@@ -26,7 +26,9 @@ article > main {
 }
 
 /** Admonitions **/
-[data-theme=dark] {
+[data-theme=dark]:root, :not([data-theme=dark]):root {
+  --pico-font-family: 'Lato', 'Segoe UI', 'Ubuntu', 'Cantarell', 'Noto Sans', sans-serif,
+  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --info-background-color: #193c47;
   --info-accent-color: #4cb3d4;
   --danger-background-color: #3c1a19;

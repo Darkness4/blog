@@ -31,7 +31,7 @@ run: generate
 
 .PHONY: watch
 watch: $(gow)
-	$(gow) -e=go,mod,html,tmpl,env,local,htmx run ./main.go
+	$(gow) -e=go,mod,html,tmpl,env,local,htmx,css run ./main.go
 
 .PHONY: unit
 unit:
