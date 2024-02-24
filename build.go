@@ -13,6 +13,7 @@ import (
 	"github.com/Darkness4/blog/d2"
 	"github.com/Darkness4/blog/images"
 	"github.com/Darkness4/blog/index"
+	"github.com/Darkness4/blog/markdown"
 	"github.com/Darkness4/blog/utils/blog"
 	"github.com/Darkness4/blog/utils/ptr"
 	"github.com/Darkness4/blog/utils/unique"
@@ -25,8 +26,10 @@ import (
 	meta "github.com/yuin/goldmark-meta"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
+	"github.com/yuin/goldmark/renderer"
 	goldmarkhtml "github.com/yuin/goldmark/renderer/html"
 	"github.com/yuin/goldmark/text"
+	"github.com/yuin/goldmark/util"
 	"go.abhg.dev/goldmark/anchor"
 	"go.abhg.dev/goldmark/toc"
 	"oss.terrastruct.com/d2/d2themes/d2themescatalog"
@@ -132,6 +135,7 @@ func processPages() {
 		goldmark.WithParserOptions(parser.WithAutoHeadingID()),
 		goldmark.WithRendererOptions(
 			goldmarkhtml.WithUnsafe(),
+			renderer.WithNodeRenderers(util.Prioritized(markdown.NewRenderer(), 1)),
 		),
 		images.NewReplacer(func(link string) string {
 			if filepath.IsAbs(link) || strings.HasPrefix(strings.ToLower(link), "http") {

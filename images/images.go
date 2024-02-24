@@ -23,30 +23,30 @@ func NewReplacer(r ReplaceFunc) goldmark.Option {
 	)
 }
 
-// replacer render image with replaced source link.
-type replacer struct {
+// Replacer render image with replaced source link.
+type Replacer struct {
 	html.Config
 	ReplaceFunc
 }
 
 // New return initialized image render with source url replacing support.
-func New(r ReplaceFunc, options ...html.Option) goldmark.Extender {
+func New(r ReplaceFunc, options ...html.Option) *Replacer {
 	var config = html.NewConfig()
 	for _, opt := range options {
 		opt.SetHTMLOption(&config)
 	}
-	return &replacer{
+	return &Replacer{
 		Config:      config,
 		ReplaceFunc: r,
 	}
 }
 
 // RegisterFuncs implements NodeRenderer.RegisterFuncs interface.
-func (r *replacer) RegisterFuncs(reg renderer.NodeRendererFuncRegisterer) {
+func (r *Replacer) RegisterFuncs(reg renderer.NodeRendererFuncRegisterer) {
 	reg.Register(ast.KindImage, r.renderImage)
 }
 
-func (r *replacer) renderImage(
+func (r *Replacer) renderImage(
 	w util.BufWriter,
 	source []byte,
 	node ast.Node,
@@ -107,7 +107,7 @@ func (r *replacer) renderImage(
 }
 
 // Extend implement goldmark.Extender interface.
-func (r *replacer) Extend(m goldmark.Markdown) {
+func (r *Replacer) Extend(m goldmark.Markdown) {
 	if r.ReplaceFunc == nil {
 		return
 	}
