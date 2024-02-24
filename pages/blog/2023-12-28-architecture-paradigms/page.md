@@ -1,6 +1,7 @@
 ---
 title: Learn software architecture, paradigms and patterns... even the wrong ones.
 description: Have you ever wondered whether learning the wrong software architecture is really "wrong"? Personally, I've always asked myself this question, and more often than not I've found my answer on the job.
+tags: [software architecture, paradigms, patterns, programming]
 ---
 
 ## Table of contents

@@ -1,6 +1,7 @@
 ---
 title: Developing this blog in Go and HTMX
 description: This article documents about how this blog came to be. From technical choices to deploying this blog.
+tags: ['blog', 'go', 'htmx', 'raspberry-pi', 'kubernetes']
 ---
 
 ## Table of contents

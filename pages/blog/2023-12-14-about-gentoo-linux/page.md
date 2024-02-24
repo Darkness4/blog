@@ -1,6 +1,7 @@
 ---
 title: Gentoo Linux is the best OS for gaming and software development on desktop.
 description: "The review about Gentoo Linux after 1 year of intensive usage in gaming and development: it's the best OS in the world."
+tags: [gentoo, linux, review]
 ---
 
 ## Table of contents

@@ -15,6 +15,7 @@ type Index struct {
 	EntryName     string    `xml:"-"`
 	Loc           string    `xml:"loc"`
 	Priority      float32   `xml:"priority,omitempty"`
+	Tags          []string  `xml:"-"`
 }
 
 const PageSize = {{ .PageSize }}
@@ -31,6 +32,11 @@ var Pages = [][]Index{
 			Href: {{ $value.Href | quote }},
 			Loc: {{ (print $.Href $value.Href) | quote }},
 			Priority: 0.5,
+			Tags: []string{
+				{{- range $i, $tag := $value.Tags}}
+				{{ $tag | quote }},
+				{{- end}}
+			},
 		},
 		{{- end}}
 	},

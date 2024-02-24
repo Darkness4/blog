@@ -1,6 +1,7 @@
 ---
 title: Hello world!
 description: The very first article. About the motivations of developing this blog from scratch with Go and HTMX, and why I want to write articles on this blog.
+tags: [go, htmx]
 ---
 
 _This article is pretty personal, so if you skip it, I don't mind it._

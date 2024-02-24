@@ -1,6 +1,18 @@
 ---
 title: Go with Portage and Crossdev, for easy static multi-platform compilation of CGO_ENABLED software.
 description: Want to statically compile for multi-platform in Go super-easily? Let me introduce Portage, Gentoo's package manager, and Crossdev, Gentoo's solution for cross-compilation.
+tags:
+  [
+    'go',
+    'cross-compilation',
+    'portage',
+    'crossdev',
+    'gentoo',
+    'static-compilation',
+    'cgo',
+    'docker',
+    'multi-arch',
+  ]
 ---
 
 ## Table of contents

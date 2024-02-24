@@ -1,6 +1,7 @@
 ---
 title: Using C libraries in Go with CGO
 description: Simple guide and recommendations about CGO. For documentation purposes.
+tags: [go, cgo]
 ---
 
 I've made an [article about using Go with Portage and Crossdev for easy static compilation of CGO_ENABLED software](/blog/2023-11-08-go-with-portage-and-crossdev), but I didn't make an article about how to use CGO properly.

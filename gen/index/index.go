@@ -14,6 +14,7 @@ type Index struct {
 	EntryName     string    `xml:"-"`
 	Loc           string    `xml:"loc"`
 	Priority      float32   `xml:"priority,omitempty"`
+	Tags          []string  `xml:"-"`
 }
 
 const PageSize = 1
@@ -21,13 +22,22 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
-			EntryName:     "2024-02-17-gitops-systemd",
+			EntryName:     "2024-02-24-gitops-systemd",
 			Title:         "GitOps using SystemD",
 			Description:   "Pull-based GitOps using SystemD and Git. An alternative to Ansible, Puppet, Chef, and SaltStack.",
-			PublishedDate: time.Unix(1708128000, 0),
-			Href:          "/blog/2024-02-17-gitops-systemd",
-			Loc:           "https://blog.mnguyen.fr/blog/2024-02-17-gitops-systemd",
+			PublishedDate: time.Unix(1708732800, 0),
+			Href:          "/blog/2024-02-24-gitops-systemd",
+			Loc:           "https://blog.mnguyen.fr/blog/2024-02-24-gitops-systemd",
 			Priority:      0.5,
+			Tags: []string{
+				"devops",
+				"gitops",
+				"systemd",
+				"ansible",
+				"puppet",
+				"chef",
+				"saltstack",
+			},
 		},
 		{
 			EntryName:     "2024-01-27-webauthn-guide",
@@ -37,6 +47,10 @@ var Pages = [][]Index{
 			Href:          "/blog/2024-01-27-webauthn-guide",
 			Loc:           "https://blog.mnguyen.fr/blog/2024-01-27-webauthn-guide",
 			Priority:      0.5,
+			Tags: []string{
+				"go",
+				"webauthn",
+			},
 		},
 		{
 			EntryName:     "2024-01-11-cgo-guide",
@@ -46,6 +60,10 @@ var Pages = [][]Index{
 			Href:          "/blog/2024-01-11-cgo-guide",
 			Loc:           "https://blog.mnguyen.fr/blog/2024-01-11-cgo-guide",
 			Priority:      0.5,
+			Tags: []string{
+				"go",
+				"cgo",
+			},
 		},
 		{
 			EntryName:     "2023-12-28-architecture-paradigms",
@@ -55,6 +73,12 @@ var Pages = [][]Index{
 			Href:          "/blog/2023-12-28-architecture-paradigms",
 			Loc:           "https://blog.mnguyen.fr/blog/2023-12-28-architecture-paradigms",
 			Priority:      0.5,
+			Tags: []string{
+				"software architecture",
+				"paradigms",
+				"patterns",
+				"programming",
+			},
 		},
 		{
 			EntryName:     "2023-12-14-about-gentoo-linux",
@@ -64,6 +88,11 @@ var Pages = [][]Index{
 			Href:          "/blog/2023-12-14-about-gentoo-linux",
 			Loc:           "https://blog.mnguyen.fr/blog/2023-12-14-about-gentoo-linux",
 			Priority:      0.5,
+			Tags: []string{
+				"gentoo",
+				"linux",
+				"review",
+			},
 		},
 		{
 			EntryName:     "2023-11-08-go-with-portage-and-crossdev",
@@ -73,6 +102,17 @@ var Pages = [][]Index{
 			Href:          "/blog/2023-11-08-go-with-portage-and-crossdev",
 			Loc:           "https://blog.mnguyen.fr/blog/2023-11-08-go-with-portage-and-crossdev",
 			Priority:      0.5,
+			Tags: []string{
+				"go",
+				"cross-compilation",
+				"portage",
+				"crossdev",
+				"gentoo",
+				"static-compilation",
+				"cgo",
+				"docker",
+				"multi-arch",
+			},
 		},
 		{
 			EntryName:     "2023-10-09-understanding-authentication",
@@ -82,6 +122,15 @@ var Pages = [][]Index{
 			Href:          "/blog/2023-10-09-understanding-authentication",
 			Loc:           "https://blog.mnguyen.fr/blog/2023-10-09-understanding-authentication",
 			Priority:      0.5,
+			Tags: []string{
+				"security",
+				"authentication",
+				"oauth2",
+				"oidc",
+				"dex",
+				"389ds",
+				"ldap",
+			},
 		},
 		{
 			EntryName:     "2023-09-22-learn-programming-language",
@@ -91,6 +140,21 @@ var Pages = [][]Index{
 			Href:          "/blog/2023-09-22-learn-programming-language",
 			Loc:           "https://blog.mnguyen.fr/blog/2023-09-22-learn-programming-language",
 			Priority:      0.5,
+			Tags: []string{
+				"programming",
+				"go",
+				"rust",
+				"zig",
+				"c",
+				"c++",
+				"python",
+				"javascript",
+				"typescript",
+				"kotlin",
+				"objective-c",
+				"lua",
+				"ruby",
+			},
 		},
 		{
 			EntryName:     "2023-09-16-road-to-replicable-infrastructure",
@@ -100,6 +164,16 @@ var Pages = [][]Index{
 			Href:          "/blog/2023-09-16-road-to-replicable-infrastructure",
 			Loc:           "https://blog.mnguyen.fr/blog/2023-09-16-road-to-replicable-infrastructure",
 			Priority:      0.5,
+			Tags: []string{
+				"devops",
+				"linux",
+				"infrastructure",
+				"dracut",
+				"squashfs",
+				"overlayfs",
+				"pxe",
+				"gitops",
+			},
 		},
 		{
 			EntryName:     "2023-09-10-developing-blog",
@@ -109,6 +183,13 @@ var Pages = [][]Index{
 			Href:          "/blog/2023-09-10-developing-blog",
 			Loc:           "https://blog.mnguyen.fr/blog/2023-09-10-developing-blog",
 			Priority:      0.5,
+			Tags: []string{
+				"blog",
+				"go",
+				"htmx",
+				"raspberry-pi",
+				"kubernetes",
+			},
 		},
 		{
 			EntryName:     "2023-09-09-hello-world",
@@ -118,6 +199,10 @@ var Pages = [][]Index{
 			Href:          "/blog/2023-09-09-hello-world",
 			Loc:           "https://blog.mnguyen.fr/blog/2023-09-09-hello-world",
 			Priority:      0.5,
+			Tags: []string{
+				"go",
+				"htmx",
+			},
 		},
 	},
 }
@@ -156,14 +241,14 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1708743156, 0),
+	Updated: time.Unix(1708744082, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "GitOps using SystemD",
 			Description: "Pull-based GitOps using SystemD and Git. An alternative to Ansible, Puppet, Chef, and SaltStack.",
-			Created:     time.Unix(1708128000, 0),
+			Created:     time.Unix(1708732800, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2024-02-17-gitops-systemd",
+				Href: "https://blog.mnguyen.fr/blog/2024-02-24-gitops-systemd",
 			},
 		},
 		{

@@ -1,6 +1,7 @@
 ---
 title: Road to replicable infrastructure with OverlayFS and dracut live image
 description: About replicable infrastructure when containerization and virtualization are not allowed.
+tags: [devops, linux, infrastructure, dracut, squashfs, overlayfs, pxe, gitops]
 ---
 
 ## Table of contents

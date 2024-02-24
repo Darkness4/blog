@@ -1,6 +1,7 @@
 ---
 title: GitOps using SystemD
 description: Pull-based GitOps using SystemD and Git. An alternative to Ansible, Puppet, Chef, and SaltStack.
+tags: [devops, gitops, systemd, ansible, puppet, chef, saltstack]
 ---
 
 ## Table of contents

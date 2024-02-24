@@ -1,6 +1,22 @@
 ---
 title: Learning your first programming language
 description: About learning your first programming language in 2023. Yes, it's a filler post.
+tags:
+  [
+    programming,
+    go,
+    rust,
+    zig,
+    c,
+    c++,
+    python,
+    javascript,
+    typescript,
+    kotlin,
+    objective-c,
+    lua,
+    ruby,
+  ]
 ---
 
 ## Table of contents

@@ -1,6 +1,7 @@
 ---
 title: A guide to WebAuthn.
 description: Developing a simple WebAuthn authentication service in Go, as there are few functional implementations of WebAuthn with Go, and only a few existing guides.
+tags: [go, webauthn]
 ---
 
 ## Table of contents

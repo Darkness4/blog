@@ -1,6 +1,7 @@
 ---
 title: Just use OAuth2/OIDC.
 description: A rant about people implementing their own user database. Also, a guide with detailed implementations on OAuth2/OIDC.
+tags: ['security', 'authentication', 'oauth2', 'oidc', 'dex', '389ds', 'ldap']
 ---
 
 ## Table of contents

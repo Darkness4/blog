@@ -50,6 +50,7 @@ type Index struct {
 	PublishedDate int64
 	Href          string
 	EntryName     string
+	Tags          []string
 }
 
 func buildPages() (index [][]Index, err error) {
@@ -111,12 +112,17 @@ func buildPages() (index [][]Index, err error) {
 		if err != nil {
 			log.Fatal().Err(err).Msg("failed to read date")
 		}
+		tags := make([]string, 0, len(metaData["tags"].([]interface{})))
+		for _, tag := range metaData["tags"].([]interface{}) {
+			tags = append(tags, fmt.Sprintf("%v", tag))
+		}
 		index[page] = append(index[page], Index{
 			EntryName:     entry.Name(),
 			Title:         fmt.Sprintf("%v", metaData["title"]),
 			Description:   fmt.Sprintf("%v", metaData["description"]),
 			PublishedDate: date.Unix(),
 			Href:          filepath.Join("/blog", entry.Name()),
+			Tags:          tags,
 		})
 		i++
 	}
