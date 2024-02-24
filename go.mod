@@ -1,6 +1,8 @@
 module github.com/Darkness4/blog
 
-go 1.21
+go 1.22
+
+toolchain go1.22.0
 
 require (
 	cdr.dev/slog v1.4.2
@@ -24,17 +26,17 @@ require (
 require (
 	github.com/Masterminds/goutils v1.1.1 // indirect
 	github.com/Masterminds/semver/v3 v3.2.1 // indirect
-	github.com/PuerkitoBio/goquery v1.8.1 // indirect
+	github.com/PuerkitoBio/goquery v1.9.0 // indirect
 	github.com/alecthomas/chroma v0.10.0 // indirect
 	github.com/andybalholm/cascadia v1.3.2 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.3 // indirect
-	github.com/dlclark/regexp2 v1.10.0 // indirect
-	github.com/dop251/goja v0.0.0-20231027120936-b396bb4c349d // indirect
+	github.com/dlclark/regexp2 v1.11.0 // indirect
+	github.com/dop251/goja v0.0.0-20240220182346-e401ed450204 // indirect
 	github.com/fatih/color v1.16.0 // indirect
 	github.com/go-sourcemap/sourcemap v2.1.3+incompatible // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
-	github.com/google/pprof v0.0.0-20240207164012-fb44976bdcd5 // indirect
+	github.com/google/pprof v0.0.0-20240224134209-9dc27345a773 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/huandu/xstrings v1.4.0 // indirect
 	github.com/imdario/mergo v0.3.16 // indirect
@@ -52,7 +54,7 @@ require (
 	github.com/xrash/smetrics v0.0.0-20231213231151-1d8dd44e695e // indirect
 	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/crypto v0.19.0 // indirect
-	golang.org/x/exp v0.0.0-20240213143201-ec583247a57a // indirect
+	golang.org/x/exp v0.0.0-20240222234643-814bf88cf225 // indirect
 	golang.org/x/image v0.15.0 // indirect
 	golang.org/x/net v0.21.0 // indirect
 	golang.org/x/sys v0.17.0 // indirect
