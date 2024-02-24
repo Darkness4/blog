@@ -92,7 +92,13 @@ img {
 .markdown-content {
   flex-grow: 1;
   display: block;
-  max-width: 75vw;
+  max-width: 90vw;
+}
+
+@media (min-width: 640px) {
+  .markdown-content {
+    max-width: 80vw;
+  }
 }
 
 @media (min-width: 960px) {
@@ -123,4 +129,25 @@ html {
 .fade-in {
   opacity: 1;
   transition: opacity 0.05s ease-out;
+}
+
+.goto-top {
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  z-index: 1000;
+  display: block;
+}
+
+@media (min-width: 960px) {
+  .goto-top {
+    display: none;
+  }
+}
+
+.goto-top a {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  padding: 0;
 }
