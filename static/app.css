@@ -35,7 +35,8 @@ article > main {
   --danger-accent-color: #d44c4c;
   --warning-background-color: #3c2c19;
   --warning-accent-color: #d4c24c;
-  --pico-font-family-monospace: "JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace,var(--pico-font-family-emoji)
+  --pico-font-family-monospace: "JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace,var(--pico-font-family-emoji);
+  --pico-line-height: 1.65;
 }
 
 .admonition {
@@ -150,4 +151,8 @@ html {
   width: 50px;
   border-radius: 50%;
   padding: 0;
+}
+
+article :not(code) p {
+  text-align: justify;
 }
