@@ -1,9 +1,45 @@
 {{define "Nav"}}
-<nav>
+<nav style="flex-wrap: wrap">
   <ul>
     <li>
       <h1><a href="/">Marc Nguyen's Blog</a></h1>
     </li>
   </ul>
+  <ul>
+    <li>
+      <form
+        id="searchForm"
+        hx-boost="false"
+        action="https://duckduckgo.com/"
+        onsubmit="handleFormSubmit(event)"
+        method="get"
+        target="_blank"
+      >
+        <input
+          type="search"
+          id="search"
+          aria-label="Search"
+          name="q"
+          placeholder="Search blog.mnguyen.fr"
+        />
+      </form>
+    </li>
+  </ul>
 </nav>
+
+<script>
+  function handleFormSubmit(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const data = new FormData(event.target);
+
+    const query = data.get('q') + ' site:blog.mnguyen.fr';
+    /** @type {HTMLInputElement} */
+    const search = document.getElementById('search');
+    const old = search.value;
+    search.value = query;
+    document.getElementById('searchForm').submit();
+    search.value = old;
+  }
+</script>
 {{ end }}
