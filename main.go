@@ -151,16 +151,19 @@ var app = &cli.App{
 			}
 		}
 		r.Get("/rss", func(w http.ResponseWriter, _ *http.Request) {
+			w.Header().Set("Content-Type", "application/rss+xml")
 			if err := index.Feed.WriteRss(w); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 		})
 		r.Get("/atom", func(w http.ResponseWriter, _ *http.Request) {
+			w.Header().Set("Content-Type", "application/atom+xml")
 			if err := index.Feed.WriteAtom(w); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
 		})
 		r.Get("/json", func(w http.ResponseWriter, _ *http.Request) {
+			w.Header().Set("Content-Type", "application/json")
 			if err := index.Feed.WriteJSON(w); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
@@ -170,7 +173,9 @@ var app = &cli.App{
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
-			_, _ = w.Write(b)
+			w.Header().Set("Content-Type", "application/xml")
+			header := `<?xml version="1.0" encoding="UTF-8"?>`
+			fmt.Fprintf(w, "%s\n%s", header, b)
 		})
 		r.Get("/robots.txt", func(w http.ResponseWriter, _ *http.Request) {
 			fmt.Fprint(w, `User-agent: *
