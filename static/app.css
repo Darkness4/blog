@@ -22,7 +22,14 @@ ul li, ol li {
 }
 
 article > main {
-  margin: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+@media (min-width: 640px) {
+  article > main {
+    margin: 2em;
+  }
 }
 
 /** Admonitions **/
