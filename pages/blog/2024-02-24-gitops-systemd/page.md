@@ -100,7 +100,7 @@ umask 077
 if [ ! -d "$OUTPUT_DIR" ]; then
   git clone "$REPO_URL" "$OUTPUT_DIR"
   cd "$OUTPUT_DIR"
-  ./run.sh # We assume the entrypoint.sh is the script to apply the changes.
+  ./run.sh # We assume the run.sh is the script to apply the changes.
 else
   cd "$OUTPUT_DIR"
 
@@ -427,7 +427,7 @@ It is also possible to "chain" Packer and Terraform, but we won't do that in thi
    if [ ! -d "$OUTPUT_DIR" ]; then
      git clone "$REPO_URL" "$OUTPUT_DIR"
      cd "$OUTPUT_DIR"
-     ./run.sh # We assume the entrypoint.sh is the script to apply the changes.
+     ./run.sh # We assume the run.sh is the script to apply the changes.
    else
      cd "$OUTPUT_DIR"
 
