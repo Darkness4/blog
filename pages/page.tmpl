@@ -1,15 +1,88 @@
 {{define "head"}}
 <title>Marc Nguyen's Blog</title>
-<meta name="description" content="A blog about DevOps, Infrastructure and Programming in general.">
+<meta name="description" content="A blog about DevOps, Infrastructure and Programming in general." />
+<style>
+  #fact {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+  }
+</style>
+
+<script>
+  window.onLoaded = function () {
+    const facts = [
+      'This blog is written in Go and HTMX.',
+      'This blog is hosted on a Raspberry Pi.',
+      'This blog is running on a container with only 128MiB of RAM and 2.5% of CPU.',
+      'This blog is using Server-Side Rendering with no framework.',
+      'This blog passes all Lighthouse benchmarks.',
+      'This blog is deployed with GitOps, but without ArgoCD nor FluxCD, and instead with a CronJob.',
+      'This blog only weights 8MB.',
+      'This blog only takes 1.3s to compile and generate pages, making it easy to live-reload.',
+      'This blog is using the same rendering engine as Hugo, is only rendering the "necessary part" (also known as partial hydration).',
+      'This blog is running on a read-only filesystem.',
+      'This blog is HTML first, not like the JSX trash.',
+      'This blog has packed all of its assets in the executable. Not only that, but the executable is statically linked, making it portable.',
+      'This blog is running without a Linux root filesystem. There are no attack vectors.',
+    ];
+
+    /** @type {HTMLSpanElement} */
+    const factElement = document.getElementById('fact');
+    let currentFactIndex = -1;
+
+    function changeFact() {
+      let newIndex = currentFactIndex;
+      while (newIndex === currentFactIndex) {
+        newIndex = Math.floor(Math.random() * facts.length);
+      }
+      currentFactIndex = newIndex;
+      currentFactIndex = (currentFactIndex + 1) % facts.length;
+
+      factElement.style.opacity = 0;
+      setTimeout(() => {
+        factElement.textContent = facts[currentFactIndex];
+        factElement.style.opacity = 1;
+      }, 1000);
+    }
+
+    changeFact(); // Initial call
+
+    timer = setInterval(changeFact, 10000); // Change fact every 10 seconds
+
+    // If the fact is removed, stop the timer
+    document.addEventListener('htmx:beforeCleanupElement', function (e) {
+      /** @type {HTMLElement} */
+      const elt = e.detail.elt;
+      if (elt.id === 'fact') {
+        clearInterval(timer);
+        document.removeEventListener('htmx:afterSettle', window.onLoaded);
+        document.removeEventListener('DOMContentLoaded', window.onLoaded);
+        document.removeEventListener('htmx:beforeCleanupElement', arguments.callee);
+        window.onLoaded = null;
+      }
+    });
+  };
+  // On SSR request
+  document.addEventListener('htmx:afterSettle', window.onLoaded);
+  // On initial request
+  document.addEventListener('DOMContentLoaded', window.onLoaded);
+</script>
+
 {{ end }}
 
 {{define "body"}}
 <small>A blog about DevOps, Infrastructure and Programming in general.</small>
 
+<p><b>Did you know?</b> <span id="fact"></span></p>
+
 <nav>
   <ul>
-    <li><small><a hx-boost="false" href="/rss">RSS</a></small></li>
-    <li><small><a hx-boost="false" href="/rss">Atom</a></small></li>
+    <li>
+      <small><a hx-boost="false" href="/rss">RSS</a></small>
+    </li>
+    <li>
+      <small><a hx-boost="false" href="/rss">Atom</a></small>
+    </li>
   </ul>
 </nav>
 {{- if ne .Pager.Current 0 }}

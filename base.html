@@ -1,90 +1,46 @@
 {{ define "base" }}
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-  <head>
-    <meta hx-preserve="true" charset="UTF-8" />
-    <meta
-      hx-preserve="true"
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-    />
-    <link
-      hx-preserve="true"
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-    <link
-      hx-preserve="true"
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
-    <link
-      hx-preserve="true"
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      hx-preserve="true"
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      hx-preserve="true"
-      src="https://unpkg.com/htmx.org@1.9.5"
-      integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      hx-preserve="true"
-      src="https://unpkg.com/htmx.org@1.9.5/dist/ext/head-support.js"
-      integrity="sha384-CtqhRhV1bHrqMSWc8cQGQL4epjUqCHjq/kJ9ztGHS39vO/1phOgyhFIieE87UKMu"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      async
-      hx-preserve="true"
-      src="https://analytics.umami.is/script.js"
-      data-website-id="0c4894fc-34fe-48dd-bf1a-79ec70aa621c"
-    ></script>
-    <link
-      hx-preserve="true"
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@next/css/pico.classless.min.css"
-      crossorigin="anonymous"
-    />
-    <script
-      type="text/javascript"
-      hx-preserve="true"
-      id="MathJax-script"
-      async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"
-      integrity="sha384-KKWa9jJ1MZvssLeOoXG6FiOAZfAgmzsIIfw8BXwI9+kYm0lPCbC6yTQPBC00F1/L"
-      crossorigin="anonymous"
-    ></script>
-    <link hx-preserve="true" rel="stylesheet" href="/static/app.css" />
-    <link
-      hx-preserve="true"
-      rel="icon"
-      type="image/png"
-      href="/static/favicon.png"
-    />
-    <script hx-preserve="true">
-      document.addEventListener('htmx:afterSettle', function (evt) {
-        MathJax.typeset();
-      });
-    </script>
-    {{ template "head" . }}
-  </head>
-  <body
-    hx-ext="head-support"
-    hx-boost="true"
-    hx-swap="innerHTML settle:0.05s swap:0.05s"
-    style="position: relative"
-  >
-    <!-- Overlays -->
-    <div
-      style="
+
+<head>
+  <meta hx-preserve="true" charset="UTF-8" />
+  <meta hx-preserve="true" name="viewport" content="width=device-width, initial-scale=1" />
+  <link hx-preserve="true" rel="preconnect" href="https://fonts.googleapis.com" />
+  <link hx-preserve="true" rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link hx-preserve="true"
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    rel="stylesheet" />
+  <link hx-preserve="true"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+    rel="stylesheet" />
+  <script hx-preserve="true" src="https://unpkg.com/htmx.org@1.9.5"
+    integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO"
+    crossorigin="anonymous"></script>
+  <script hx-preserve="true" src="https://unpkg.com/htmx.org@1.9.5/dist/ext/head-support.js"
+    integrity="sha384-CtqhRhV1bHrqMSWc8cQGQL4epjUqCHjq/kJ9ztGHS39vO/1phOgyhFIieE87UKMu"
+    crossorigin="anonymous"></script>
+  <script async hx-preserve="true" src="https://analytics.umami.is/script.js"
+    data-website-id="0c4894fc-34fe-48dd-bf1a-79ec70aa621c"></script>
+  <link hx-preserve="true" rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@picocss/pico@next/css/pico.classless.min.css" crossorigin="anonymous" />
+  <script type="text/javascript" hx-preserve="true" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"
+    integrity="sha384-KKWa9jJ1MZvssLeOoXG6FiOAZfAgmzsIIfw8BXwI9+kYm0lPCbC6yTQPBC00F1/L"
+    crossorigin="anonymous"></script>
+  <link hx-preserve="true" rel="stylesheet" href="/static/app.css" />
+  <link hx-preserve="true" rel="icon" type="image/png" href="/static/favicon.png" />
+  <script hx-preserve="true">
+    document.addEventListener('htmx:afterSettle', function (evt) {
+      MathJax.typeset();
+      document.removeEventListener('htmx:afterSettle', arguments.callee);
+    });
+  </script>
+  {{ template "head" . }}
+</head>
+
+<body hx-ext="head-support" hx-boost="true" hx-swap="innerHTML settle:0.05s swap:0.05s" style="position: relative">
+  <!-- Overlays -->
+  <div style="
         position: absolute;
         z-index: -1000;
         inset: 0;
@@ -92,10 +48,8 @@
         background-position: top;
         background-repeat: no-repeat;
         background-size: cover;
-      "
-    ></div>
-    <div
-      style="
+      "></div>
+  <div style="
         position: absolute;
         z-index: -1000;
         top: 0;
@@ -103,13 +57,13 @@
         height: 100%;
         backdrop-filter: blur(20px);
         background-color: #13171f80;
-      "
-    ></div>
+      "></div>
 
-    <!-- Content -->
-    <header>{{ template "Nav" . }}</header>
-    <main class="fade-out fade-in">{{ template "body" . }}</main>
-    <footer>{{ template "Footer" . }}</footer>
-  </body>
+  <!-- Content -->
+  <header>{{ template "Nav" . }}</header>
+  <main class="fade-out fade-in">{{ template "body" . }}</main>
+  <footer>{{ template "Footer" . }}</footer>
+</body>
+
 </html>
 {{ end }}
