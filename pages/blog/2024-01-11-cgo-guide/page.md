@@ -4,6 +4,16 @@ description: Simple guide and recommendations about CGO. For documentation purpo
 tags: [go, cgo]
 ---
 
+## Table of contents
+
+<div class="toc">
+
+\\{\\{ $.TOC }}
+
+</div>
+
+## Introduction
+
 I've made an [article about using Go with Portage and Crossdev for easy static compilation of CGO_ENABLED software](/blog/2023-11-08-go-with-portage-and-crossdev), but I didn't make an article about how to use CGO properly.
 
 You see... I've seen comments in my projects that recommend using third-party libraries that implement full CGO bindings, without knowing the implications of doing so. While CGO is a powerful feature, there are major drawbacks to using it.

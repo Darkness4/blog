@@ -1,7 +1,7 @@
 ---
 title: Fault-Tolerent Distributed Systems with Replicated State Machines in Go
 description: A simple example of a fault-tolerent distributed system in Go with the Raft consensus algorithm.
-tags: ['go', 'distributed systems']
+tags: [go, distributed systems, fault-tolerent, raft, etcd, bitcoin, ipfs]
 ---
 
 ## Table of contents

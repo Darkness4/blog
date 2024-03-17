@@ -32,6 +32,11 @@ var Pages = [][]Index{
 			Tags: []string{
 				"go",
 				"distributed systems",
+				"fault-tolerent",
+				"raft",
+				"etcd",
+				"bitcoin",
+				"ipfs",
 			},
 		},
 		{
@@ -254,7 +259,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1710691067, 0),
+	Updated: time.Unix(1710693175, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "Fault-Tolerent Distributed Systems with Replicated State Machines in Go",

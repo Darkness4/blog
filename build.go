@@ -3,12 +3,14 @@
 package main
 
 import (
+	"bufio"
 	"embed"
 	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
 	"text/template"
+	"time"
 
 	"github.com/Darkness4/blog/d2"
 	"github.com/Darkness4/blog/images"
@@ -224,6 +226,7 @@ func processPages() {
 			if err != nil {
 				log.Fatal().Err(err).Msg("failed to parse date failure")
 			}
+			readingTime := computeReadingTime(string(content))
 
 			// Compile time variable
 			var bodySB strings.Builder
@@ -246,6 +249,7 @@ func processPages() {
 				Body          string
 				PublishedDate string
 				TOC           string
+				ReadingTime   string
 
 				Prev string
 				Next string
@@ -255,6 +259,7 @@ func processPages() {
 				Style:         cssBuffer.String(),
 				Body:          bodySB.String(),
 				TOC:           tocSB.String(),
+				ReadingTime:   readingTime,
 				PublishedDate: date.Format("Monday 02 January 2006"),
 
 				Prev: strings.TrimSuffix(strings.TrimPrefix(file.prev, "pages"), "/page.md"),
@@ -323,6 +328,42 @@ func processPages() {
 			}
 		}()
 	}
+}
+
+func countWords(line string) uint64 {
+	scanner := bufio.NewScanner(strings.NewReader(line))
+	scanner.Split(bufio.ScanWords)
+	count := uint64(0)
+	for scanner.Scan() {
+		count++
+	}
+	return count
+}
+
+func countWordsInText(text string) (uint64, error) {
+	scanner := bufio.NewScanner(strings.NewReader(text))
+	words := uint64(0)
+	for scanner.Scan() {
+		line := scanner.Text()
+		// Count words in the line
+		words += countWords(line)
+	}
+
+	if err := scanner.Err(); err != nil {
+		return 0, err
+	}
+
+	return words, nil
+}
+
+func computeReadingTime(text string) string {
+	words, err := countWordsInText(text)
+	if err != nil {
+		log.Fatal().Err(err).Msg("count words failure")
+	}
+	minutes := words / 75 // Reading rate for technical articles
+	duration := (time.Duration(minutes) * time.Minute).String()
+	return duration[:len(duration)-2]
 }
 
 func main() {
