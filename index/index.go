@@ -85,16 +85,11 @@ func buildPages() (index [][]Index, err error) {
 		}
 		f, err := os.Open(filepath.Join("pages/blog", entry.Name(), "page.md"))
 		if err != nil {
-			log.Debug().
-				Err(err).
-				Str("entry", entry.Name()).
-				Msg("ignored for index, failed to open page.md")
 			continue
 		}
 		finfo, err := f.Stat()
 		if err != nil {
-			log.Debug().
-				Err(err).
+			log.Err(err).
 				Str("entry", entry.Name()).
 				Msg("ignored for index, failed to stat page.md")
 			continue

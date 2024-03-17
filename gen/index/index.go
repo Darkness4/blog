@@ -22,6 +22,19 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2024-03-17-distributed-systems-in-go",
+			Title:         "Fault-Tolerent Distributed Systems with Replicated State Machines in Go",
+			Description:   "A simple example of a fault-tolerent distributed system in Go with the Raft consensus algorithm.",
+			PublishedDate: time.Unix(1710633600, 0),
+			Href:          "/blog/2024-03-17-distributed-systems-in-go",
+			Loc:           "https://blog.mnguyen.fr/blog/2024-03-17-distributed-systems-in-go",
+			Priority:      0.5,
+			Tags: []string{
+				"go",
+				"distributed systems",
+			},
+		},
+		{
 			EntryName:     "2024-02-24-gitops-systemd",
 			Title:         "GitOps using SystemD",
 			Description:   "Pull-based GitOps using SystemD and Git. An alternative to Ansible, Puppet, Chef, and SaltStack.",
@@ -241,8 +254,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1710193739, 0),
+	Updated: time.Unix(1710691067, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "Fault-Tolerent Distributed Systems with Replicated State Machines in Go",
+			Description: "A simple example of a fault-tolerent distributed system in Go with the Raft consensus algorithm.",
+			Created:     time.Unix(1710633600, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2024-03-17-distributed-systems-in-go",
+			},
+		},
 		{
 			Title:       "GitOps using SystemD",
 			Description: "Pull-based GitOps using SystemD and Git. An alternative to Ansible, Puppet, Chef, and SaltStack.",
