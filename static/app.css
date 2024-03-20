@@ -8,6 +8,16 @@ body>footer {
   padding-bottom: 2em;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body>main{
+  flex-grow: 1;
+}
+
 .anchor {
   opacity: 0.3;
   transition: opacity 0.1s ease-in-out;

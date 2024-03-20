@@ -28,12 +28,13 @@ import (
 )
 
 var (
-	//go:embed gen components base.html base.htmx
+	//go:embed gen components base.html base.htmx 404.tmpl
 	html embed.FS
 	//go:embed static
 	static        embed.FS
 	version       = "dev"
 	listenAddress string
+	publicURL     string
 )
 
 var app = &cli.App{
@@ -44,8 +45,17 @@ var app = &cli.App{
 	Flags: []cli.Flag{
 		&cli.StringFlag{
 			Name:        "listen.address",
+			Usage:       "The address to listen on",
 			Value:       ":3000",
 			Destination: &listenAddress,
+			EnvVars:     []string{"LISTEN_ADDRESS"},
+		},
+		&cli.StringFlag{
+			Name:        "public.url",
+			Usage:       "The public URL",
+			Value:       "https://blog.mnguyen.fr",
+			Destination: &publicURL,
+			EnvVars:     []string{"PUBLIC_URL"},
 		},
 	},
 	Action: func(_ *cli.Context) error {
@@ -110,12 +120,18 @@ var app = &cli.App{
 				ParseFS(html, base, path, "components/*")
 			if err != nil {
 				if strings.Contains(err.Error(), "no files") {
-					http.Error(w, "not found", http.StatusNotFound)
+					w.WriteHeader(http.StatusNotFound)
+					t, err = template.New("base").
+						Funcs(sprig.TxtFuncMap()).
+						ParseFS(html, base, "404.tmpl", "components/*")
+					if err != nil {
+						panic(fmt.Sprintf("failed to parse 404.tmpl: %v", err))
+					}
 				} else {
 					log.Err(err).Msg("template error")
-					http.Error(w, err.Error(), http.StatusNotFound)
+					http.Error(w, err.Error(), http.StatusInternalServerError)
+					return
 				}
-				return
 			}
 
 			pageS := r.URL.Query().Get("page")
@@ -128,10 +144,12 @@ var app = &cli.App{
 					Next    int
 					Last    int
 				}
-				Index []index.Index
-				Path  string
+				Index     []index.Index
+				Path      string
+				PublicURL string
 			}{
-				Path: r.URL.Path,
+				PublicURL: publicURL,
+				Path:      r.URL.Path,
 				Pager: struct {
 					First   int
 					Prev    int
@@ -181,10 +199,10 @@ var app = &cli.App{
 			fmt.Fprint(w, `User-agent: *
 Disallow:
 
-Sitemap: https://blog.mnguyen.fr/sitemap.xml
-Sitemap: https://blog.mnguyen.fr/rss
-Sitemap: https://blog.mnguyen.fr/atom
-`)
+Sitemap: %s/sitemap.xml
+Sitemap: %s/rss
+Sitemap: %s/atom
+`, publicURL, publicURL, publicURL)
 		})
 		r.Get("/*", renderFn)
 		r.Handle("/static/*", http.FileServer(http.FS(static)))

@@ -9,6 +9,7 @@ import (
 	"go/format"
 	"io"
 	"os"
+	"path"
 	"path/filepath"
 	"sort"
 	"text/template"
@@ -116,7 +117,7 @@ func buildPages() (index [][]Index, err error) {
 			Title:         fmt.Sprintf("%v", metaData["title"]),
 			Description:   fmt.Sprintf("%v", metaData["description"]),
 			PublishedDate: date.Unix(),
-			Href:          filepath.Join("/blog", entry.Name()),
+			Href:          path.Join("/blog", entry.Name()),
 			Tags:          tags,
 		})
 		i++

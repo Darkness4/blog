@@ -41,7 +41,7 @@ var (
 	//go:embed pages/*
 	md embed.FS
 
-	//go:embed templates/markdown.tmpl
+	//go:embed templates/markdown.tmpl templates/markdown-blog.tmpl
 	mdTmpl embed.FS
 )
 
@@ -83,7 +83,10 @@ func filterBlogPages(input <-chan string) (blogPages <-chan string, rest <-chan 
 		defer close(o)
 		defer close(r)
 		for file := range input {
-			if strings.HasPrefix(file, "pages/blog") && strings.HasSuffix(file, "page.md") {
+			if strings.HasPrefix(filepath.Base(file), "-") {
+				continue
+			}
+			if strings.HasPrefix(file, "pages/blog") && filepath.Base(file) == "page.md" {
 				o <- file
 			} else {
 				r <- file
@@ -241,7 +244,7 @@ func processPages() {
 				log.Fatal().Err(err).Msg("body template failure")
 			}
 
-			t := template.Must(template.ParseFS(mdTmpl, "templates/markdown.tmpl"))
+			t := template.Must(template.ParseFS(mdTmpl, "templates/markdown-blog.tmpl"))
 			if err := t.Execute(w, struct {
 				Title         string
 				Description   string
@@ -250,9 +253,9 @@ func processPages() {
 				PublishedDate string
 				TOC           string
 				ReadingTime   string
-
-				Prev string
-				Next string
+				Curr          string
+				Prev          string
+				Next          string
 			}{
 				Title:         fmt.Sprintf("%v", metaData["title"]),
 				Description:   fmt.Sprintf("%v", metaData["description"]),
@@ -262,6 +265,7 @@ func processPages() {
 				ReadingTime:   readingTime,
 				PublishedDate: date.Format("Monday 02 January 2006"),
 
+				Curr: strings.TrimSuffix(strings.TrimPrefix(file.curr, "pages"), "/page.md"),
 				Prev: strings.TrimSuffix(strings.TrimPrefix(file.prev, "pages"), "/page.md"),
 				Next: strings.TrimSuffix(strings.TrimPrefix(file.next, "pages"), "/page.md"),
 			}); err != nil {
@@ -294,11 +298,39 @@ func processPages() {
 				var sb strings.Builder
 
 				ctx := parser.NewContext()
-				if err := markdown.Convert(content, &sb, parser.WithContext(ctx)); err != nil {
+				doc := markdown.Parser().Parse(text.NewReader(content), parser.WithContext(ctx))
+				if err := markdown.Renderer().Render(&sb, content, doc); err != nil {
 					log.Fatal().Err(err).Msg("write file failure")
 				}
-				metaData := meta.Get(ctx)
+				tree, err := toc.Inspect(doc, content, toc.Compact(true))
+				if err != nil {
+					log.Fatal().Err(err).Msg("toc failure")
+				}
+				var tocSB strings.Builder
+				list := toc.RenderList(tree)
+				if list != nil {
+					if err := markdown.Renderer().Render(&tocSB, content, list); err != nil {
+						log.Fatal().Err(err).Msg("toc render failure")
+					}
+				}
+
+				// Replace {{ with &#123;&#123;
 				out := strings.ReplaceAll(sb.String(), "{{", "&#123;&#123;")
+				out = strings.ReplaceAll(out, "\\{\\{", "{{")
+				metaData := meta.Get(ctx)
+
+				// Compile time variable
+				var bodySB strings.Builder
+				tBody := template.Must(template.New("body").Parse(out))
+				if err := tBody.Execute(&bodySB, struct {
+					TOC  string
+					Path string
+				}{
+					TOC:  tocSB.String(),
+					Path: "{{ $.Path }}", // Pass variable to runtime
+				}); err != nil {
+					log.Fatal().Err(err).Msg("body template failure")
+				}
 
 				t := template.Must(template.ParseFS(mdTmpl, "templates/markdown.tmpl"))
 				if err := t.Execute(w, struct {
@@ -306,11 +338,15 @@ func processPages() {
 					Description string
 					Style       string
 					Body        string
+					TOC         string
+					Curr        string
 				}{
 					Title:       fmt.Sprintf("%v", metaData["title"]),
 					Description: fmt.Sprintf("%v", metaData["description"]),
 					Style:       cssBuffer.String(),
-					Body:        out,
+					Body:        bodySB.String(),
+					TOC:         tocSB.String(),
+					Curr:        strings.TrimSuffix(strings.TrimPrefix(file, "gen/pages"), "/page.md"),
 				}); err != nil {
 					log.Fatal().Err(err).Msg("generate file from template failure")
 				}

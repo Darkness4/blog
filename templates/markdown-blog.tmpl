@@ -1,11 +1,19 @@
 {{ `{{define "head"}}` }}
 <title>{{ .Title }} - Marc Nguyen's Blog</title>
 <meta name="description" content="{{ .Description }}">
+<meta name="author" content="Marc Nguyen">
 <meta name="robots" content="index, follow" />
 <meta property="og:title" content="{{ .Title }}"/>
 <meta property="og:description" content="{{ .Description }}" />
-<meta property="og:url" content="{{ .PublicURL }}{{ .Curr }}" />
-<link rel="canonical" href="{{ .PublicURL }}{{ .Curr }}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{{`{{ .PublicURL }}`}}{{ .Curr }}" />
+<link rel="canonical" href="{{`{{ .PublicURL }}`}}{{ .Curr }}" />
+{{- if .Prev }}
+<link rel="prev" href="{{`{{ .PublicURL }}`}}{{ .Prev }}" />
+{{- end }}
+{{- if .Next }}
+<link rel="next" href="{{`{{ .PublicURL }}`}}{{ .Next }}" />
+{{- end }}
 <style>
   {{ .Style }}
 </style>
@@ -32,11 +40,23 @@
         <center>
           <hgroup>
             <h1>{{ .Title }}</h1>
+            <small>{{ .PublishedDate }}</small>
           </hgroup>
         </center>
+        <small>Estimated reading time: {{ .ReadingTime }}</small>
         {{ .Body }}
       </main>
     </article>
+    <nav style="direction: rtl">
+      {{- if .Prev }}
+      <a href="{{ .Prev }}">« Old Article</a>
+      {{- else }}
+      <div></div>
+      {{- end }}
+      {{- if .Next }}
+      <a href="{{ .Next }}">New Article »</a>
+      {{- end }}
+    </nav>
   <div>
 <div>
 {{ `{{ end }}` }}

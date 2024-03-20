@@ -1,0 +1,14 @@
+{{ define "head" }}
+<title>Page Not Found - Marc Nguyen's Blog</title>
+<meta name="description" content="Oops! The page you were looking for couldn't be found.">
+    <meta name="keywords" content="404, page not found, blog, your blog keywords">
+{{ end }}
+
+{{ define "body" }}
+<center>
+<h1 style="font-size: 5rem">404 Not Found</h1>
+<p>Sorry, the page you requested could not be found.</p>
+  <p>You can go back to <a href="/">homepage</a> or try searching for the content:</p>
+  {{ template "SearchBox" . }}
+</center>
+{{ end }}

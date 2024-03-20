@@ -1,6 +1,12 @@
 {{define "head"}}
 <title>Marc Nguyen's Blog</title>
 <meta name="description" content="A blog about DevOps, Infrastructure and Programming in general." />
+<meta name="robots" content="index, follow" />
+<meta property="og:title" content="Marc Nguyen's Blog"/>
+<meta property="og:description" content="A blog about DevOps, Infrastructure and Programming in general." />
+<meta property="og:url" content="{{ .PublicURL }}{{ .Path }}" />
+<link rel="canonical" href="{{ .PublicURL }}{{ .Path }}" />
+<style>
 <style>
   #fact {
     opacity: 1;
