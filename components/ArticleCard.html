@@ -1,9 +1,16 @@
 {{define "ArticleCard"}}
 <article>
   <main>
-    <a href="{{ .Href }}"><h2>{{ .Title }}</h2></a>
+    <a href="{{ .Href }}">
+      <h2>{{ .Title }}</h2>
+    </a>
     <small>{{ .PublishedDate | date "Monday January 02 2006" }}</small>
     <p>{{ .Description }}</p>
   </main>
+  <footer>
+    {{- range .Tags }}
+    <div class="chip" style="{{ computeColorByWord . }}">{{ . }}</div>
+    {{- end }}
+  </footer>
 </article>
 {{ end }}

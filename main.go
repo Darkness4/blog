@@ -17,6 +17,7 @@ import (
 	"embed"
 
 	"github.com/Darkness4/blog/gen/index"
+	"github.com/Darkness4/blog/utils/color"
 	"github.com/Darkness4/blog/utils/math"
 	"github.com/Masterminds/sprig/v3"
 	"github.com/go-chi/chi/v5"
@@ -36,6 +37,12 @@ var (
 	listenAddress string
 	publicURL     string
 )
+
+var funcsMap = func() template.FuncMap {
+	f := sprig.TxtFuncMap()
+	f["computeColorByWord"] = color.ComputeByWord
+	return f
+}
 
 var app = &cli.App{
 	Name:    "blog",
@@ -116,13 +123,13 @@ var app = &cli.App{
 				base = "base.htmx"
 			}
 			t, err := template.New("base").
-				Funcs(sprig.TxtFuncMap()).
+				Funcs(funcsMap()).
 				ParseFS(html, base, path, "components/*")
 			if err != nil {
 				if strings.Contains(err.Error(), "no files") {
 					w.WriteHeader(http.StatusNotFound)
 					t, err = template.New("base").
-						Funcs(sprig.TxtFuncMap()).
+						Funcs(funcsMap()).
 						ParseFS(html, base, "404.tmpl", "components/*")
 					if err != nil {
 						panic(fmt.Sprintf("failed to parse 404.tmpl: %v", err))
