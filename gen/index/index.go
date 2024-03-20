@@ -68,6 +68,8 @@ var Pages = [][]Index{
 			Tags: []string{
 				"go",
 				"webauthn",
+				"authentication",
+				"security",
 			},
 		},
 		{
@@ -81,6 +83,8 @@ var Pages = [][]Index{
 			Tags: []string{
 				"go",
 				"cgo",
+				"ffi",
+				"c",
 			},
 		},
 		{
@@ -259,7 +263,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1710901015, 0),
+	Updated: time.Unix(1710901260, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "Fault-Tolerent Distributed Systems with Replicated State Machines in Go",

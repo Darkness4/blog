@@ -1,7 +1,7 @@
 ---
 title: Using C libraries in Go with CGO
 description: Simple guide and recommendations about CGO. For documentation purposes.
-tags: [go, cgo]
+tags: [go, cgo, ffi, c]
 ---
 
 ## Table of contents

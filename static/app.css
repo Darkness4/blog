@@ -179,16 +179,15 @@ blockquote {
   opacity: 0.7;
 }
 
+/**
+ * Chip with always visible text.
+ *
+ * To use it, compute at component level: --label-r, --label-g, --label-b, --label-h, --label-s, --label-l to generate the color.
+ */
 .chip {
   --background-alpha: 0.18;
   --border-alpha: 0.3;
   --lightness-threshold: 0.6;
-  /* --label-r: 160;
-  --label-g: 85;
-  --label-b: 21;
-  --label-h: 27;
-  --label-s: 76;
-  --label-l: 35; */
   --perceived-lightness: calc( ((var(--label-r) * 0.2126) + (var(--label-g) * 0.7152) + (var(--label-b) * 0.0722)) / 255 );
   --lightness-switch: max(0, min(calc((1/(var(--lightness-threshold) - var(--perceived-lightness)))), 1));
   --lighten-by: calc(((var(--lightness-threshold) - var(--perceived-lightness)) * 100) * var(--lightness-switch));
