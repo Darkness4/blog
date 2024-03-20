@@ -2482,4 +2482,9 @@ I hope that this guide will help you implement WebAuthn in your projects.
 
 By the way, ignore [webauthn.io](https://webauthn.io) and [webauthn.guide](https://webauthn.guide), they are simply outdated. However, you can trust [the guide by Okta](https://webauthn.me/introduction). [Their demo is pretty cool.](https://webauthn.me).
 
-[Source Code of the whole project](https://github.com/Darkness4/webauthn-minimal).
+## References
+
+- [Minimal Example Source Code](https://github.com/Darkness4/webauthn-minimal)
+- [WebAuthn demo with Auth HTMX](https://auth-htmx.mnguyen.fr)
+- [Auth HTMX Source Code](https://github.com/Darkness4/auth-htmx)
+- [WebAuthn Demo Step-by-Step](https://webauthn.me)

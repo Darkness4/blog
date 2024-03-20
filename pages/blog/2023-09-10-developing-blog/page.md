@@ -534,8 +534,6 @@ With the implementation of these features, my blog has reached the minimum viabl
 - Escaping `{{` to avoid weird behavior with the templating engine.
 - CSS, which is just PicoCSS.
 
-The [source code is available on GitHub](https://github.com/Darkness4/blog).
-
 _Was it worth it?_ Hell yeah, I control everything in this blog, and most problems are indicated at compile time. With HTMX, PicoCSS and Goldmark, I'm no longer writing HTML, CSS and JS to write an article, how crazy is that?
 
 _How difficult was it?_ It's not really "hard", but there are certainly more steps than bootstrapping SveltePress or Docusaurus. It's also more prone to bugs than an established product like SveltePress or Docusaurus.
@@ -543,3 +541,10 @@ _How difficult was it?_ It's not really "hard", but there are certainly more ste
 _Can it be a library like Hugo?_ No, I'm not ready for that.
 
 Anyway, this is like installing Gentoo: it's for learning, having full-control and being ultra-optimized.
+
+## References
+
+- [Blog's Source Code](https://github.com/Darkness4/blog)
+- [HTMX](https://htmx.org)
+- [Goldmark](https://github.com/yuin/goldmark)
+- [PicoCSS](https://picocss.com)

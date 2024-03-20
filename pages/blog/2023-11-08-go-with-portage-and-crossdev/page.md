@@ -806,3 +806,9 @@ build-export-static:
         cache-from: type=gha
         cache-to: type=gha,mode=max
 ```
+
+## References
+
+- [Gentoo Handbook](https://wiki.gentoo.org/wiki/Handbook:AMD64)
+- [Portage](https://wiki.gentoo.org/wiki/Portage)
+- [Crossdev](https://wiki.gentoo.org/wiki/Crossdev)

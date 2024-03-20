@@ -719,3 +719,9 @@ In reality, if I'm starting an infrastructure from scratch, I would deploy a Kub
 By the way, did you know that is blog is deployed using GitOps? I don't have to access my Kubernetes server to deploy a new version of this blog. Also, since GitOps is too heavy, I'm simply using a CronJob with a Kubernetes Service Account to refresh my Deployment. Isn't that cool?
 
 Anyway, I hope you enjoyed this article. If you have any questions, feel free to email me.
+
+## References
+
+- [ArgoCD](https://argoproj.github.io/argo-cd/)
+- [SystemD](https://systemd.io)
+- [GitOps](https://www.gitops.tech)

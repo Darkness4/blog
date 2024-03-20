@@ -198,3 +198,10 @@ TL;DR: Learn everything, test everything, take the best, be your own judge.
 Congrats, you wasted time on this article. I mean, this article was to criticize influencers. This article is made to influence, so I guess I'm an influencer.
 
 Just because an influencer says something sucks doesn't mean you shouldn't learn it. In fact, it's because it's so popular and sh-ty that you should learn about it, like any popular disease.
+
+## References
+
+- [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [Reso Coder](https://resocoder.com/2019/08/27/flutter-tdd-clean-architecture-course-1-explanation-project-structure/)
+- [Design Patterns](https://refactoring.guru/design-patterns)
+- [Effective Go](https://golang.org/doc/effective_go.html)

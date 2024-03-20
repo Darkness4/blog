@@ -290,3 +290,7 @@ To summarize this article, to be able to maintain a Go program using C libraries
   - Don't forget thread safety (mutex/semaphore).
 
 The smaller the interface between Go and C, the more compatible it is with C libraries.
+
+## References
+
+- [CGo documentation](https://pkg.go.dev/cmd/cgo)

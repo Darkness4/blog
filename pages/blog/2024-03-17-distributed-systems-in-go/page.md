@@ -3133,3 +3133,12 @@ If you feel lost, maybe it's worth checking Travis Jeffery's book. Thought, ther
 This article doesn't show how to implement Observability and Role-Based Access Control as the implementation varies a lot depending on the use case. ConnectRPC handles OpenTelemetry differently, and RBAC is simply not the subject of this article.
 
 I've also separated the HTTP API from the Raft API. Travis Jeffery combines both by using a connection multiplexer `cmux`. If I were to implement a production ready distributed system, I would've replaced the whole network layer of Raft with ConnectRPC. This would allow me to use the same network layer for the HTTP API and the Raft API.
+
+## References
+
+- [Project Source Code](https://github.com/Darkness4/distributed-kv)
+- [`hashicorp/raft` fork with forward and DNS fixes](https://github.com/Darkness4/raft)
+- [`hashicorp/raft`](https://github.com/hashicorp/raft)
+- [Raft Consensus Algorithm](https://raft.github.io/)
+- [ConnectRPC](https://connectrpc.com)
+- ["Distributed Services with Go" by Travis Jeffery](https://pragprog.com/titles/tjgo/distributed-services-with-go/)

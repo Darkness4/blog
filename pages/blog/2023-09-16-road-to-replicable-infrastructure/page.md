@@ -354,7 +354,7 @@ console=ttyS0 console=tty0 root=live:http://<my-http-server>.squashfs my.hostnam
 - `rd.live.overlay.overlayfs=1`: Specifies that the OverlayFS should be used for the live overlay, which allows for layered file system modifications in a live environment.
 - `rd.neednet=1`: Indicates that the system requires network connectivity during the boot process. This is often used in live environments that rely on network resources.
 - `rd.debug=1`: Specifies that the dracut process inside the initramfs should be more verbose.
-- If we want to statically configure the network, we can add: `ip=<client-IP>:[<peer>]:<gateway-IP>:<netmask>:<client_hostname>:<interface>:{none|off|dhcp|on|any|dhcp6|auto6|ibft}[:[<dns1>][:<dns2>]]`. More info [about Dracut on the man pages](https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html#:~:text=ip%3D%3Cclient%2DIP%3E%3A%5B%3Cpeer%3E%5D%3A%3Cgateway%2DIP%3E%3A%3Cnetmask%3E%3A%3Cclient_hostname%3E%3A%3Cinterface%3E%3A%7Bnone%7Coff%7Cdhcp%7Con%7Cany%7Cdhcp6%7Cauto6%7Cibft%7D%5B%3A%5B%3Cdns1%3E%5D%5B%3A%3Cdns2%3E%5D%5D).
+- If we want to statically configure the network, we can add: `ip=<client-IP>:[<peer>]:<gateway-IP>:<netmask>:<client_hostname>:<interface>:{none|off|dhcp|on|any|dhcp6|auto6|ibft}[:[<dns1>][:<dns2>]]`. More info [about Dracut on the man pages](https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html).
 
 ### Testing Locally
 
@@ -421,7 +421,7 @@ I will NOT describe in details how to do it, but this is the big steps:
   tftp-root=/tftpboot
   ```
 
-- Configure the PXE settings to send which kernel, initd and kernel arguments:
+- Configure the PXE settings to send which kernel, initrd and kernel arguments:
 
   ```shell
   #/tftpboot/pxelinux.cfg/default
@@ -461,3 +461,11 @@ To manage the servers, each server has a IPMI controller, and if one server has 
 Not only it is easier to manage, but it is replicable. We can use the same squashfs file for our entire infrastructure, then use Git to customize the infrastructure.
 
 By separating the immutable OS components from user-specific data, we can achieve greater efficiency, security, and scalability in our systems.
+
+## References
+
+- [Example of Node Config](https://github.com/Darkness4/node-config)
+- [Light Gentoo Kernel Config](https://gist.github.com/Darkness4/d8e009bedd7c04db2a213c7913b5831e)
+- [Dracut](https://wiki.gentoo.org/wiki/Dracut)
+- [Dracut Manual](https://man7.org/linux/man-pages/man7/dracut.cmdline.7.html)
+- [OverlayFS](https://wiki.archlinux.org/title/Overlay_filesystem)

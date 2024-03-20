@@ -628,3 +628,12 @@ In conclusion, just use OAuth2 and OpenID Connect. Throw away the "home-made" so
 Next step is OAuth2.1 with PKCE, by the way. Don't miss it.
 
 Bonus: If you are also asking: "Yeah, but it's harder to handle roles, now", maybe you forgot that Role-Based Access Control (RBAC) is simply about matching a user ID with a Role. Relationship is Many-to-Many, deal with it.
+
+## References
+
+- [Auth HTMX](https://auth-htmx.mnguyen.fr)
+- [Auth HTMX Source Code](https://github.com/Darkness4/auth-htmx)
+- [Simple OIDC Example Source Code](https://github.com/Darkness4/basic-oidc-go)
+- [OAuth2](https://oauth.net/about/introduction/)
+- [OpenID Connect](https://openid.net/connect/)
+- [Dex](https://github.com/dexidp/dex)
