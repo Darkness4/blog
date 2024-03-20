@@ -196,7 +196,7 @@ var app = &cli.App{
 			fmt.Fprintf(w, "%s\n%s", header, b)
 		})
 		r.Get("/robots.txt", func(w http.ResponseWriter, _ *http.Request) {
-			fmt.Fprint(w, `User-agent: *
+			fmt.Fprintf(w, `User-agent: *
 Disallow:
 
 Sitemap: %s/sitemap.xml
