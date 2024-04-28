@@ -14,7 +14,7 @@ require (
 	github.com/litao91/goldmark-mathjax v0.0.0-20210217064022-a43cf739a50f
 	github.com/rs/zerolog v1.32.0
 	github.com/stefanfritsch/goldmark-admonitions v1.1.1
-	github.com/urfave/cli/v2 v2.27.1
+	github.com/urfave/cli/v2 v2.27.2
 	github.com/yuin/goldmark v1.7.0
 	github.com/yuin/goldmark-highlighting/v2 v2.0.0-20230729083705-37449abec8cc
 	github.com/yuin/goldmark-meta v1.1.0
@@ -29,7 +29,7 @@ require (
 	github.com/PuerkitoBio/goquery v1.9.1 // indirect
 	github.com/alecthomas/chroma v0.10.0 // indirect
 	github.com/andybalholm/cascadia v1.3.2 // indirect
-	github.com/cpuguy83/go-md2man/v2 v2.0.3 // indirect
+	github.com/cpuguy83/go-md2man/v2 v2.0.4 // indirect
 	github.com/dlclark/regexp2 v1.11.0 // indirect
 	github.com/dop251/goja v0.0.0-20240220182346-e401ed450204 // indirect
 	github.com/fatih/color v1.16.0 // indirect
@@ -51,7 +51,7 @@ require (
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/shopspring/decimal v1.3.1 // indirect
 	github.com/spf13/cast v1.6.0 // indirect
-	github.com/xrash/smetrics v0.0.0-20231213231151-1d8dd44e695e // indirect
+	github.com/xrash/smetrics v0.0.0-20240312152122-5f08fbb34913 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/crypto v0.21.0 // indirect
 	golang.org/x/exp v0.0.0-20240222234643-814bf88cf225 // indirect
