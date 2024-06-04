@@ -2,7 +2,7 @@ module github.com/Darkness4/blog
 
 go 1.22
 
-toolchain go1.22.2
+toolchain go1.22.4
 
 require (
 	cdr.dev/slog v1.4.2
