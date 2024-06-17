@@ -108,9 +108,13 @@ func buildPages() (index [][]Index, err error) {
 		if err != nil {
 			log.Fatal().Err(err).Msg("failed to read date")
 		}
-		tags := make([]string, 0, len(metaData["tags"].([]interface{})))
-		for _, tag := range metaData["tags"].([]interface{}) {
-			tags = append(tags, fmt.Sprintf("%v", tag))
+		var tags []string
+		if metaData["tags"] != nil {
+			mTags := metaData["tags"].([]interface{})
+			tags = make([]string, 0, len(mTags))
+			for _, tag := range mTags {
+				tags = append(tags, fmt.Sprintf("%v", tag))
+			}
 		}
 		index[page] = append(index[page], Index{
 			EntryName:     entry.Name(),
