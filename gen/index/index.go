@@ -22,6 +22,22 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2024-06-18-a-take-zig-c-translate",
+			Title:         "A first try on Zig and C interop",
+			Description:   "Trying Zig with C libraries for the first time.",
+			PublishedDate: time.Unix(1718668800, 0),
+			Href:          "/blog/2024-06-18-a-take-zig-c-translate",
+			Loc:           "https://blog.mnguyen.fr/blog/2024-06-18-a-take-zig-c-translate",
+			Priority:      0.5,
+			Tags: []string{
+				"zig",
+				"c",
+				"ffmpeg",
+				"av1",
+				"ffi",
+			},
+		},
+		{
 			EntryName:     "2024-03-17-distributed-systems-in-go",
 			Title:         "Fault-Tolerent Distributed Systems with Replicated State Machines in Go",
 			Description:   "A simple example of a fault-tolerent distributed system in Go with the Raft consensus algorithm.",
@@ -263,8 +279,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1710946685, 0),
+	Updated: time.Unix(1718743643, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "A first try on Zig and C interop",
+			Description: "Trying Zig with C libraries for the first time.",
+			Created:     time.Unix(1718668800, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2024-06-18-a-take-zig-c-translate",
+			},
+		},
 		{
 			Title:       "Fault-Tolerent Distributed Systems with Replicated State Machines in Go",
 			Description: "A simple example of a fault-tolerent distributed system in Go with the Raft consensus algorithm.",
