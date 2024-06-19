@@ -171,7 +171,7 @@ html {
   padding: 0;
 }
 
-article :not(code) p {
+article :not(code) p:not(:is(center p, center * p)) {
   text-align: justify;
 }
 
