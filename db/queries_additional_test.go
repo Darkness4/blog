@@ -12,8 +12,8 @@ import (
 )
 
 func TestCreateOrIncrementPageViewsOnUniqueIP(t *testing.T) {
-	godotenv.Load(".env")
-	godotenv.Load(".env.local")
+	_ = godotenv.Load(".env")
+	_ = godotenv.Load(".env.local")
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()

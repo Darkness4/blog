@@ -6,6 +6,7 @@ import (
 	"errors"
 
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/rs/zerolog/log"
 )
 
 func (q *Queries) CreateOrIncrementPageViewsOnUniqueIP(
@@ -18,7 +19,11 @@ func (q *Queries) CreateOrIncrementPageViewsOnUniqueIP(
 	if err != nil {
 		return err
 	}
-	defer tx.Rollback(context.Background())
+	defer func() {
+		if err := tx.Rollback(context.Background()); err != nil && !errors.Is(err, sql.ErrTxDone) {
+			log.Err(err).Msg("failed to rollback transaction")
+		}
+	}()
 	qtx := q.WithTx(tx)
 
 	if _, err := qtx.CreateOrIncrementPageViews(ctx, pageID); err != nil {
