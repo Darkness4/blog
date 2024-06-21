@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
+	"net"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -16,6 +17,7 @@ import (
 
 	"embed"
 
+	"github.com/Darkness4/blog/db"
 	"github.com/Darkness4/blog/gen/index"
 	"github.com/Darkness4/blog/utils/color"
 	"github.com/Darkness4/blog/utils/math"
@@ -26,6 +28,9 @@ import (
 	"github.com/rs/zerolog/hlog"
 	"github.com/rs/zerolog/log"
 	"github.com/urfave/cli/v2"
+
+	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/jackc/pgx/v5/stdlib"
 )
 
 var (
@@ -36,12 +41,30 @@ var (
 	version       = "dev"
 	listenAddress string
 	publicURL     string
+	dbDSN         string
 )
 
 var funcsMap = func() template.FuncMap {
 	f := sprig.TxtFuncMap()
 	f["computeColorByWord"] = color.ComputeByWord
 	return f
+}
+
+func ReadUserIP(r *http.Request) string {
+	IPAddress := r.Header.Get("X-Real-Ip")
+	if IPAddress == "" {
+		IPAddress = r.Header.Get("X-Forwarded-For")
+	}
+	if IPAddress == "" {
+		IPAddress = r.RemoteAddr
+	}
+	addr := strings.ToLower(IPAddress)
+
+	host, _, err := net.SplitHostPort(addr)
+	if err != nil {
+		return addr
+	}
+	return host
 }
 
 var app = &cli.App{
@@ -64,9 +87,33 @@ var app = &cli.App{
 			Destination: &publicURL,
 			EnvVars:     []string{"PUBLIC_URL"},
 		},
+		&cli.StringFlag{
+			Name:        "db.dsn",
+			Usage:       "The DSN for the database",
+			Destination: &dbDSN,
+			EnvVars:     []string{"DB_DSN"},
+			Required:    true,
+		},
 	},
-	Action: func(_ *cli.Context) error {
+	Action: func(cCtx *cli.Context) error {
+		ctx := cCtx.Context
 		log.Level(zerolog.DebugLevel)
+
+		// DB connection
+		pool, err := pgxpool.New(ctx, dbDSN)
+		if err != nil {
+			return err
+		}
+		defer pool.Close()
+
+		// Initial migration
+		sqldb := stdlib.OpenDBFromPool(pool)
+		if err := db.InitialMigration(sqldb); err != nil {
+			return err
+		}
+
+		// Set up DB queries
+		q := db.New(pool)
 
 		// Router
 		r := chi.NewRouter()
@@ -74,36 +121,36 @@ var app = &cli.App{
 
 		// Pages rendering
 		var renderFn http.HandlerFunc = func(w http.ResponseWriter, r *http.Request) {
-			path := filepath.Clean(r.URL.Path)
+			cleanPath := filepath.Clean(r.URL.Path)
 
 			// Check if asset
-			if f, err := html.Open(filepath.Join("gen/pages", r.URL.Path)); err == nil {
-				finfo, err := f.Stat()
-				if err != nil {
-					log.Err(err).Msg("failed to fetch fileinfo")
-					http.Error(w, err.Error(), http.StatusInternalServerError)
+			fpath := filepath.Join("gen/pages", cleanPath)
+			if f, err := html.Open(fpath); err == nil {
+				isPage := func() bool {
+					defer f.Close()
+					finfo, err := f.Stat()
+					if err != nil {
+						log.Err(err).Msg("failed to fetch fileinfo")
+						http.Error(w, err.Error(), http.StatusInternalServerError)
+						return false
+					}
+
+					if finfo.IsDir() {
+						// It's a page, or a file not found
+						return true
+					}
+
+					// Serve the file
+					if _, err = io.Copy(w, f); err != nil {
+						log.Err(err).Msg("failed to serve file")
+						http.Error(w, err.Error(), http.StatusInternalServerError)
+					}
+					return false
+				}()
+
+				if !isPage {
 					return
 				}
-				if !finfo.IsDir() {
-					buf := make([]byte, 512)
-					for {
-						_, err := f.Read(buf)
-						if err == io.EOF {
-							return
-						} else if err != nil {
-							log.Err(err).Msg("failed to read body")
-							http.Error(w, err.Error(), http.StatusInternalServerError)
-							return
-						}
-
-						if _, err := w.Write(buf); err != nil {
-							log.Err(err).Msg("failed to write body")
-							http.Error(w, err.Error(), http.StatusInternalServerError)
-							return
-						}
-					}
-				}
-				_ = f.Close()
 			} else if err != nil && !errors.Is(err, fs.ErrNotExist) {
 				log.Err(err).Msg("failed to read file")
 				http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -111,7 +158,7 @@ var app = &cli.App{
 			}
 
 			// It's a page
-			path = filepath.Clean(fmt.Sprintf("gen/pages/%s/page.tmpl", path))
+			templatePath := filepath.Clean(fmt.Sprintf("gen/pages/%s/page.tmpl", cleanPath))
 
 			// Check if SSR
 			var base string
@@ -122,9 +169,11 @@ var app = &cli.App{
 				// SSR
 				base = "base.htmx"
 			}
+
+			// Set up the template
 			t, err := template.New("base").
 				Funcs(funcsMap()).
-				ParseFS(html, base, path, "components/*")
+				ParseFS(html, base, templatePath, "components/*")
 			if err != nil {
 				if strings.Contains(err.Error(), "no files") {
 					w.WriteHeader(http.StatusNotFound)
@@ -143,6 +192,12 @@ var app = &cli.App{
 
 			pageS := r.URL.Query().Get("page")
 			page, _ := strconv.Atoi(pageS)
+
+			pv, err := q.FindPageViewsOrZero(ctx, strings.ToLower(cleanPath))
+			if err != nil {
+				log.Err(err).Msg("failed to fetch page views")
+			}
+
 			if err := t.ExecuteTemplate(w, "base", struct {
 				Pager struct {
 					First   int
@@ -151,9 +206,11 @@ var app = &cli.App{
 					Next    int
 					Last    int
 				}
-				Index     []index.Index
-				Path      string
-				PublicURL string
+				Index      []index.Index
+				Path       string
+				PublicURL  string
+				PageViewsF string
+				PageViews  int
 			}{
 				PublicURL: publicURL,
 				Path:      r.URL.Path,
@@ -170,10 +227,19 @@ var app = &cli.App{
 					Next:    math.MinI(index.PageSize-1, page+1),
 					Last:    index.PageSize - 1,
 				},
-				Index: index.Pages[page],
+				Index:      index.Pages[page],
+				PageViewsF: math.FormatNumber(float64(pv.Views + 1)),
+				PageViews:  int(pv.Views + 1),
 			}); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
 			}
+
+			go func() {
+				if err := q.CreateOrIncrementPageViewsOnUniqueIP(ctx, pool, strings.ToLower(cleanPath), ReadUserIP(r)); err != nil {
+					log.Err(err).Msg("failed to increment page views")
+				}
+			}()
 		}
 		r.Get("/rss", func(w http.ResponseWriter, _ *http.Request) {
 			w.Header().Set("Content-Type", "application/rss+xml")
@@ -222,6 +288,7 @@ Sitemap: %s/atom
 func main() {
 	_ = godotenv.Load(".env.local")
 	_ = godotenv.Load(".env")
+	log.Logger = log.Logger.With().Caller().Logger()
 	if err := app.Run(os.Args); err != nil {
 		log.Fatal().Err(err).Msg("app crashed")
 	}

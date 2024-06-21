@@ -1,0 +1,12 @@
+version: '2'
+sql:
+  - engine: 'postgresql'
+    queries: 'db/queries.sql'
+    schema: 'db/migrations'
+    database:
+      uri: '${DB_DSN}'
+    gen:
+      go:
+        package: 'db'
+        out: 'db'
+        sql_package: 'pgx/v5'

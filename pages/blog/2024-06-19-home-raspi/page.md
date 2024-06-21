@@ -263,11 +263,11 @@ Not very much to say. The cluster is running well, and I'm happy with it. Thanks
 
 <center>
 
-<img src="/blog/2024-09-19-home-raspi/page.assets/signal-2024-06-19-201128_003.jpeg" alt="signal-2024-06-19-201128_003" style="zoom:25%;" />
+<img src="/blog/2024-06-19-home-raspi/page.assets/signal-2024-06-19-201128_003.jpeg" alt="signal-2024-06-19-201128_003" style="zoom:25%;" />
 
 _The cluster on the shelf, wirelessly connected to the modem. There is a 120 mm fan behind the cluster._
 
-<img src="/blog/2024-09-19-home-raspi/page.assets/signal-2024-06-19-201128_002.jpeg" alt="signal-2024-06-19-201128_002" style="zoom:25%;" />
+<img src="/blog/2024-06-19-home-raspi/page.assets/signal-2024-06-19-201128_002.jpeg" alt="signal-2024-06-19-201128_002" style="zoom:25%;" />
 
 _The cluster is quite small. Not as small as [Jeff Geerling](https://www.jeffgeerling.com/blog/2024/turing-rk1-2x-faster-18x-pricier-pi-5) 😭. At least, it's eco-friendly... right?_
 

@@ -20,7 +20,6 @@
 {{ `{{ end }}` }}
 
 {{ `{{define "body"}}` }}
-
 <div class="goto-top">
   <a role="button" href="#top">
     <svg height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg">
@@ -42,8 +41,8 @@
             <h1>{{ .Title }}</h1>
             <small>{{ .PublishedDate }}</small>
           </hgroup>
+          <small>{{ .ReadingTime }} read</small> · <small>Viewed {{ `{{ .PageViewsF }}` }} {{ `{{ .PageViews | plural "time" "times" }}` }}</small>
         </center>
-        <small>Estimated reading time: {{ .ReadingTime }}</small>
         {{ .Body }}
       </main>
     </article>

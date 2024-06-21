@@ -398,8 +398,30 @@ func computeReadingTime(text string) string {
 		log.Fatal().Err(err).Msg("count words failure")
 	}
 	minutes := words / 75 // Reading rate for technical articles
-	duration := (time.Duration(minutes) * time.Minute).String()
-	return duration[:len(duration)-2]
+
+	d := time.Duration(minutes) * time.Minute
+	h := d / time.Hour
+	d -= h * time.Hour
+	m := d / time.Minute
+
+	hourFormat := "hour"
+	if h > 1 {
+		hourFormat = "hours"
+	}
+	minuteFormat := "min"
+	if m > 1 {
+		minuteFormat = "mins"
+	}
+
+	res := ""
+	if h > 0 {
+		res += fmt.Sprintf("%d %s ", h, hourFormat)
+	}
+	if m > 0 {
+		res += fmt.Sprintf("%d %s", m, minuteFormat)
+	}
+
+	return res
 }
 
 func main() {
