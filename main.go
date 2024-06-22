@@ -51,14 +51,6 @@ var funcsMap = func() template.FuncMap {
 }
 
 func ReadUserIP(r *http.Request) string {
-	// Temporary debug
-	for name, values := range r.Header {
-		// Loop over all values for the name.
-		for _, value := range values {
-			fmt.Println(name, value)
-		}
-	}
-	fmt.Println("RemoteAddr", r.RemoteAddr)
 	IPAddress, _, _ := strings.Cut(r.Header.Get("X-Real-IP"), ",")
 	if IPAddress == "" {
 		IPAddress, _, _ = strings.Cut(r.Header.Get("X-Forwarded-For"), ",")
