@@ -240,7 +240,7 @@ var app = &cli.App{
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
 			}
-			if !is404 {
+			if !is404 && cleanPath != "/" {
 				go func() {
 					if err := q.CreateOrIncrementPageViewsOnUniqueIP(ctx, pool, strings.ToLower(cleanPath), ReadUserIP(r)); err != nil {
 						log.Err(err).Msg("failed to increment page views")
