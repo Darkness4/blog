@@ -196,9 +196,12 @@ var app = &cli.App{
 			pageS := r.URL.Query().Get("page")
 			page, _ := strconv.Atoi(pageS)
 
-			pv, err := q.FindPageViewsOrZero(ctx, strings.ToLower(cleanPath))
-			if err != nil {
-				log.Err(err).Msg("failed to fetch page views")
+			var pv db.PageView
+			if !is404 {
+				pv, err = q.FindPageViewsOrZero(ctx, strings.ToLower(cleanPath))
+				if err != nil {
+					log.Err(err).Msg("failed to fetch page views")
+				}
 			}
 
 			if err := t.ExecuteTemplate(w, "base", struct {
