@@ -174,8 +174,10 @@ var app = &cli.App{
 			t, err := template.New("base").
 				Funcs(funcsMap()).
 				ParseFS(html, base, templatePath, "components/*")
+			var is404 bool
 			if err != nil {
 				if strings.Contains(err.Error(), "no files") {
+					// Render 404
 					w.WriteHeader(http.StatusNotFound)
 					t, err = template.New("base").
 						Funcs(funcsMap()).
@@ -183,6 +185,7 @@ var app = &cli.App{
 					if err != nil {
 						panic(fmt.Sprintf("failed to parse 404.tmpl: %v", err))
 					}
+					is404 = true
 				} else {
 					log.Err(err).Msg("template error")
 					http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -234,12 +237,13 @@ var app = &cli.App{
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
 			}
-
-			go func() {
-				if err := q.CreateOrIncrementPageViewsOnUniqueIP(ctx, pool, strings.ToLower(cleanPath), ReadUserIP(r)); err != nil {
-					log.Err(err).Msg("failed to increment page views")
-				}
-			}()
+			if !is404 {
+				go func() {
+					if err := q.CreateOrIncrementPageViewsOnUniqueIP(ctx, pool, strings.ToLower(cleanPath), ReadUserIP(r)); err != nil {
+						log.Err(err).Msg("failed to increment page views")
+					}
+				}()
+			}
 		}
 		r.Get("/rss", func(w http.ResponseWriter, _ *http.Request) {
 			w.Header().Set("Content-Type", "application/rss+xml")
