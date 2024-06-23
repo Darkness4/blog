@@ -298,7 +298,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1719005607, 0),
+	Updated: time.Unix(1719058468, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "Presenting my home Raspberry Pi cluster",
