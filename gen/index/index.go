@@ -22,6 +22,21 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2024-06-23-migrating-cockroachdb",
+			Title:         "Migrating from SQLite to CockroachDB",
+			Description:   "Small article that review the migration from SQLite to CockroachDB.",
+			PublishedDate: time.Unix(1719100800, 0),
+			Href:          "/blog/2024-06-23-migrating-cockroachdb",
+			Loc:           "https://blog.mnguyen.fr/blog/2024-06-23-migrating-cockroachdb",
+			Priority:      0.5,
+			Tags: []string{
+				"database",
+				"sqlite",
+				"cockroachdb",
+				"devops",
+			},
+		},
+		{
 			EntryName:     "2024-06-19-home-raspi",
 			Title:         "Presenting my home Raspberry Pi cluster",
 			Description:   "Presenting my home Raspberry Pi Kubernetes cluster which is hosting this blog.",
@@ -298,8 +313,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1719058468, 0),
+	Updated: time.Unix(1719529337, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "Migrating from SQLite to CockroachDB",
+			Description: "Small article that review the migration from SQLite to CockroachDB.",
+			Created:     time.Unix(1719100800, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2024-06-23-migrating-cockroachdb",
+			},
+		},
 		{
 			Title:       "Presenting my home Raspberry Pi cluster",
 			Description: "Presenting my home Raspberry Pi Kubernetes cluster which is hosting this blog.",

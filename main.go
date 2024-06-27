@@ -3,6 +3,7 @@
 package main
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"io"
@@ -14,6 +15,7 @@ import (
 	"strconv"
 	"strings"
 	"text/template"
+	"time"
 
 	"embed"
 
@@ -198,7 +200,9 @@ var app = &cli.App{
 
 			var pv db.PageView
 			if !is404 {
-				pv, err = q.FindPageViewsOrZero(ctx, strings.ToLower(cleanPath))
+				rctx, cancel := context.WithTimeout(ctx, 5*time.Second)
+				defer cancel()
+				pv, err = q.FindPageViewsOrZero(rctx, strings.ToLower(cleanPath))
 				if err != nil {
 					log.Err(err).Msg("failed to fetch page views")
 				}
@@ -242,7 +246,9 @@ var app = &cli.App{
 			}
 			if !is404 && cleanPath != "/" {
 				go func() {
-					if err := q.CreateOrIncrementPageViewsOnUniqueIP(ctx, pool, strings.ToLower(cleanPath), ReadUserIP(r)); err != nil {
+					rctx, cancel := context.WithTimeout(ctx, 5*time.Second)
+					defer cancel()
+					if err := q.CreateOrIncrementPageViewsOnUniqueIP(rctx, pool, strings.ToLower(cleanPath), ReadUserIP(r)); err != nil {
 						log.Err(err).Msg("failed to increment page views")
 					}
 				}()
