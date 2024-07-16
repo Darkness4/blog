@@ -313,7 +313,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1719529337, 0),
+	Updated: time.Unix(1721149904, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "Migrating from SQLite to CockroachDB",
