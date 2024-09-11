@@ -22,6 +22,22 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2024-09-11-fluxcd-argocd-gitops",
+			Title:         "A comparison between FluxCD and ArgoCD",
+			Description:   "My experience with FluxCD and ArgoCD.",
+			PublishedDate: time.Unix(1726012800, 0),
+			Href:          "/blog/2024-09-11-fluxcd-argocd-gitops",
+			Loc:           "https://blog.mnguyen.fr/blog/2024-09-11-fluxcd-argocd-gitops",
+			Priority:      0.5,
+			Tags: []string{
+				"gitops",
+				"fluxcd",
+				"argocd",
+				"kubernetes",
+				"devops",
+			},
+		},
+		{
 			EntryName:     "2024-06-23-migrating-cockroachdb",
 			Title:         "Migrating from SQLite to CockroachDB",
 			Description:   "Small article that review the migration from SQLite to CockroachDB.",
@@ -313,8 +329,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1722813640, 0),
+	Updated: time.Unix(1726018761, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "A comparison between FluxCD and ArgoCD",
+			Description: "My experience with FluxCD and ArgoCD.",
+			Created:     time.Unix(1726012800, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2024-09-11-fluxcd-argocd-gitops",
+			},
+		},
 		{
 			Title:       "Migrating from SQLite to CockroachDB",
 			Description: "Small article that review the migration from SQLite to CockroachDB.",
