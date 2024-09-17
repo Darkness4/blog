@@ -13,7 +13,7 @@ require (
 	github.com/jackc/pgx/v5 v5.7.1
 	github.com/joho/godotenv v1.5.1
 	github.com/litao91/goldmark-mathjax v0.0.0-20210217064022-a43cf739a50f
-	github.com/pressly/goose/v3 v3.22.0
+	github.com/pressly/goose/v3 v3.22.1
 	github.com/rs/zerolog v1.33.0
 	github.com/sqlc-dev/sqlc v1.26.0
 	github.com/stefanfritsch/goldmark-admonitions v1.1.1
@@ -35,7 +35,7 @@ require (
 	dario.cat/mergo v1.0.1 // indirect
 	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/ClickHouse/ch-go v0.61.5 // indirect
-	github.com/ClickHouse/clickhouse-go/v2 v2.27.1 // indirect
+	github.com/ClickHouse/clickhouse-go/v2 v2.28.3 // indirect
 	github.com/Masterminds/goutils v1.1.1 // indirect
 	github.com/Masterminds/semver/v3 v3.3.0 // indirect
 	github.com/PuerkitoBio/goquery v1.10.0 // indirect
@@ -48,7 +48,7 @@ require (
 	github.com/cznic/mathutil v0.0.0-20181122101859-297441e03548 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dlclark/regexp2 v1.11.4 // indirect
-	github.com/docker/docker v27.0.3+incompatible // indirect
+	github.com/docker/docker v27.2.0+incompatible // indirect
 	github.com/dop251/goja v0.0.0-20240828124009-016eb7256539 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/elastic/go-sysinfo v1.11.2 // indirect
@@ -111,12 +111,12 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/stoewer/go-strcase v1.2.0 // indirect
 	github.com/tetratelabs/wazero v1.7.0 // indirect
-	github.com/tursodatabase/libsql-client-go v0.0.0-20240812094001-348a4e45b535 // indirect
+	github.com/tursodatabase/libsql-client-go v0.0.0-20240902231107-85af5b9d094d // indirect
 	github.com/vertica/vertica-sql-go v1.3.3 // indirect
 	github.com/wasilibs/go-pgquery v0.0.0-20240319230125-b9b2e95c69a7 // indirect
 	github.com/xrash/smetrics v0.0.0-20240521201337-686a1a2994c1 // indirect
 	github.com/ydb-platform/ydb-go-genproto v0.0.0-20240528144234-5d5a685e41f7 // indirect
-	github.com/ydb-platform/ydb-go-sdk/v3 v3.76.5 // indirect
+	github.com/ydb-platform/ydb-go-sdk/v3 v3.80.2 // indirect
 	github.com/ziutek/mymysql v1.5.4 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/otel v1.26.0 // indirect
@@ -134,8 +134,8 @@ require (
 	golang.org/x/text v0.18.0 // indirect
 	golang.org/x/xerrors v0.0.0-20240903120638-7835f813f4da // indirect
 	gonum.org/v1/plot v0.14.0 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20240123012728-ef4313101c80 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240123012728-ef4313101c80 // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20240318140521-94a12d6c2237 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240318140521-94a12d6c2237 // indirect
 	google.golang.org/grpc v1.62.1 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
@@ -146,7 +146,7 @@ require (
 	modernc.org/libc v1.55.3 // indirect
 	modernc.org/mathutil v1.6.0 // indirect
 	modernc.org/memory v1.8.0 // indirect
-	modernc.org/sqlite v1.32.0 // indirect
+	modernc.org/sqlite v1.33.0 // indirect
 	modernc.org/strutil v1.2.0 // indirect
 	modernc.org/token v1.1.0 // indirect
 	nhooyr.io/websocket v1.8.11 // indirect
