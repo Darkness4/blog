@@ -16,6 +16,54 @@
 {{- end }}
 <style>
   {{ .Style }}
+
+  article main h1 {
+    --pico-font-size: 4rem;
+    margin-bottom: 0.5em;
+  }
+
+  article > main {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+  @media (min-width: 320px) {
+    article > main {
+      margin: 2em;
+    }
+  }
+
+  @media (min-width: 640px) {
+    article > main {
+      margin-top: 2em;
+      margin-bottom: 2em;
+      margin-left: 4em;
+      margin-right: 4em;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    article > main {
+      margin-top: 2em;
+      margin-bottom: 2em;
+      margin-left: 8em;
+      margin-right: 8em;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    article > main {
+      margin-top: 4em;
+      margin-bottom: 4em;
+      margin-left: 12em;
+      margin-right: 12em;
+    }
+  }
+
+  hgroup {
+    margin-bottom: 1em;
+  }
+
 </style>
 {{ `{{ end }}` }}
 
@@ -36,13 +84,13 @@
   <div class="markdown-content">
     <article>
       <main>
-        <center>
-          <hgroup>
-            <h1>{{ .Title }}</h1>
-            <small>{{ .PublishedDate }}</small>
-          </hgroup>
-          <small>{{ .ReadingTime }} read</small> · <small>Viewed {{ `{{ .PageViewsF }}` }} {{ `{{ .PageViews | plural "time" "times" }}` }}</small>
-        </center>
+        <hgroup>
+          <h1>{{ .Title }}</h1>
+          <small>{{ .PublishedDate }} · {{ .ReadingTime }} read · Viewed {{ `{{ .PageViewsF }}` }} {{ `{{ .PageViews | plural "time" "times" }}` }}</small>
+        </hgroup>
+
+        <hr>
+
         {{ .Body }}
       </main>
 

@@ -12,6 +12,8 @@ tags: ['gitops', 'fluxcd', 'argocd', 'kubernetes', 'devops']
 
 </div>
 
+<hr>
+
 ## Introduction
 
 I have been doing GitOps for a while now, and wanted to share my experience with FluxCD and ArgoCD. My first experience was with ArgoCD, in a professional environment. Then, in my personal projects (my home k8s cluster), I decided to use FluxCD as it looked more lightweight.

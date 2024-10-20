@@ -12,6 +12,8 @@ tags: [devops, linux, infrastructure, dracut, squashfs, overlayfs, pxe, gitops]
 
 </div>
 
+<hr>
+
 ## Introduction
 
 Imagine this scenario: you have hardware for which you are not authorized to use virtualization or containerization, as in the case of a Raspberry Pi cluster or an HPC (High-Performance Computing) cluster, because you want to use the full "bare-metal" performance.

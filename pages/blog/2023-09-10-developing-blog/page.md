@@ -12,6 +12,8 @@ tags: ['blog', 'go', 'htmx', 'raspberry-pi', 'kubernetes']
 
 </div>
 
+<hr>
+
 ## Motivation
 
 I want to create, write and maintain a simple blog about personal and technical discoveries. I will self-host this blog on my Raspberry Pi cluster with Kubernetes.

@@ -12,6 +12,8 @@ tags: [go, webauthn, authentication, security]
 
 </div>
 
+<hr>
+
 ## Introduction
 
 TL;DR: The article is quite long. [Source Code](https://github.com/Darkness4/webauthn-minimal). [Demo](https://auth-htmx.mnguyen.fr).

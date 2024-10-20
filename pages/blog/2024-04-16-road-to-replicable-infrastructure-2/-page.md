@@ -12,6 +12,8 @@ tags: []
 
 </div>
 
+<hr>
+
 ## Introduction
 
 Achieving a replicable infrastructure permits easy maintenance, scaling, and debugging. Most companies will prefer to use a managed Kubernetes (deployed with Terraform) to achieve this. The OS is hidden from the user, and Kubernetes is the only interface to the infrastructure.

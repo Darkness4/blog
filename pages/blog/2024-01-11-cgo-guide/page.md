@@ -12,6 +12,8 @@ tags: [go, cgo, ffi, c]
 
 </div>
 
+<hr>
+
 ## Introduction
 
 I've made an [article about using Go with Portage and Crossdev for easy static compilation of CGO_ENABLED software](/blog/2023-11-08-go-with-portage-and-crossdev), but I didn't make an article about how to use CGO properly.

@@ -12,6 +12,8 @@ tags: [go, distributed systems, fault-tolerent, raft, etcd, bitcoin, ipfs]
 
 </div>
 
+<hr>
+
 ## Introduction
 
 I've just read the book by Travis Jeffery, ["Distributed Services with Go"](https://www.google.com/search?q=978-1680507607) and I wanted to share a simple example of a distributed system in Go.

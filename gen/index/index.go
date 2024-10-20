@@ -329,7 +329,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1726018761, 0),
+	Updated: time.Unix(1729463852, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "A comparison between FluxCD and ArgoCD",

@@ -12,6 +12,8 @@ tags: ['security', 'authentication', 'oauth2', 'oidc', 'dex', '389ds', 'ldap']
 
 </div>
 
+<hr>
+
 ## Introduction
 
 This article is about criticizing people reinventing the wheel, i.e., people who store user information in a database, built their own authentication flow, and make it hard to extend it. I will explain and show examples of OAuth2/OIDC implementations in details (step-by-step).

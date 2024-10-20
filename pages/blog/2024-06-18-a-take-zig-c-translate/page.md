@@ -12,6 +12,8 @@ tags: [zig, c, ffmpeg, av1, ffi]
 
 </div>
 
+<hr>
+
 ## Introduction
 
 !!!warning WARNING

@@ -12,6 +12,8 @@ tags: [devops, gitops, systemd, ansible, puppet, chef, saltstack]
 
 </div>
 
+<hr>
+
 ## Introduction
 
 Zero-trust infrastructure is the golden objective of any security-conscious organization. The fact that you let no one and nothing inside your infrastructure without proper verification is the ultimate goal.

@@ -13,6 +13,8 @@ tags:
 
 </div>
 
+<hr>
+
 ## Introduction
 
 I've finally finished upscaling my home Raspberry Pi cluster to 3 nodes to be able to run my monitoring services. I'm pretty proud of it, so I wanted to share it with you all. Here's a diagram of the setup:

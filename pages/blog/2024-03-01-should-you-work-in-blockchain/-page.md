@@ -12,6 +12,8 @@ tags: ['blockchain', 'cryptocurrency', 'ethics']
 
 </div>
 
+<hr>
+
 ## Introduction
 
 Hey, let's talk a little about Blockchain. Finally reputed for being a technology that hosts scams and illegal activities, I want to help you understand the technology behind it before criticizing it. Then, you can have actual arguments to criticize it.

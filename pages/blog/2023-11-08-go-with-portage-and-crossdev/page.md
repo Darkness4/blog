@@ -23,6 +23,8 @@ tags:
 
 </div>
 
+<hr>
+
 ## Introduction
 
 This article describes how to easily statically compile for multiple platforms. Unfortunately, it does not cover OS X, mainly because there is nothing similar to Portage on OS X. You can use OSXCross, but you'll have to compile the dependency tree manually.

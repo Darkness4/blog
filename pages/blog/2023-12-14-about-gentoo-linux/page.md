@@ -12,6 +12,8 @@ tags: [gentoo, linux, review]
 
 </div>
 
+<hr>
+
 ## Introduction
 
 Since this is a review, let me share my Linux experience before talking about Gentoo Linux.

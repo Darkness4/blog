@@ -12,6 +12,8 @@ tags: ['database', 'sqlite', 'cockroachdb', 'devops']
 
 </div>
 
+<hr>
+
 ## Introduction
 
 The last 3 days, I have been working on migrating my application from SQLite to CockroachDB. The reason is that I'm actually using NFS to share the SQLite database between my servers, and it's not really efficient. Grafana started to show serious "sync" issues, meaning that the database was locked for too long, causing my alerts to go wild.

@@ -27,6 +27,8 @@ tags:
 
 </div>
 
+<hr>
+
 ## Introduction
 
 _Wow. It's one of those posts again!_

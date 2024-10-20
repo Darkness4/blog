@@ -12,6 +12,8 @@ tags: [software architecture, paradigms, patterns, programming]
 
 </div>
 
+<hr>
+
 ## Introduction
 
 For once, I want to write about my experience about learning software architecture, paradigms, and patterns. Recently, I've been absorbed by influencers on Youtube (ThePrimeAgen, Jonathan Blow, etc.). It's not like I take any of these influencers as true value, and, in fact, this is why I'm writing this article. My true value has always been my job: "If it works for my team, it may work with you", which is why I'm writing this article.

@@ -18,6 +18,8 @@ Try switching articles to see how fast they load!
 
 </div>
 
+<hr>
+
 ## Why ?
 
 Let's say I don't like any of the existing solutions for writing a blog.
