@@ -19,11 +19,17 @@ body>main{
 }
 
 .anchor {
-  opacity: 0.3;
+  opacity: 0;
   transition: opacity 0.1s ease-in-out;
+  text-decoration: none;
 }
 
-.anchor:hover {
+h1:hover .anchor,
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor,
+h5:hover .anchor,
+h6:hover .anchor {
   opacity: 1;
 }
 

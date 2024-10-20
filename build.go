@@ -169,7 +169,7 @@ func processPages() {
 			extension.GFM,
 			meta.Meta,
 			&anchor.Extender{
-				Texter: anchor.Text("#"),
+				Texter: anchor.Text("🔗"),
 				Attributer: anchor.Attributes{
 					"class": "anchor",
 				},
