@@ -3,8 +3,9 @@ package d2
 import (
 	"bytes"
 	"context"
+	"log/slog"
+	"os"
 
-	"cdr.dev/slog"
 	"github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/renderer"
 	"github.com/yuin/goldmark/util"
@@ -67,7 +68,7 @@ func (r *HTMLRenderer) Render(
 	}
 	renderOpts := d2svg.RenderOpts(r.RenderOptions)
 	diagram, _, err := d2lib.Compile(
-		log.With(context.Background(), slog.Make()),
+		log.With(context.Background(), slog.New(slog.NewTextHandler(os.Stderr, nil))),
 		b.String(),
 		&compileOpts,
 		&renderOpts,

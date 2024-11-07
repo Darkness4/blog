@@ -106,6 +106,23 @@ func (r *Replacer) renderImage(
 	return ast.WalkSkipChildren, nil
 }
 
+func (r *Replacer) renderString(w util.BufWriter, source []byte, node ast.Node, entering bool) (ast.WalkStatus, error) {
+	if !entering {
+		return ast.WalkContinue, nil
+	}
+	n := node.(*ast.String)
+	if n.IsCode() {
+		_, _ = w.Write(n.Value)
+	} else {
+		if n.IsRaw() {
+			r.Writer.RawWrite(w, n.Value)
+		} else {
+			r.Writer.Write(w, n.Value)
+		}
+	}
+	return ast.WalkContinue, nil
+}
+
 // Extend implement goldmark.Extender interface.
 func (r *Replacer) Extend(m goldmark.Markdown) {
 	if r.ReplaceFunc == nil {
