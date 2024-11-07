@@ -23,7 +23,7 @@ require (
 	github.com/yuin/goldmark-meta v1.1.0
 	go.abhg.dev/goldmark/anchor v0.1.1
 	go.abhg.dev/goldmark/toc v0.10.0
-	oss.terrastruct.com/d2 v0.6.6
+	oss.terrastruct.com/d2 v0.6.8
 )
 
 // Pinning slog for d2
@@ -49,7 +49,7 @@ require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dlclark/regexp2 v1.11.4 // indirect
 	github.com/docker/docker v27.2.0+incompatible // indirect
-	github.com/dop251/goja v0.0.0-20240828124009-016eb7256539 // indirect
+	github.com/dop251/goja v0.0.0-20240927123429-241b342198c2 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/elastic/go-sysinfo v1.11.2 // indirect
 	github.com/elastic/go-windows v1.0.1 // indirect
@@ -66,7 +66,7 @@ require (
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/cel-go v0.21.0 // indirect
-	github.com/google/pprof v0.0.0-20240910150728-a0b0bb1d4134 // indirect
+	github.com/google/pprof v0.0.0-20240927180334-d43a67379298 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/hashicorp/golang-lru/v2 v2.0.7 // indirect
 	github.com/huandu/xstrings v1.5.0 // indirect
@@ -149,6 +149,6 @@ require (
 	modernc.org/sqlite v1.33.0 // indirect
 	modernc.org/strutil v1.2.0 // indirect
 	modernc.org/token v1.1.0 // indirect
-	nhooyr.io/websocket v1.8.11 // indirect
-	oss.terrastruct.com/util-go v0.0.0-20231101220827-55b3812542c2 // indirect
+	nhooyr.io/websocket v1.8.17 // indirect
+	oss.terrastruct.com/util-go v0.0.0-20241005222610-44c011a04896 // indirect
 )
