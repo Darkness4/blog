@@ -4,6 +4,9 @@
 package images
 
 import (
+	"bytes"
+	"io"
+
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/renderer"
@@ -76,7 +79,8 @@ func (r *Replacer) renderImage(
 	if _, err := w.WriteString(`" alt="`); err != nil {
 		return ast.WalkSkipChildren, err
 	}
-	if _, err := w.Write(n.Text(source)); err != nil {
+
+	if _, err := w.Write(textOf(n, source)); err != nil {
 		return ast.WalkSkipChildren, err
 	}
 	if err := w.WriteByte('"'); err != nil {
@@ -106,21 +110,22 @@ func (r *Replacer) renderImage(
 	return ast.WalkSkipChildren, nil
 }
 
-func (r *Replacer) renderString(w util.BufWriter, source []byte, node ast.Node, entering bool) (ast.WalkStatus, error) {
-	if !entering {
-		return ast.WalkContinue, nil
-	}
-	n := node.(*ast.String)
-	if n.IsCode() {
-		_, _ = w.Write(n.Value)
-	} else {
-		if n.IsRaw() {
-			r.Writer.RawWrite(w, n.Value)
+func buildTextOf(n ast.Node, src []byte, b io.Writer) {
+	for c := n.FirstChild(); c != nil; c = c.NextSibling() {
+		if t, ok := c.(*ast.Text); ok {
+			_, _ = b.Write(t.Value(src))
 		} else {
-			r.Writer.Write(w, n.Value)
+			buildTextOf(c, src, b)
 		}
 	}
-	return ast.WalkContinue, nil
+}
+
+// `Node.Text` method was deprecated. This is alternative to it.
+// https://github.com/yuin/goldmark/issues/471
+func textOf(n ast.Node, src []byte) []byte {
+	var b bytes.Buffer
+	buildTextOf(n, src, &b)
+	return b.Bytes()
 }
 
 // Extend implement goldmark.Extender interface.
