@@ -16,6 +16,14 @@ tags: ['database', 'sqlite', 'cockroachdb', 'devops']
 
 ## Introduction
 
+!!!warning WARNING
+
+CockroachDB has gone mad and is now proprietary (source-available). While this can be tolerated, the issue is that they don't off a free tier anymore.
+
+I therefore recommend trying [YugabyteDB](https://www.yugabyte.com).
+
+!!!
+
 The last 3 days, I have been working on migrating my application from SQLite to CockroachDB. The reason is that I'm actually using NFS to share the SQLite database between my servers, and it's not really efficient. Grafana started to show serious "sync" issues, meaning that the database was locked for too long, causing my alerts to go wild.
 
 This article is a simple review of the migration to CockroachDB.
