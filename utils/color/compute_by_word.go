@@ -50,29 +50,29 @@ func HSLFromRGB(r, g, b int) (hue, saturation, lightness int) {
 	bn := float64(b) / 255.0
 
 	// Find the maximum and minimum values to compute lightness.
-	max := math.Max(math.Max(rn, gn), bn)
-	min := math.Min(math.Min(rn, gn), bn)
-	l := (max + min) / 2
+	M := math.Max(math.Max(rn, gn), bn)
+	m := math.Min(math.Min(rn, gn), bn)
+	l := (M + m) / 2
 
 	// Initialize variables for hue and saturation.
 	var h, s float64
 
 	// Check for saturation.
-	if max == min {
+	if M == m {
 		// Achromatic case: no hue.
 		h = 0
 		s = 0
 	} else {
 		// Chromatic case.
-		d := max - min
+		d := M - m
 		if l > 0.5 {
-			s = d / (2 - max - min)
+			s = d / (2 - M - m)
 		} else {
-			s = d / (max + min)
+			s = d / (M + m)
 		}
 
 		// Compute hue based on the channel with the maximum value.
-		switch max {
+		switch M {
 		case rn:
 			h = (gn - bn) / d
 			if gn < bn {
