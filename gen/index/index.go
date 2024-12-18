@@ -22,6 +22,25 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2024-12-18-k3s-crash-postmortem",
+			Title:         "Migration from K3OS to K3s and post-mortem of an incident caused by a corrupted SQLite database.",
+			Description:   "My cluster finally crashed! Let's goooooo! A little of context: I'm running a small k3s cluster with 3 Raspberry Pi 4 with a network storage, and I'm using SQLite as a database for my applications.",
+			PublishedDate: time.Unix(1734480000, 0),
+			Href:          "/blog/2024-12-18-k3s-crash-postmortem",
+			Loc:           "https://blog.mnguyen.fr/blog/2024-12-18-k3s-crash-postmortem",
+			Priority:      0.5,
+			Tags: []string{
+				"k3s",
+				"k3os",
+				"sqlite",
+				"raspberry-pi",
+				"migration",
+				"post-mortem",
+				"kubernetes",
+				"devops",
+			},
+		},
+		{
 			EntryName:     "2024-09-11-fluxcd-argocd-gitops",
 			Title:         "A comparison between FluxCD and ArgoCD",
 			Description:   "My experience with FluxCD and ArgoCD.",
@@ -329,8 +348,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1731162239, 0),
+	Updated: time.Unix(1734484547, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "Migration from K3OS to K3s and post-mortem of an incident caused by a corrupted SQLite database.",
+			Description: "My cluster finally crashed! Let's goooooo! A little of context: I'm running a small k3s cluster with 3 Raspberry Pi 4 with a network storage, and I'm using SQLite as a database for my applications.",
+			Created:     time.Unix(1734480000, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2024-12-18-k3s-crash-postmortem",
+			},
+		},
 		{
 			Title:       "A comparison between FluxCD and ArgoCD",
 			Description: "My experience with FluxCD and ArgoCD.",
