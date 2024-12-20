@@ -294,7 +294,7 @@ the Prometheus server. At this point, the visibility was beginning to be low.
 
 The third symptom was high CPU usage.
 
-The fourth symptom was the logs having issues with sqlite: "database disk image is malformed". You know you're in trouble when you see this.
+The fourth symptom was the logs having issues with sqlite: "Slow SQL". You know you're in trouble when you see this.
 
 ### Detection
 
@@ -334,12 +334,28 @@ At this point, **I had no choice but to restore a backup of the DB**... which wo
 
 It's at this point I found out that the permissions of the `state.db` were `pi:pi` instead of `root:root`. Was that really the root cause?
 
+## Permanent fix
+
+After the recovery, the DB crashed again, but without corruption. The DB grown up to 1.5 GB. There is [issue](https://github.com/k3s-io/kine/issues/213), which propose this fix:
+
+```shell
+sqlite3 state.db
+
+sqlite> delete from kine where id in (select id from (select id, name from kine where id not in (select max(id) as id from kine group by name)));
+sqlite> vacuum;
+sqlite> .quit
+```
+
+Which could be a permanent fix. The issue is that the compaction is failing hard, and
+there are zombie containers spamming the DB.
+
 ## Lesson learned and corrective actions
 
 I learned this:
 
 - Better backup and restore logical backups than SQLite files.
 - Migrating and restoring K3s is easy! Just put the backup and BAM, it works! Migrating between K3s distribution is super easy. Maybe it is worth trying [MicroOS](https://get.opensuse.org/microos/)?
+- Compact your SQLite database.
 
 Lastly, you are probably wondering why I didn't migrate to ETCD?
 
