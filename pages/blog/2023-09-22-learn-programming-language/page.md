@@ -23,7 +23,7 @@ tags:
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 

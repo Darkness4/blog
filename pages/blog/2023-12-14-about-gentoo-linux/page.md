@@ -8,7 +8,7 @@ tags: [gentoo, linux, review]
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 

@@ -8,7 +8,7 @@ tags: [devops, linux, infrastructure, dracut, squashfs, overlayfs, pxe, gitops]
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 

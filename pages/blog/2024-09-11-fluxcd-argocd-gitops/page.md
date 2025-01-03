@@ -8,7 +8,7 @@ tags: ['gitops', 'fluxcd', 'argocd', 'kubernetes', 'devops']
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 

@@ -8,7 +8,7 @@ tags: [go, cgo, ffi, c]
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 

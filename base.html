@@ -35,6 +35,9 @@
       document.removeEventListener('htmx:afterSettle', arguments.callee);
     });
   </script>
+  <script>
+    {{ template "NavScript" . }}
+  </script>
   {{ template "head" . }}
 </head>
 

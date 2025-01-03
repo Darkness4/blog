@@ -8,7 +8,7 @@ tags: [go, distributed systems, fault-tolerent, raft, etcd, bitcoin, ipfs]
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 

@@ -48,6 +48,12 @@ article > main {
   }
 }
 
+/** Code font size **/
+pre code {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 /** Admonitions **/
 [data-theme=dark]:root, :not([data-theme=dark]):root {
   --pico-font-family: 'Lato', 'Segoe UI', 'Ubuntu', 'Cantarell', 'Noto Sans', sans-serif,

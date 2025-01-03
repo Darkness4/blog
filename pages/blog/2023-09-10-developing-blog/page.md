@@ -8,7 +8,7 @@ tags: ['blog', 'go', 'htmx', 'raspberry-pi', 'kubernetes']
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 

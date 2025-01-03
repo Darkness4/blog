@@ -14,7 +14,7 @@ Try switching articles to see how fast they load!
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 

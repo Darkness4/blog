@@ -2,6 +2,9 @@
 <title>Page Not Found - Marc Nguyen's Blog</title>
 <meta name="description" content="Oops! The page you were looking for couldn't be found.">
     <meta name="keywords" content="404, page not found, blog, your blog keywords">
+<script>
+{{ template "SearchBoxScript" . }}
+</script>
 {{ end }}
 
 {{ define "body" }}
@@ -12,3 +15,4 @@
   {{ template "SearchBox" . }}
 </center>
 {{ end }}
+

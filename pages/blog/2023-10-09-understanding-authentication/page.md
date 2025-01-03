@@ -8,7 +8,7 @@ tags: ['security', 'authentication', 'oauth2', 'oidc', 'dex', '389ds', 'ldap']
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 

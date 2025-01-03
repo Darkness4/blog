@@ -8,7 +8,7 @@ tags: ['blockchain', 'cryptocurrency', 'ethics']
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 

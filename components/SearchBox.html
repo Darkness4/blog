@@ -3,8 +3,10 @@
   target="_blank">
   <input type="search" id="search" aria-label="Search" name="q" placeholder="Search blog.mnguyen.fr" />
 </form>
+{{ end }}
 
 <script>
+  // {{ define "SearchBoxScript" }}
   function handleFormSubmit(event) {
     event.preventDefault(); // Prevent the default form submission
 
@@ -18,5 +20,5 @@
     document.getElementById('searchForm').submit();
     search.value = old;
   }
+  // {{ end }}
 </script>
-{{ end }}

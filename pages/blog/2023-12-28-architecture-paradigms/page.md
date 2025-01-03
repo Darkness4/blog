@@ -8,7 +8,7 @@ tags: [software architecture, paradigms, patterns, programming]
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 

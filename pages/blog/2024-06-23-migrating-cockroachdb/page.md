@@ -8,7 +8,7 @@ tags: ['database', 'sqlite', 'cockroachdb', 'devops']
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 

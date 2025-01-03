@@ -4,5 +4,6 @@ bin/
 db.sqlite3
 gen/*
 !gen/index
+certs/
 
 .unlighthouse/

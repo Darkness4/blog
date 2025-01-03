@@ -8,7 +8,7 @@ tags: [devops, gitops, systemd, ansible, puppet, chef, saltstack]
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 

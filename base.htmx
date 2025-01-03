@@ -1,5 +1,8 @@
 {{ define "base" }}
 <head>
+  <script>
+    {{ template "NavScript" . }}
+  </script>
   {{ template "head" . }}
 </head>
 

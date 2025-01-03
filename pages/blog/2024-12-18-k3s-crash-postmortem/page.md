@@ -8,7 +8,7 @@ tags: [k3s, k3os, sqlite, raspberry-pi, migration, post-mortem, kubernetes, devo
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 

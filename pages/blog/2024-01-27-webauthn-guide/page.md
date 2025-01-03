@@ -8,7 +8,7 @@ tags: [go, webauthn, authentication, security]
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 

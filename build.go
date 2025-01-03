@@ -45,6 +45,22 @@ var (
 	mdTmpl embed.FS
 )
 
+func sanitize(input string) string {
+	out := input
+	// Replace \" with " (this happens in script blocks)
+	out = strings.ReplaceAll(out, "\\\"", "\"")
+	out = strings.ReplaceAll(out, "\\&quot;", "\"")
+	// Replace {{% with [[ (safe {{)
+	out = strings.ReplaceAll(out, "{{%", "safe[[")
+	out = strings.ReplaceAll(out, "%}}", "safe]]")
+	// Replace {{ with &#123;&#123; (unsafe {{), this is because some "code" content is literally using {{.
+	out = strings.ReplaceAll(out, "{{", "&#123;&#123;")
+	// Replace safe [[ with {{
+	out = strings.ReplaceAll(out, "safe[[", "{{")
+	out = strings.ReplaceAll(out, "safe]]", "}}")
+	return out
+}
+
 func processDirectory(fs embed.FS, dirPath string, filePaths chan<- string) error {
 	out, err := fs.ReadDir(dirPath)
 	if err != nil {
@@ -146,7 +162,7 @@ func processPages() {
 			if filepath.IsAbs(link) || strings.HasPrefix(strings.ToLower(link), "http") {
 				return link
 			}
-			return filepath.Join("\\{\\{ $.Path }}", link)
+			return filepath.Join("{{% $.Path %}}", link)
 		}),
 		goldmark.WithExtensions(
 			mathjax.MathJax,
@@ -221,9 +237,8 @@ func processPages() {
 				}
 			}
 
-			// Replace {{ with &#123;&#123;
-			out := strings.ReplaceAll(sb.String(), "{{", "&#123;&#123;")
-			out = strings.ReplaceAll(out, "\\{\\{", "{{")
+			out := sanitize(sb.String())
+
 			metaData := meta.Get(ctx)
 			date, err := blog.ExtractDate(filepath.Base(filepath.Dir(curr)))
 			if err != nil {
@@ -233,7 +248,14 @@ func processPages() {
 
 			// Compile time variable
 			var bodySB strings.Builder
-			tBody := template.Must(template.New("body").Parse(out))
+			tBody, err := template.New("body").Parse(out)
+			if err != nil {
+				fmt.Fprint(w, out)
+				log.Fatal().
+					Err(err).
+					Str("path", curr+".tmpl").
+					Msg("body template failure, see file")
+			}
 			if err := tBody.Execute(&bodySB, struct {
 				TOC  string
 				Path string
@@ -314,14 +336,20 @@ func processPages() {
 					}
 				}
 
-				// Replace {{ with &#123;&#123;
-				out := strings.ReplaceAll(sb.String(), "{{", "&#123;&#123;")
-				out = strings.ReplaceAll(out, "\\{\\{", "{{")
+				out := sanitize(sb.String())
+
 				metaData := meta.Get(ctx)
 
 				// Compile time variable
 				var bodySB strings.Builder
-				tBody := template.Must(template.New("body").Parse(out))
+				tBody, err := template.New("body").Parse(out)
+				if err != nil {
+					fmt.Fprint(w, out)
+					log.Fatal().
+						Err(err).
+						Str("path", file+".tmpl").
+						Msg("body template failure, see file")
+				}
 				if err := tBody.Execute(&bodySB, struct {
 					TOC  string
 					Path string

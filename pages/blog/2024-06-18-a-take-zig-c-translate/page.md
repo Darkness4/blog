@@ -8,7 +8,7 @@ tags: [zig, c, ffmpeg, av1, ffi]
 
 <div class="toc">
 
-\\{\\{ $.TOC }}
+{{% $.TOC %}}
 
 </div>
 
