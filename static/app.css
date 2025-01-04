@@ -48,10 +48,89 @@ article > main {
   }
 }
 
-/** Code font size **/
+/** Code **/
 pre code {
   font-size: 13px;
   line-height: 1.5;
+}
+
+.code-container {
+  border-radius: var(--pico-border-radius);
+}
+
+.code-header {
+  font-size: 13px;
+  padding: var(--pico-spacing);
+  border-bottom: 1px solid #646464;
+}
+
+.code-content {
+  position: relative;
+  direction: ltr;
+}
+
+.code-btn-group { /* top right copy button */
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5em;
+  display: flex;
+}
+
+.code-btn-group button {
+  background-color: #212121;
+  color: #D4D4D4;
+  border: 1px solid #606770;
+  border-radius: .4rem;
+  transition: opacity .2s ease-in-out;
+  opacity: 0;
+  align-items: center;
+  padding: .4rem;
+  line-height: 0;
+  display: flex;
+}
+
+.code-btn-group button:hover {
+  opacity: 1 !important;
+}
+
+.copy-btn-icons {
+  width: 1rem;
+  height: 1rem;
+  position: relative;
+}
+
+.copy-btn-icons .copy-btn-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.copy-btn-copied {
+  opacity: 1 !important;
+}
+
+.copy-btn-copied .copy-btn-icon {
+  opacity: 0;
+  transform: scale(.33);
+}
+
+.copy-btn-icons .copy-btn-success-icon {
+  position: absolute;
+  color: #00d600;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transition: all .2s ease;
+  height: inherit;
+  width: inherit;
+  transform: translate(-50%,-50%) scale(.33);
+}
+
+.copy-btn-copied .copy-btn-success-icon {
+  opacity: 1;
+  transition-delay: 75ms;
+  transform: translate(-50%,-50%) scale(1);
 }
 
 /** Admonitions **/

@@ -30,6 +30,31 @@
   <link hx-preserve="true" rel="stylesheet" href="/static/app.css" />
   <link hx-preserve="true" rel="icon" type="image/png" href="/static/favicon.png" />
   <script hx-preserve="true">
+    function copyCode(block) {
+      const code = block.querySelector("code");
+      let text = "";
+      code.querySelectorAll(".line").forEach((line) => {
+        text += line.querySelector(".cl").innerText;
+      });
+      block.classList.add("copy-btn-copied");
+
+      setTimeout(() => {
+        block.classList.remove("copy-btn-copied");
+      }, 1000);
+
+      navigator.clipboard.writeText(text);
+    }
+
+    function onLoaded() {
+      document.querySelectorAll(".code-content").forEach((block) => {
+        block.querySelector(".copy-btn").addEventListener("click", () => copyCode(block));
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', onLoaded);
+    document.addEventListener('htmx:afterSettle',onLoaded);
+
+    // Set MathJax (only once)
     document.addEventListener('htmx:afterSettle', function (evt) {
       MathJax.typeset();
       document.removeEventListener('htmx:afterSettle', arguments.callee);

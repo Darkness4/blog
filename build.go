@@ -61,6 +61,47 @@ func sanitize(input string) string {
 	return out
 }
 
+func wrapperRenderer(w util.BufWriter, ctx highlighting.CodeBlockContext, entering bool) {
+	attrs := ctx.Attributes()
+	var title string
+	if attrs != nil {
+		attr, _ := attrs.GetString("title")
+		if attr != nil {
+			if titleAttr, ok := attr.([]uint8); ok {
+				title = string(titleAttr)
+			}
+		}
+	}
+
+	if entering {
+		w.WriteString("<div class=\"chroma code-container\">") // Open code-container
+		if title != "" {
+			w.WriteString("<div class=\"code-header\">")
+			w.WriteString(title)
+			w.WriteString("</div>")
+		}
+		w.WriteString("<div class=\"code-content\">") // Open code-block
+		// Copy code button
+		w.WriteString("<div class=\"code-btn-group\">")
+		w.WriteString(
+			"<button type=\"button\" aria-label=\"Copy code to clipboard\" title=\"Copy\" class=\"copy-btn\">",
+		)
+		w.WriteString("<span aria-hidden=\"true\" class=\"copy-btn-icons\">")
+		w.WriteString(
+			"<svg viewBox=\"0 0 24 24\" class=\"copy-btn-icon\"><path fill=\"currentColor\" d=\"M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z\"></path></svg>",
+		)
+		w.WriteString(
+			"<svg viewBox=\"0 0 24 24\" class=\"copy-btn-success-icon\"><path fill=\"currentColor\" d=\"M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z\"></path></svg>",
+		)
+		w.WriteString("</span>")
+		w.WriteString("</button>")
+		w.WriteString("</div>")
+	} else {
+		w.WriteString("</div>") // Close code-block
+		w.WriteString(`</div>`) // Close code-container
+	}
+}
+
 func processDirectory(fs embed.FS, dirPath string, filePaths chan<- string) error {
 	out, err := fs.ReadDir(dirPath)
 	if err != nil {
@@ -181,6 +222,7 @@ func processPages() {
 					chromahtml.WithLineNumbers(true),
 					chromahtml.WithClasses(true),
 				),
+				highlighting.WithWrapperRenderer(wrapperRenderer),
 			),
 			extension.GFM,
 			meta.Meta,
