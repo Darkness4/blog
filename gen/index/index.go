@@ -22,6 +22,25 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2025-01-25-home-raspi-part-2",
+			Title:         "Pushing my Home Raspberry Pi cluster into a production state",
+			Description:   "A new year, an overhaul of my home Raspberry Pi cluster.",
+			PublishedDate: time.Unix(1737763200, 0),
+			Href:          "/blog/2025-01-25-home-raspi-part-2",
+			Loc:           "https://blog.mnguyen.fr/blog/2025-01-25-home-raspi-part-2",
+			Priority:      0.5,
+			Tags: []string{
+				"raspberry pi",
+				"hpc",
+				"kubernetes",
+				"cluster",
+				"home",
+				"monitoring",
+				"storage",
+				"devops",
+			},
+		},
+		{
 			EntryName:     "2024-12-18-k3s-crash-postmortem",
 			Title:         "Migration from K3OS to K3s and post-mortem of an incident caused by a corrupted SQLite database.",
 			Description:   "My cluster finally crashed! Let's goooooo! A little of context: I'm running a small k3s cluster with 3 Raspberry Pi 4 with a network storage, and I'm using SQLite as a database for my applications.",

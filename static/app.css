@@ -134,6 +134,11 @@ pre code {
 }
 
 /** Admonitions **/
+:root:not([data-theme=dark]),[data-theme=light] {
+  --accordion-outline-width: 0;
+  --accordion-outline-color: transparent;
+}
+
 [data-theme=dark]:root, :not([data-theme=dark]):root {
   --pico-font-family: 'Lato', 'Segoe UI', 'Ubuntu', 'Cantarell', 'Noto Sans', sans-serif,
   'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -145,6 +150,8 @@ pre code {
   --warning-accent-color: #d4c24c;
   --pico-font-family-monospace: "JetBrains Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace,var(--pico-font-family-emoji);
   --pico-line-height: 1.65;
+  --accordion-outline-width: 2px;
+  --accordion-outline-color: #13171f;
 }
 
 .admonition {
@@ -291,4 +298,17 @@ blockquote {
   background-color: rgba(var(--label-r), var(--label-g), var(--label-b), var(--background-alpha));
   color: hsl(var(--label-h), calc(var(--label-s) * 1%), calc((var(--label-l) + var(--lighten-by)) * 1%));
   border-color: hsla(var(--label-h), calc(var(--label-s) * 1%), calc((var(--label-l) + var(--lighten-by)) * 1%), var(--border-alpha));
+}
+
+/** Accordion **/
+
+article.component {
+  outline-color: var(--accordion-outline-color);
+  outline-style: solid;
+  outline-width: var(--accordion-outline-width);
+  background-color: transparent
+}
+
+details summary:hover:not([role]) {
+  color: var(--pico-accordion-active-summary-color)
 }
