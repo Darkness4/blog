@@ -114,12 +114,12 @@
     </article>
     <nav style="direction: rtl">
       {{- if .Prev }}
-      <a href="{{ .Prev }}" preload>« Old Article</a>
+      <a href="{{ .Prev }}" preload="mouseover">« Old Article</a>
       {{- else }}
       <div></div>
       {{- end }}
       {{- if .Next }}
-      <a href="{{ .Next }}" preload>New Article »</a>
+      <a href="{{ .Next }}" preload="mouseover">New Article »</a>
       {{- end }}
     </nav>
   <div>
