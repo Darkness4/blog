@@ -2,21 +2,21 @@
 <nav style="justify-content: space-around">
   <ul>
     {{- if and (ne .First .Current) (ne .First .Prev) }}
-    <a href="?page={{ .First }}">{{ .First }}</a>
+    <a href="?page={{ .First }}" preload>{{ .First }}</a>
     {{- end }}
   </ul>
   <ul>
     {{- if ne .First .Current }}
-    <li><a href="?page={{ .Prev }}">{{ .Prev }}</a></li>
+    <li><a href="?page={{ .Prev }}" preload>{{ .Prev }}</a></li>
     {{- end }}
     <li>{{ .Current }}</li>
     {{- if ne .Last .Current }}
-    <li><a href="?page={{ .Next }}">{{ .Next }}</a></li>
+    <li><a href="?page={{ .Next }}" preload>{{ .Next }}</a></li>
     {{- end }}
   </ul>
   <ul>
     {{- if and (ne .Last .Current) (ne .Last .Next) }}
-    <li><a href="?page={{ .Last }}">{{ .Last }}</a></li>
+    <li><a href="?page={{ .Last }}" preload>{{ .Last }}</a></li>
     {{- end }}
   </ul>
 </nav>

@@ -1,7 +1,7 @@
 {{define "ArticleCard"}}
 <article>
   <main>
-    <a href="{{ .Href }}">
+    <a href="{{ .Href }}" preload>
       <h2>{{ .Title }}</h2>
     </a>
     <small>{{ .PublishedDate | date "Monday January 02 2006" }}</small>

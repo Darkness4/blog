@@ -27,6 +27,9 @@
     src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"
     integrity="sha384-KKWa9jJ1MZvssLeOoXG6FiOAZfAgmzsIIfw8BXwI9+kYm0lPCbC6yTQPBC00F1/L"
     crossorigin="anonymous"></script>
+  <script hx-preserve="true" src="https://unpkg.com/htmx-ext-preload@2.1.0/preload.js"
+    integrity="sha384-uEcHQUKMFGRZluBh+aIcwM9zZ3DucQbLOV2tjubqidKwiSx0QIlp7saSn0rE6sBi"
+    crossorigin="anonymous"></script>
   <link hx-preserve="true" rel="stylesheet" href="/static/app.css" />
   <link hx-preserve="true" rel="icon" type="image/png" href="/static/favicon.png" />
   <script hx-preserve="true">
@@ -52,7 +55,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', onLoaded);
-    document.addEventListener('htmx:afterSettle',onLoaded);
+    document.addEventListener('htmx:afterSettle', onLoaded);
 
     // Set MathJax (only once)
     document.addEventListener('htmx:afterSettle', function (evt) {
@@ -66,7 +69,7 @@
   {{ template "head" . }}
 </head>
 
-<body id="top" hx-ext="head-support" hx-boost="true" hx-swap="innerHTML settle:0.05s swap:0.05s"
+<body id="top" hx-ext="head-support,preload" hx-boost="true" hx-swap="innerHTML settle:0.05s swap:0.05s"
   style="position: relative">
   <!-- Overlays -->
   <div style="
