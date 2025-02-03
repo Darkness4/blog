@@ -366,6 +366,8 @@ go.abhg.dev/goldmark/anchor v0.1.1 h1:NUH3hAzhfeymRqZKOkSoFReZlEAmfXBZlbXEzpD2Qg
 go.abhg.dev/goldmark/anchor v0.1.1/go.mod h1:zYKiaHXTdugwVJRZqInVdmNGQRM3ZRJ6AGBC7xP7its=
 go.abhg.dev/goldmark/toc v0.10.0 h1:de3LrIimwtGhBMKh7aEl1c6n4XWwOdukIO5wOAMYZzg=
 go.abhg.dev/goldmark/toc v0.10.0/go.mod h1:OpH0qqRP9v/eosCV28ZeqGI78jZ8rri3C7Jh8fzEo2M=
+go.abhg.dev/goldmark/toc v0.11.0 h1:IRixVy3/yVPKvFBc37EeBPi8XLTXrtH6BYaonSjkF8o=
+go.abhg.dev/goldmark/toc v0.11.0/go.mod h1:XMFIoI1Sm6dwF9vKzVDOYE/g1o5BmKXghLG8q/wJNww=
 go.mongodb.org/mongo-driver v1.11.4/go.mod h1:PTSz5yu21bkT/wXpkS7WR5f0ddqw5quethTUn9WM+2g=
 go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.49.0 h1:jq9TW8u3so/bN+JPT166wjOI6/vQPF6Xe7nMNIltagk=
 go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.49.0/go.mod h1:p8pYQP+m5XfbZm9fxtSKAbM6oIllS7s2AfxrChvc7iw=
