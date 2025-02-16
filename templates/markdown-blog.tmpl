@@ -18,22 +18,31 @@
   {{ .Style }}
 
   article main h1 {
-    --pico-font-size: 4rem;
+    --pico-font-size: 2rem;
     margin-bottom: 0.5em;
   }
 
   article > main {
-    margin-top: 2em;
-    margin-bottom: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
   }
 
   @media (min-width: 320px) {
     article > main {
-      margin: 2em;
+      margin-top: 2em;
+      margin-bottom: 2em;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
     }
   }
 
   @media (min-width: 640px) {
+    article main h1 {
+      --pico-font-size: 3rem;
+    }
+
     article > main {
       margin-top: 2em;
       margin-bottom: 2em;
@@ -43,6 +52,10 @@
   }
 
   @media (min-width: 1280px) {
+    article main h1 {
+      --pico-font-size: 4rem;
+    }
+
     article > main {
       margin-top: 2em;
       margin-bottom: 2em;
