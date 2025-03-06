@@ -16,7 +16,7 @@ require (
 	github.com/rs/zerolog v1.33.0
 	github.com/sqlc-dev/sqlc v1.28.0
 	github.com/stefanfritsch/goldmark-admonitions v1.1.1
-	github.com/urfave/cli/v2 v2.27.5
+	github.com/urfave/cli/v2 v2.27.6
 	github.com/yuin/goldmark v1.7.8
 	github.com/yuin/goldmark-highlighting/v2 v2.0.0-20230729083705-37449abec8cc
 	github.com/yuin/goldmark-meta v1.1.0
