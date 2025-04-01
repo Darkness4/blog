@@ -1,4 +1,4 @@
-version: "2"
+version: '2'
 linters:
   enable:
     - ireturn
@@ -33,6 +33,7 @@ linters:
     staticcheck:
       checks:
         - all
+        - -ST1000
   exclusions:
     generated: lax
     presets:
