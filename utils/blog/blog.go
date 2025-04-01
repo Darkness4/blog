@@ -1,3 +1,4 @@
+// Package blog are utilities for blog.
 package blog
 
 import (

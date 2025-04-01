@@ -1,3 +1,4 @@
+// Package color are utilities for color.
 package color
 
 import (

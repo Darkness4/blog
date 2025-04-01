@@ -1,3 +1,4 @@
+// Package unique are utilities for unique line writer.
 package unique
 
 import "strings"

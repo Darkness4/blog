@@ -1,3 +1,4 @@
+// Package math are utilities for math.
 package math
 
 func MaxI(a int, b int) int {

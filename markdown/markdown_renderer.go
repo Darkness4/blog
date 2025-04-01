@@ -1,3 +1,4 @@
+// Package markdown used to render markdown with goldmark.
 package markdown
 
 import (

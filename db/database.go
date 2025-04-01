@@ -1,3 +1,4 @@
+// Package db used to manage the database.
 package db
 
 import (
