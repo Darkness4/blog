@@ -301,7 +301,7 @@ func main() {
 	_ = godotenv.Load(".env.local")
 	_ = godotenv.Load(".env")
 	log.Logger = log.Logger.With().Caller().Logger()
-	if err := app.Run(os.Args); err != nil {
+	if err := app.Run(context.Background(), os.Args); err != nil {
 		log.Fatal().Err(err).Msg("app crashed")
 	}
 }
