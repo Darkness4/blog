@@ -69,7 +69,7 @@ func ReadUserIP(r *http.Request) string {
 	return host
 }
 
-var app = &cli.App{
+var app = &cli.Command{
 	Name:    "blog",
 	Version: version,
 	Usage:   "A blog in HTMX.",
@@ -80,25 +80,24 @@ var app = &cli.App{
 			Usage:       "The address to listen on",
 			Value:       ":3000",
 			Destination: &listenAddress,
-			EnvVars:     []string{"LISTEN_ADDRESS"},
+			Sources:     cli.EnvVars("LISTEN_ADDRESS"),
 		},
 		&cli.StringFlag{
 			Name:        "public.url",
 			Usage:       "The public URL",
 			Value:       "https://blog.mnguyen.fr",
 			Destination: &publicURL,
-			EnvVars:     []string{"PUBLIC_URL"},
+			Sources:     cli.EnvVars("PUBLIC_URL"),
 		},
 		&cli.StringFlag{
 			Name:        "db.dsn",
 			Usage:       "The DSN for the database",
 			Destination: &dbDSN,
-			EnvVars:     []string{"DB_DSN"},
+			Sources:     cli.EnvVars("DB_DSN"),
 			Required:    true,
 		},
 	},
-	Action: func(cCtx *cli.Context) error {
-		ctx := cCtx.Context
+	Action: func(ctx context.Context, _ *cli.Command) error {
 		log.Level(zerolog.DebugLevel)
 
 		// DB connection
