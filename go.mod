@@ -6,7 +6,7 @@ toolchain go1.24.2
 
 require (
 	github.com/Masterminds/sprig/v3 v3.3.0
-	github.com/alecthomas/chroma/v2 v2.15.0
+	github.com/alecthomas/chroma/v2 v2.16.0
 	github.com/go-chi/chi/v5 v5.2.1
 	github.com/gorilla/feeds v1.2.0
 	github.com/jackc/pgx/v5 v5.7.4
