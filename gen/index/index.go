@@ -22,6 +22,21 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2025-07-24-fpv-drone",
+			Title:         "I'm back! And I'm now flying FPV drones!",
+			Description:   "As an engineer, how I got started with FPV drones.",
+			PublishedDate: time.Unix(1753315200, 0),
+			Href:          "/blog/2025-07-24-fpv-drone",
+			Loc:           "https://blog.mnguyen.fr/blog/2025-07-24-fpv-drone",
+			Priority:      0.5,
+			Tags: []string{
+				"drone",
+				"fpv",
+				"soldering",
+				"electronics",
+			},
+		},
+		{
 			EntryName:     "2025-01-25-home-raspi-part-2",
 			Title:         "Pushing my Home Raspberry Pi cluster into a production state",
 			Description:   "A new year, an overhaul of my home Raspberry Pi cluster.",
