@@ -62,6 +62,8 @@ github.com/alecthomas/repr v0.4.0 h1:GhI2A8MACjfegCPVq9f1FLvIBS+DrQ2KQBFZP1iFzXc
 github.com/alecthomas/repr v0.4.0/go.mod h1:Fr0507jx4eOXV7AlPV6AVZLYrLIuIeSOWtW57eE/O/4=
 github.com/andybalholm/brotli v1.1.1 h1:PR2pgnyFznKEugtsUo0xLdDop5SKXd5Qf5ysW+7XdTA=
 github.com/andybalholm/brotli v1.1.1/go.mod h1:05ib4cKhjx3OQYUY22hTVd34Bc8upXjOLL2rKwwZBoA=
+github.com/andybalholm/brotli v1.2.0 h1:ukwgCxwYrmACq68yiUqwIWnGY0cTPox/M94sVwToPjQ=
+github.com/andybalholm/brotli v1.2.0/go.mod h1:rzTDkvFWvIrjDXZHkuS16NPggd91W3kUSvPlQ1pLaKY=
 github.com/andybalholm/cascadia v1.3.3 h1:AG2YHrzJIm4BZ19iwJ/DAua6Btl3IwJX+VI4kktS1LM=
 github.com/andybalholm/cascadia v1.3.3/go.mod h1:xNd9bqTn98Ln4DwST8/nG+H0yuB8Hmgu1YHNnWw0GeA=
 github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kdvxnR2qWY=
@@ -776,6 +778,8 @@ oss.terrastruct.com/d2 v0.6.9 h1:9L4WFgwRmcSjl2NQqL3c8mr6UgluaGwwa5daJIPUHIo=
 oss.terrastruct.com/d2 v0.6.9/go.mod h1:d8idcOKE7i8CCorbax7fdlDcSXcEdzZgPeVmMYqJ01g=
 oss.terrastruct.com/d2 v0.7.0 h1:nFTap/RgAQtm1aAmUOOJxO8vgSCj3SLILcOkStnyHeI=
 oss.terrastruct.com/d2 v0.7.0/go.mod h1:QseS95MrwfSRDJcFmVpBBIKuPIr8/RUoR3526QQ3rVk=
+oss.terrastruct.com/d2 v0.7.1 h1:LafTW1UoXJGODvKDZ8obyBfGcc2k2vHZ3EzrabMqEVE=
+oss.terrastruct.com/d2 v0.7.1/go.mod h1:aT0PwLaxBZGgsWrIT8oSFYm5xoYX08BaOHewi5qLE2E=
 oss.terrastruct.com/util-go v0.0.0-20241005222610-44c011a04896 h1:g752s1ECv9FD8GunFOZRGWzjeR0cr/TZdSsjAnFEmL8=
 oss.terrastruct.com/util-go v0.0.0-20241005222610-44c011a04896/go.mod h1:eMWv0sOtD9T2RUl90DLWfuShZCYp4NrsqNpI8eqO6U4=
 oss.terrastruct.com/util-go v0.0.0-20250213174338-243d8661088a h1:UXF/Z9i9tOx/wqGUOn/T12wZeez1Gg0sAVKKl7YUDwM=

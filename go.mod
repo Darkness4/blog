@@ -1,6 +1,6 @@
 module github.com/Darkness4/blog
 
-go 1.23.0
+go 1.24
 
 toolchain go1.24.6
 
@@ -22,7 +22,7 @@ require (
 	github.com/yuin/goldmark-meta v1.1.0
 	go.abhg.dev/goldmark/anchor v0.2.0
 	go.abhg.dev/goldmark/toc v0.12.0
-	oss.terrastruct.com/d2 v0.7.0
+	oss.terrastruct.com/d2 v0.7.1
 )
 
 require (
@@ -33,7 +33,7 @@ require (
 	github.com/Masterminds/goutils v1.1.1 // indirect
 	github.com/Masterminds/semver/v3 v3.3.1 // indirect
 	github.com/PuerkitoBio/goquery v1.10.2 // indirect
-	github.com/andybalholm/brotli v1.1.1 // indirect
+	github.com/andybalholm/brotli v1.2.0 // indirect
 	github.com/andybalholm/cascadia v1.3.3 // indirect
 	github.com/antlr4-go/antlr/v4 v4.13.1 // indirect
 	github.com/coder/websocket v1.8.13 // indirect
