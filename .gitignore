@@ -2,8 +2,8 @@ bin/
 
 **/*.local
 db.sqlite3
-gen/*
-!gen/index
+web/gen/*
+!web/gen/index
 certs/
 
 .unlighthouse/

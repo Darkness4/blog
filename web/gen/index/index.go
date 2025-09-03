@@ -32,8 +32,9 @@ var Pages = [][]Index{
 			Tags: []string{
 				"drone",
 				"fpv",
-				"soldering",
+				"programming",
 				"electronics",
+				"soldering",
 			},
 		},
 		{
@@ -382,8 +383,24 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1734484547, 0),
+	Updated: time.Unix(1756943544, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "I'm back! And I'm now flying FPV drones!",
+			Description: "As an engineer, how I got started with FPV drones.",
+			Created:     time.Unix(1753315200, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2025-07-24-fpv-drone",
+			},
+		},
+		{
+			Title:       "Pushing my Home Raspberry Pi cluster into a production state",
+			Description: "A new year, an overhaul of my home Raspberry Pi cluster.",
+			Created:     time.Unix(1737763200, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2025-01-25-home-raspi-part-2",
+			},
+		},
 		{
 			Title:       "Migration from K3OS to K3s and post-mortem of an incident caused by a corrupted SQLite database.",
 			Description: "My cluster finally crashed! Let's goooooo! A little of context: I'm running a small k3s cluster with 3 Raspberry Pi 4 with a network storage, and I'm using SQLite as a database for my applications.",

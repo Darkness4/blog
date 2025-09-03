@@ -1,0 +1,20 @@
+{{ define "head" }}
+<title>{{ .Context.Value "short_error" }} - Marc Nguyen's Blog</title>
+<meta name="description" content="{{ .Context.Value "error_long" }}.">
+{{- if eq (.Context.Value "error_code") 401 }}
+<meta http-equiv="refresh" content="5;url=/">
+{{- end }}
+<script>
+{{ template "SearchBoxScript" . }}
+</script>
+{{ end }}
+
+{{ define "body" }}
+<center>
+<h1 style="font-size: 5rem">{{ .Context.Value "error_code" }} {{ .Context.Value "error_short" }}</h1>
+<p>{{ .Context.Value "error_long" }}</p>
+  <p>You can go back to the <a href="/">homepage</a>.</p>
+  {{ template "SearchBox" . }}
+</center>
+{{ end }}
+

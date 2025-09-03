@@ -1,29 +1,14 @@
-//go:generate go run -tags build build.go
-
 package main
 
 import (
 	"context"
-	"errors"
 	"fmt"
-	"io"
-	"io/fs"
-	"net"
 	"net/http"
 	"os"
-	"path/filepath"
-	"strconv"
-	"strings"
-	"text/template"
-	"time"
-
-	"embed"
 
 	"github.com/Darkness4/blog/db"
-	"github.com/Darkness4/blog/gen/index"
-	"github.com/Darkness4/blog/utils/color"
-	"github.com/Darkness4/blog/utils/math"
-	"github.com/Masterminds/sprig/v3"
+	"github.com/Darkness4/blog/web"
+	"github.com/Darkness4/blog/web/gen/index"
 	"github.com/go-chi/chi/v5"
 	"github.com/joho/godotenv"
 	"github.com/rs/zerolog"
@@ -36,38 +21,11 @@ import (
 )
 
 var (
-	//go:embed gen components base.html base.htmx 404.tmpl
-	html embed.FS
-	//go:embed static
-	static        embed.FS
 	version       = "dev"
 	listenAddress string
 	publicURL     string
 	dbDSN         string
 )
-
-var funcsMap = func() template.FuncMap {
-	f := sprig.TxtFuncMap()
-	f["computeColorByWord"] = color.ComputeByWord
-	return f
-}
-
-func ReadUserIP(r *http.Request) string {
-	IPAddress, _, _ := strings.Cut(r.Header.Get("X-Real-IP"), ",")
-	if IPAddress == "" {
-		IPAddress, _, _ = strings.Cut(r.Header.Get("X-Forwarded-For"), ",")
-	}
-	if IPAddress == "" {
-		IPAddress = r.RemoteAddr
-	}
-	addr := strings.ToLower(IPAddress)
-
-	host, _, err := net.SplitHostPort(addr)
-	if err != nil {
-		return addr
-	}
-	return host
-}
 
 var app = &cli.Command{
 	Name:    "blog",
@@ -121,139 +79,6 @@ var app = &cli.Command{
 		r.Use(hlog.NewHandler(log.Logger))
 
 		// Pages rendering
-		var renderFn http.HandlerFunc = func(w http.ResponseWriter, r *http.Request) {
-			cleanPath := filepath.Clean(r.URL.Path)
-
-			// Check if asset
-			fpath := filepath.Join("gen/pages", cleanPath)
-			if f, err := html.Open(fpath); err == nil {
-				isPage := func() bool {
-					defer f.Close()
-					finfo, err := f.Stat()
-					if err != nil {
-						log.Err(err).Msg("failed to fetch fileinfo")
-						http.Error(w, err.Error(), http.StatusInternalServerError)
-						return false
-					}
-
-					if finfo.IsDir() {
-						// It's a page, or a file not found
-						return true
-					}
-
-					// Serve the file
-					if _, err = io.Copy(w, f); err != nil {
-						log.Err(err).Msg("failed to serve file")
-						http.Error(w, err.Error(), http.StatusInternalServerError)
-					}
-					return false
-				}()
-
-				if !isPage {
-					return
-				}
-			} else if err != nil && !errors.Is(err, fs.ErrNotExist) {
-				log.Err(err).Msg("failed to read file")
-				http.Error(w, err.Error(), http.StatusInternalServerError)
-				return
-			}
-
-			// It's a page
-			templatePath := filepath.Clean(fmt.Sprintf("gen/pages/%s/page.tmpl", cleanPath))
-
-			// Check if SSR
-			var base string
-			if r.Header.Get("Hx-Boosted") != "true" {
-				// Initial Rendering
-				base = "base.html"
-			} else {
-				// SSR
-				base = "base.htmx"
-			}
-
-			// Set up the template
-			t, err := template.New("base").
-				Funcs(funcsMap()).
-				ParseFS(html, base, templatePath, "components/*")
-			var is404 bool
-			if err != nil {
-				if strings.Contains(err.Error(), "no files") {
-					// Render 404
-					w.WriteHeader(http.StatusNotFound)
-					t, err = template.New("base").
-						Funcs(funcsMap()).
-						ParseFS(html, base, "404.tmpl", "components/*")
-					if err != nil {
-						panic(fmt.Sprintf("failed to parse 404.tmpl: %v", err))
-					}
-					is404 = true
-				} else {
-					log.Err(err).Msg("template error")
-					http.Error(w, err.Error(), http.StatusInternalServerError)
-					return
-				}
-			}
-
-			pageS := r.URL.Query().Get("page")
-			page, _ := strconv.Atoi(pageS)
-
-			var pv db.PageView
-			if !is404 {
-				rctx, cancel := context.WithTimeout(ctx, 5*time.Second)
-				defer cancel()
-				pv, err = q.FindPageViewsOrZero(rctx, strings.ToLower(cleanPath))
-				if err != nil {
-					log.Err(err).Msg("failed to fetch page views")
-				}
-			}
-
-			if err := t.ExecuteTemplate(w, "base", struct {
-				Pager struct {
-					First   int
-					Prev    int
-					Current int
-					Next    int
-					Last    int
-				}
-				Index      []index.Index
-				Path       string
-				PublicURL  string
-				PageViewsF string
-				PageViews  int
-			}{
-				PublicURL: publicURL,
-				Path:      r.URL.Path,
-				Pager: struct {
-					First   int
-					Prev    int
-					Current int
-					Next    int
-					Last    int
-				}{
-					First:   0,
-					Prev:    math.MaxI(0, page-1),
-					Current: page,
-					Next:    math.MinI(index.PageSize-1, page+1),
-					Last:    index.PageSize - 1,
-				},
-				Index:      index.Pages[page],
-				PageViewsF: math.FormatNumber(float64(pv.Views + 1)),
-				PageViews:  int(pv.Views + 1),
-			}); err != nil {
-				log.Err(err).Msg("failed to execute template")
-				http.Error(w, err.Error(), http.StatusInternalServerError)
-				return
-			}
-			if !is404 && cleanPath != "/" {
-				go func() {
-					rctx, cancel := context.WithTimeout(ctx, 5*time.Second)
-					defer cancel()
-					if err := q.CreateOrIncrementPageViewsOnUniqueIP(rctx, pool, strings.ToLower(cleanPath), ReadUserIP(r)); err != nil {
-						log.Err(err).Msg("failed to increment page views")
-					}
-				}()
-			}
-		}
 		r.Get("/rss", func(w http.ResponseWriter, _ *http.Request) {
 			w.Header().Set("Content-Type", "application/rss+xml")
 			if err := index.Feed.WriteRss(w); err != nil {
@@ -290,8 +115,8 @@ Sitemap: %s/rss
 Sitemap: %s/atom
 `, publicURL, publicURL, publicURL)
 		})
-		r.Get("/*", renderFn)
-		r.Handle("/static/*", http.FileServer(http.FS(static)))
+		r.Get("/*", web.RenderFunc(q, pool, publicURL))
+		r.Handle("/static/*", web.StaticFunc())
 
 		log.Info().Str("listenAddress", listenAddress).Msg("listening")
 		return http.ListenAndServe(listenAddress, r)

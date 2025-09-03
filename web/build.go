@@ -14,11 +14,11 @@ import (
 
 	"github.com/Darkness4/blog/d2"
 	"github.com/Darkness4/blog/images"
-	"github.com/Darkness4/blog/index"
 	"github.com/Darkness4/blog/markdown"
 	"github.com/Darkness4/blog/utils/blog"
 	"github.com/Darkness4/blog/utils/ptr"
 	"github.com/Darkness4/blog/utils/unique"
+	"github.com/Darkness4/blog/web/index"
 	chromahtml "github.com/alecthomas/chroma/v2/formatters/html"
 	mathjax "github.com/litao91/goldmark-mathjax"
 	"github.com/rs/zerolog/log"

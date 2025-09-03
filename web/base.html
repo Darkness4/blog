@@ -13,22 +13,22 @@
   <link hx-preserve="true"
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
     rel="stylesheet" />
-  <script src="https://unpkg.com/htmx.org@2.0.0"
-    integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw"
+  <script hx-preserve="true" src="https://unpkg.com/htmx.org@2.0.6"
+    integrity="sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm"
     crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/htmx-ext-head-support@2.0.0/head-support.js"
-    integrity="sha384-CtqhRhV1bHrqMSWc8cQGQL4epjUqCHjq/kJ9ztGHS39vO/1phOgyhFIieE87UKMu"
+  <script hx-preserve="true" src="https://unpkg.com/htmx-ext-head-support@2.0.4"
+    integrity="sha384-cvMqHzjCJsOHgGuyB3sWXaUSv/Krm0BdzjuI1rtkjCbL1l1oHJx+cHyVRJhyuEz0"
     crossorigin="anonymous"></script>
   <script defer hx-preserve="true" src="https://cloud.umami.is/script.js"
     data-website-id="0c4894fc-34fe-48dd-bf1a-79ec70aa621c"></script>
   <link hx-preserve="true" rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css" crossorigin="anonymous" />
   <script type="text/javascript" hx-preserve="true" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"
-    integrity="sha384-KKWa9jJ1MZvssLeOoXG6FiOAZfAgmzsIIfw8BXwI9+kYm0lPCbC6yTQPBC00F1/L"
+    src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-svg.js"
+    integrity="sha384-2RFDbzHin3XKGJQxMfH2AB1os+J9s93mzjEr9Pna+BhAEkeJJIfv5g82fdsqe5sz"
     crossorigin="anonymous"></script>
-  <script hx-preserve="true" src="https://unpkg.com/htmx-ext-preload@2.1.0/preload.js"
-    integrity="sha384-uEcHQUKMFGRZluBh+aIcwM9zZ3DucQbLOV2tjubqidKwiSx0QIlp7saSn0rE6sBi"
+  <script hx-preserve="true" src="https://unpkg.com/htmx-ext-preload@2.1.1"
+    integrity="sha384-fkzubQiTB69M7XTToqW6tplvxAOJkqPl5JmLAbumV2EacmuJb8xEP9KnJafk/rg8"
     crossorigin="anonymous"></script>
   <link hx-preserve="true" rel="stylesheet" href="/static/app.css" />
   <link hx-preserve="true" rel="icon" type="image/png" href="/static/favicon.png" />
@@ -52,16 +52,11 @@
       document.querySelectorAll(".code-content").forEach((block) => {
         block.querySelector(".copy-btn").addEventListener("click", () => copyCode(block));
       });
+      MathJax.typeset();
     }
 
     document.addEventListener('DOMContentLoaded', onLoaded);
     document.addEventListener('htmx:afterSettle', onLoaded);
-
-    // Set MathJax (only once)
-    document.addEventListener('htmx:afterSettle', function (evt) {
-      MathJax.typeset();
-      document.removeEventListener('htmx:afterSettle', arguments.callee);
-    });
   </script>
   <script>
     {{ template "NavScript" . }}

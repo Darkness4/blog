@@ -70,7 +70,7 @@ endif
 
 .PHONY: watch
 watch: $(wgo)
-	$(wgo) -xdir "gen/" -xdir "bin/" sh -c 'make run || exit 1' --signal SIGTERM
+	$(wgo) -xdir "bin/" -xdir "web/gen/" sh -c 'while nc -vz 127.0.0.1 3000 > /dev/null 2>&1; do sleep 1; done; make run || exit 1' --signal SIGTERM
 
 .PHONY: unit
 unit:
