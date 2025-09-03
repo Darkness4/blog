@@ -240,6 +240,7 @@ var app = &cli.Command{
 				PageViewsF: math.FormatNumber(float64(pv.Views + 1)),
 				PageViews:  int(pv.Views + 1),
 			}); err != nil {
+				log.Err(err).Msg("failed to execute template")
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
 			}
