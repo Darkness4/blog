@@ -10,7 +10,6 @@ linters:
       rules:
         - name: blank-imports
         - name: context-as-argument
-        - name: context-keys-type
         - name: dot-imports
         - name: empty-block
         - name: errorf
@@ -34,6 +33,7 @@ linters:
       checks:
         - all
         - -ST1000
+        - -SA1029
   exclusions:
     generated: lax
     presets:

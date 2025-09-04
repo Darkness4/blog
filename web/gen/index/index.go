@@ -383,7 +383,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1756943544, 0),
+	Updated: time.Unix(1756947086, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "I'm back! And I'm now flying FPV drones!",

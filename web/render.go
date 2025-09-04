@@ -123,11 +123,11 @@ func RenderFunc(q *db.Queries, pool *pgxpool.Pool, publicURL string) http.Handle
 					http.StatusNotFound,
 				)
 				return
-			} else {
-				log.Err(err).Msg("template error")
-				http.Error(w, err.Error(), http.StatusInternalServerError)
-				return
 			}
+
+			log.Err(err).Msg("template error")
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
 		}
 
 		pageS := r.URL.Query().Get("page")
@@ -193,7 +193,7 @@ func RenderFunc(q *db.Queries, pool *pgxpool.Pool, publicURL string) http.Handle
 func renderError(
 	w http.ResponseWriter, r *http.Request,
 	html embed.FS,
-	error string,
+	errorMsg string,
 	code int,
 ) {
 	var base string
@@ -210,7 +210,7 @@ func renderError(
 	ctx = context.WithValue(
 		ctx,
 		"error_long",
-		error,
+		errorMsg,
 	)
 
 	t, err := template.New("base").
