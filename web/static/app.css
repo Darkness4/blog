@@ -283,9 +283,9 @@ blockquote {
  * To use it, compute at component level: --label-r, --label-g, --label-b, --label-h, --label-s, --label-l to generate the color.
  */
 .chip {
-  --background-alpha: 0.18;
+  --background-alpha: 0.05;
   --border-alpha: 0.3;
-  --lightness-adjustment: 30%;
+  --lightness-adjustment: 70%;
 
   display: inline-block;
   padding: 0 10px;
@@ -294,9 +294,9 @@ blockquote {
   border-radius: 2em;
   border: 1px solid transparent;
 
-  background-color: oklch(from var(--label-color) calc(l * 100%) c h / var(--background-alpha));
-  color: oklch(from var(--label-color) calc(l * 100% + var(--lightness-adjustment)) c h);
-  border-color: oklch(from var(--label-color) calc(l * 100% + var(--lightness-adjustment)) c h / var(--border-alpha));
+  background-color: oklch(from var(--label-color) var(--lightness-adjustment) c h / var(--background-alpha));
+  color: oklch(from var(--label-color) var(--lightness-adjustment) c h);
+  border-color: oklch(from var(--label-color) var(--lightness-adjustment) c h / var(--border-alpha));
 }
 
 /** Accordion **/
