@@ -285,19 +285,18 @@ blockquote {
 .chip {
   --background-alpha: 0.18;
   --border-alpha: 0.3;
-  --lightness-threshold: 0.6;
-  --perceived-lightness: calc( ((var(--label-r) * 0.2126) + (var(--label-g) * 0.7152) + (var(--label-b) * 0.0722)) / 255 );
-  --lightness-switch: max(0, min(calc((1/(var(--lightness-threshold) - var(--perceived-lightness)))), 1));
-  --lighten-by: calc(((var(--lightness-threshold) - var(--perceived-lightness)) * 100) * var(--lightness-switch));
+  --lightness-adjustment: 30%;
+
   display: inline-block;
   padding: 0 10px;
   line-height: 22px;
   font-size: 14px;
   border-radius: 2em;
   border: 1px solid transparent;
-  background-color: rgba(var(--label-r), var(--label-g), var(--label-b), var(--background-alpha));
-  color: hsl(var(--label-h), calc(var(--label-s) * 1%), calc((var(--label-l) + var(--lighten-by)) * 1%));
-  border-color: hsla(var(--label-h), calc(var(--label-s) * 1%), calc((var(--label-l) + var(--lighten-by)) * 1%), var(--border-alpha));
+
+  background-color: oklch(from var(--label-color) calc(l * 100%) c h / var(--background-alpha));
+  color: oklch(from var(--label-color) calc(l * 100% + var(--lightness-adjustment)) c h);
+  border-color: oklch(from var(--label-color) calc(l * 100% + var(--lightness-adjustment)) c h / var(--border-alpha));
 }
 
 /** Accordion **/
