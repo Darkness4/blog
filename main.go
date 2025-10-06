@@ -9,6 +9,7 @@ import (
 	"github.com/Darkness4/blog/db"
 	"github.com/Darkness4/blog/web"
 	"github.com/Darkness4/blog/web/gen/index"
+	"github.com/Darkness4/blog/web/middleware"
 	"github.com/go-chi/chi/v5"
 	"github.com/joho/godotenv"
 	"github.com/rs/zerolog"
@@ -25,6 +26,7 @@ var (
 	listenAddress string
 	publicURL     string
 	dbDSN         string
+	csp           string
 )
 
 var app = &cli.Command{
@@ -54,6 +56,24 @@ var app = &cli.Command{
 			Sources:     cli.EnvVars("DB_DSN"),
 			Required:    true,
 		},
+		&cli.StringFlag{
+			Name:        "csp",
+			Usage:       "The Content Security Policy",
+			Destination: &csp,
+			Sources:     cli.EnvVars("CSP"),
+			Value: `default-src 'self';
+base-uri 'self';
+form-action 'self';
+frame-ancestors 'none';
+script-src 'self' 'unsafe-inline' https://unpkg.com/ https://cloud.umami.is/;
+style-src 'self' 'unsafe-inline' https://unpkg.com/ https://fonts.googleapis.com/;
+connect-src 'self' https://cloud.umami.is/;
+media-src 'self' https://www.youtube.com/ https://www.youtube-nocookie.com/;
+frame-src https://www.youtube.com/ https://www.youtube-nocookie.com/;
+font-src 'self' https://fonts.gstatic.com/;
+img-src 'self' data: *;
+object-src 'none';`,
+		},
 	},
 	Action: func(ctx context.Context, _ *cli.Command) error {
 		log.Level(zerolog.DebugLevel)
@@ -77,6 +97,7 @@ var app = &cli.Command{
 		// Router
 		r := chi.NewRouter()
 		r.Use(hlog.NewHandler(log.Logger))
+		r.Use(middleware.CSP(csp))
 
 		// Pages rendering
 		r.Get("/rss", func(w http.ResponseWriter, _ *http.Request) {
