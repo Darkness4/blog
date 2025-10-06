@@ -65,13 +65,14 @@ var app = &cli.Command{
 base-uri 'self';
 form-action 'self';
 frame-ancestors 'none';
-script-src 'self' 'unsafe-inline' https://unpkg.com/ https://cloud.umami.is/;
-style-src 'self' 'unsafe-inline' https://unpkg.com/ https://fonts.googleapis.com/;
-connect-src 'self' https://cloud.umami.is/;
+script-src 'self' 'unsafe-inline' https://giscus.app/ https://unpkg.com/ https://cloud.umami.is/;
+style-src 'self' 'unsafe-inline' https://giscus.app/ https://unpkg.com/ https://fonts.googleapis.com/;
+connect-src 'self' https://cloud.umami.is/ https://unpkg.com;
 media-src 'self' https://www.youtube.com/ https://www.youtube-nocookie.com/;
-frame-src https://www.youtube.com/ https://www.youtube-nocookie.com/;
-font-src 'self' https://fonts.gstatic.com/;
+frame-src https://giscus.app/ https://www.youtube.com/ https://www.youtube-nocookie.com/;
+font-src 'self' data: https://fonts.gstatic.com/;
 img-src 'self' data: *;
+worker-src blob:;
 object-src 'none';`,
 		},
 	},
