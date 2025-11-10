@@ -21,7 +21,11 @@ tags: [dialog, modal, hyperscript, picocss, css, js, html, htmx]
     _="on click[#register-dialog.open and event.target.matches('dialog')] from elsewhere call #register-dialog.close()"
   >
     <header>
-      <button aria-label="Close" rel="prev"></button>
+      <button
+        aria-label="Close"
+        rel="prev"
+        _="on click call #register-dialog.close()"
+      ></button>
       <p>
         <strong>🗓️ Thank You for Registering!</strong>
       </p>
@@ -281,7 +285,11 @@ Even though Hyperscript has some issues, it is still more clearer than the scrip
     _="on click[#register-dialog.open and event.target.matches('dialog')] from elsewhere call #register-dialog.close()"
   >
     <header>
-      <button aria-label="Close" rel="prev"></button>
+      <button
+        aria-label="Close"
+        rel="prev"
+        _="on click call #register-dialog.close()"
+      ></button>
       <p>
         <strong>🗓️ Thank You for Registering!</strong>
       </p>
