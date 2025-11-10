@@ -4,9 +4,6 @@
 {{- if eq (.Context.Value "error_code") 401 }}
 <meta http-equiv="refresh" content="5;url=/">
 {{- end }}
-<script>
-{{ template "SearchBoxScript" . }}
-</script>
 {{ end }}
 
 {{ define "body" }}

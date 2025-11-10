@@ -6,7 +6,10 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/Darkness4/blog/api/search"
 	"github.com/Darkness4/blog/db"
+	"github.com/Darkness4/blog/meilisearch"
+	"github.com/Darkness4/blog/utils/template"
 	"github.com/Darkness4/blog/web"
 	"github.com/Darkness4/blog/web/gen/index"
 	"github.com/Darkness4/blog/web/middleware"
@@ -27,6 +30,11 @@ var (
 	publicURL     string
 	dbDSN         string
 	csp           string
+
+	meilisearchURL   string
+	meilisearchKey   string
+	meilisearchID    string
+	meilisearchClean bool
 )
 
 var app = &cli.Command{
@@ -57,6 +65,33 @@ var app = &cli.Command{
 			Required:    true,
 		},
 		&cli.StringFlag{
+			Name:        "meilisearch.url",
+			Usage:       "The URL for the Meilisearch instance.",
+			Destination: &meilisearchURL,
+			Sources:     cli.EnvVars("MEILISEARCH_URL"),
+			Required:    true,
+		},
+		&cli.StringFlag{
+			Name:        "meilisearch.master-key",
+			Usage:       "The API key for the Meilisearch instance.",
+			Destination: &meilisearchKey,
+			Sources:     cli.EnvVars("MEILISEARCH_MASTER_KEY"),
+			Required:    true,
+		},
+		&cli.StringFlag{
+			Name:        "meilisearch.index-uid",
+			Usage:       "The Index UID for the Meilisearch instance.",
+			Destination: &meilisearchID,
+			Sources:     cli.EnvVars("MEILISEARCH_INDEX_UID"),
+			Required:    true,
+		},
+		&cli.BoolFlag{
+			Name:        "meilisearch.clean",
+			Usage:       "Clean before the creation of the index",
+			Destination: &meilisearchClean,
+			Sources:     cli.EnvVars("MEILISEARCH_CLEAN"),
+		},
+		&cli.StringFlag{
 			Name:        "csp",
 			Usage:       "The Content Security Policy",
 			Destination: &csp,
@@ -67,7 +102,7 @@ form-action 'self';
 frame-ancestors 'none';
 script-src 'self' 'unsafe-inline' https://giscus.app/ https://unpkg.com/ https://cloud.umami.is/;
 style-src 'self' 'unsafe-inline' https://giscus.app/ https://unpkg.com/ https://fonts.googleapis.com/;
-connect-src 'self' https://cloud.umami.is/ https://unpkg.com;
+connect-src 'self' https://cloud.umami.is/ https://unpkg.com {{ .MeilisearchURL }};
 media-src 'self' https://www.youtube.com/ https://www.youtube-nocookie.com/;
 frame-src https://giscus.app/ https://www.youtube.com/ https://www.youtube-nocookie.com/;
 font-src 'self' data: https://fonts.gstatic.com/;
@@ -92,13 +127,29 @@ object-src 'none';`,
 			return err
 		}
 
+		hc := http.DefaultClient
+
+		meili := meilisearch.NewClient(hc, meilisearchURL, meilisearchKey, meilisearchID)
+
+		if meilisearchClean {
+			if err = meili.ClearIndex(ctx); err != nil {
+				return fmt.Errorf("failed to clear index: %w", err)
+			}
+		}
+		if err = meili.BuildIndex(ctx, index.Pages); err != nil {
+			return fmt.Errorf("failed to build index: %w", err)
+		}
+
 		// Set up DB queries
 		q := db.New(pool)
 
 		// Router
 		r := chi.NewRouter()
 		r.Use(hlog.NewHandler(log.Logger))
+		csp = template.Quick(csp, struct{ MeilisearchURL string }{meilisearchURL})
 		r.Use(middleware.CSP(csp))
+
+		r.Get("/search", search.Handler(meili))
 
 		// Pages rendering
 		r.Get("/rss", func(w http.ResponseWriter, _ *http.Request) {

@@ -55,7 +55,11 @@ var funcsMap = func() template.FuncMap {
 	return f
 }
 
-func RenderFunc(q *db.Queries, pool *pgxpool.Pool, publicURL string) http.HandlerFunc {
+func RenderFunc(
+	q *db.Queries,
+	pool *pgxpool.Pool,
+	publicURL string,
+) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 		cleanPath := filepath.Clean(r.URL.Path)
@@ -114,14 +118,18 @@ func RenderFunc(q *db.Queries, pool *pgxpool.Pool, publicURL string) http.Handle
 		if err != nil {
 			if strings.Contains(err.Error(), "no files") {
 				// Render 404
-				w.WriteHeader(http.StatusNotFound)
-				renderError(
+				if err := renderError(
 					w,
 					r,
 					html,
 					"Oops! The page you were looking for couldn't be found.",
 					http.StatusNotFound,
-				)
+				); err != nil {
+					log.Err(err).Msg("failed to render error")
+					http.Error(w, err.Error(), http.StatusInternalServerError)
+					return
+				}
+				w.WriteHeader(http.StatusNotFound)
 				return
 			}
 
@@ -195,7 +203,7 @@ func renderError(
 	html embed.FS,
 	errorMsg string,
 	code int,
-) {
+) error {
 	var base string
 	if r.Header.Get("Hx-Boosted") != "true" {
 		// Initial Rendering
@@ -219,14 +227,11 @@ func renderError(
 	if err != nil {
 		panic(fmt.Sprintf("failed to parse error.tmpl: %v", err))
 	}
-	if err := t.ExecuteTemplate(w, "base", struct {
+	return t.ExecuteTemplate(w, "base", struct {
 		Context context.Context
 	}{
 		Context: ctx,
-	}); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	})
 }
 
 func StaticFunc() http.Handler {

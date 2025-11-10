@@ -311,3 +311,63 @@ article.component {
 details summary:hover:not([role]) {
   color: var(--pico-accordion-active-summary-color)
 }
+
+/** Global Search**/
+#global-search {
+  --pico-background-color:var(--pico-form-element-background-color);
+  --pico-border-color:var(--pico-form-element-border-color);
+  --pico-color:var(--pico-form-element-placeholder-color);
+  --pico-box-shadow:none;
+  --pico-border-radius: 5rem;
+  --pico-outline-width: 0.0625rem;
+
+  padding-left: calc(var(--pico-form-element-spacing-horizontal) + 1.75rem);
+  background-image: var(--pico-icon-search);
+  background-position: center left calc(var(--pico-form-element-spacing-horizontal) + .125rem);
+  background-size: 1rem auto;
+  background-repeat: no-repeat;
+
+  height: auto;
+  margin-right: inherit;
+  margin-bottom: 0;
+  margin-left: inherit;
+  padding-top: calc(var(--pico-nav-link-spacing-vertical) - var(--pico-border-width) * 2);
+  padding-right: calc(var(--pico-nav-link-spacing-horizontal) * 3);
+  padding-bottom: calc(var(--pico-nav-link-spacing-vertical) - var(--pico-border-width) * 2);
+
+  text-align: start;
+  outline-offset: -2px;
+
+  border-radius: var(--pico-border-radius);
+  outline: 0;
+  background-color: var(--pico-background-color);
+  box-shadow: var(--pico-box-shadow);
+  color: var(--pico-color);
+  font-weight: var(--pico-font-weight);
+  transition: background-color var(--pico-transition),border-color var(--pico-transition),color var(--pico-transition),box-shadow var(--pico-transition);
+
+  appearance: none;
+
+  overflow: visible;
+
+  margin: 0;
+  font-size: 1rem;
+  line-height: var(--pico-line-height);
+  font-family: inherit;
+  letter-spacing: inherit;
+
+  box-sizing: border-box;
+
+  &:hover {
+    --pico-color: var(--pico-form-element-color);
+    --pico-border-color: var(--pico-form-element-active-border-color);
+    --pico-box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-form-element-focus-color);
+    background-color: #000;
+  }
+}
+
+a.search-result > em {
+  color: #F7708E;
+  text-decoration: underline;
+  font-style: normal;
+}

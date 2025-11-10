@@ -15,6 +15,16 @@ type Index struct {
 	Loc           string    `xml:"loc"`
 	Priority      float32   `xml:"priority,omitempty"`
 	Tags          []string  `xml:"-"`
+	Hierarchy     []Header  `xml:"-"`
+}
+
+// Header represents a single header in the hierarchy
+type Header struct {
+	Level    int
+	Text     string
+	Anchor   string
+	Content  string
+	Children []Header
 }
 
 const PageSize = 1
@@ -36,6 +46,131 @@ var Pages = [][]Index{
 				"electronics",
 				"soldering",
 			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "A Bit of My Story",
+					Anchor:  "a-bit-of-my-story",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "From repairing mouses to building drones",
+					Anchor:  "from-repairing-mouses-to-building-drones",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Many failures",
+							Anchor:  "many-failures",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Repaired a Nintendo DS lite",
+							Anchor:  "repaired-a-nintendo-ds-lite",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Repairing a Nintendo Switch Pro Controller",
+							Anchor:  "repairing-a-nintendo-switch-pro-controller",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Making profitable my soldering hardware",
+							Anchor:  "making-profitable-my-soldering-hardware",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Time to build an FPV drone",
+					Anchor:  "time-to-build-an-fpv-drone",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Which drone?",
+							Anchor:  "which-drone",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Shopping list",
+							Anchor:  "shopping-list",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Building the drone",
+							Anchor:  "building-the-drone",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Configuring the firmware",
+							Anchor:  "configuring-the-firmware",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Test it",
+							Anchor:  "test-it",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "How to pilot a drone",
+					Anchor:  "how-to-pilot-a-drone",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Credits",
+					Anchor:  "credits",
+					Content: "",
+				},
+			},
 		},
 		{
 			EntryName:     "2025-01-25-home-raspi-part-2",
@@ -54,6 +189,147 @@ var Pages = [][]Index{
 				"monitoring",
 				"storage",
 				"devops",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Hardware overhaul",
+					Anchor:  "hardware-overhaul",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Replacing the router",
+							Anchor:  "replacing-the-router",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Adding the storage node",
+							Anchor:  "adding-the-storage-node",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Replacing k3os with simple RaspiOS with k3s",
+							Anchor:  "replacing-k3os-with-simple-raspios-with-k3s",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Software overhaul",
+					Anchor:  "software-overhaul",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Ansible",
+							Anchor:  "ansible",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Migrating CockroachDB to PostgreSQL",
+							Anchor:  "migrating-cockroachdb-to-postgresql",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "New services, and death to some",
+							Anchor:  "new-services-and-death-to-some",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "FluxCD",
+									Anchor:  "fluxcd",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "LLDAP",
+									Anchor:  "lldap",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Authelia",
+									Anchor:  "authelia",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Crowdsec",
+									Anchor:  "crowdsec",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "VictoriaLogs and Vectors",
+									Anchor:  "victorialogs-and-vectors",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "ArchiSteamFarm",
+									Anchor:  "archisteamfarm",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Tried self-hosting a mail server with Maddy, using Scaleway Transactional mail instead",
+									Anchor:  "tried-self-hosting-a-mail-server-with-maddy-using-scaleway-transactional-mail-instead",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Backups and AWS mountpoint S3 CSI Driver",
+									Anchor:  "backups-and-aws-mountpoint-s3-csi-driver",
+									Content: "",
+								},
+							},
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
 			},
 		},
 		{
@@ -74,6 +350,103 @@ var Pages = [][]Index{
 				"kubernetes",
 				"devops",
 			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Migrating from K3os to K3s",
+					Anchor:  "migrating-from-k3os-to-k3s",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Move PVCs to network storage",
+							Anchor:  "move-pvcs-to-network-storage",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Migrating workers",
+							Anchor:  "migrating-workers",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Migrating the master",
+							Anchor:  "migrating-the-master",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Post-mortem of the crash",
+					Anchor:  "post-mortem-of-the-crash",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Summary",
+							Anchor:  "summary",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Leadup",
+							Anchor:  "leadup",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Detection",
+							Anchor:  "detection",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Recovery",
+							Anchor:  "recovery",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Permanent fix",
+					Anchor:  "permanent-fix",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Lesson learned and corrective actions",
+					Anchor:  "lesson-learned-and-corrective-actions",
+					Content: "",
+				},
+			},
 		},
 		{
 			EntryName:     "2024-09-11-fluxcd-argocd-gitops",
@@ -90,6 +463,108 @@ var Pages = [][]Index{
 				"kubernetes",
 				"devops",
 			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "What is GitOps?",
+					Anchor:  "what-is-gitops",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "The comparison",
+					Anchor:  "the-comparison",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "The dashboard",
+							Anchor:  "the-dashboard",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "The setup",
+							Anchor:  "the-setup",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Resource consumption",
+							Anchor:  "resource-consumption",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Multi-cluster",
+							Anchor:  "multi-cluster",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Dynamic applications",
+							Anchor:  "dynamic-applications",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Multi-tenancy",
+							Anchor:  "multi-tenancy",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Hooks",
+							Anchor:  "hooks",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Post-rendering",
+							Anchor:  "post-rendering",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Issues",
+							Anchor:  "issues",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+			},
 		},
 		{
 			EntryName:     "2024-06-23-migrating-cockroachdb",
@@ -104,6 +579,85 @@ var Pages = [][]Index{
 				"sqlite",
 				"cockroachdb",
 				"devops",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "What is CockroachDB?",
+					Anchor:  "what-is-cockroachdb",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Missing features and critical differences compared to PostgreSQL",
+					Anchor:  "missing-features-and-critical-differences-compared-to-postgresql",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Deployment",
+					Anchor:  "deployment",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Migration",
+					Anchor:  "migration",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Adding monitoring",
+					Anchor:  "adding-monitoring",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Adding backup",
+					Anchor:  "adding-backup",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Last improvements",
+					Anchor:  "last-improvements",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "What has been migrated? What couldn't be migrated?",
+					Anchor:  "what-has-been-migrated-what-couldnt-be-migrated",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
 			},
 		},
 		{
@@ -124,6 +678,103 @@ var Pages = [][]Index{
 				"storage",
 				"devops",
 			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Building the cluster",
+					Anchor:  "building-the-cluster",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Storage",
+							Anchor:  "storage",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Power supply",
+							Anchor:  "power-supply",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Router",
+							Anchor:  "router",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Nodes",
+							Anchor:  "nodes",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Setting up Kubernetes and the services",
+					Anchor:  "setting-up-kubernetes-and-the-services",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Core services",
+							Anchor:  "core-services",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Monitoring services",
+							Anchor:  "monitoring-services",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Application Services",
+							Anchor:  "application-services",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Storage services",
+							Anchor:  "storage-services",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+			},
 		},
 		{
 			EntryName:     "2024-06-18-a-take-zig-c-translate",
@@ -139,6 +790,138 @@ var Pages = [][]Index{
 				"ffmpeg",
 				"av1",
 				"ffi",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "The concept",
+					Anchor:  "the-concept",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Zig and tricks",
+					Anchor:  "zig-and-tricks",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Memory allocators",
+							Anchor:  "memory-allocators",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Easy memory management with ",
+							Anchor:  "easy-memory-management-with-defer",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Error handling",
+							Anchor:  "error-handling",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Zig's quick error handling",
+							Anchor:  "zigs-quick-error-handling",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "C interop",
+							Anchor:  "c-interop",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Limitations of the C interop",
+							Anchor:  "limitations-of-the-c-interop",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Visibility",
+							Anchor:  "visibility",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Syntax",
+							Anchor:  "syntax",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Developing the AV1 transcoder",
+					Anchor:  "developing-the-av1-transcoder",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Developing the Remuxer",
+							Anchor:  "developing-the-remuxer",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Developing the Transcoder",
+							Anchor:  "developing-the-transcoder",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Last part: the build system",
+					Anchor:  "last-part-the-build-system",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "References",
+					Anchor:  "references",
+					Content: "",
+				},
 			},
 		},
 		{
@@ -158,6 +941,344 @@ var Pages = [][]Index{
 				"bitcoin",
 				"ipfs",
 			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "What is a distributed system?",
+					Anchor:  "what-is-a-distributed-system",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Examples of stateful distributed systems",
+					Anchor:  "examples-of-stateful-distributed-systems",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "ETCD",
+							Anchor:  "etcd",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Bitcoin",
+							Anchor:  "bitcoin",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "IPFS",
+							Anchor:  "ipfs",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Summary",
+							Anchor:  "summary",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "The example: A distributed key-value store with Raft",
+					Anchor:  "the-example-a-distributed-key-value-store-with-raft",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "The objective",
+							Anchor:  "the-objective",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Understanding Raft at its core",
+							Anchor:  "understanding-raft-at-its-core",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Logs and state machines",
+							Anchor:  "logs-and-state-machines",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Bootstrapping the project",
+							Anchor:  "bootstrapping-the-project",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Implementing the key-value store",
+							Anchor:  "implementing-the-key-value-store",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "The state machine",
+									Anchor:  "the-state-machine",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "The implementation",
+									Anchor:  "the-implementation",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Using Raft to distribute commands",
+							Anchor:  "using-raft-to-distribute-commands",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Understanding Raft's lifecycle",
+									Anchor:  "understanding-rafts-lifecycle",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Understanding Raft's RPCs and Term",
+									Anchor:  "understanding-rafts-rpcs-and-term",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Implementing the Finite State Machine for Raft",
+									Anchor:  "implementing-the-finite-state-machine-for-raft",
+									Content: "",
+									Children: []Header{
+
+										{
+											Level:   5,
+											Text:    "Define commands for Raft",
+											Anchor:  "define-commands-for-raft",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "Implementing the Finite State Machine",
+											Anchor:  "implementing-the-finite-state-machine",
+											Content: "",
+										},
+									},
+								},
+
+								{
+									Level:   4,
+									Text:    "The \"crash\" recovery: snapshots and restoring logs",
+									Anchor:  "the-crash-recovery-snapshots-and-restoring-logs",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Preparing the storage for Raft",
+									Anchor:  "preparing-the-storage-for-raft",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Replacing the network layer with a mutual TLS transport",
+									Anchor:  "replacing-the-network-layer-with-a-mutual-tls-transport",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Adding the \"Join\" and \"Leave\" methods",
+									Anchor:  "adding-the-join-and-leave-methods",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Sending commands",
+									Anchor:  "sending-commands",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Adding an API for interactivity",
+							Anchor:  "adding-an-api-for-interactivity",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Implementing the \"main\" function of the server",
+							Anchor:  "implementing-the-main-function-of-the-server",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Usage",
+									Anchor:  "usage",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Implementing the bootstrap function",
+									Anchor:  "implementing-the-bootstrap-function",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Implementing helper functions for TLS",
+									Anchor:  "implementing-helper-functions-for-tls",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Assembling everything",
+									Anchor:  "assembling-everything",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Smoke tests with Vagrant and K0s",
+									Anchor:  "smoke-tests-with-vagrant-and-k0s",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Implementing the client",
+							Anchor:  "implementing-the-client",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Usage",
+									Anchor:  "usage-1",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "About client-side load balancing",
+									Anchor:  "about-client-side-load-balancing",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Implementing server-side request forwarding",
+									Anchor:  "implementing-server-side-request-forwarding",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Implementing the membership service",
+									Anchor:  "implementing-the-membership-service",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Implementing the \"main\" function of the client",
+									Anchor:  "implementing-the-main-function-of-the-client",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Exposing the nodes to the external network",
+									Anchor:  "exposing-the-nodes-to-the-external-network",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Setting mutual TLS on the client-side",
+									Anchor:  "setting-mutual-tls-on-the-client-side",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Testing failures",
+							Anchor:  "testing-failures",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "About Serf, the service discovery system",
+							Anchor:  "about-serf-the-service-discovery-system",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "References",
+					Anchor:  "references",
+					Content: "",
+				},
+			},
 		},
 		{
 			EntryName:     "2024-02-24-gitops-systemd",
@@ -176,6 +1297,99 @@ var Pages = [][]Index{
 				"chef",
 				"saltstack",
 			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "The recipe for pull-based GitOps",
+					Anchor:  "the-recipe-for-pull-based-gitops",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Understanding the init system and service management",
+					Anchor:  "understanding-the-init-system-and-service-management",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Implementing the script",
+					Anchor:  "implementing-the-script",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Configuring the SystemD service",
+					Anchor:  "configuring-the-systemd-service",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Building the OS image",
+					Anchor:  "building-the-os-image",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Testing",
+					Anchor:  "testing",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "(Optional) Make the node reboot",
+					Anchor:  "optional-make-the-node-reboot",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "(Optional) Fetch the status and logs",
+					Anchor:  "optional-fetch-the-status-and-logs",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "(Optional) Using a webhook to trigger the service",
+					Anchor:  "optional-using-a-webhook-to-trigger-the-service",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion and Discussion",
+					Anchor:  "conclusion-and-discussion",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "References",
+					Anchor:  "references",
+					Content: "",
+				},
+			},
 		},
 		{
 			EntryName:     "2024-01-27-webauthn-guide",
@@ -190,6 +1404,186 @@ var Pages = [][]Index{
 				"webauthn",
 				"authentication",
 				"security",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Quick remainder about authentication, identity and session",
+					Anchor:  "quick-remainder-about-authentication-identity-and-session",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "What is WebAuthn?",
+					Anchor:  "what-is-webauthn",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Quick definition",
+							Anchor:  "quick-definition",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "The authentication flow",
+							Anchor:  "the-authentication-flow",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Implementation",
+					Anchor:  "implementation",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "The backend",
+							Anchor:  "the-backend",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "The user",
+									Anchor:  "the-user",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "The login/register session store",
+									Anchor:  "the-loginregister-session-store",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "The JWT session generator and validator",
+									Anchor:  "the-jwt-session-generator-and-validator",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "The HTTP handlers for WebAuthn",
+									Anchor:  "the-http-handlers-for-webauthn",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Set up the HTTP server",
+									Anchor:  "set-up-the-http-server",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "The frontend",
+							Anchor:  "the-frontend",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Preface",
+									Anchor:  "preface",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "The login/register page",
+									Anchor:  "the-loginregister-page",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "The protected page",
+									Anchor:  "the-protected-page",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Testing",
+							Anchor:  "testing",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "CSRF and Templates",
+							Anchor:  "csrf-and-templates",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Initial setup for templates",
+									Anchor:  "initial-setup-for-templates",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "CSRF protection",
+									Anchor:  "csrf-protection",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Adding/deleting devices for logged users",
+							Anchor:  "addingdeleting-devices-for-logged-users",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion and thoughts",
+					Anchor:  "conclusion-and-thoughts",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "References",
+					Anchor:  "references",
+					Content: "",
+				},
 			},
 		},
 		{
@@ -206,6 +1600,64 @@ var Pages = [][]Index{
 				"ffi",
 				"c",
 			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Quick reminder about C compilation",
+					Anchor:  "quick-reminder-about-c-compilation",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Why use CGO instead of pure Go ?",
+					Anchor:  "why-use-cgo-instead-of-pure-go-",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Foreign Function Interface (FFI)",
+					Anchor:  "foreign-function-interface-ffi",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "About Go libraries offering CGO bindings",
+					Anchor:  "about-go-libraries-offering-cgo-bindings",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "References",
+					Anchor:  "references",
+					Content: "",
+				},
+			},
 		},
 		{
 			EntryName:     "2023-12-28-architecture-paradigms",
@@ -221,6 +1673,64 @@ var Pages = [][]Index{
 				"patterns",
 				"programming",
 			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Software architecture: \"frameworks\" for beginners",
+					Anchor:  "software-architecture-frameworks-for-beginners",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Paradigms: it's simply a point of view",
+					Anchor:  "paradigms-its-simply-a-point-of-view",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Patterns: weapons of war",
+					Anchor:  "patterns-weapons-of-war",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Best practices and standards: the final word",
+					Anchor:  "best-practices-and-standards-the-final-word",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "References",
+					Anchor:  "references",
+					Content: "",
+				},
+			},
 		},
 		{
 			EntryName:     "2023-12-14-about-gentoo-linux",
@@ -234,6 +1744,138 @@ var Pages = [][]Index{
 				"gentoo",
 				"linux",
 				"review",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "A small review of Void Linux, a SystemD-less binary OS",
+					Anchor:  "a-small-review-of-void-linux-a-systemd-less-binary-os",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "The review of Gentoo Linux",
+					Anchor:  "the-review-of-gentoo-linux",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Installation Review",
+							Anchor:  "installation-review",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Package Management Review",
+							Anchor:  "package-management-review",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "About Kernel Configuration",
+							Anchor:  "about-kernel-configuration",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Stability/Maintenance Review",
+							Anchor:  "stabilitymaintenance-review",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "For other stuff review",
+							Anchor:  "for-other-stuff-review",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Learning curve... what's about it?",
+							Anchor:  "learning-curve-whats-about-it",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Tackling the myths about Gentoo Linux",
+					Anchor:  "tackling-the-myths-about-gentoo-linux",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "\"It takes time to compile, and you compile every day.\"",
+							Anchor:  "it-takes-time-to-compile-and-you-compile-every-day",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "\"It's unmaintainable if you forget about it for one month. It's unstable.\"",
+							Anchor:  "its-unmaintainable-if-you-forget-about-it-for-one-month-its-unstable",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "\"It's bloated with dev dependencies.\"",
+							Anchor:  "its-bloated-with-dev-dependencies",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "\"It's for expert.\"",
+							Anchor:  "its-for-expert",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "\"It's optimized as hell.\"",
+							Anchor:  "its-optimized-as-hell",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "\"Compiling my browser takes 100 hours.\"",
+							Anchor:  "compiling-my-browser-takes-100-hours",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
 			},
 		},
 		{
@@ -255,6 +1897,78 @@ var Pages = [][]Index{
 				"docker",
 				"multi-arch",
 			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Understanding static-linked and dynamically-linked.",
+					Anchor:  "understanding-static-linked-and-dynamically-linked",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "About Go compilation and CGO",
+					Anchor:  "about-go-compilation-and-cgo",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Portage: Gentoo's package manager",
+					Anchor:  "portage-gentoos-package-manager",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Crossdev: Gentoo's cross-compilation environment",
+					Anchor:  "crossdev-gentoos-cross-compilation-environment",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Containerization and multi-arch manifests",
+					Anchor:  "containerization-and-multi-arch-manifests",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Splitting the base image",
+					Anchor:  "splitting-the-base-image",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "References",
+					Anchor:  "references",
+					Content: "",
+				},
+			},
 		},
 		{
 			EntryName:     "2023-10-09-understanding-authentication",
@@ -272,6 +1986,71 @@ var Pages = [][]Index{
 				"dex",
 				"389ds",
 				"ldap",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "A critique about \"users in database\" and example of monolithic",
+					Anchor:  "a-critique-about-users-in-database-and-example-of-monolithic",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "The existing standards for authentication",
+					Anchor:  "the-existing-standards-for-authentication",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Hands-on example: One OIDC provider with Google Auth+OIDC with Go",
+					Anchor:  "hands-on-example-one-oidc-provider-with-google-authoidc-with-go",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Second example: Multiple providers in one with Dex+OIDC with Go",
+					Anchor:  "second-example-multiple-providers-in-one-with-dexoidc-with-go",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Third example: Fully self-hosted with 389ds+Dex+OIDC with Go",
+					Anchor:  "third-example-fully-self-hosted-with-389dsdexoidc-with-go",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "References",
+					Anchor:  "references",
+					Content: "",
+				},
 			},
 		},
 		{
@@ -297,6 +2076,101 @@ var Pages = [][]Index{
 				"lua",
 				"ruby",
 			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Criteria",
+					Anchor:  "criteria",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Your first programming language for embedded systems: Arduino (C++)",
+					Anchor:  "your-first-programming-language-for-embedded-systems-arduino-c",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Your first programming language for software",
+					Anchor:  "your-first-programming-language-for-software",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Python, JavaScript and Typescript: Simple, but full of the bad practices, like the scripting languages they are.",
+							Anchor:  "python-javascript-and-typescript-simple-but-full-of-the-bad-practices-like-the-scripting-languages-they-are",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "C: simple to write, hard to bootstrap, compile and debug",
+							Anchor:  "c-simple-to-write-hard-to-bootstrap-compile-and-debug",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "C++: same as C, but with a better standard library and easier to use for OOP",
+							Anchor:  "c-same-as-c-but-with-a-better-standard-library-and-easier-to-use-for-oop",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Rust: an alternative to C++, but a lot more \"safe\"",
+							Anchor:  "rust-an-alternative-to-c-but-a-lot-more-safe",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Go: THE language that I recommend",
+							Anchor:  "go-the-language-that-i-recommend",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Bonus: Zig: THE next language that I recommend",
+							Anchor:  "bonus-zig-the-next-language-that-i-recommend",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "One last point: To OOP or not",
+					Anchor:  "one-last-point-to-oop-or-not",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+			},
 		},
 		{
 			EntryName:     "2023-09-16-road-to-replicable-infrastructure",
@@ -316,6 +2190,154 @@ var Pages = [][]Index{
 				"pxe",
 				"gitops",
 			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "About the Linux boot process",
+					Anchor:  "about-the-linux-boot-process",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Stateless images",
+					Anchor:  "stateless-images",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "OverlayFS",
+							Anchor:  "overlayfs",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Building the SquashFS image",
+							Anchor:  "building-the-squashfs-image",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Install packages",
+									Anchor:  "install-packages",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Add root password",
+									Anchor:  "add-root-password",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Post-boot script",
+									Anchor:  "post-boot-script",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Building the kernel, install kernel modules, packing the kernel",
+									Anchor:  "building-the-kernel-install-kernel-modules-packing-the-kernel",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Packing the image with mksquashfs",
+									Anchor:  "packing-the-image-with-mksquashfs",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Building the initramfs with Dracut",
+							Anchor:  "building-the-initramfs-with-dracut",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Testing Locally",
+							Anchor:  "testing-locally",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Booting the OS with PXE",
+					Anchor:  "booting-the-os-with-pxe",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Limitations",
+					Anchor:  "limitations",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "OverlayFS limitations",
+							Anchor:  "overlayfs-limitations",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "NVIDIA drivers",
+							Anchor:  "nvidia-drivers",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Privileges and host kernel",
+							Anchor:  "privileges-and-host-kernel",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "References",
+					Anchor:  "references",
+					Content: "",
+				},
+			},
 		},
 		{
 			EntryName:     "2023-09-10-developing-blog",
@@ -332,6 +2354,170 @@ var Pages = [][]Index{
 				"raspberry-pi",
 				"kubernetes",
 			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Motivation",
+					Anchor:  "motivation",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "State of the art and Inspiration",
+					Anchor:  "state-of-the-art-and-inspiration",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Docusaurus",
+							Anchor:  "docusaurus",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "SvelteKit or SveltePress",
+							Anchor:  "sveltekit-or-sveltepress",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "HTML-only",
+							Anchor:  "html-only",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Taking inspiration of my favorite blog structure: The Go dev blog.",
+							Anchor:  "taking-inspiration-of-my-favorite-blog-structure-the-go-dev-blog",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Hugo",
+							Anchor:  "hugo",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "HTMX and Go",
+							Anchor:  "htmx-and-go",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Development",
+					Anchor:  "development",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Proof of Concept",
+							Anchor:  "proof-of-concept",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Architecture",
+							Anchor:  "architecture",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Content directory",
+									Anchor:  "content-directory",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Templates and Components",
+									Anchor:  "templates-and-components",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Static directory",
+									Anchor:  "static-directory",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Implementation",
+							Anchor:  "implementation",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Initial Request and Server-Side rendering",
+									Anchor:  "initial-request-and-server-side-rendering",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Markdown rendering",
+									Anchor:  "markdown-rendering",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Compile-time rendering",
+									Anchor:  "compile-time-rendering",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Index page and pagination",
+									Anchor:  "index-page-and-pagination",
+									Content: "",
+								},
+							},
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "References",
+					Anchor:  "references",
+					Content: "",
+				},
+			},
 		},
 		{
 			EntryName:     "2023-09-09-hello-world",
@@ -344,6 +2530,43 @@ var Pages = [][]Index{
 			Tags: []string{
 				"go",
 				"htmx",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Why ?",
+					Anchor:  "why-",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "HTMX and Go",
+					Anchor:  "htmx-and-go",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Okay, so what is this blog ?",
+					Anchor:  "okay-so-what-is-this-blog-",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "So, what's next ?",
+					Anchor:  "so-whats-next-",
+					Content: "",
+				},
 			},
 		},
 	},
@@ -383,7 +2606,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1756947086, 0),
+	Updated: time.Unix(1762734328, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "I'm back! And I'm now flying FPV drones!",

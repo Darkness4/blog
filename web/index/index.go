@@ -20,6 +20,7 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/yuin/goldmark"
 	meta "github.com/yuin/goldmark-meta"
+	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/text"
 )
 
@@ -52,6 +53,7 @@ type Index struct {
 	Href          string
 	EntryName     string
 	Tags          []string
+	Hierarchy     []*Header
 }
 
 func buildPages() (index [][]Index, err error) {
@@ -67,6 +69,7 @@ func buildPages() (index [][]Index, err error) {
 
 	// Markdown Parser
 	markdown := goldmark.New(
+		goldmark.WithParserOptions(parser.WithAutoHeadingID()),
 		goldmark.WithExtensions(
 			meta.New(
 				meta.WithStoresInDocument(),
@@ -103,6 +106,12 @@ func buildPages() (index [][]Index, err error) {
 			log.Fatal().Err(err).Msg("read file failure")
 		}
 		document := markdown.Parser().Parse(text.NewReader(b))
+
+		// Hierarchy
+		headers := extractHeaders(document, b)
+		hierarchy := buildHierarchy(headers)
+
+		// Metadata
 		metaData := document.OwnerDocument().Meta()
 		date, err := blog.ExtractDate(entry.Name())
 		if err != nil {
@@ -123,6 +132,7 @@ func buildPages() (index [][]Index, err error) {
 			PublishedDate: date.Unix(),
 			Href:          path.Join("/blog", entry.Name()),
 			Tags:          tags,
+			Hierarchy:     hierarchy,
 		})
 		i++
 	}

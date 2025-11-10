@@ -1,3 +1,19 @@
+{{- define "header" }}
+	{
+		Level:    {{ .Level }},
+		Text:     {{ printf "%q" .Text }},
+		Anchor:   {{ printf "%q" .Anchor }},
+		Content:  {{ printf "%q" .Content }},
+{{- if .Children }}
+		Children: []Header{
+{{- range .Children }}
+{{ template "header" . }}
+{{- end }}
+		},
+{{- end }}
+	},
+{{- end }}
+
 {{define "index"}}
 package index
 
@@ -16,6 +32,16 @@ type Index struct {
 	Loc           string    `xml:"loc"`
 	Priority      float32   `xml:"priority,omitempty"`
 	Tags          []string  `xml:"-"`
+	Hierarchy     []Header  `xml:"-"`
+}
+
+// Header represents a single header in the hierarchy
+type Header struct {
+	Level    int
+	Text     string
+	Anchor   string
+	Content  string
+	Children []Header
 }
 
 const PageSize = {{ .PageSize }}
@@ -36,6 +62,11 @@ var Pages = [][]Index{
 				{{- range $i, $tag := $value.Tags}}
 				{{ $tag | quote }},
 				{{- end}}
+			},
+			Hierarchy: []Header{
+			{{- range $value.Hierarchy}}
+			{{ template "header" . }}
+			{{- end }}
 			},
 		},
 		{{- end}}

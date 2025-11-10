@@ -20,9 +20,9 @@ func NewLineWriter() *LineWriter {
 // Write appends data to the writer and removes duplicate lines.
 func (w *LineWriter) Write(p []byte) (n int, err error) {
 	// Split input into lines.
-	lines := strings.Split(string(p), "\n")
+	lines := strings.SplitSeq(string(p), "\n")
 
-	for _, line := range lines {
+	for line := range lines {
 		if !w.lines[line] {
 			// If the line is not a duplicate, write it and mark it as seen.
 			w.builder.WriteString(line + "\n")

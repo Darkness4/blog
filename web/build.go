@@ -84,7 +84,8 @@ func wrapperRenderer(w util.BufWriter, ctx highlighting.CodeBlockContext, enteri
 		// Copy code button
 		w.WriteString("<div class=\"code-btn-group\">")
 		w.WriteString(
-			"<button type=\"button\" aria-label=\"Copy code to clipboard\" title=\"Copy\" class=\"copy-btn\">",
+			`<button type="button" aria-label="Copy code to clipboard" title="Copy" class="copy-btn"
+			_="on click call copyCode(closest parent .code-content)">`,
 		)
 		w.WriteString("<span aria-hidden=\"true\" class=\"copy-btn-icons\">")
 		w.WriteString(

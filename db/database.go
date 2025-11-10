@@ -20,11 +20,11 @@ type stdlogger struct {
 	zl *zerolog.Logger
 }
 
-func (l *stdlogger) Fatalf(format string, v ...interface{}) {
+func (l *stdlogger) Fatalf(format string, v ...any) {
 	l.zl.Fatal().Msgf(format, v...)
 }
 
-func (l *stdlogger) Printf(format string, v ...interface{}) {
+func (l *stdlogger) Printf(format string, v ...any) {
 	format = strings.Trim(format, "\n")
 	l.zl.Printf(format, v...)
 }

@@ -8,3 +8,10 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
+  meilisearch:
+    image: getmeili/meilisearch
+    restart: always
+    ports:
+      - 7700:7700
+    environment:
+      - MEILI_MASTER_KEY=GYIlU0qm5VYndO5LCEjRjXK7y7ErEzzQz8MiwEEo-4E

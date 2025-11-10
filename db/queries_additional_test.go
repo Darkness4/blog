@@ -1,7 +1,6 @@
 package db_test
 
 import (
-	"context"
 	"os"
 	"runtime/debug"
 	"testing"
@@ -15,8 +14,7 @@ func TestCreateOrIncrementPageViewsOnUniqueIP(t *testing.T) {
 	_ = godotenv.Load(".env")
 	_ = godotenv.Load(".env.local")
 
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
+	ctx := t.Context()
 
 	dsn := os.Getenv("DB_DSN")
 	if dsn == "" {
