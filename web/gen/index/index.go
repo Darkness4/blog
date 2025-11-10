@@ -32,6 +32,85 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2025-11-10-dialog-hyperscript-picocss",
+			Title:         "Modal dialog with Hyperscript and PicoCSS",
+			Description:   "Small article about a deadly combination.",
+			PublishedDate: time.Unix(1762732800, 0),
+			Href:          "/blog/2025-11-10-dialog-hyperscript-picocss",
+			Loc:           "https://blog.mnguyen.fr/blog/2025-11-10-dialog-hyperscript-picocss",
+			Priority:      0.5,
+			Tags: []string{
+				"dialog",
+				"modal",
+				"hyperscript",
+				"picocss",
+				"css",
+				"js",
+				"html",
+				"htmx",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "TL;DR",
+					Anchor:  "tldr",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "How-to create a dialog modal with PicoCSS and vanilla JS",
+					Anchor:  "how-to-create-a-dialog-modal-with-picocss-and-vanilla-js",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Hyperscript, the missing piece for homemade SSR",
+					Anchor:  "hyperscript-the-missing-piece-for-homemade-ssr",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Difficulties with homemade SSR with HTMX",
+							Anchor:  "difficulties-with-homemade-ssr-with-htmx",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Hyperscript as a simple solution",
+							Anchor:  "hyperscript-as-a-simple-solution",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Dialog Modal with Hyperscript and PicoCSS",
+							Anchor:  "dialog-modal-with-hyperscript-and-picocss",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+			},
+		},
+		{
 			EntryName:     "2025-07-24-fpv-drone",
 			Title:         "I'm back! And I'm now flying FPV drones!",
 			Description:   "As an engineer, how I got started with FPV drones.",
@@ -2606,8 +2685,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1762734328, 0),
+	Updated: time.Unix(1762739836, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "Modal dialog with Hyperscript and PicoCSS",
+			Description: "Small article about a deadly combination.",
+			Created:     time.Unix(1762732800, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2025-11-10-dialog-hyperscript-picocss",
+			},
+		},
 		{
 			Title:       "I'm back! And I'm now flying FPV drones!",
 			Description: "As an engineer, how I got started with FPV drones.",
