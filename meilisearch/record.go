@@ -146,7 +146,7 @@ func processHeader(
 		HierarchyRadioLvl4: lvl4,
 		HierarchyRadioLvl5: lvl5,
 		Content:            h.Content,
-		URL:                idx.Loc + "#" + h.Anchor,
+		URL:                idx.Href + "#" + h.Anchor,
 		Anchor:             h.Anchor,
 	}
 
