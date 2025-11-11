@@ -24,23 +24,17 @@ func (r *Record) Marshal() ([]byte, error) {
 }
 
 type Record struct {
-	ObjectID           string `json:"objectID"`
-	HierarchyRadioLvl0 string `json:"hierarchy_radio_lvl0,omitempty"`
-	HierarchyRadioLvl1 string `json:"hierarchy_radio_lvl1,omitempty"`
-	HierarchyRadioLvl2 string `json:"hierarchy_radio_lvl2,omitempty"`
-	HierarchyRadioLvl3 string `json:"hierarchy_radio_lvl3,omitempty"`
-	HierarchyRadioLvl4 string `json:"hierarchy_radio_lvl4,omitempty"`
-	HierarchyRadioLvl5 string `json:"hierarchy_radio_lvl5,omitempty"`
-	HierarchyLvl0      string `json:"hierarchy_lvl0,omitempty"`
-	HierarchyLvl1      string `json:"hierarchy_lvl1,omitempty"`
-	HierarchyLvl2      string `json:"hierarchy_lvl2,omitempty"`
-	HierarchyLvl3      string `json:"hierarchy_lvl3,omitempty"`
-	HierarchyLvl4      string `json:"hierarchy_lvl4,omitempty"`
-	HierarchyLvl5      string `json:"hierarchy_lvl5,omitempty"`
-	HierarchyLvl6      string `json:"hierarchy_lvl6,omitempty"`
-	Content            string `json:"content"`
-	URL                string `json:"url"`
-	Anchor             string `json:"anchor"`
+	ObjectID      string `json:"objectID"`
+	HierarchyLvl0 string `json:"hierarchy_lvl0,omitempty"`
+	HierarchyLvl1 string `json:"hierarchy_lvl1,omitempty"`
+	HierarchyLvl2 string `json:"hierarchy_lvl2,omitempty"`
+	HierarchyLvl3 string `json:"hierarchy_lvl3,omitempty"`
+	HierarchyLvl4 string `json:"hierarchy_lvl4,omitempty"`
+	HierarchyLvl5 string `json:"hierarchy_lvl5,omitempty"`
+	HierarchyLvl6 string `json:"hierarchy_lvl6,omitempty"`
+	Content       string `json:"content"`
+	URL           string `json:"url"`
+	Anchor        string `json:"anchor"`
 }
 
 // IndexToRecords converts an Index to a slice of search Records
@@ -55,23 +49,17 @@ func IndexToRecords(index [][]index.Index) iter.Seq[Record] {
 
 				// 1. **Directly yield the Level 2 Record**
 				lvl2Record := Record{
-					ObjectID:           j.EntryName,
-					HierarchyRadioLvl0: lvl0,
-					HierarchyRadioLvl1: lvl1,
-					HierarchyRadioLvl2: "",
-					HierarchyRadioLvl3: "",
-					HierarchyRadioLvl4: "",
-					HierarchyRadioLvl5: "",
-					HierarchyLvl0:      lvl0,
-					HierarchyLvl1:      lvl1,
-					HierarchyLvl2:      "",
-					HierarchyLvl3:      "",
-					HierarchyLvl4:      "",
-					HierarchyLvl5:      "",
-					HierarchyLvl6:      "",
-					Content:            "",
-					URL:                j.Href,
-					Anchor:             "",
+					ObjectID:      j.EntryName,
+					HierarchyLvl0: lvl0,
+					HierarchyLvl1: lvl1,
+					HierarchyLvl2: "",
+					HierarchyLvl3: "",
+					HierarchyLvl4: "",
+					HierarchyLvl5: "",
+					HierarchyLvl6: "",
+					Content:       "",
+					URL:           j.Href,
+					Anchor:        "",
 				}
 
 				if !yield(lvl2Record) {
@@ -131,23 +119,17 @@ func processHeader(
 
 	// 1. Create record for this header
 	record := Record{
-		ObjectID:           idx.EntryName + "-" + h.Anchor,
-		HierarchyLvl0:      lvl0,
-		HierarchyLvl1:      lvl1,
-		HierarchyLvl2:      lvl2,
-		HierarchyLvl3:      lvl3,
-		HierarchyLvl4:      lvl4,
-		HierarchyLvl5:      lvl5,
-		HierarchyLvl6:      lvl6,
-		HierarchyRadioLvl0: "",
-		HierarchyRadioLvl1: "",
-		HierarchyRadioLvl2: lvl2,
-		HierarchyRadioLvl3: lvl3,
-		HierarchyRadioLvl4: lvl4,
-		HierarchyRadioLvl5: lvl5,
-		Content:            h.Content,
-		URL:                idx.Href + "#" + h.Anchor,
-		Anchor:             h.Anchor,
+		ObjectID:      idx.EntryName + "-" + h.Anchor,
+		HierarchyLvl0: lvl0,
+		HierarchyLvl1: lvl1,
+		HierarchyLvl2: lvl2,
+		HierarchyLvl3: lvl3,
+		HierarchyLvl4: lvl4,
+		HierarchyLvl5: lvl5,
+		HierarchyLvl6: lvl6,
+		Content:       h.Content,
+		URL:           idx.Href + "#" + h.Anchor,
+		Anchor:        h.Anchor,
 	}
 
 	// 2. **Directly yield the record**
