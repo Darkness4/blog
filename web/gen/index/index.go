@@ -32,6 +32,108 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2025-11-11-meilisearch-ssr",
+			Title:         "A guide on how to use Meilisearch as docsearch with HTMX",
+			Description:   "<nil>",
+			PublishedDate: time.Unix(1762819200, 0),
+			Href:          "/blog/2025-11-11-meilisearch-ssr",
+			Loc:           "https://blog.mnguyen.fr/blog/2025-11-11-meilisearch-ssr",
+			Priority:      0.5,
+			Tags:          []string{},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "A need for a search engine",
+					Anchor:  "a-need-for-a-search-engine",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "How to use Meilisearch as docsearch",
+					Anchor:  "how-to-use-meilisearch-as-docsearch",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Step 1: Indexing the website",
+							Anchor:  "step-1-indexing-the-website",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Step 1.a: Before indexing the website, something you need to know",
+									Anchor:  "step-1a-before-indexing-the-website-something-you-need-to-know",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Step 1.b: Search the articles in the blog",
+									Anchor:  "step-1b-search-the-articles-in-the-blog",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Step 1.c: Parse the articles",
+									Anchor:  "step-1c-parse-the-articles",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Step 1.d: Send documents to Meilisearch",
+									Anchor:  "step-1d-send-documents-to-meilisearch",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Step 2: Setting up the search engine",
+							Anchor:  "step-2-setting-up-the-search-engine",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Step 2.a: Serving the index",
+									Anchor:  "step-2a-serving-the-index",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Step 2.b: Serving the search results",
+									Anchor:  "step-2b-serving-the-search-results",
+									Content: "",
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		{
 			EntryName:     "2025-11-10-dialog-hyperscript-picocss",
 			Title:         "Modal dialog with Hyperscript and PicoCSS",
 			Description:   "Small article about a deadly combination.",
@@ -2685,8 +2787,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1762739836, 0),
+	Updated: time.Unix(1762900471, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "A guide on how to use Meilisearch as docsearch with HTMX",
+			Description: "<nil>",
+			Created:     time.Unix(1762819200, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2025-11-11-meilisearch-ssr",
+			},
+		},
 		{
 			Title:       "Modal dialog with Hyperscript and PicoCSS",
 			Description: "Small article about a deadly combination.",

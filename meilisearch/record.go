@@ -1,7 +1,6 @@
 package meilisearch
 
 import (
-	"encoding/json"
 	"iter"
 
 	"github.com/Darkness4/blog/web/gen/index"
@@ -11,16 +10,6 @@ import (
 type RecordWithFormat struct {
 	Record    `json:",inline"`
 	Formatted Record `json:"_formatted"`
-}
-
-func UnmarshalRecord(data []byte) (Record, error) {
-	var r Record
-	err := json.Unmarshal(data, &r)
-	return r, err
-}
-
-func (r *Record) Marshal() ([]byte, error) {
-	return json.Marshal(r)
 }
 
 type Record struct {

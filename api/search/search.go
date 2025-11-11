@@ -72,7 +72,7 @@ func Handler(meili *meilisearch.Client) http.HandlerFunc {
 			return
 		}
 
-		w.Header().Set("Content-Type", "application/html")
+		w.Header().Set("Content-Type", "text/html")
 		w.WriteHeader(http.StatusOK)
 	}
 }
