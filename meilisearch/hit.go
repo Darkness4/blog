@@ -14,12 +14,12 @@ type (
 )
 
 // JSONMarshal returns the JSON encoding of v.
-type JSONMarshal func(v interface{}) ([]byte, error)
+type JSONMarshal func(v any) ([]byte, error)
 
 // JSONUnmarshal parses the JSON-encoded data and stores the result
 // in the value pointed to by v. If v is nil or not a pointer,
 // Unmarshal returns an InvalidUnmarshalError.
-type JSONUnmarshal func(data []byte, v interface{}) error
+type JSONUnmarshal func(data []byte, v any) error
 
 // DecodeInto decodes a single Hit into the provided struct without intermediate marshaling.
 func (h Hit) DecodeInto(out any) error {
@@ -101,7 +101,7 @@ func (h Hit) DecodeInto(out any) error {
 }
 
 // DecodeWith decodes a Hit into the provided struct using the provided marshal and unmarshal functions.
-func (h Hit) DecodeWith(vPtr interface{}, marshal JSONMarshal, unmarshal JSONUnmarshal) error {
+func (h Hit) DecodeWith(vPtr any, marshal JSONMarshal, unmarshal JSONUnmarshal) error {
 	if vPtr == nil || reflect.ValueOf(vPtr).Kind() != reflect.Ptr {
 		return errors.New("vPtr must be a non-nil pointer")
 	}
@@ -120,7 +120,7 @@ func (h Hits) Len() int {
 
 // DecodeWith decodes a Hits into the provided struct using the provided marshal and unmarshal functions.
 func (h Hits) DecodeWith(
-	vSlicePtr interface{},
+	vSlicePtr any,
 	marshal JSONMarshal,
 	unmarshal JSONUnmarshal,
 ) error {
@@ -148,7 +148,7 @@ func (h Hits) DecodeWith(
 //
 //	var outPtr []*exampleBookForTest
 //	if err := hits.DecodeInto(&outPtr); err != nil { ... }
-func (h Hits) DecodeInto(vSlicePtr interface{}) error {
+func (h Hits) DecodeInto(vSlicePtr any) error {
 	if vSlicePtr == nil {
 		return fmt.Errorf("vSlicePtr must be a non-nil pointer to a slice")
 	}

@@ -15,6 +15,7 @@ var _d2 = []byte("d2")
 
 func (s *Transformer) Transform(doc *ast.Document, reader text.Reader, _ parser.Context) {
 	var blocks []*ast.FencedCodeBlock
+	source := reader.Source()
 
 	// Collect all blocks to be replaced without modifying the tree.
 	_ = ast.Walk(doc, func(node ast.Node, enter bool) (ast.WalkStatus, error) {
@@ -27,7 +28,7 @@ func (s *Transformer) Transform(doc *ast.Document, reader text.Reader, _ parser.
 			return ast.WalkContinue, nil
 		}
 
-		lang := cb.Language(reader.Source())
+		lang := cb.Language(source)
 		if !bytes.Equal(lang, _d2) {
 			return ast.WalkContinue, nil
 		}
@@ -43,6 +44,7 @@ func (s *Transformer) Transform(doc *ast.Document, reader text.Reader, _ parser.
 
 	for _, cb := range blocks {
 		b := new(Block)
+		b.SetInfo(cb.Info.Segment.Value(source))
 		b.SetLines(cb.Lines())
 
 		parent := cb.Parent()

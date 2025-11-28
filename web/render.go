@@ -92,7 +92,7 @@ func RenderFunc(
 			if !isPage {
 				return
 			}
-		} else if err != nil && !errors.Is(err, fs.ErrNotExist) {
+		} else if !errors.Is(err, fs.ErrNotExist) {
 			log.Err(err).Msg("failed to read file")
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return

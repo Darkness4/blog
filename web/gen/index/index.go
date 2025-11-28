@@ -32,14 +32,187 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2025-11-28-crowdsec",
+			Title:         "Deploying CrowdSec to ban them all.",
+			Description:   "How to deploy CrowdSec, including the WAF (Web Application Firewall) to ban every spammer and attacker in the world. This article also includes a guide on how to setup a Grafana dashboard to monitor CrowdSec.",
+			PublishedDate: time.Unix(1764288000, 0),
+			Href:          "/blog/2025-11-28-crowdsec",
+			Loc:           "https://blog.mnguyen.fr/blog/2025-11-28-crowdsec",
+			Priority:      0.5,
+			Tags: []string{
+				"kubernetes",
+				"crowdSec",
+				"traefik",
+				"grafana",
+				"waf",
+				"monitoring",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Why would I publish a port on the home network ?",
+					Anchor:  "why-would-i-publish-a-port-on-the-home-network-",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "How to protect against attacks and spammers ?",
+					Anchor:  "how-to-protect-against-attacks-and-spammers-",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "How to deploy CrowdSec",
+					Anchor:  "how-to-deploy-crowdsec",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Architecture",
+							Anchor:  "architecture",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "CrowdSec pricing plan",
+							Anchor:  "crowdsec-pricing-plan",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Deploying CrowdSec on Kubernetes",
+							Anchor:  "deploying-crowdsec-on-kubernetes",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "1. Register on CrowdSec.net and fetch the registration token",
+									Anchor:  "1-register-on-crowdsecnet-and-fetch-the-registration-token",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "2. Deploy an Ingress Controller on Kubernetes",
+									Anchor:  "2-deploy-an-ingress-controller-on-kubernetes",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "3. Deploy CrowdSec on Kubernetes",
+									Anchor:  "3-deploy-crowdsec-on-kubernetes",
+									Content: "",
+									Children: []Header{
+
+										{
+											Level:   5,
+											Text:    "Base - Kustomization",
+											Anchor:  "base---kustomization",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "Base - Local API",
+											Anchor:  "base---local-api",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "Base - Agent",
+											Anchor:  "base---agent",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "Base - AppSec",
+											Anchor:  "base---appsec",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "Overlay - LAPI",
+											Anchor:  "overlay---lapi",
+											Content: "",
+										},
+									},
+								},
+
+								{
+									Level:   4,
+									Text:    "4. Configure the remediation component",
+									Anchor:  "4-configure-the-remediation-component",
+									Content: "",
+								},
+							},
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Monitoring",
+					Anchor:  "monitoring",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Processing logs",
+							Anchor:  "processing-logs",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Setting up the dashboard",
+							Anchor:  "setting-up-the-dashboard",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+			},
+		},
+		{
 			EntryName:     "2025-11-11-meilisearch-ssr",
 			Title:         "A guide on how to use Meilisearch as docsearch with HTMX",
-			Description:   "<nil>",
+			Description:   "How to use Meilisearch as docsearch with Server-Side-Rendering by using HTMX.",
 			PublishedDate: time.Unix(1762819200, 0),
 			Href:          "/blog/2025-11-11-meilisearch-ssr",
 			Loc:           "https://blog.mnguyen.fr/blog/2025-11-11-meilisearch-ssr",
 			Priority:      0.5,
-			Tags:          []string{},
+			Tags: []string{
+				"meilisearch",
+				"ssr",
+				"htmx",
+				"docsearch",
+				"go",
+			},
 			Hierarchy: []Header{
 
 				{
@@ -130,6 +303,13 @@ var Pages = [][]Index{
 							},
 						},
 					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
 				},
 			},
 		},
@@ -2787,11 +2967,19 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1762900471, 0),
+	Updated: time.Unix(1764369574, 0),
 	Items: []*feeds.Item{
 		{
+			Title:       "Deploying CrowdSec to ban them all.",
+			Description: "How to deploy CrowdSec, including the WAF (Web Application Firewall) to ban every spammer and attacker in the world. This article also includes a guide on how to setup a Grafana dashboard to monitor CrowdSec.",
+			Created:     time.Unix(1764288000, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2025-11-28-crowdsec",
+			},
+		},
+		{
 			Title:       "A guide on how to use Meilisearch as docsearch with HTMX",
-			Description: "<nil>",
+			Description: "How to use Meilisearch as docsearch with Server-Side-Rendering by using HTMX.",
 			Created:     time.Unix(1762819200, 0),
 			Link: &feeds.Link{
 				Href: "https://blog.mnguyen.fr/blog/2025-11-11-meilisearch-ssr",

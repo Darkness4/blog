@@ -119,7 +119,7 @@ func buildPages() (index [][]Index, err error) {
 		}
 		var tags []string
 		if metaData["tags"] != nil {
-			mTags := metaData["tags"].([]interface{})
+			mTags := metaData["tags"].([]any)
 			tags = make([]string, 0, len(mTags))
 			for _, tag := range mTags {
 				tags = append(tags, fmt.Sprintf("%v", tag))

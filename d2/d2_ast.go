@@ -7,6 +7,7 @@ import (
 
 type Block struct {
 	ast.BaseBlock
+	info []byte
 }
 
 func (n *Block) IsBlank(source []byte) bool {
@@ -27,4 +28,12 @@ var KindBlock = ast.NewNodeKind("Block")
 
 func (n *Block) Kind() ast.NodeKind {
 	return KindBlock
+}
+
+func (n *Block) SetInfo(info []byte) {
+	n.info = info
+}
+
+func (n *Block) Info() []byte {
+	return n.info
 }

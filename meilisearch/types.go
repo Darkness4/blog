@@ -91,7 +91,7 @@ type SearchRequest struct {
 	HighlightPreTag         string                   `json:"highlightPreTag,omitempty"`
 	HighlightPostTag        string                   `json:"highlightPostTag,omitempty"`
 	MatchingStrategy        MatchingStrategy         `json:"matchingStrategy,omitempty"`
-	Filter                  interface{}              `json:"filter,omitempty"`
+	Filter                  any                      `json:"filter,omitempty"`
 	ShowMatchesPosition     bool                     `json:"showMatchesPosition,omitempty"`
 	ShowRankingScore        bool                     `json:"showRankingScore,omitempty"`
 	ShowRankingScoreDetails bool                     `json:"showRankingScoreDetails,omitempty"`
