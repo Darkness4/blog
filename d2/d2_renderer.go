@@ -32,20 +32,6 @@ func (r *HTMLRenderer) RegisterFuncs(reg renderer.NodeRendererFuncRegisterer) {
 	reg.Register(KindBlock, r.Render)
 }
 
-// ImmutableAttributes is a read-only interface for ast.Attributes.
-type ImmutableAttributes interface {
-	// Get returns (value, true) if an attribute associated with given
-	// name exists, otherwise (nil, false)
-	Get(name []byte) (any, bool)
-
-	// GetString returns (value, true) if an attribute associated with given
-	// name exists, otherwise (nil, false)
-	GetString(name string) (any, bool)
-
-	// All returns all attributes.
-	All() []ast.Attribute
-}
-
 type immutableAttributes struct {
 	n ast.Node
 }
@@ -65,7 +51,7 @@ func (a *immutableAttributes) All() []ast.Attribute {
 	return a.n.Attributes()
 }
 
-func getAttributes(infostr []byte) ImmutableAttributes {
+func getAttributes(infostr []byte) *immutableAttributes {
 	if infostr != nil {
 		attrStartIdx := -1
 
@@ -123,8 +109,7 @@ func (r *HTMLRenderer) Render(
 	}
 	// Parsing Info ```d2 ({key=value}) <-- THIS
 	var title string
-	attrs := getAttributes(n.Info())
-	if attrs != nil {
+	if attrs := getAttributes(n.Info()); attrs != nil {
 		if layoutAttr, ok := attrs.GetString("layout"); ok {
 			if layoutAttrB, ok := layoutAttr.([]uint8); ok {
 				layoutAttrStr := string(layoutAttrB)
