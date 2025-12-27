@@ -9,7 +9,7 @@ require (
 	github.com/alecthomas/chroma/v2 v2.20.0
 	github.com/go-chi/chi/v5 v5.2.3
 	github.com/gorilla/feeds v1.2.0
-	github.com/jackc/pgx/v5 v5.7.6
+	github.com/jackc/pgx/v5 v5.8.0
 	github.com/joho/godotenv v1.5.1
 	github.com/litao91/goldmark-mathjax v0.0.0-20210217064022-a43cf739a50f
 	github.com/pressly/goose/v3 v3.26.0
