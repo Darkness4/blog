@@ -32,6 +32,75 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2026-01-11-distroless-containers",
+			Title:         "Distroless containers, or the art to hide vulnerabilities.",
+			Description:   "A small articles about why distroless containers can be beneficial, but hides vulnerabilities.",
+			PublishedDate: time.Unix(1768089600, 0),
+			Href:          "/blog/2026-01-11-distroless-containers",
+			Loc:           "https://blog.mnguyen.fr/blog/2026-01-11-distroless-containers",
+			Priority:      0.5,
+			Tags: []string{
+				"devops",
+				"linux",
+				"container",
+				"distroless",
+				"security",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Distroless containers",
+					Anchor:  "distroless-containers",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Considerations",
+					Anchor:  "considerations",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "About dynamic linking, and why static linking hides vulnerabilities",
+							Anchor:  "about-dynamic-linking-and-why-static-linking-hides-vulnerabilities",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "No shell? That's not true.",
+							Anchor:  "no-shell-thats-not-true",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Impure distroless images",
+							Anchor:  "impure-distroless-images",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+			},
+		},
+		{
 			EntryName:     "2025-11-28-crowdsec",
 			Title:         "Deploying CrowdSec to ban them all.",
 			Description:   "How to deploy CrowdSec, including the WAF (Web Application Firewall) to ban every spammer and attacker in the world. This article also includes a guide on how to setup a Grafana dashboard to monitor CrowdSec.",
@@ -48,6 +117,13 @@ var Pages = [][]Index{
 				"monitoring",
 			},
 			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
 
 				{
 					Level:   2,
@@ -2967,8 +3043,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1764369706, 0),
+	Updated: time.Unix(1768107587, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "Distroless containers, or the art to hide vulnerabilities.",
+			Description: "A small articles about why distroless containers can be beneficial, but hides vulnerabilities.",
+			Created:     time.Unix(1768089600, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2026-01-11-distroless-containers",
+			},
+		},
 		{
 			Title:       "Deploying CrowdSec to ban them all.",
 			Description: "How to deploy CrowdSec, including the WAF (Web Application Firewall) to ban every spammer and attacker in the world. This article also includes a guide on how to setup a Grafana dashboard to monitor CrowdSec.",
