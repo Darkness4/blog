@@ -1,15 +1,13 @@
 module github.com/Darkness4/blog
 
-go 1.24.0
-
-toolchain go1.24.6
+go 1.24.9
 
 require (
 	github.com/Masterminds/sprig/v3 v3.3.0
-	github.com/alecthomas/chroma/v2 v2.20.0
+	github.com/alecthomas/chroma/v2 v2.22.0
 	github.com/go-chi/chi/v5 v5.2.3
 	github.com/gorilla/feeds v1.2.0
-	github.com/jackc/pgx/v5 v5.7.6
+	github.com/jackc/pgx/v5 v5.8.0
 	github.com/joho/godotenv v1.5.1
 	github.com/litao91/goldmark-mathjax v0.0.0-20210217064022-a43cf739a50f
 	github.com/pressly/goose/v3 v3.26.0
@@ -17,7 +15,7 @@ require (
 	github.com/sqlc-dev/sqlc v1.30.0
 	github.com/stefanfritsch/goldmark-admonitions v1.1.1
 	github.com/urfave/cli/v3 v3.6.1
-	github.com/yuin/goldmark v1.7.13
+	github.com/yuin/goldmark v1.7.16
 	github.com/yuin/goldmark-highlighting/v2 v2.0.0-20230729083705-37449abec8cc
 	github.com/yuin/goldmark-meta v1.1.0
 	go.abhg.dev/goldmark/anchor v0.2.0
@@ -33,7 +31,7 @@ require (
 	github.com/ClickHouse/clickhouse-go/v2 v2.40.1 // indirect
 	github.com/Masterminds/goutils v1.1.1 // indirect
 	github.com/Masterminds/semver/v3 v3.4.0 // indirect
-	github.com/PuerkitoBio/goquery v1.10.3 // indirect
+	github.com/PuerkitoBio/goquery v1.11.0 // indirect
 	github.com/andybalholm/brotli v1.2.0 // indirect
 	github.com/andybalholm/cascadia v1.3.3 // indirect
 	github.com/antlr4-go/antlr/v4 v4.13.1 // indirect
@@ -41,7 +39,7 @@ require (
 	github.com/cubicdaiya/gonp v1.0.4 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dlclark/regexp2 v1.11.5 // indirect
-	github.com/dop251/goja v0.0.0-20251103141225-af2ceb9156d7 // indirect
+	github.com/dop251/goja v0.0.0-20260106131823-651366fbe6e3 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/elastic/go-sysinfo v1.15.4 // indirect
 	github.com/elastic/go-windows v1.0.2 // indirect
@@ -55,7 +53,7 @@ require (
 	github.com/golang-sql/sqlexp v0.1.0 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/google/cel-go v0.26.1 // indirect
-	github.com/google/pprof v0.0.0-20251007162407-5df77e3f7d1d // indirect
+	github.com/google/pprof v0.0.0-20260106004452-d7df1bf2cac7 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/huandu/xstrings v1.5.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
@@ -68,7 +66,7 @@ require (
 	github.com/lucasb-eyer/go-colorful v1.3.0 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
-	github.com/mazznoer/csscolorparser v0.1.6 // indirect
+	github.com/mazznoer/csscolorparser v0.1.7 // indirect
 	github.com/mfridman/interpolate v0.0.2 // indirect
 	github.com/mfridman/xflag v0.1.0 // indirect
 	github.com/microsoft/go-mssqldb v1.9.2 // indirect
@@ -107,13 +105,13 @@ require (
 	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.0 // indirect
-	golang.org/x/crypto v0.43.0 // indirect
-	golang.org/x/exp v0.0.0-20251023183803-a4bb9ffd2546 // indirect
-	golang.org/x/image v0.32.0 // indirect
-	golang.org/x/net v0.46.0 // indirect
-	golang.org/x/sync v0.18.0 // indirect
-	golang.org/x/sys v0.38.0 // indirect
-	golang.org/x/text v0.30.0 // indirect
+	golang.org/x/crypto v0.46.0 // indirect
+	golang.org/x/exp v0.0.0-20251219203646-944ab1f22d93 // indirect
+	golang.org/x/image v0.34.0 // indirect
+	golang.org/x/net v0.48.0 // indirect
+	golang.org/x/sync v0.19.0 // indirect
+	golang.org/x/sys v0.40.0 // indirect
+	golang.org/x/text v0.33.0 // indirect
 	golang.org/x/xerrors v0.0.0-20240903120638-7835f813f4da // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20250707201910-8d1bb00bc6a7 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250707201910-8d1bb00bc6a7 // indirect
