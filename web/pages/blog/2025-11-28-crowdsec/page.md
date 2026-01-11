@@ -4,6 +4,14 @@ description: How to deploy CrowdSec, including the WAF (Web Application Firewall
 tags: [kubernetes, crowdSec, traefik, grafana, waf, monitoring]
 ---
 
+## Table of contents
+
+<div class="toc">
+
+{{% $.TOC %}}
+
+</div>
+
 ## Introduction
 
 Usually, I don't write step-by-step guide on how to deploy things, but in this case, I will. In these times, it's almost impossible to open an HTTP port without getting spammed and attacked by botnets and other malicious actors.
