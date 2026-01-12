@@ -88,13 +88,13 @@ docker run --rm -it --entrypoint /bin/bash distroless-example
 # Error: crun: executable file `/bin/bash` not found: No such file or directory: OCI runtime attempted to invoke a command that was not found
 ```
 
-Our image only containers the program we want to run. It's not only the lightest way to ship a container, but also the most secure one... or is it?
+Our image only contains the program we want to run. It's not only the lightest way to ship a container, but also the most secure one... or is it?
 
 ## Considerations
 
 ### About dynamic linking, and why static linking hides vulnerabilities
 
-There is a reason why every program on Linux uses a dynamic linking. Dynamic linking does NOT embed the library to the target and instead allows the target to invoke symbols (functions, variables, etc...) from the shared library. The shared library can be loaded and re-used by multiple program. For example, if we dynamically link `hello` and install `ldd` ([manual](https://man7.org/linux/man-pages/man1/ldd.1.html)) to find the linked library:
+There is a reason why every program on Linux uses a dynamic linking. Dynamic linking is the opposite of static linking, meaning it does NOT embed the library to the target and instead allows the target to invoke symbols (functions, variables, etc...) from the shared library. The shared library is installed alongside the target and can be loaded and re-used by multiple programs. For example, if we dynamically link `hello` and install `ldd` ([manual](https://man7.org/linux/man-pages/man1/ldd.1.html)) to find the linked library:
 
 ```dockerfile
 FROM alpine:latest AS builder
@@ -128,11 +128,9 @@ Because the library can be re-used, we can **track** runtime libraries. Vulnerab
 
 So, **when you are using static linking, you are actually hiding vulnerabilities at runtime**. It can be useful, especially against difficult customers that complains that your container has a bad score against Trivy (a real scenario), but it is technically dangerous since we can't track the runtime dependencies of the program anymore. You'll need to track the dependencies at build-time, which is not an often used practice.
 
-Also, when you are distributing statically linked programs, naive customers might not notice the issues, but experts will. Consider this scenario: If a core dependencies like OpenSSL or glibc has a critical vulnerability and gets statically linked to the final program, how can you make sure the final program is not affected? Can you tell if third-party programs and containers are safe? One way to tell is to have the container to be as transparent as possible.
+Also, when you are distributing statically linked programs, naive customers might not notice the issues, but experts will. Consider this scenario: If a core dependencies like OpenSSL or glibc has a critical vulnerability and gets statically linked to the final program, how can you make sure the final program is not affected? Another scenario: If the maintainer of the third-party program statically link a malware during build-time, how can you make sure the final program is not affected? Can you tell if third-party programs and containers are safe? One way to tell is to have the container to be as transparent as possible.
 
-This is why **signing** and **bill of materials** is important. We would be able to tell the origin of each dependencies, and also the origin of the final program. **This is key to avoid supply chain attacks.**
-
-...But in reality, it is impossible to fully trust a third party since builders can also inject vulnerabilities through the compiler ([Kem Thompson Hack](https://wiki.c2.com/?TheKenThompsonHack)). It's mostly a question of how much trust you can give to the builder.
+This is why **signing** and **bill of materials** is important. We would be able to tell the origin of each dependency, and also the origin of the final program. **This is key to avoid supply chain attacks...** But in reality, it is impossible to fully trust a third party since builders can also inject vulnerabilities through the compiler ([Kem Thompson Hack](https://wiki.c2.com/?TheKenThompsonHack)). It's mostly a question of how much trust you can give to the builder.
 
 Lastly, static linking introduces weaknesses in the program, that are resolved in dynamically linked program (see [ASLR Protection for Statically Linked Executables](https://www.leviathansecurity.com/blog/aslr-protection-for-statically-linked-executables)).
 
@@ -140,7 +138,7 @@ To summarize, **static linking is about hiding the attack surface** and **make t
 
 ### No shell? That's not true.
 
-Containers are Linux user namespace, and more precisely a _network/ipc/cgroup/mount/pid/uts/user_ namespace. The name "namespace" has its meaning: IDs are mapped. The user ID is mapped, the PID is mapped, the cgroup is mapped, etc. And by mapping, I really mean "A -> B", like "1 -> 10001". It's the reason why containers are not fully isolated from the host OS and is lighter than virtual machines.
+Containers are Linux user namespace, and more precisely a _network/ipc/cgroup/mount/pid/uts/user_ namespace. The name "namespace" has its meaning: IDs are mapped. The user ID is mapped, the PID is mapped, the mounts are mapped, the cgroup is mapped, etc. And by mapping, I really mean "A -> B", like "1 -> 10001" or "/home -> /var/lib/containers/1234/home". It's the reason why containers are not fully isolated from the host OS and is lighter than virtual machines.
 
 Because this isolation is not perfect, it is actually possible to "walk" into a distroless container. Demonstration:
 
@@ -278,3 +276,5 @@ However, ultimately, it's the responsibility of the customer to secure a third-p
 
 Securing third-party software is not a passive task.
 No matter how "distroless" an image is, true security relies on **robust sandboxing and strict runtime monitoring**. You cannot scan your way to safety. You must build an environment where the program is restricted by design and damage is limited.
+
+In my opinion, I value trust a lot more than vulnerability scans. Better use `docker.io/library/mongodb` over `docker.io/chainguard/mongodb`...

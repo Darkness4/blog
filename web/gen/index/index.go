@@ -32,6 +32,97 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2026-01-12-hdzero-analog",
+			Title:         "A comparison between HDZero and Analog video systems.",
+			Description:   "The difference between HDZero and Analog video systems for microdrones.",
+			PublishedDate: time.Unix(1768176000, 0),
+			Href:          "/blog/2026-01-12-hdzero-analog",
+			Loc:           "https://blog.mnguyen.fr/blog/2026-01-12-hdzero-analog",
+			Priority:      0.5,
+			Tags: []string{
+				"drone",
+				"fpv",
+				"hdzero",
+				"analog",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Comparison between HDZero BoxPro and Eachine EV800D goggles for Analog",
+					Anchor:  "comparison-between-hdzero-boxpro-and-eachine-ev800d-goggles-for-analog",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Digital Video Recorder (DVR)",
+							Anchor:  "digital-video-recorder-dvr",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Video/Screen Quality",
+							Anchor:  "videoscreen-quality",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Worth mentioning",
+							Anchor:  "worth-mentioning",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Comparison between HDZero and Analog video systems",
+					Anchor:  "comparison-between-hdzero-and-analog-video-systems",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Compared hardware",
+							Anchor:  "compared-hardware",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Comparing the Video Quality",
+							Anchor:  "comparing-the-video-quality",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Bonus Part: A review on the Mobula 8 Freestyle HD",
+					Anchor:  "bonus-part-a-review-on-the-mobula-8-freestyle-hd",
+					Content: "",
+				},
+			},
+		},
+		{
 			EntryName:     "2026-01-11-distroless-containers",
 			Title:         "Distroless containers, or the art to hide vulnerabilities.",
 			Description:   "A small articles about why distroless containers can be beneficial, but hides vulnerabilities.",
@@ -3043,8 +3134,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1768107587, 0),
+	Updated: time.Unix(1768255872, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "A comparison between HDZero and Analog video systems.",
+			Description: "The difference between HDZero and Analog video systems for microdrones.",
+			Created:     time.Unix(1768176000, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2026-01-12-hdzero-analog",
+			},
+		},
 		{
 			Title:       "Distroless containers, or the art to hide vulnerabilities.",
 			Description: "A small articles about why distroless containers can be beneficial, but hides vulnerabilities.",
