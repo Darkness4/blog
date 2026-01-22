@@ -150,6 +150,9 @@ object-src 'none';`,
 		r.Use(middleware.CSP(csp))
 
 		r.Get("/search", search.Handler(meili))
+		r.Get("/health", func(w http.ResponseWriter, _ *http.Request) {
+			w.WriteHeader(http.StatusOK)
+		})
 
 		// Pages rendering
 		r.Get("/rss", func(w http.ResponseWriter, _ *http.Request) {
