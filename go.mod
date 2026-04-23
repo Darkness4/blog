@@ -12,7 +12,7 @@ require (
 	github.com/litao91/goldmark-mathjax v0.0.0-20210217064022-a43cf739a50f
 	github.com/pressly/goose/v3 v3.27.0
 	github.com/rs/zerolog v1.35.1
-	github.com/sqlc-dev/sqlc v1.31.0
+	github.com/sqlc-dev/sqlc v1.31.1
 	github.com/stefanfritsch/goldmark-admonitions v1.1.1
 	github.com/urfave/cli/v3 v3.8.0
 	github.com/yuin/goldmark v1.8.2
