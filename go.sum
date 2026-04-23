@@ -329,6 +329,7 @@ github.com/spf13/pflag v1.0.10/go.mod h1:McXfInJRrz4CZXVZOBLb0bTZqETkiAhM9Iw0y3A
 github.com/sqlc-dev/sqlc v1.30.0 h1:H4HrNwPc0hntxGWzAbhlfplPRN4bQpXFx+CaEMcKz6c=
 github.com/sqlc-dev/sqlc v1.30.0/go.mod h1:QnEN+npugyhUg1A+1kkYM3jc2OMOFsNlZ1eh8mdhad0=
 github.com/sqlc-dev/sqlc v1.31.0/go.mod h1:wiDWHTDUgv5+rwfj/kNcnkypBaq4DMvhMmCEtDytr1Q=
+github.com/sqlc-dev/sqlc v1.31.1/go.mod h1:6ZPww/Jd3G6MzJeW6NrqizjL+52vYNaaXP9yMeJ/Nao=
 github.com/stefanfritsch/goldmark-admonitions v1.1.1 h1:SncsICdQrIYYaq02Ta+zyc9gNmMfYqQH2qwLSCJYxA4=
 github.com/stefanfritsch/goldmark-admonitions v1.1.1/go.mod h1:cOZK5O0gE6eWfpxTdjGUmeONW2IL9j3Zujv3KlZWlLo=
 github.com/stoewer/go-strcase v1.2.0 h1:Z2iHWqGXH00XYgqDmNgQbIBxf3wrNq0F3feEy0ainaU=
