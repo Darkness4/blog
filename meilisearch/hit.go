@@ -27,7 +27,7 @@ func (h Hit) DecodeInto(out any) error {
 		return errors.New("out must be a non-nil pointer")
 	}
 	rv := reflect.ValueOf(out)
-	if rv.Kind() != reflect.Ptr || rv.IsNil() {
+	if rv.Kind() != reflect.Pointer || rv.IsNil() {
 		return errors.New("out must be a non-nil pointer")
 	}
 	rv = rv.Elem()
@@ -102,7 +102,7 @@ func (h Hit) DecodeInto(out any) error {
 
 // DecodeWith decodes a Hit into the provided struct using the provided marshal and unmarshal functions.
 func (h Hit) DecodeWith(vPtr any, marshal JSONMarshal, unmarshal JSONUnmarshal) error {
-	if vPtr == nil || reflect.ValueOf(vPtr).Kind() != reflect.Ptr {
+	if vPtr == nil || reflect.ValueOf(vPtr).Kind() != reflect.Pointer {
 		return errors.New("vPtr must be a non-nil pointer")
 	}
 
@@ -126,7 +126,7 @@ func (h Hits) DecodeWith(
 ) error {
 	v := reflect.ValueOf(vSlicePtr)
 
-	if v.Kind() != reflect.Ptr || v.Elem().Kind() != reflect.Slice {
+	if v.Kind() != reflect.Pointer || v.Elem().Kind() != reflect.Slice {
 		return errors.New("v must be a pointer to a slice")
 	}
 
