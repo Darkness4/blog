@@ -153,7 +153,7 @@ func (h Hits) DecodeInto(vSlicePtr any) error {
 		return fmt.Errorf("vSlicePtr must be a non-nil pointer to a slice")
 	}
 	rv := reflect.ValueOf(vSlicePtr)
-	if rv.Kind() != reflect.Ptr || rv.IsNil() {
+	if rv.Kind() != reflect.Pointer || rv.IsNil() {
 		return fmt.Errorf("vSlicePtr must be a non-nil pointer, got %T", vSlicePtr)
 	}
 	sv := rv.Elem()
@@ -174,7 +174,7 @@ func (h Hits) DecodeInto(vSlicePtr any) error {
 			out = reflect.Append(out, elemPtr.Elem())
 		}
 
-	case reflect.Ptr:
+	case reflect.Pointer:
 		et := elemType.Elem()
 		switch et.Kind() {
 		case reflect.Struct:
@@ -351,7 +351,7 @@ func hasJSONTagOption(opts, opt string) bool {
 func fieldByIndexPathAlloc(rv reflect.Value, indexPath []int) (reflect.Value, bool) {
 	cur := rv
 	for _, idx := range indexPath {
-		if cur.Kind() == reflect.Ptr {
+		if cur.Kind() == reflect.Pointer {
 			if cur.IsNil() {
 				if !cur.CanSet() {
 					return reflect.Value{}, false
@@ -373,7 +373,7 @@ func fieldByIndexPathAlloc(rv reflect.Value, indexPath []int) (reflect.Value, bo
 
 		cur = cur.Field(idx)
 	}
-	if cur.Kind() == reflect.Ptr && cur.IsNil() {
+	if cur.Kind() == reflect.Pointer && cur.IsNil() {
 		if cur.CanSet() && cur.Type().Elem().Kind() == reflect.Struct {
 			cur.Set(reflect.New(cur.Type().Elem()))
 		}
