@@ -302,7 +302,7 @@ func collectFields(t reflect.Type, prefix []int) []fieldMeta {
 		// Inline embedded struct or *struct (pointer-embedded) when not renamed.
 		if sf.Anonymous && name == sf.Name {
 			u := sf.Type
-			if u.Kind() == reflect.Ptr {
+			if u.Kind() == reflect.Pointer {
 				u = u.Elem()
 			}
 			if u.Kind() == reflect.Struct {
