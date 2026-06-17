@@ -32,6 +32,178 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2026-06-17-beginner-soldering-kit",
+			Title:         "High quality beginner soldering kit",
+			Description:   "Soldering is now more accessible than ever without having to spend a lot of money. Here is a list of tools you can buy to start soldering.",
+			PublishedDate: time.Unix(1781654400, 0),
+			Href:          "/blog/2026-06-17-beginner-soldering-kit",
+			Loc:           "https://blog.mnguyen.fr/blog/2026-06-17-beginner-soldering-kit",
+			Priority:      0.5,
+			Tags: []string{
+				"soldering",
+				"drone",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Soldering 101",
+					Anchor:  "soldering-101",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Heat the pad, not the solder",
+							Anchor:  "heat-the-pad-not-the-solder",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Tinning the tip, tinning the pads",
+							Anchor:  "tinning-the-tip-tinning-the-pads",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Use flux to decontaminate and make life easier",
+							Anchor:  "use-flux-to-decontaminate-and-make-life-easier",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Soldering tools",
+					Anchor:  "soldering-tools",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Soldering iron",
+							Anchor:  "soldering-iron",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "USB-C Soldering iron",
+									Anchor:  "usb-c-soldering-iron",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Soldering iron station",
+									Anchor:  "soldering-iron-station",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Solder",
+							Anchor:  "solder",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Leaded",
+									Anchor:  "leaded",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Non-leaded",
+									Anchor:  "non-leaded",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Flux",
+							Anchor:  "flux",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Sticky/tacky flux",
+									Anchor:  "stickytacky-flux",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Liquid flux, no clean",
+									Anchor:  "liquid-flux-no-clean",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Fume extractor (optional)",
+							Anchor:  "fume-extractor-optional",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Cleaning tools",
+							Anchor:  "cleaning-tools",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Desoldering braid/wick",
+							Anchor:  "desoldering-braidwick",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Desoldering pump",
+							Anchor:  "desoldering-pump",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Additional tools",
+							Anchor:  "additional-tools",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+			},
+		},
+		{
 			EntryName:     "2026-01-12-hdzero-analog",
 			Title:         "A comparison between HDZero and Analog video systems.",
 			Description:   "The difference between HDZero and Analog video systems for microdrones.",
@@ -3134,8 +3306,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1768255872, 0),
+	Updated: time.Unix(1781656282, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "High quality beginner soldering kit",
+			Description: "Soldering is now more accessible than ever without having to spend a lot of money. Here is a list of tools you can buy to start soldering.",
+			Created:     time.Unix(1781654400, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2026-06-17-beginner-soldering-kit",
+			},
+		},
 		{
 			Title:       "A comparison between HDZero and Analog video systems.",
 			Description: "The difference between HDZero and Analog video systems for microdrones.",
