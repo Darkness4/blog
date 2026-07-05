@@ -32,6 +32,236 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2026-07-05-identity-providers-review",
+			Title:         "An in-depth comparison of self-hosted identity providers: Dex, Authelia, Curity and Keycloak",
+			Description:   "An in-depth comparison of self-hosted identity providers: Dex, Authelia, Curity and Keycloak. About OAuth2 clients, scripting capabilities and more.",
+			PublishedDate: time.Unix(1783209600, 0),
+			Href:          "/blog/2026-07-05-identity-providers-review",
+			Loc:           "https://blog.mnguyen.fr/blog/2026-07-05-identity-providers-review",
+			Priority:      0.5,
+			Tags: []string{
+				"security",
+				"authentication",
+				"oidc",
+				"dex",
+				"authelia",
+				"keycloak",
+				"curity",
+				"oauth2",
+				"saml",
+				"devops",
+				"sso",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Criteria of comparison",
+					Anchor:  "criteria-of-comparison",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "A quick comparison",
+					Anchor:  "a-quick-comparison",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "In-depth comparison",
+					Anchor:  "in-depth-comparison",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Deployment",
+							Anchor:  "deployment",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Dex & Authelia",
+									Anchor:  "dex--authelia",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Curity",
+									Anchor:  "curity",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Keycloak",
+									Anchor:  "keycloak",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Configuration",
+							Anchor:  "configuration",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Configuration management",
+									Anchor:  "configuration-management",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "OAuth2 clients",
+									Anchor:  "oauth2-clients",
+									Content: "",
+									Children: []Header{
+
+										{
+											Level:   5,
+											Text:    "Grant types",
+											Anchor:  "grant-types",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "Logout",
+											Anchor:  "logout",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "JWT, Access Tokens and Refresh tokens",
+											Anchor:  "jwt-access-tokens-and-refresh-tokens",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "OIDC additional capabilities",
+											Anchor:  "oidc-additional-capabilities",
+											Content: "",
+										},
+									},
+								},
+
+								{
+									Level:   4,
+									Text:    "User management",
+									Anchor:  "user-management",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Authentication flows",
+									Anchor:  "authentication-flows",
+									Content: "",
+									Children: []Header{
+
+										{
+											Level:   5,
+											Text:    "Dex & Authelia",
+											Anchor:  "dex--authelia-1",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "Curity",
+											Anchor:  "curity-1",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "Keycloak",
+											Anchor:  "keycloak-1",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "Summary",
+											Anchor:  "summary",
+											Content: "",
+										},
+									},
+								},
+
+								{
+									Level:   4,
+									Text:    "Miscellaneous authentication settings",
+									Anchor:  "miscellaneous-authentication-settings",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Identity providers support and settings",
+									Anchor:  "identity-providers-support-and-settings",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Maintenance",
+							Anchor:  "maintenance",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Documentation",
+							Anchor:  "documentation",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Extensibility",
+							Anchor:  "extensibility",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+			},
+		},
+		{
 			EntryName:     "2026-06-17-beginner-soldering-kit",
 			Title:         "High quality beginner soldering kit",
 			Description:   "Soldering is now more accessible than ever without having to spend a lot of money. Here is a list of tools you can buy to start soldering.",
@@ -3306,8 +3536,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1781656282, 0),
+	Updated: time.Unix(1783213004, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "An in-depth comparison of self-hosted identity providers: Dex, Authelia, Curity and Keycloak",
+			Description: "An in-depth comparison of self-hosted identity providers: Dex, Authelia, Curity and Keycloak. About OAuth2 clients, scripting capabilities and more.",
+			Created:     time.Unix(1783209600, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2026-07-05-identity-providers-review",
+			},
+		},
 		{
 			Title:       "High quality beginner soldering kit",
 			Description: "Soldering is now more accessible than ever without having to spend a lot of money. Here is a list of tools you can buy to start soldering.",
