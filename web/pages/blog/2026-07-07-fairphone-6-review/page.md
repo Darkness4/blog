@@ -232,7 +232,7 @@ the camera itself.
 
 ### The fingerprint reader on the power button
 
-So, reviewers are pretty divided on this feature. Because you can advertently
+So, reviewers are pretty divided on this feature. Because you can inadvertently
 unlock the phone.
 
 Honestly, I pretty like this feature because I just have to hold the phone to
