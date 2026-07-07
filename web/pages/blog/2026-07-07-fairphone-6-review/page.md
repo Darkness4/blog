@@ -216,7 +216,28 @@ Here's the guide to unlock the bootloader:
 https://www.fairphone.com/fr/bootloader-unlocking-code-for-fairphone
 
 There is also a guide to re-lock the bootloader (with high risks of bricking the
-phone): https://support.fairphone.com/hc/en-us/articles/10492476238865-How-to-unlock-and-re-lock-the-bootloader
+phone):
+https://support.fairphone.com/hc/en-us/articles/10492476238865-How-to-unlock-and-re-lock-the-bootloader
+
+### The switch gimmick
+
+There is a switch on the side of the phone. Normally, it is used to enable the
+Fairphone Moments. But, I use it to enable the camera flash.
+
+Actually, let me reiterate: **I LOVE THAT SWITCH GIMMICK! I DON'T NEED TO TURN
+ON MY PHONE TO ENABLE THE FLASH AT NIGHT!**
+
+Truly awesome. Seems weird, but I think I used this feature more than I used
+the camera itself.
+
+### The fingerprint reader on the power button
+
+So, reviewers are pretty divided on this feature. Because you can advertently
+unlock the phone.
+
+Honestly, I pretty like this feature because I just have to hold the phone to
+unlock it. To avoid the issue above, you can enable "Double tab on the status
+back to lock". It's less comfortable, though.
 
 ### The ethics
 
