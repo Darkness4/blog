@@ -32,6 +32,173 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2026-07-07-fairphone-6-review",
+			Title:         "Fairphone 6 review",
+			Description:   "An honest review about a repair friendly phone.",
+			PublishedDate: time.Unix(1783382400, 0),
+			Href:          "/blog/2026-07-07-fairphone-6-review",
+			Loc:           "https://blog.mnguyen.fr/blog/2026-07-07-fairphone-6-review",
+			Priority:      0.5,
+			Tags: []string{
+				"android",
+				"phone",
+				"review",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "The issues",
+					Anchor:  "the-issues",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "The cost",
+							Anchor:  "the-cost",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "USB 2.0 on the USB-C port",
+							Anchor:  "usb-20-on-the-usb-c-port",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "No jack port",
+							Anchor:  "no-jack-port",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "The quality of the accessories",
+							Anchor:  "the-quality-of-the-accessories",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Custom ROMs availability",
+							Anchor:  "custom-roms-availability",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Play Integrity",
+							Anchor:  "play-integrity",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Google Maps API",
+							Anchor:  "google-maps-api",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Find my phone",
+							Anchor:  "find-my-phone",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "The heat spots",
+							Anchor:  "the-heat-spots",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Murena e/OS bloatware and non-standard design",
+							Anchor:  "murena-eos-bloatware-and-non-standard-design",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "The good things",
+					Anchor:  "the-good-things",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "The bulkiness doesn't require a case",
+							Anchor:  "the-bulkiness-doesnt-require-a-case",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "The SD card",
+							Anchor:  "the-sd-card",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "The design of the case",
+							Anchor:  "the-design-of-the-case",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "De-googling works",
+							Anchor:  "de-googling-works",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Murena Advanced Privacy is excellent",
+							Anchor:  "murena-advanced-privacy-is-excellent",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Easy boootloader unlock, easy root",
+							Anchor:  "easy-boootloader-unlock-easy-root",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "The ethics",
+							Anchor:  "the-ethics",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+			},
+		},
+		{
 			EntryName:     "2026-07-05-identity-providers-review",
 			Title:         "An in-depth comparison of self-hosted identity providers: Dex, Authelia, Curity and Keycloak",
 			Description:   "An in-depth comparison of self-hosted identity providers: Dex, Authelia, Curity and Keycloak. About OAuth2 clients, scripting capabilities and more.",
@@ -3536,8 +3703,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1783213004, 0),
+	Updated: time.Unix(1783460312, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "Fairphone 6 review",
+			Description: "An honest review about a repair friendly phone.",
+			Created:     time.Unix(1783382400, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2026-07-07-fairphone-6-review",
+			},
+		},
 		{
 			Title:       "An in-depth comparison of self-hosted identity providers: Dex, Authelia, Curity and Keycloak",
 			Description: "An in-depth comparison of self-hosted identity providers: Dex, Authelia, Curity and Keycloak. About OAuth2 clients, scripting capabilities and more.",
