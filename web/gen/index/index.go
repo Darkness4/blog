@@ -32,6 +32,116 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2026-07-09-embedded-etcd",
+			Title:         "Using embedded etcd as distributed local store.",
+			Description:   "Easy high availability for stateful services.",
+			PublishedDate: time.Unix(1783555200, 0),
+			Href:          "/blog/2026-07-09-embedded-etcd",
+			Loc:           "https://blog.mnguyen.fr/blog/2026-07-09-embedded-etcd",
+			Priority:      0.5,
+			Tags: []string{
+				"go",
+				"distributed",
+				"programming",
+				"etcd",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Quick remainder of etcd",
+					Anchor:  "quick-remainder-of-etcd",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Basic etcd cluster settings",
+					Anchor:  "basic-etcd-cluster-settings",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Using embedded etcd as a distributed local store",
+					Anchor:  "using-embedded-etcd-as-a-distributed-local-store",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Design of the application",
+							Anchor:  "design-of-the-application",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Bootstrapping the application",
+							Anchor:  "bootstrapping-the-application",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Testing etcd cluster with Docker compose",
+							Anchor:  "testing-etcd-cluster-with-docker-compose",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Handling user authentication",
+							Anchor:  "handling-user-authentication",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Setting up the HTTP handler and server",
+							Anchor:  "setting-up-the-http-handler-and-server",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Testing the application",
+							Anchor:  "testing-the-application",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "A small drawback",
+					Anchor:  "a-small-drawback",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+			},
+		},
+		{
 			EntryName:     "2026-07-07-fairphone-6-review",
 			Title:         "Fairphone 6 review",
 			Description:   "An honest review about a repair friendly phone.",
@@ -178,6 +288,20 @@ var Pages = [][]Index{
 							Level:   3,
 							Text:    "Easy boootloader unlock, easy root",
 							Anchor:  "easy-boootloader-unlock-easy-root",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "The switch gimmick",
+							Anchor:  "the-switch-gimmick",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "The fingerprint reader on the power button",
+							Anchor:  "the-fingerprint-reader-on-the-power-button",
 							Content: "",
 						},
 
@@ -3703,8 +3827,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1783460312, 0),
+	Updated: time.Unix(1783560146, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "Using embedded etcd as distributed local store.",
+			Description: "Easy high availability for stateful services.",
+			Created:     time.Unix(1783555200, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2026-07-09-embedded-etcd",
+			},
+		},
 		{
 			Title:       "Fairphone 6 review",
 			Description: "An honest review about a repair friendly phone.",
