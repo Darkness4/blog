@@ -111,6 +111,9 @@ func RenderFunc(
 			base = "base.htmx"
 		}
 
+		// Set Vary Header to avoid caching
+		w.Header().Set("Vary", "Hx-Request")
+
 		// Set up the template
 		t, err := template.New("base").
 			Funcs(funcsMap()).
