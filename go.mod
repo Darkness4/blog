@@ -20,7 +20,7 @@ require (
 	github.com/yuin/goldmark-meta v1.1.0
 	go.abhg.dev/goldmark/anchor v0.2.0
 	go.abhg.dev/goldmark/toc v0.12.0
-	oss.terrastruct.com/d2 v0.7.1
+	oss.terrastruct.com/d2 v0.7.2
 )
 
 require (
