@@ -32,6 +32,219 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2026-08-18-yubikey-luks",
+			Title:         "Setting up Yubikey GPG with LUKS and Dracut",
+			Description:   "Did you know that Dracut natively supports LUKS with Yubikey?",
+			PublishedDate: time.Unix(1787011200, 0),
+			Href:          "/blog/2026-08-18-yubikey-luks",
+			Loc:           "https://blog.mnguyen.fr/blog/2026-08-18-yubikey-luks",
+			Priority:      0.5,
+			Tags: []string{
+				"devops",
+				"linux",
+				"infrastructure",
+				"dracut",
+				"luks",
+				"gitops",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "The in-depth explanation",
+					Anchor:  "the-in-depth-explanation",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "The boot process",
+							Anchor:  "the-boot-process",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "The initramfs and Dracut",
+							Anchor:  "the-initramfs-and-dracut",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "LUKS, GPG and Yubikey",
+							Anchor:  "luks-gpg-and-yubikey",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Dracut modules, the final pieces",
+							Anchor:  "dracut-modules-the-final-pieces",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "The guide",
+					Anchor:  "the-guide",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "System preparation",
+							Anchor:  "system-preparation",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Disk preparation",
+									Anchor:  "disk-preparation",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Disk partition setup",
+									Anchor:  "disk-partition-setup",
+									Content: "",
+									Children: []Header{
+
+										{
+											Level:   5,
+											Text:    "Enter fdisk and setup GPT label",
+											Anchor:  "enter-fdisk-and-setup-gpt-label",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "Create the EFI System Partition (ESP)",
+											Anchor:  "create-the-efi-system-partition-esp",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "Create the linux boot partition",
+											Anchor:  "create-the-linux-boot-partition",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "Create the LUKS partition",
+											Anchor:  "create-the-luks-partition",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "Update the partition table",
+											Anchor:  "update-the-partition-table",
+											Content: "",
+										},
+									},
+								},
+
+								{
+									Level:   4,
+									Text:    "Basic LUKS setup",
+									Anchor:  "basic-luks-setup",
+									Content: "",
+									Children: []Header{
+
+										{
+											Level:   5,
+											Text:    "Set up phassphrase encrypted volume",
+											Anchor:  "set-up-phassphrase-encrypted-volume",
+											Content: "",
+										},
+									},
+								},
+
+								{
+									Level:   4,
+									Text:    "Format the Filesystems",
+									Anchor:  "format-the-filesystems",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Set up the encrypted LUKS key",
+							Anchor:  "set-up-the-encrypted-luks-key",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Set up GPG keys on the Yubikey",
+									Anchor:  "set-up-gpg-keys-on-the-yubikey",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Create a keyfile and add it to the LUKS volume",
+									Anchor:  "create-a-keyfile-and-add-it-to-the-luks-volume",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Encrypt the key file with the Yubikey using GPG",
+									Anchor:  "encrypt-the-key-file-with-the-yubikey-using-gpg",
+									Content: "",
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Setting up dracut and the initramfs",
+							Anchor:  "setting-up-dracut-and-the-initramfs",
+							Content: "",
+						},
+
+						{
+							Level:   3,
+							Text:    "Booting the system",
+							Anchor:  "booting-the-system",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+			},
+		},
+		{
 			EntryName:     "2026-07-09-embedded-etcd",
 			Title:         "Using embedded etcd as distributed local store.",
 			Description:   "Easy high availability for stateful services.",
@@ -3827,8 +4040,16 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1783560146, 0),
+	Updated: time.Unix(1787021805, 0),
 	Items: []*feeds.Item{
+		{
+			Title:       "Setting up Yubikey GPG with LUKS and Dracut",
+			Description: "Did you know that Dracut natively supports LUKS with Yubikey?",
+			Created:     time.Unix(1787011200, 0),
+			Link: &feeds.Link{
+				Href: "https://blog.mnguyen.fr/blog/2026-08-18-yubikey-luks",
+			},
+		},
 		{
 			Title:       "Using embedded etcd as distributed local store.",
 			Description: "Easy high availability for stateful services.",
