@@ -4040,7 +4040,7 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1787021805, 0),
+	Updated: time.Unix(1787021967, 0),
 	Items: []*feeds.Item{
 		{
 			Title:       "Setting up Yubikey GPG with LUKS and Dracut",

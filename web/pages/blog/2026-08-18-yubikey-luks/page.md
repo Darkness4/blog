@@ -329,6 +329,10 @@ mount --bind /proc /mnt/rootfs/proc
 mount --bind /sys /mnt/rootfs/sys
 ```
 
+**At this point, you should continue the Linux installation.**
+
+If you're done, continue to the next section.
+
 ### Set up the encrypted LUKS key
 
 #### Set up GPG keys on the Yubikey
