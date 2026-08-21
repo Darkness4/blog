@@ -2,8 +2,9 @@ package index
 
 import (
 	"encoding/xml"
-	"github.com/gorilla/feeds"
 	"time"
+
+	"github.com/gorilla/feeds"
 )
 
 type Index struct {
@@ -37,7 +38,7 @@ var Pages = [][]Index{
 			Description:   "Did you know that Dracut natively supports LUKS with Yubikey?",
 			PublishedDate: time.Unix(1787011200, 0),
 			Href:          "/blog/2026-08-18-yubikey-luks",
-			Loc:           "https://blog.mnguyen.fr/blog/2026-08-18-yubikey-luks",
+			Loc:           "https://mnguyen.fr/blog/2026-08-18-yubikey-luks",
 			Priority:      0.5,
 			Tags: []string{
 				"devops",
@@ -250,7 +251,7 @@ var Pages = [][]Index{
 			Description:   "Easy high availability for stateful services.",
 			PublishedDate: time.Unix(1783555200, 0),
 			Href:          "/blog/2026-07-09-embedded-etcd",
-			Loc:           "https://blog.mnguyen.fr/blog/2026-07-09-embedded-etcd",
+			Loc:           "https://mnguyen.fr/blog/2026-07-09-embedded-etcd",
 			Priority:      0.5,
 			Tags: []string{
 				"go",
@@ -360,7 +361,7 @@ var Pages = [][]Index{
 			Description:   "An honest review about a repair friendly phone.",
 			PublishedDate: time.Unix(1783382400, 0),
 			Href:          "/blog/2026-07-07-fairphone-6-review",
-			Loc:           "https://blog.mnguyen.fr/blog/2026-07-07-fairphone-6-review",
+			Loc:           "https://mnguyen.fr/blog/2026-07-07-fairphone-6-review",
 			Priority:      0.5,
 			Tags: []string{
 				"android",
@@ -541,7 +542,7 @@ var Pages = [][]Index{
 			Description:   "An in-depth comparison of self-hosted identity providers: Dex, Authelia, Curity and Keycloak. About OAuth2 clients, scripting capabilities and more.",
 			PublishedDate: time.Unix(1783209600, 0),
 			Href:          "/blog/2026-07-05-identity-providers-review",
-			Loc:           "https://blog.mnguyen.fr/blog/2026-07-05-identity-providers-review",
+			Loc:           "https://mnguyen.fr/blog/2026-07-05-identity-providers-review",
 			Priority:      0.5,
 			Tags: []string{
 				"security",
@@ -771,7 +772,7 @@ var Pages = [][]Index{
 			Description:   "Soldering is now more accessible than ever without having to spend a lot of money. Here is a list of tools you can buy to start soldering.",
 			PublishedDate: time.Unix(1781654400, 0),
 			Href:          "/blog/2026-06-17-beginner-soldering-kit",
-			Loc:           "https://blog.mnguyen.fr/blog/2026-06-17-beginner-soldering-kit",
+			Loc:           "https://mnguyen.fr/blog/2026-06-17-beginner-soldering-kit",
 			Priority:      0.5,
 			Tags: []string{
 				"soldering",
@@ -943,7 +944,7 @@ var Pages = [][]Index{
 			Description:   "The difference between HDZero and Analog video systems for microdrones.",
 			PublishedDate: time.Unix(1768176000, 0),
 			Href:          "/blog/2026-01-12-hdzero-analog",
-			Loc:           "https://blog.mnguyen.fr/blog/2026-01-12-hdzero-analog",
+			Loc:           "https://mnguyen.fr/blog/2026-01-12-hdzero-analog",
 			Priority:      0.5,
 			Tags: []string{
 				"drone",
@@ -1034,7 +1035,7 @@ var Pages = [][]Index{
 			Description:   "A small articles about why distroless containers can be beneficial, but hides vulnerabilities.",
 			PublishedDate: time.Unix(1768089600, 0),
 			Href:          "/blog/2026-01-11-distroless-containers",
-			Loc:           "https://blog.mnguyen.fr/blog/2026-01-11-distroless-containers",
+			Loc:           "https://mnguyen.fr/blog/2026-01-11-distroless-containers",
 			Priority:      0.5,
 			Tags: []string{
 				"devops",
@@ -1103,7 +1104,7 @@ var Pages = [][]Index{
 			Description:   "How to deploy CrowdSec, including the WAF (Web Application Firewall) to ban every spammer and attacker in the world. This article also includes a guide on how to setup a Grafana dashboard to monitor CrowdSec.",
 			PublishedDate: time.Unix(1764288000, 0),
 			Href:          "/blog/2025-11-28-crowdsec",
-			Loc:           "https://blog.mnguyen.fr/blog/2025-11-28-crowdsec",
+			Loc:           "https://mnguyen.fr/blog/2025-11-28-crowdsec",
 			Priority:      0.5,
 			Tags: []string{
 				"kubernetes",
@@ -1277,7 +1278,7 @@ var Pages = [][]Index{
 			Description:   "How to use Meilisearch as docsearch with Server-Side-Rendering by using HTMX.",
 			PublishedDate: time.Unix(1762819200, 0),
 			Href:          "/blog/2025-11-11-meilisearch-ssr",
-			Loc:           "https://blog.mnguyen.fr/blog/2025-11-11-meilisearch-ssr",
+			Loc:           "https://mnguyen.fr/blog/2025-11-11-meilisearch-ssr",
 			Priority:      0.5,
 			Tags: []string{
 				"meilisearch",
@@ -1392,7 +1393,7 @@ var Pages = [][]Index{
 			Description:   "Small article about a deadly combination.",
 			PublishedDate: time.Unix(1762732800, 0),
 			Href:          "/blog/2025-11-10-dialog-hyperscript-picocss",
-			Loc:           "https://blog.mnguyen.fr/blog/2025-11-10-dialog-hyperscript-picocss",
+			Loc:           "https://mnguyen.fr/blog/2025-11-10-dialog-hyperscript-picocss",
 			Priority:      0.5,
 			Tags: []string{
 				"dialog",
@@ -1471,7 +1472,7 @@ var Pages = [][]Index{
 			Description:   "As an engineer, how I got started with FPV drones.",
 			PublishedDate: time.Unix(1753315200, 0),
 			Href:          "/blog/2025-07-24-fpv-drone",
-			Loc:           "https://blog.mnguyen.fr/blog/2025-07-24-fpv-drone",
+			Loc:           "https://mnguyen.fr/blog/2025-07-24-fpv-drone",
 			Priority:      0.5,
 			Tags: []string{
 				"drone",
@@ -1612,7 +1613,7 @@ var Pages = [][]Index{
 			Description:   "A new year, an overhaul of my home Raspberry Pi cluster.",
 			PublishedDate: time.Unix(1737763200, 0),
 			Href:          "/blog/2025-01-25-home-raspi-part-2",
-			Loc:           "https://blog.mnguyen.fr/blog/2025-01-25-home-raspi-part-2",
+			Loc:           "https://mnguyen.fr/blog/2025-01-25-home-raspi-part-2",
 			Priority:      0.5,
 			Tags: []string{
 				"raspberry pi",
@@ -1772,7 +1773,7 @@ var Pages = [][]Index{
 			Description:   "My cluster finally crashed! Let's goooooo! A little of context: I'm running a small k3s cluster with 3 Raspberry Pi 4 with a network storage, and I'm using SQLite as a database for my applications.",
 			PublishedDate: time.Unix(1734480000, 0),
 			Href:          "/blog/2024-12-18-k3s-crash-postmortem",
-			Loc:           "https://blog.mnguyen.fr/blog/2024-12-18-k3s-crash-postmortem",
+			Loc:           "https://mnguyen.fr/blog/2024-12-18-k3s-crash-postmortem",
 			Priority:      0.5,
 			Tags: []string{
 				"k3s",
@@ -1888,7 +1889,7 @@ var Pages = [][]Index{
 			Description:   "My experience with FluxCD and ArgoCD.",
 			PublishedDate: time.Unix(1726012800, 0),
 			Href:          "/blog/2024-09-11-fluxcd-argocd-gitops",
-			Loc:           "https://blog.mnguyen.fr/blog/2024-09-11-fluxcd-argocd-gitops",
+			Loc:           "https://mnguyen.fr/blog/2024-09-11-fluxcd-argocd-gitops",
 			Priority:      0.5,
 			Tags: []string{
 				"gitops",
@@ -2006,7 +2007,7 @@ var Pages = [][]Index{
 			Description:   "Small article that review the migration from SQLite to CockroachDB.",
 			PublishedDate: time.Unix(1719100800, 0),
 			Href:          "/blog/2024-06-23-migrating-cockroachdb",
-			Loc:           "https://blog.mnguyen.fr/blog/2024-06-23-migrating-cockroachdb",
+			Loc:           "https://mnguyen.fr/blog/2024-06-23-migrating-cockroachdb",
 			Priority:      0.5,
 			Tags: []string{
 				"database",
@@ -2100,7 +2101,7 @@ var Pages = [][]Index{
 			Description:   "Presenting my home Raspberry Pi Kubernetes cluster which is hosting this blog.",
 			PublishedDate: time.Unix(1718755200, 0),
 			Href:          "/blog/2024-06-19-home-raspi",
-			Loc:           "https://blog.mnguyen.fr/blog/2024-06-19-home-raspi",
+			Loc:           "https://mnguyen.fr/blog/2024-06-19-home-raspi",
 			Priority:      0.5,
 			Tags: []string{
 				"raspberry pi",
@@ -2216,7 +2217,7 @@ var Pages = [][]Index{
 			Description:   "Trying Zig with C libraries for the first time.",
 			PublishedDate: time.Unix(1718668800, 0),
 			Href:          "/blog/2024-06-18-a-take-zig-c-translate",
-			Loc:           "https://blog.mnguyen.fr/blog/2024-06-18-a-take-zig-c-translate",
+			Loc:           "https://mnguyen.fr/blog/2024-06-18-a-take-zig-c-translate",
 			Priority:      0.5,
 			Tags: []string{
 				"zig",
@@ -2364,7 +2365,7 @@ var Pages = [][]Index{
 			Description:   "A simple example of a fault-tolerent distributed system in Go with the Raft consensus algorithm.",
 			PublishedDate: time.Unix(1710633600, 0),
 			Href:          "/blog/2024-03-17-distributed-systems-in-go",
-			Loc:           "https://blog.mnguyen.fr/blog/2024-03-17-distributed-systems-in-go",
+			Loc:           "https://mnguyen.fr/blog/2024-03-17-distributed-systems-in-go",
 			Priority:      0.5,
 			Tags: []string{
 				"go",
@@ -2720,7 +2721,7 @@ var Pages = [][]Index{
 			Description:   "Pull-based GitOps using SystemD and Git. An alternative to Ansible, Puppet, Chef, and SaltStack.",
 			PublishedDate: time.Unix(1708732800, 0),
 			Href:          "/blog/2024-02-24-gitops-systemd",
-			Loc:           "https://blog.mnguyen.fr/blog/2024-02-24-gitops-systemd",
+			Loc:           "https://mnguyen.fr/blog/2024-02-24-gitops-systemd",
 			Priority:      0.5,
 			Tags: []string{
 				"devops",
@@ -2831,7 +2832,7 @@ var Pages = [][]Index{
 			Description:   "Developing a simple WebAuthn authentication service in Go, as there are few functional implementations of WebAuthn with Go, and only a few existing guides.",
 			PublishedDate: time.Unix(1706313600, 0),
 			Href:          "/blog/2024-01-27-webauthn-guide",
-			Loc:           "https://blog.mnguyen.fr/blog/2024-01-27-webauthn-guide",
+			Loc:           "https://mnguyen.fr/blog/2024-01-27-webauthn-guide",
 			Priority:      0.5,
 			Tags: []string{
 				"go",
@@ -3026,7 +3027,7 @@ var Pages = [][]Index{
 			Description:   "Simple guide and recommendations about CGO. For documentation purposes.",
 			PublishedDate: time.Unix(1704931200, 0),
 			Href:          "/blog/2024-01-11-cgo-guide",
-			Loc:           "https://blog.mnguyen.fr/blog/2024-01-11-cgo-guide",
+			Loc:           "https://mnguyen.fr/blog/2024-01-11-cgo-guide",
 			Priority:      0.5,
 			Tags: []string{
 				"go",
@@ -3099,7 +3100,7 @@ var Pages = [][]Index{
 			Description:   "Have you ever wondered whether learning the wrong software architecture is really \"wrong\"? Personally, I've always asked myself this question, and more often than not I've found my answer on the job.",
 			PublishedDate: time.Unix(1703721600, 0),
 			Href:          "/blog/2023-12-28-architecture-paradigms",
-			Loc:           "https://blog.mnguyen.fr/blog/2023-12-28-architecture-paradigms",
+			Loc:           "https://mnguyen.fr/blog/2023-12-28-architecture-paradigms",
 			Priority:      0.5,
 			Tags: []string{
 				"software architecture",
@@ -3172,7 +3173,7 @@ var Pages = [][]Index{
 			Description:   "The review about Gentoo Linux after 1 year of intensive usage in gaming and development: it's the best OS in the world.",
 			PublishedDate: time.Unix(1702512000, 0),
 			Href:          "/blog/2023-12-14-about-gentoo-linux",
-			Loc:           "https://blog.mnguyen.fr/blog/2023-12-14-about-gentoo-linux",
+			Loc:           "https://mnguyen.fr/blog/2023-12-14-about-gentoo-linux",
 			Priority:      0.5,
 			Tags: []string{
 				"gentoo",
@@ -3318,7 +3319,7 @@ var Pages = [][]Index{
 			Description:   "Want to statically compile for multi-platform in Go super-easily? Let me introduce Portage, Gentoo's package manager, and Crossdev, Gentoo's solution for cross-compilation.",
 			PublishedDate: time.Unix(1699401600, 0),
 			Href:          "/blog/2023-11-08-go-with-portage-and-crossdev",
-			Loc:           "https://blog.mnguyen.fr/blog/2023-11-08-go-with-portage-and-crossdev",
+			Loc:           "https://mnguyen.fr/blog/2023-11-08-go-with-portage-and-crossdev",
 			Priority:      0.5,
 			Tags: []string{
 				"go",
@@ -3410,7 +3411,7 @@ var Pages = [][]Index{
 			Description:   "A rant about people implementing their own user database. Also, a guide with detailed implementations on OAuth2/OIDC.",
 			PublishedDate: time.Unix(1696809600, 0),
 			Href:          "/blog/2023-10-09-understanding-authentication",
-			Loc:           "https://blog.mnguyen.fr/blog/2023-10-09-understanding-authentication",
+			Loc:           "https://mnguyen.fr/blog/2023-10-09-understanding-authentication",
 			Priority:      0.5,
 			Tags: []string{
 				"security",
@@ -3493,7 +3494,7 @@ var Pages = [][]Index{
 			Description:   "About learning your first programming language in 2023. Yes, it's a filler post.",
 			PublishedDate: time.Unix(1695340800, 0),
 			Href:          "/blog/2023-09-22-learn-programming-language",
-			Loc:           "https://blog.mnguyen.fr/blog/2023-09-22-learn-programming-language",
+			Loc:           "https://mnguyen.fr/blog/2023-09-22-learn-programming-language",
 			Priority:      0.5,
 			Tags: []string{
 				"programming",
@@ -3612,7 +3613,7 @@ var Pages = [][]Index{
 			Description:   "About replicable infrastructure when containerization and virtualization are not allowed.",
 			PublishedDate: time.Unix(1694822400, 0),
 			Href:          "/blog/2023-09-16-road-to-replicable-infrastructure",
-			Loc:           "https://blog.mnguyen.fr/blog/2023-09-16-road-to-replicable-infrastructure",
+			Loc:           "https://mnguyen.fr/blog/2023-09-16-road-to-replicable-infrastructure",
 			Priority:      0.5,
 			Tags: []string{
 				"devops",
@@ -3779,7 +3780,7 @@ var Pages = [][]Index{
 			Description:   "This article documents about how this blog came to be. From technical choices to deploying this blog.",
 			PublishedDate: time.Unix(1694304000, 0),
 			Href:          "/blog/2023-09-10-developing-blog",
-			Loc:           "https://blog.mnguyen.fr/blog/2023-09-10-developing-blog",
+			Loc:           "https://mnguyen.fr/blog/2023-09-10-developing-blog",
 			Priority:      0.5,
 			Tags: []string{
 				"blog",
@@ -3959,7 +3960,7 @@ var Pages = [][]Index{
 			Description:   "The very first article. About the motivations of developing this blog from scratch with Go and HTMX, and why I want to write articles on this blog.",
 			PublishedDate: time.Unix(1694217600, 0),
 			Href:          "/blog/2023-09-09-hello-world",
-			Loc:           "https://blog.mnguyen.fr/blog/2023-09-09-hello-world",
+			Loc:           "https://mnguyen.fr/blog/2023-09-09-hello-world",
 			Priority:      0.5,
 			Tags: []string{
 				"go",
@@ -4016,7 +4017,7 @@ func ToSiteMap(ii [][]Index) ([]byte, error) {
 				Title:         "Marc Nguyen's Blog",
 				Description:   "Marc Nguyen's blog is a personal and technical blog about documenting some processes, implementations, etc.",
 				PublishedDate: time.Now(),
-				Loc:           "https://blog.mnguyen.fr",
+				Loc:           "https://mnguyen.fr",
 				Priority:      0.8,
 			},
 		},
@@ -4032,7 +4033,7 @@ func ToSiteMap(ii [][]Index) ([]byte, error) {
 var Feed = &feeds.Feed{
 	Title: "Marc Nguyen's Blog",
 	Link: &feeds.Link{
-		Href: "https://blog.mnguyen.fr",
+		Href: "https://mnguyen.fr",
 	},
 	Description: "Marc Nguyen's blog is a personal and technical blog about documenting some processes, implementations, etc.",
 	Author: &feeds.Author{
@@ -4047,7 +4048,7 @@ var Feed = &feeds.Feed{
 			Description: "Did you know that Dracut natively supports LUKS with Yubikey?",
 			Created:     time.Unix(1787011200, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2026-08-18-yubikey-luks",
+				Href: "https://mnguyen.fr/blog/2026-08-18-yubikey-luks",
 			},
 		},
 		{
@@ -4055,7 +4056,7 @@ var Feed = &feeds.Feed{
 			Description: "Easy high availability for stateful services.",
 			Created:     time.Unix(1783555200, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2026-07-09-embedded-etcd",
+				Href: "https://mnguyen.fr/blog/2026-07-09-embedded-etcd",
 			},
 		},
 		{
@@ -4063,7 +4064,7 @@ var Feed = &feeds.Feed{
 			Description: "An honest review about a repair friendly phone.",
 			Created:     time.Unix(1783382400, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2026-07-07-fairphone-6-review",
+				Href: "https://mnguyen.fr/blog/2026-07-07-fairphone-6-review",
 			},
 		},
 		{
@@ -4071,7 +4072,7 @@ var Feed = &feeds.Feed{
 			Description: "An in-depth comparison of self-hosted identity providers: Dex, Authelia, Curity and Keycloak. About OAuth2 clients, scripting capabilities and more.",
 			Created:     time.Unix(1783209600, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2026-07-05-identity-providers-review",
+				Href: "https://mnguyen.fr/blog/2026-07-05-identity-providers-review",
 			},
 		},
 		{
@@ -4079,7 +4080,7 @@ var Feed = &feeds.Feed{
 			Description: "Soldering is now more accessible than ever without having to spend a lot of money. Here is a list of tools you can buy to start soldering.",
 			Created:     time.Unix(1781654400, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2026-06-17-beginner-soldering-kit",
+				Href: "https://mnguyen.fr/blog/2026-06-17-beginner-soldering-kit",
 			},
 		},
 		{
@@ -4087,7 +4088,7 @@ var Feed = &feeds.Feed{
 			Description: "The difference between HDZero and Analog video systems for microdrones.",
 			Created:     time.Unix(1768176000, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2026-01-12-hdzero-analog",
+				Href: "https://mnguyen.fr/blog/2026-01-12-hdzero-analog",
 			},
 		},
 		{
@@ -4095,7 +4096,7 @@ var Feed = &feeds.Feed{
 			Description: "A small articles about why distroless containers can be beneficial, but hides vulnerabilities.",
 			Created:     time.Unix(1768089600, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2026-01-11-distroless-containers",
+				Href: "https://mnguyen.fr/blog/2026-01-11-distroless-containers",
 			},
 		},
 		{
@@ -4103,7 +4104,7 @@ var Feed = &feeds.Feed{
 			Description: "How to deploy CrowdSec, including the WAF (Web Application Firewall) to ban every spammer and attacker in the world. This article also includes a guide on how to setup a Grafana dashboard to monitor CrowdSec.",
 			Created:     time.Unix(1764288000, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2025-11-28-crowdsec",
+				Href: "https://mnguyen.fr/blog/2025-11-28-crowdsec",
 			},
 		},
 		{
@@ -4111,7 +4112,7 @@ var Feed = &feeds.Feed{
 			Description: "How to use Meilisearch as docsearch with Server-Side-Rendering by using HTMX.",
 			Created:     time.Unix(1762819200, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2025-11-11-meilisearch-ssr",
+				Href: "https://mnguyen.fr/blog/2025-11-11-meilisearch-ssr",
 			},
 		},
 		{
@@ -4119,7 +4120,7 @@ var Feed = &feeds.Feed{
 			Description: "Small article about a deadly combination.",
 			Created:     time.Unix(1762732800, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2025-11-10-dialog-hyperscript-picocss",
+				Href: "https://mnguyen.fr/blog/2025-11-10-dialog-hyperscript-picocss",
 			},
 		},
 		{
@@ -4127,7 +4128,7 @@ var Feed = &feeds.Feed{
 			Description: "As an engineer, how I got started with FPV drones.",
 			Created:     time.Unix(1753315200, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2025-07-24-fpv-drone",
+				Href: "https://mnguyen.fr/blog/2025-07-24-fpv-drone",
 			},
 		},
 		{
@@ -4135,7 +4136,7 @@ var Feed = &feeds.Feed{
 			Description: "A new year, an overhaul of my home Raspberry Pi cluster.",
 			Created:     time.Unix(1737763200, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2025-01-25-home-raspi-part-2",
+				Href: "https://mnguyen.fr/blog/2025-01-25-home-raspi-part-2",
 			},
 		},
 		{
@@ -4143,7 +4144,7 @@ var Feed = &feeds.Feed{
 			Description: "My cluster finally crashed! Let's goooooo! A little of context: I'm running a small k3s cluster with 3 Raspberry Pi 4 with a network storage, and I'm using SQLite as a database for my applications.",
 			Created:     time.Unix(1734480000, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2024-12-18-k3s-crash-postmortem",
+				Href: "https://mnguyen.fr/blog/2024-12-18-k3s-crash-postmortem",
 			},
 		},
 		{
@@ -4151,7 +4152,7 @@ var Feed = &feeds.Feed{
 			Description: "My experience with FluxCD and ArgoCD.",
 			Created:     time.Unix(1726012800, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2024-09-11-fluxcd-argocd-gitops",
+				Href: "https://mnguyen.fr/blog/2024-09-11-fluxcd-argocd-gitops",
 			},
 		},
 		{
@@ -4159,7 +4160,7 @@ var Feed = &feeds.Feed{
 			Description: "Small article that review the migration from SQLite to CockroachDB.",
 			Created:     time.Unix(1719100800, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2024-06-23-migrating-cockroachdb",
+				Href: "https://mnguyen.fr/blog/2024-06-23-migrating-cockroachdb",
 			},
 		},
 		{
@@ -4167,7 +4168,7 @@ var Feed = &feeds.Feed{
 			Description: "Presenting my home Raspberry Pi Kubernetes cluster which is hosting this blog.",
 			Created:     time.Unix(1718755200, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2024-06-19-home-raspi",
+				Href: "https://mnguyen.fr/blog/2024-06-19-home-raspi",
 			},
 		},
 		{
@@ -4175,7 +4176,7 @@ var Feed = &feeds.Feed{
 			Description: "Trying Zig with C libraries for the first time.",
 			Created:     time.Unix(1718668800, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2024-06-18-a-take-zig-c-translate",
+				Href: "https://mnguyen.fr/blog/2024-06-18-a-take-zig-c-translate",
 			},
 		},
 		{
@@ -4183,7 +4184,7 @@ var Feed = &feeds.Feed{
 			Description: "A simple example of a fault-tolerent distributed system in Go with the Raft consensus algorithm.",
 			Created:     time.Unix(1710633600, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2024-03-17-distributed-systems-in-go",
+				Href: "https://mnguyen.fr/blog/2024-03-17-distributed-systems-in-go",
 			},
 		},
 		{
@@ -4191,7 +4192,7 @@ var Feed = &feeds.Feed{
 			Description: "Pull-based GitOps using SystemD and Git. An alternative to Ansible, Puppet, Chef, and SaltStack.",
 			Created:     time.Unix(1708732800, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2024-02-24-gitops-systemd",
+				Href: "https://mnguyen.fr/blog/2024-02-24-gitops-systemd",
 			},
 		},
 		{
@@ -4199,7 +4200,7 @@ var Feed = &feeds.Feed{
 			Description: "Developing a simple WebAuthn authentication service in Go, as there are few functional implementations of WebAuthn with Go, and only a few existing guides.",
 			Created:     time.Unix(1706313600, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2024-01-27-webauthn-guide",
+				Href: "https://mnguyen.fr/blog/2024-01-27-webauthn-guide",
 			},
 		},
 		{
@@ -4207,7 +4208,7 @@ var Feed = &feeds.Feed{
 			Description: "Simple guide and recommendations about CGO. For documentation purposes.",
 			Created:     time.Unix(1704931200, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2024-01-11-cgo-guide",
+				Href: "https://mnguyen.fr/blog/2024-01-11-cgo-guide",
 			},
 		},
 		{
@@ -4215,7 +4216,7 @@ var Feed = &feeds.Feed{
 			Description: "Have you ever wondered whether learning the wrong software architecture is really \"wrong\"? Personally, I've always asked myself this question, and more often than not I've found my answer on the job.",
 			Created:     time.Unix(1703721600, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2023-12-28-architecture-paradigms",
+				Href: "https://mnguyen.fr/blog/2023-12-28-architecture-paradigms",
 			},
 		},
 		{
@@ -4223,7 +4224,7 @@ var Feed = &feeds.Feed{
 			Description: "The review about Gentoo Linux after 1 year of intensive usage in gaming and development: it's the best OS in the world.",
 			Created:     time.Unix(1702512000, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2023-12-14-about-gentoo-linux",
+				Href: "https://mnguyen.fr/blog/2023-12-14-about-gentoo-linux",
 			},
 		},
 		{
@@ -4231,7 +4232,7 @@ var Feed = &feeds.Feed{
 			Description: "Want to statically compile for multi-platform in Go super-easily? Let me introduce Portage, Gentoo's package manager, and Crossdev, Gentoo's solution for cross-compilation.",
 			Created:     time.Unix(1699401600, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2023-11-08-go-with-portage-and-crossdev",
+				Href: "https://mnguyen.fr/blog/2023-11-08-go-with-portage-and-crossdev",
 			},
 		},
 		{
@@ -4239,7 +4240,7 @@ var Feed = &feeds.Feed{
 			Description: "A rant about people implementing their own user database. Also, a guide with detailed implementations on OAuth2/OIDC.",
 			Created:     time.Unix(1696809600, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2023-10-09-understanding-authentication",
+				Href: "https://mnguyen.fr/blog/2023-10-09-understanding-authentication",
 			},
 		},
 		{
@@ -4247,7 +4248,7 @@ var Feed = &feeds.Feed{
 			Description: "About learning your first programming language in 2023. Yes, it's a filler post.",
 			Created:     time.Unix(1695340800, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2023-09-22-learn-programming-language",
+				Href: "https://mnguyen.fr/blog/2023-09-22-learn-programming-language",
 			},
 		},
 		{
@@ -4255,7 +4256,7 @@ var Feed = &feeds.Feed{
 			Description: "About replicable infrastructure when containerization and virtualization are not allowed.",
 			Created:     time.Unix(1694822400, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2023-09-16-road-to-replicable-infrastructure",
+				Href: "https://mnguyen.fr/blog/2023-09-16-road-to-replicable-infrastructure",
 			},
 		},
 		{
@@ -4263,7 +4264,7 @@ var Feed = &feeds.Feed{
 			Description: "This article documents about how this blog came to be. From technical choices to deploying this blog.",
 			Created:     time.Unix(1694304000, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2023-09-10-developing-blog",
+				Href: "https://mnguyen.fr/blog/2023-09-10-developing-blog",
 			},
 		},
 		{
@@ -4271,7 +4272,7 @@ var Feed = &feeds.Feed{
 			Description: "The very first article. About the motivations of developing this blog from scratch with Go and HTMX, and why I want to write articles on this blog.",
 			Created:     time.Unix(1694217600, 0),
 			Link: &feeds.Link{
-				Href: "https://blog.mnguyen.fr/blog/2023-09-09-hello-world",
+				Href: "https://mnguyen.fr/blog/2023-09-09-hello-world",
 			},
 		},
 	},

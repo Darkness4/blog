@@ -1,5 +1,5 @@
 {
-  "origins": ["https://blog.mnguyen.fr"],
+  "origins": ["https://mnguyen.fr"],
   "originsRegex": ["http://localhost:[0-9]+"],
   "defaultCommentOrder": "newest"
 }

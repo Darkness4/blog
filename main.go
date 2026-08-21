@@ -53,7 +53,7 @@ var app = &cli.Command{
 		&cli.StringFlag{
 			Name:        "public.url",
 			Usage:       "The public URL",
-			Value:       "https://blog.mnguyen.fr",
+			Value:       "https://mnguyen.fr",
 			Destination: &publicURL,
 			Sources:     cli.EnvVars("PUBLIC_URL"),
 		},

@@ -1,7 +1,8 @@
 ---
 title: Pushing my Home Raspberry Pi cluster into a production state
 description: A new year, an overhaul of my home Raspberry Pi cluster.
-tags: [raspberry pi, hpc, kubernetes, cluster, home, monitoring, storage, devops]
+tags:
+  [raspberry pi, hpc, kubernetes, cluster, home, monitoring, storage, devops]
 ---
 
 ## Table of contents
@@ -147,7 +148,7 @@ This could repair some issues with the database and k3s. After the migration, I 
 
 ### Ansible
 
-*Wait what? There wasn't ansible before?*
+_Wait what? There wasn't ansible before?_
 
 Yes, in fact, when you setup an immutable infrastructure, the idea is that everything is declarative, including the OS configuration like Kernel version, installed software.
 
@@ -197,7 +198,7 @@ That's all, do note I don't have many services running on CockroachDB, only Graf
 
 #### FluxCD
 
-I've talked about it in an [older article](https://blog.mnguyen.fr/blog/2024-09-11-fluxcd-argocd-gitops), but didn't really *officialize* it. That's because I was still doubting of FluxCD's capabilities.
+I've talked about it in an [older article](https://mnguyen.fr/blog/2024-09-11-fluxcd-argocd-gitops), but didn't really _officialize_ it. That's because I was still doubting of FluxCD's capabilities.
 
 Today, I can finally say that **FluxCD is the best lightweight and fully-featured GitOps solution**. I had **zero** issues with it during the 4 past months.
 
@@ -333,7 +334,6 @@ sinks:
         VL-Msg-Field: message,msg,_msg,log.msg,log.message,log
         AccountID: '0'
         ProjectID: '0'
-
 ```
 
 With this configuration, logs are collected from Kubernetes, parsed as JSON (if compatible), and routed based on conditions (e.g., logs from Traefik). GeoIP enrichment is applied to Traefik logs using a GeoLite2 database to add geolocation data. Unmatched logs and enriched Traefik logs are sent to VictoriaLogs, while internal metrics are exported to Prometheus for monitoring.
@@ -374,7 +374,7 @@ It also has **autoconfiguration**. Life is great.
 
 Lastly, I've setup backups **everywhere** and used Scaleway S3 offering. Obviously, I have encrypted the backups.
 
-Something that I didn't know, but helped like *hell*, is using [mountpoint-s3](https://github.com/awslabs/mountpoint-s3) (like s3fuse) as CSI driver.
+Something that I didn't know, but helped like _hell_, is using [mountpoint-s3](https://github.com/awslabs/mountpoint-s3) (like s3fuse) as CSI driver.
 
 With this, I can upload backups to S3 without the need to install awscli or s3cli, and simply use `cp`.
 
@@ -535,7 +535,6 @@ spec:
     volumeHandle: postgres-backups-pv
     volumeAttributes:
       bucketName: REDACTED
-
 ```
 
 </details>
@@ -685,7 +684,6 @@ spec:
     volumeHandle: k3s-backups-pv
     volumeAttributes:
       bucketName: REDACTED
-
 ```
 
 </details>

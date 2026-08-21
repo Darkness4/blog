@@ -27,7 +27,7 @@ import (
 // TODO: remove hardcoded value and put into a .env
 const (
 	title       = "Marc Nguyen's Blog"
-	href        = "https://blog.mnguyen.fr"
+	href        = "https://mnguyen.fr"
 	authorName  = "Marc Nguyen"
 	authorEmail = "nguyen_marc@live.fr"
 	description = "Marc Nguyen's blog is a personal and technical blog about documenting some processes, implementations, etc."

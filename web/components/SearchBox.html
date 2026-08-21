@@ -1,10 +1,10 @@
 {{ define "SearchBox" }}
-<button id="global-search" _="on click call #search-dialog.showModal()">Search blog.mnguyen.fr</button>
+<button id="global-search" _="on click call #search-dialog.showModal()">Search mnguyen.fr</button>
 <dialog id="search-dialog">
   <article
     _="on click[#search-dialog.open and event.target.matches('dialog')] from elsewhere call #search-dialog.close()">
     <header style="margin-bottom: 0; height: 68px;">
-      <input type="search" placeholder="Search blog.mnguyen.fr" aria-label="Search" style="margin: 0;" name="q"
+      <input type="search" placeholder="Search mnguyen.fr" aria-label="Search" style="margin: 0;" name="q"
         hx-get="/search" hx-trigger="keyup changed delay:100ms" hx-target="#search-results" />
     </header>
     <div id="search-results"
