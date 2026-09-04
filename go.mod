@@ -15,9 +15,10 @@ require (
 	github.com/sqlc-dev/sqlc v1.31.1
 	github.com/stefanfritsch/goldmark-admonitions v1.1.1
 	github.com/urfave/cli/v3 v3.11.0
-	github.com/yuin/goldmark v1.8.6
+	github.com/yuin/goldmark v1.7.11
 	github.com/yuin/goldmark-highlighting/v2 v2.0.0-20230729083705-37449abec8cc
 	github.com/yuin/goldmark-meta v1.1.0
+	github.com/yuin/goldmark/v2 v2.0.1
 	go.abhg.dev/goldmark/anchor v0.2.0
 	go.abhg.dev/goldmark/toc v0.12.0
 	oss.terrastruct.com/d2 v0.7.2
