@@ -128,7 +128,7 @@ container is.
 
 Assuming this setup:
 
-```
+```shell
 +-------------------------------------------------------------------+
 |                        Rootful Docker Host                        |
 |                                                                   |
