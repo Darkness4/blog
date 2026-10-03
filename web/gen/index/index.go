@@ -2,9 +2,8 @@ package index
 
 import (
 	"encoding/xml"
-	"time"
-
 	"github.com/gorilla/feeds"
+	"time"
 )
 
 type Index struct {
@@ -33,9 +32,151 @@ const PageSize = 1
 var Pages = [][]Index{
 	{
 		{
+			EntryName:     "2026-10-02-rootless-docker-in-rootless-docker",
+			Title:         "Setting up Rootless Docker in Rootless Docker",
+			Description:   "Learn how to set up rootless Docker in rootless Docker for secure, isolated CI/CD workloads. Explore why Docker-in-Docker is insecure and how Linux namespaces enable safe nested container execution.",
+			PublishedDate: time.Unix(1790899200, 0),
+			Href:          "/blog/2026-10-02-rootless-docker-in-rootless-docker",
+			Loc:           "https://mnguyen.fr/blog/2026-10-02-rootless-docker-in-rootless-docker",
+			Priority:      0.5,
+			Tags: []string{
+				"devops",
+				"linux",
+				"infrastructure",
+				"docker",
+				"container",
+				"rootless",
+				"security",
+				"github-actions",
+				"ci",
+			},
+			Hierarchy: []Header{
+
+				{
+					Level:   2,
+					Text:    "Table of contents",
+					Anchor:  "table-of-contents",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Introduction",
+					Anchor:  "introduction",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Docker in Docker: Easy to set up, but an inscure setup",
+					Anchor:  "docker-in-docker-easy-to-set-up-but-an-inscure-setup",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Rootless Docker in Docker",
+					Anchor:  "rootless-docker-in-docker",
+					Content: "",
+					Children: []Header{
+
+						{
+							Level:   3,
+							Text:    "Understanding the differences between Rootful Docker and Rootless Docker",
+							Anchor:  "understanding-the-differences-between-rootful-docker-and-rootless-docker",
+							Content: "",
+							Children: []Header{
+
+								{
+									Level:   4,
+									Text:    "Rootful Docker",
+									Anchor:  "rootful-docker",
+									Content: "",
+								},
+
+								{
+									Level:   4,
+									Text:    "Rootless docker",
+									Anchor:  "rootless-docker",
+									Content: "",
+									Children: []Header{
+
+										{
+											Level:   5,
+											Text:    "Leveraging user namespaces to avoid root",
+											Anchor:  "leveraging-user-namespaces-to-avoid-root",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "Using slirp4netns to connect the external network to the namespace",
+											Anchor:  "using-slirp4netns-to-connect-the-external-network-to-the-namespace",
+											Content: "",
+										},
+
+										{
+											Level:   5,
+											Text:    "Setting up cgroups",
+											Anchor:  "setting-up-cgroups",
+											Content: "",
+											Children: []Header{
+
+												{
+													Level:   6,
+													Text:    "Setting up the container filesystem",
+													Anchor:  "setting-up-the-container-filesystem",
+													Content: "",
+												},
+											},
+										},
+									},
+								},
+							},
+						},
+
+						{
+							Level:   3,
+							Text:    "Running rootless docker in docker",
+							Anchor:  "running-rootless-docker-in-docker",
+							Content: "",
+						},
+					},
+				},
+
+				{
+					Level:   2,
+					Text:    "Rootless Docker in Docker",
+					Anchor:  "rootless-docker-in-docker-1",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Setting up GitHub Actions runners with Rootless Docker",
+					Anchor:  "setting-up-github-actions-runners-with-rootless-docker",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "The final script",
+					Anchor:  "the-final-script",
+					Content: "",
+				},
+
+				{
+					Level:   2,
+					Text:    "Conclusion",
+					Anchor:  "conclusion",
+					Content: "",
+				},
+			},
+		},
+		{
 			EntryName:     "2026-08-18-yubikey-luks",
 			Title:         "Setting up Yubikey GPG with LUKS and Dracut",
-			Description:   "Did you know that Dracut natively supports LUKS with Yubikey?",
+			Description:   "Did you know that Dracut natively supports LUKS with Yubikey? Learn how to setup LUKS with Yubikey and use it with Dracut.",
 			PublishedDate: time.Unix(1787011200, 0),
 			Href:          "/blog/2026-08-18-yubikey-luks",
 			Loc:           "https://mnguyen.fr/blog/2026-08-18-yubikey-luks",
@@ -248,7 +389,7 @@ var Pages = [][]Index{
 		{
 			EntryName:     "2026-07-09-embedded-etcd",
 			Title:         "Using embedded etcd as distributed local store.",
-			Description:   "Easy high availability for stateful services.",
+			Description:   "Easy high availability for stateful services. Embed etcd in go applications and avoid deploying additional distributed stores.",
 			PublishedDate: time.Unix(1783555200, 0),
 			Href:          "/blog/2026-07-09-embedded-etcd",
 			Loc:           "https://mnguyen.fr/blog/2026-07-09-embedded-etcd",
@@ -4041,11 +4182,19 @@ var Feed = &feeds.Feed{
 		Email: "nguyen_marc@live.fr",
 	},
 	Created: time.Unix(1694131200, 0),
-	Updated: time.Unix(1787021967, 0),
+	Updated: time.Unix(1791048128, 0),
 	Items: []*feeds.Item{
 		{
+			Title:       "Setting up Rootless Docker in Rootless Docker",
+			Description: "Learn how to set up rootless Docker in rootless Docker for secure, isolated CI/CD workloads. Explore why Docker-in-Docker is insecure and how Linux namespaces enable safe nested container execution.",
+			Created:     time.Unix(1790899200, 0),
+			Link: &feeds.Link{
+				Href: "https://mnguyen.fr/blog/2026-10-02-rootless-docker-in-rootless-docker",
+			},
+		},
+		{
 			Title:       "Setting up Yubikey GPG with LUKS and Dracut",
-			Description: "Did you know that Dracut natively supports LUKS with Yubikey?",
+			Description: "Did you know that Dracut natively supports LUKS with Yubikey? Learn how to setup LUKS with Yubikey and use it with Dracut.",
 			Created:     time.Unix(1787011200, 0),
 			Link: &feeds.Link{
 				Href: "https://mnguyen.fr/blog/2026-08-18-yubikey-luks",
@@ -4053,7 +4202,7 @@ var Feed = &feeds.Feed{
 		},
 		{
 			Title:       "Using embedded etcd as distributed local store.",
-			Description: "Easy high availability for stateful services.",
+			Description: "Easy high availability for stateful services. Embed etcd in go applications and avoid deploying additional distributed stores.",
 			Created:     time.Unix(1783555200, 0),
 			Link: &feeds.Link{
 				Href: "https://mnguyen.fr/blog/2026-07-09-embedded-etcd",

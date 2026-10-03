@@ -1,6 +1,6 @@
 ---
 title: Setting up Yubikey GPG with LUKS and Dracut
-description: Did you know that Dracut natively supports LUKS with Yubikey?
+description: Did you know that Dracut natively supports LUKS with Yubikey? Learn how to setup LUKS with Yubikey and use it with Dracut.
 tags: [devops, linux, infrastructure, dracut, luks, gitops]
 ---
 
