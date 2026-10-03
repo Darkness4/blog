@@ -1,7 +1,7 @@
 ---
 title: Using embedded etcd as distributed local store.
-description: Easy high availability for stateful services.
-tags: ["go", "distributed", "programming", "etcd"]
+description: Easy high availability for stateful services. Embed etcd in go applications and avoid deploying additional distributed stores.
+tags: ['go', 'distributed', 'programming', 'etcd']
 ---
 
 ## Table of contents
