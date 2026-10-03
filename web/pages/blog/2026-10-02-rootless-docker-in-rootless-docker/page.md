@@ -601,7 +601,7 @@ The error tells that `rootlesskit` (the process responsible for setting up
 rootless in Docker) is unable to setup the UID/GID mapping. Looking at the
 parameters sent in that error:
 
-```
+```shell
 newuidmap 75 0 1000 1 1 100000 65536
 ```
 
